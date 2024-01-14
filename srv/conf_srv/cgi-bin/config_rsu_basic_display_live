@@ -1,0 +1,757 @@
+#!/bin/sh
+#
+#=== Generate Config Page ===
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+export PATH=/usr/local/bin:$PATH
+
+#==== Helper functions ===
+print_line()
+{
+    echo "<br>"
+}
+
+print_text_input_tip()
+{
+    # Input parameters
+    #   LABEL=""
+    #   ID=""
+    #   PHOLDER=""
+    #   TOOLTIP=""
+
+    echo "              <div class='form-group row' style='margin-bottom: 0px;' "
+    echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>"
+    echo "                <label for='$ID' class='col-sm-4 col-form-label'>$LABEL </label>"
+    echo "                <div class='col-sm-6'>"
+    echo "                  <input type='text' class='form-control' name='$ID' id='$ID' placeholder='$PHOLDER' value='$PHOLDER' onchange=\"change_notify($ID)\" >"
+    echo "                </div>"
+    echo "              </div>"
+}
+
+print_check_box_tip()
+{
+    # Input Params
+    #   LABEL=""
+    #   ID=""
+    #   VALUE=""
+    #   TOOLTIP (TBD)
+
+    if [ "$VALUE" == "0" ]; then 
+        RESULT="" 
+    else 
+        RESULT="checked" 
+    fi
+    # adding change detect
+    echo "            <div class=\"form-check\"><input class=\"form-check-input\" type=\"checkbox\" name=\"$ID\" id=\"$ID\" $RESULT onchange=\"change_notify($ID)\" >"
+    echo "            <label class=\"form-check-label\" for=\"$ID\" "
+    echo "            data-toggle=\"tooltip\" data-placement=\"top\" title=\"$TOOLTIP\"> "
+    echo "            $LABEL</label></div>"
+}
+
+print_check_box_tip_alert()
+{
+    # Input Params
+    #   LABEL=""
+    #   ID=""
+    #   VALUE=""
+    #   TOOLTIP (TBD)
+
+    if [ "$VALUE" == "0" ]; then 
+        RESULT="" 
+        # adding change detect
+        echo "            <div class=\"form-check\"><input class=\"form-check-input\" type=\"checkbox\" name=\"$ID\" id=\"$ID\" $RESULT onchange=\"change_notify_alert($ID)\" >"
+    else 
+        RESULT="checked" 
+        # adding change detect
+        echo "            <div class=\"form-check\"><input class=\"form-check-input\" type=\"checkbox\" name=\"$ID\" id=\"$ID\" $RESULT onchange=\"change_notify($ID)\" >"
+    fi
+    echo "            <label class=\"form-check-label\" for=\"$ID\" "
+    echo "            data-toggle=\"tooltip\" data-placement=\"top\" title=\"$TOOLTIP\"> "
+    echo "            $LABEL</label></div>"
+}
+
+#============================================================================
+
+#
+# Embedded scripts
+#
+
+print_icon_style()
+{
+echo "<style>" 
+
+echo ".icon {" 
+echo "  font-size: 60px;" 
+echo "  text-align: center;" 
+echo "  margin-top: 20px;" 
+echo "  padding: 10px;" 
+echo "}" 
+
+echo ".intro-container {" 
+echo "  display: -ms-flexbox;" 
+echo "  display: flex;" 
+echo "}" 
+
+echo "</style>" 
+}
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+    echo "<!DOCTYPE html>"
+    echo "<html>"
+
+    echo "<head>"
+    echo "    <meta charset=\"utf-8\">"
+    echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">"
+    echo "    <title>RSU - 5940 I2V Config Settings</title>"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/bootstrap/css/bootstrap.min.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/fonts/font-awesome.min.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Boxed.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Clean.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Footer-Basic.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/styles.css\">"
+
+    echo "    <style>"
+    echo "      #overlay {"
+    echo "          position: fixed;"
+    echo "          display: none;"
+    echo "          width: 100%;"
+    echo "          height: 100%;"
+    echo "          top: 0;"
+    echo "          left: 0;"
+    echo "          right: 0;"
+    echo "          bottom: 0;"
+    echo "          background-color: rgba(0,0,0,0.3);"
+    echo "          z-index: 2;"
+    echo "          cursor: pointer;"
+    echo "      }"
+    echo "    </style>"
+
+    print_icon_style
+    
+    echo "</head>"
+}
+
+print_overlay()
+{
+    echo "<div id='overlay'>"
+
+    echo "<div class="text-center">"
+
+    echo "  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >"
+    echo "    <span class='sr-only'>Loading...</span>"
+    echo "  </div>"
+    echo "</div>"
+    echo "</div>"
+}
+
+print_rsu_basic()
+{
+    echo "                <div class=\"col-sm-9 col-md-9 col-lg-9 col-xl-9 text-left item\" style=\"padding-left: 5px;padding-right: 5px;\">"
+    # adding box
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;margin-bottom: 15px;\">"       # box begin
+
+    #=== form action
+    echo "<form name='rsu_basic_form' action='/cgi-bin/config_rsu_basic_save'>"
+
+    echo "        <h3 class=\"text-center\">Settings</h3>"
+
+    #==========================
+
+    # NETWORK_MODE (was called DHCP_ENABLE)
+    LABEL="Enable DHCP";  ID="NETWORK_MODE";  VALUE="$NETWORK_MODE"; TOOLTIP="Enable DHCP on RSU. Default: Disabled"
+    print_check_box_tip_alert
+
+    # RSU_IP - SC0IPADDRESS
+    LABEL="RSU IP Address";  ID="SC0IPADDRESS";  PHOLDER="$SC0IPADDRESS"; TOOLTIP="RSU IPv4 Address (e.g.192.168.1.100). Default:192.168.2.80"
+    print_text_input_tip
+
+    # NETMASK  - Place holder for now
+    LABEL="RSU Address Mask (bits)";  ID="NETMASK";  PHOLDER="$NETMASK"; TOOLTIP="RSU Address Mask (bits) (Range 0-32). Default: 24"
+    print_text_input_tip
+
+    # MTU  
+    LABEL="RSU Network MTU";  ID="MTU";  PHOLDER="$MTU"; TOOLTIP="RSU Network MTU (Range 68-1500). Default: 1500"
+    print_text_input_tip
+
+    echo "<br>"
+
+    # VLAN_ENABLE
+    LABEL="Enable VLAN";  ID="VLAN_ENABLE";  VALUE="$VLAN_ENABLE"; TOOLTIP="Enable VLAN on RSU. Default: Disabled"
+    print_check_box_tip
+
+    # VLAN_IP
+    LABEL="VLAN IP Address";  ID="VLAN_IP";  PHOLDER="$VLAN_IP"; TOOLTIP="VLAN IPv4 Address (e.g.192.168.1.100). Default:192.168.3.80; May NOT be the same as RSU IP."
+    print_text_input_tip
+
+    # VLAN_MASK
+    LABEL="VLAN Address Mask (bits)";  ID="VLAN_MASK";  PHOLDER="$VLAN_MASK"; TOOLTIP="VLAN Address Mask (bits) (Range 0-32). Default: 24"
+    print_text_input_tip
+
+
+    # VLAN_ID
+    LABEL="VLAN Identifier";  ID="VLAN_ID";  PHOLDER="$VLAN_ID"; TOOLTIP="RSU VLAN Identifier (Range 1-4095). Default: 0 (Disabled)"
+    print_text_input_tip
+
+    echo "<br>"
+
+
+    # Webgui ports
+    LABEL="Webgui HTTP Port";  ID="WEBGUI_HTTP_SERVICE_PORT";  PHOLDER="$WEBGUI_HTTP_SERVICE_PORT"; TOOLTIP="Webserver unencrypted port number (usually 80) Default: 5908"
+    print_text_input_tip
+    LABEL="Webgui HTTPS Port";  ID="WEBGUI_HTTPS_SERVICE_PORT";  PHOLDER="$WEBGUI_HTTPS_SERVICE_PORT"; TOOLTIP="Webserver secure port number: (usually 443) Default: 4934"
+    print_text_input_tip
+
+    # SNMP port
+    LABEL="SNMP Port";  ID="agentaddress";  PHOLDER="$SNMP_SERVICE_PORT"; TOOLTIP="SNMP service port number: (usually 161) Default: 161"
+    print_text_input_tip
+
+
+    # SSH port
+    LABEL="SSH Port";  ID="sshport";  PHOLDER="$SSH_SERVICE_PORT"; TOOLTIP="SSH service port number: (usually 22) Default: 22"
+    print_text_input_tip
+
+    # "Advance Network Settings" Button
+    echo "<br>"
+    echo "   <div style='float: center;'>"
+    echo "     <p align=\"center\"> <input type=\"button\" id='NETWORK_BTTN' value=\"Advanced Network Settings\" onclick='advance_network_settings()' </p>"
+    echo "   </div>"
+    echo "<br>"
+
+    # I2VRadioType
+    #LABEL="Radio Type";  ID="I2VRadioType";  PHOLDER="$I2VRadioType"; TOOLTIP="Choose between DSRC (defaults tx pwr to 23 db) and CV2X (defaults tx power to 22 db)"
+    #SELECTED0=""
+    #SELECTED1=""
+    #if [ "$I2VRadioType" == 0 ]; then
+    #    SELECTED0="checked"
+    #else
+    #    if [ "$I2VRadioType" == 1 ]; then
+    #        SELECTED1="checked"
+    #    fi
+    #fi
+    #echo "              <div class='form-group row' style='margin-bottom: 5px;' "
+    #echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>"
+    #echo "                <label for='$ID' class='col-sm-4 col-form-label'>$LABEL </label>"
+    #echo "                <div class='col-sm-6'>"
+    #echo "                  <input type='radio' name='$ID' id='$ID' value='0' onfocus=\"radio_type_changed(this)\" $SELECTED0>DSRC"
+    #echo "                  &nbsp;"
+    #echo "                  <input type='radio' name='$ID' id='$ID' value='1' onfocus=\"radio_type_changed(this)\" $SELECTED1>CV2X"
+    #echo "                </div>"
+    #echo "              </div>"
+    
+    # RADIO_UNIFI_CH
+    LABEL="Transmit Channel #";  ID="I2VUnifiedChannelNumber";  PHOLDER="$I2VUnifiedChannelNumber"; TOOLTIP="RSU V2X Broadcast Channel (172,174,176,178,180,182,183,184). DSRC Default: 172, CV2X Default: 183"
+    print_text_input_tip
+
+    # RADIO_TRANS_PWR
+    LABEL="Transmit Power(db)";  ID="I2VTransmitPower";  PHOLDER="$I2VTransmitPower"; TOOLTIP="RSU V2X Transmit Power (Range 0-23 db). Default: 22 db"
+    print_text_input_tip
+
+    # GPS_MANUAL_ENABLE
+    print_line
+    LABEL="GPS Manual Override";  ID="I2VGPSOverrideEnable";  VALUE="$I2VGPSOverrideEnable"; TOOLTIP="Enable Manually Defined RSU Position. Default: Disabled"
+    print_check_box_tip
+
+    # GPS_MANUAL_LAT
+    LABEL="Override GPS Lat";  ID="I2VGPSOverrideLat";  PHOLDER="$I2VGPSOverrideLat"; TOOLTIP="RSU Manually Defined Latitude (Range -90 to 90 Deg). Default: 37.418797"
+    print_text_input_tip
+
+    # GPS_MANUAL_LONG
+    LABEL="Override GPS Long";  ID="I2VGPSOverrideLong";  PHOLDER="$I2VGPSOverrideLong"; TOOLTIP="RSU Manually Defined Longitude (Range -180 to 180 Deg). Default: -122.135260"
+    print_text_input_tip
+
+    # GPS_MANUAL_ELEV
+    LABEL="Override GPS Elevation";  ID="I2VGPSOverrideElev";  PHOLDER="$I2VGPSOverrideElev"; TOOLTIP="RSU Manually Defined Elevation (Range -100 to 1500). Default: 30"
+    print_text_input_tip
+
+    # IPV6_ENABLE
+    print_line
+    LABEL="Enable IPv6";  ID="I2VEnableEthIPv6";  VALUE="$I2VEnableEthIPv6"; TOOLTIP="Enable RSU IPv6 Ethernet Address. Default: Disabled"
+    print_check_box_tip
+
+    # IPV6 Forward IP
+    LABEL="IPv6 Forward IP";  ID="I2VEthIPv6Addr";  PHOLDER="$I2VEthIPv6Addr"; TOOLTIP="RSU IPv6 Ethernet Address (e.g. 2001:1890:1232:9900::b). Default: 2001:1890:1232:9900::b"
+    print_text_input_tip
+
+    # IPV6_SCOPE
+    LABEL="IPv6 Scope";  ID="I2VEthIPv6Scope";  PHOLDER="$I2VEthIPv6Scope"; TOOLTIP="RSU IPv6 Ethernet Address (defined in same field. Range 1-128). Default: 64"
+    print_text_input_tip
+
+    # IPV6_DGATEWAY
+    LABEL="IPv6 Default GW";  ID="I2VIPv6DefaultGateway";  PHOLDER="$I2VIPv6DefaultGateway"; TOOLTIP="RSU IPv6 Gateway (e.g. 2001:1890:1232:9900::1.) Default: 2001:1890:1232:9900::1"
+    print_text_input_tip
+
+    # place holder for various flags
+    echo "    <input type='text' name='NAV' id='NAV' value='NONE' style='visibility: hidden;' > "
+
+    # line
+    echo "        <br>"   # header
+
+    #=== 3 buttons on same line (float 1st two
+
+    # Save button - disabled by default, enable when there are changes
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"left\"> <input type=\"button\" id='SAVE_BTTN' value=\"SAVE\" onclick=\"submit_changes()\" disabled> </p>"
+    echo "   </div>"
+
+    # Apply button
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"center\"> <input type=\"button\" id='APPLY_BTTN' value=\"SAVE & APPLY\" onclick=\"submit_changes_reset()\" disabled> </p>"
+    echo "   </div>"
+
+    # Back button one level up - prompt user if changes made
+    echo "     <p align='right'> <input type='button' value='BACK' onclick=\"check_changes_back()\"> </p>"
+
+    # form end
+    echo "</form>"
+
+    # End
+    echo "        </div>"         # box end
+
+    echo "        </div>"
+}
+
+read_rsu_basic()
+{
+    # NETWORK_MODE
+    NETWORK_MODE=`/usr/bin/conf_agent READ RSU_INFO NETWORK_MODE`
+
+    # SC0IPADDRESS
+    SC0IPADDRESS=`/usr/bin/conf_agent READ RSU_INFO SC0IPADDRESS`
+
+    # NETMASK  - Place holder for now
+    NETMASK=`/usr/bin/conf_agent READ RSU_INFO NETMASK`
+
+    # MTU
+    MTU=`/usr/bin/conf_agent READ RSU_INFO MTU`
+
+    # VLAN_ENABLE
+    VLAN_ENABLE=`/usr/bin/conf_agent READ RSU_INFO VLAN_ENABLE`
+
+    # VLAN_IP
+    VLAN_IP=`/usr/bin/conf_agent READ RSU_INFO VLAN_IP`
+
+    # VLAN_MASK
+    VLAN_MASK=`/usr/bin/conf_agent READ RSU_INFO VLAN_MASK`
+
+    # VLAN_ID
+    VLAN_ID=`/usr/bin/conf_agent READ RSU_INFO VLAN_ID`
+
+    # Webgui ports
+    WEBGUI_HTTP_SERVICE_PORT=`/usr/bin/conf_agent READ RSU_INFO WEBGUI_HTTP_SERVICE_PORT`
+    WEBGUI_HTTPS_SERVICE_PORT=`/usr/bin/conf_agent READ RSU_INFO WEBGUI_HTTPS_SERVICE_PORT`
+
+    # SNMP Port
+    SNMP_SERVICE_PORT=`/usr/bin/conf_agent READ snmpd agentaddress`
+
+    # SNMP Port
+    SSH_SERVICE_PORT=`/usr/scripts/sshproctor`
+
+    # I2VRadioType
+    I2VRadioType=`/usr/bin/conf_agent READ i2v I2VRadioType`
+
+    # RADIO_UNIFI_CH
+    #   Read both DSRC and CV2X values separately.
+    DSRC_ChannelNumber=`/usr/bin/conf_agent READ i2v I2VUnifiedChannelNumber`
+    CV2X_ChannelNumber=`/usr/local/bin/dncmdctl cv2xcfg channel | head -1`
+    #   Depending on which one is active, fill in the form value variables
+    if [ "$I2VRadioType" == 0 ]; then   # DSRC
+        I2VUnifiedChannelNumber=$DSRC_ChannelNumber
+    else    # CV2X
+        I2VUnifiedChannelNumber=$CV2X_ChannelNumber
+    fi
+
+    # RADIO_TRANS_PWR
+    I2VTransmitPower=`/usr/bin/conf_agent READ i2v I2VTransmitPower`
+
+    # GPS_MANUAL_ENABLE
+    I2VGPSOverrideEnable=`/usr/bin/conf_agent READ i2v I2VGPSOverrideEnable`
+
+    # GPS_MANUAL_LAT
+    I2VGPSOverrideLat=`/usr/bin/conf_agent READ i2v I2VGPSOverrideLat`
+
+    # GPS_MANUAL_LONG
+    I2VGPSOverrideLong=`/usr/bin/conf_agent READ i2v I2VGPSOverrideLong`
+
+    # GPS_MANUAL_ELEV
+    I2VGPSOverrideElev=`/usr/bin/conf_agent READ i2v I2VGPSOverrideElev`
+
+    # IPV6_ENABLE
+    I2VEnableEthIPv6=`/usr/bin/conf_agent READ i2v I2VEnableEthIPv6`
+
+    # IPV6 Forward IP
+    I2VEthIPv6Addr=`/usr/bin/conf_agent READ i2v I2VEthIPv6Addr`
+
+    # IPV6_SCOPE
+    I2VEthIPv6Scope=`/usr/bin/conf_agent READ i2v I2VEthIPv6Scope`
+
+    # IPV6_DGATEWAY
+    I2VIPv6DefaultGateway=`/usr/bin/conf_agent READ i2v I2VIPv6DefaultGateway`
+}
+
+print_i2v_conf_row1()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">"
+    # Columm 1 
+    print_rsu_basic
+
+    echo "    </div>"
+}
+
+print_i2v_conf_row2()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">"
+
+    # Columm 1 - Radio settings
+
+    echo "    </div>"
+}
+
+print_feature_box_beg()
+{
+    echo "<body>"
+    source $SCRIPT_PATH/add_navbar.sh
+    source $SCRIPT_PATH/add_page_timeout.sh
+    print_overlay
+    echo "    <div class=\"features-boxed\">"
+    echo "        <div class=\"container\">"
+}
+
+print_feature_box_end()
+{
+    echo "        </div>"
+    echo "    </div>"
+}
+
+print_intro()
+{
+    echo "            <div class=\"intro\">"
+    echo "            <br/>"
+    echo "            <div class=\"intro-container\">"
+    echo "                <i class=\"fa fa-server icon\"></i>"
+    echo "                <h2 class=\"text-center\">RSU Basic Settings"
+    echo "                </h2>"
+    echo "            </div>"
+    echo "            </div>"
+}
+
+print_Home_box()
+{
+    echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+    echo "                  <a href=\"/cgi-bin/rsu_main\">"
+    echo "                        <h3 class=\"name\">Home</h3>"
+    echo "                    </div>"
+    echo "                  </a>"
+    echo "                </div>"
+}
+
+print_fw_version()
+{
+  # FW version
+  echo "      <p class=\"copyright\" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>"
+  echo VERSION:
+  cat /etc/version 
+  echo "      </p>"
+}  
+
+#
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+    echo "    <div class=\"footer-basic\">"
+    echo "        <footer>"
+    echo "            <p class=\"copyright\">MobiQ © 2023</p>"
+    echo "            <br>"
+    echo "        </footer>"
+    echo "    </div>"
+    echo "    <script src=\"../assets/js/jquery.min.js\"></script>"
+    echo "    <script src=\"../assets/bootstrap/js/bootstrap.min.js\"></script>"
+
+    #=== Custom scripts ===
+    echo "<script>"
+        print_submit_changes
+        print_submit_changes_reset
+        print_overlay_on
+        print_overlay_off
+        print_ValidateIPaddress
+        print_change_notify
+        print_check_changes_back
+        print_run_srv_script
+        print_advance_network_settings
+    echo "</script>"
+
+    # If we started in CV2X mode, start with Channel+Power disabled
+    if [ "$I2VRadioType" == 1 ]; then
+        echo "<script>document.getElementById('I2VUnifiedChannelNumber').disabled = true;</script>"
+    fi
+ 
+    # disable GNSS override
+    echo "<script>document.getElementById('I2VGPSOverrideEnable').disabled = true;</script>"
+    echo "<script>document.getElementById('I2VGPSOverrideLat').disabled = true;</script>"
+    echo "<script>document.getElementById('I2VGPSOverrideLong').disabled = true;</script>"
+    echo "<script>document.getElementById('I2VGPSOverrideElev').disabled = true;</script>"
+
+    # disable IPv6
+    echo "<script>document.getElementById('I2VEnableEthIPv6').disabled = true;</script>"
+    echo "<script>document.getElementById('I2VEthIPv6Addr').disabled = true;</script>"
+    echo "<script>document.getElementById('I2VEthIPv6Scope').disabled = true;</script>"
+    echo "<script>document.getElementById('I2VIPv6DefaultGateway').disabled = true;</script>"
+
+    echo "</body>"
+    echo "</html>"
+}
+
+print_ValidateIPaddress()
+{
+    echo "function ValidateIPaddress(ipaddress)"
+    echo "{"
+    echo "  if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress))"
+    echo "  {"
+    echo "     return (true)"
+    echo "  }"
+    echo "  alert('You have entered an invalid IP address: ' + ipaddress)  "
+    echo "  return (false)  "
+    echo "} "
+}
+
+print_overlay_on()
+{
+    echo "    function overlay_on() {"
+    echo "      document.getElementById('overlay').style.display = 'block';"
+    echo "      document.getElementById('spin01').style.visibility = 'visible';"
+    echo "    }"
+}
+
+print_overlay_off()
+{
+    echo "    function overlay_off() {"
+    echo "      document.getElementById('overlay').style.display = 'none';"
+    echo "    }"
+}
+
+print_submit_changes()
+{
+    # Submit rsu_basic
+    echo "function submit_changes() {"
+        #= Check RSU valid ip
+        echo "var IP_ADDR = document.getElementById('SC0IPADDRESS');"
+
+        echo "if (ValidateIPaddress(IP_ADDR.value) == true)"
+        echo "{"
+            echo "overlay_on()"
+            echo "    var x = document.getElementsByName('rsu_basic_form');"
+            echo "    x[0].submit();"
+         echo "}"
+    echo "}"
+}
+
+print_submit_changes_reset()
+{
+    # Submit rsu_basic_reset
+    echo "function submit_changes_reset() {"
+        # Make sure user want to SAVE and REBOOT
+        echo "var r = confirm('SAVE & APPLY will reboot the RSU!');"
+        echo "if (r == true) {"
+            #= Check RSU valid ip
+            echo "var IP_ADDR = document.getElementById('SC0IPADDRESS');"
+
+            echo "if (ValidateIPaddress(IP_ADDR.value) == true)"
+            echo "{"
+                echo "NAV.value='APPLY';"
+                echo "overlay_on()"
+                echo "    var x = document.getElementsByName('rsu_basic_form');"
+                echo "    x[0].submit();"
+                # Note: NAV is set to 'APPLY' allowing save script to know to reboot after saving
+                # The post-save reboot_with_countdown screen will show save results while rebooting
+            echo "}"
+        
+        echo "} else {"
+        
+        echo "}"
+    
+    echo "}"
+}
+
+
+print_check_changes_back()
+{
+    # check changes
+    echo "function check_changes_back() {"
+    echo "if (pg_change == 0) {"    #   check for changes
+            # No changes - go back one level up
+    echo "  window.location.href = '/cgi-bin/config_display_default';"
+    echo "} else {"
+            # Else prompt user to save changes
+    echo "    var ret = confirm(\"Save changes?\");"
+    echo "    if (ret == true) {"
+                # Save changes and go back
+    echo "      NAV.value='BACK';"
+    echo "      submit_changes();"
+    echo "    } "
+    echo "    else {"
+    echo "      window.location.href = '/cgi-bin/config_display_default';"
+    echo "    }"
+    echo "}"
+    echo "}"
+}
+
+
+# Function to validate onchange events
+print_change_notify()
+{
+    echo "var pg_change = 0;"
+    echo "function change_notify(change_id) {"
+    echo "  pg_change = 1;"
+    # set color to purple - #800080
+    echo "  change_id.style.color = \"#800080\"; "
+    # enable SAVE button
+    echo "  document.getElementById('SAVE_BTTN').disabled = false;"
+    # enable SAVE & APPLY button
+    echo "  document.getElementById('APPLY_BTTN').disabled = false;"
+    # Tell the navbar to tell the user to save first
+    echo "  navbar_set_page_has_unsaved_changes(true);"
+
+    echo "}"
+
+    echo "function change_notify_alert(change_id) {"
+    echo "  pg_change = 1;"
+    # set color to purple - #800080
+    echo "  change_id.style.color = \"#800080\"; "
+    # enable SAVE button
+    echo "  document.getElementById('SAVE_BTTN').disabled = false;"
+    # enable SAVE & APPLY button
+    echo "  document.getElementById('APPLY_BTTN').disabled = false;"
+    # Tell the navbar to tell the user to save first
+    echo "  navbar_set_page_has_unsaved_changes(true);"
+    echo "  alert('Warning: Using DHCP can result in RSU lockout if RSU unable to obtain lease.  Be sure you really want to enable this feature.');"
+
+    echo "}"
+
+    # Save the DSRC and CV2X channels to show when user toggles buttons
+    echo "var previous_dsrc_channel = $DSRC_ChannelNumber;"
+    echo "var previous_cv2x_channel = $CV2X_ChannelNumber;"
+    # Function to handle user selecting cv2x and dsrc radio buttons
+    cat << '##EOFEOFEOF1'
+
+    function radio_type_changed(change_id) {
+      pg_change = 1;
+      //  enable SAVE button
+      document.getElementById('SAVE_BTTN').disabled = false;
+      // enable SAVE & APPLY button
+      document.getElementById('APPLY_BTTN').disabled = false;
+      // Tell the navbar to tell the user to save first
+      navbar_set_page_has_unsaved_changes(true);
+      // Switching RadioType changes TXPower to default value, and
+      //   if CV2X is selected, Channel is read-only
+      input_channel = document.getElementById("I2VUnifiedChannelNumber");
+      input_txpower = document.getElementById("I2VTransmitPower");
+      if (change_id.value == '0') { // 0=DSRC, has default value 23
+         // Switch value in channel input
+         previous_cv2x_channel = input_channel.value;
+         input_channel.value = previous_dsrc_channel;
+         input_channel.style.color = "#800080";
+         // Set default power level
+         if (input_txpower.value != '23') {
+            input_txpower.value = '23';
+            input_txpower.style.color = "#800080";
+         }
+         // Let editing dsrc channel occur
+         input_channel.disabled = false;
+      } else {
+         // Switch value in channel input
+         previous_dsrc_channel = input_channel.value;
+         input_channel.value = previous_cv2x_channel;
+         // Dont leave channel value purple if user had changed dsrc channel
+         input_channel.style.color = "#000000";
+         // Set default power level
+         if (input_txpower.value != '22') {
+            input_txpower.value = '22';
+            input_txpower.style.color = "#800080";
+         }
+         // No editing of cv2x channel
+         input_channel.disabled = true;
+      }
+    }
+##EOFEOFEOF1
+}
+
+print_save_org()
+{
+    # function to be called onload to save loaded settings
+    # Will be used to notify user for proper action
+    echo "function save_org() {"
+    # save all displayed config items
+
+    echo "}"
+}
+
+print_advance_network_settings()
+{
+    echo "function advance_network_settings() {"
+    echo "  window.location.href = '/cgi-bin/config_rsu_advance_network_settings_live';"
+    echo "}"
+}
+
+
+print_run_srv_script()
+{
+    echo "    function run_srv_script(req_script) {" 
+    echo "      var xhttp = new XMLHttpRequest();" 
+    echo "      xhttp.open(\"GET\", req_script, true);" 
+    echo "      xhttp.send();" 
+    echo "    }" 
+}
+
+
+#
+# Main
+### Generate Page - then redirect to rsu-config (check if user is logged in)
+#
+echo "Content-type: text/html"
+echo ""
+
+# Get current logged in IP
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+else
+
+  print_header                   # print header
+  print_feature_box_beg          # feature box beg
+  print_intro
+
+  # Status from previous save
+  STATUS_FILE=/tmp/update.status.file
+  if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+  fi
+
+  # read settings
+  read_rsu_basic
+  # Show 1st row - App settings, Network settings
+  print_i2v_conf_row1
+  # Show 2nd row - Radio settings
+  #print_i2v_conf_row2
+
+  print_feature_box_end          # feature box end
+
+  print_fw_version
+  
+  # End of Page with Footer
+  print_footer_end  
+  
+fi

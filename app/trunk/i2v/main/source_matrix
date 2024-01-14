@@ -1,0 +1,129 @@
+#!/bin/bash
+#####################################################
+# this file tracks all source for each i2v app
+# this file must be maintained for the source
+# tarball to build correctly
+#
+# note the format (for any new apps): src_inc_APPNAME
+#
+# any new app just needs to list the source, header
+# files and libs required for compilation - everything 
+# else is automatially handled for building the source
+# tarball
+# (make sure your app includes ALL items not included
+#  by i2v even if other apps have the same items - 
+#  you never know which get packaged into src tar)
+#####################################################
+
+# space separated list - paths relative to trunk
+# i2v is required for all other i2v apps - do not duplicate
+# entries in the i2v list (unless you really want to for some reason)
+#
+# wildcards supported, directory names supported (just list dir name
+# if you want it copied)
+export src_inc_i2v='I2V/main/i2v.c  
+                    I2V/main/Makefile  
+                    I2V/main/i2v.conf  
+                    I2V/main/svc-rse  
+                    I2V/main/security
+                    I2V/main/conf
+                    I2V/util/i2v_util.c  
+                    I2V/util/i2v_crc.c  
+                    I2V/util/i2vmonitor.c  
+                    I2V/util/i2v_security.c  
+                    I2V/util/i2v_amsgclient.c
+                    I2V/util/i2v_snmp_client.c
+                    I2V/util/i2v_timemgr.c
+                    I2V/common/*.h  
+                    I2V/shm_inc/*.h  
+                    I2V/buildI2V.sh  
+                    WSUServices/Common/wsu_util/src/wsu_tom.c  
+                    WSUServices/Common/wsu_util/src/wsu_util.c  
+                    WSUServices/Common/wsu_util/src/wsu_parsebits.c  
+                    WSUServices/Common/wsu_list/list_handler.c  
+                    WSUServices/Common/wsu_include/wsu_parsebits.h  
+                    WSUServices/Common/wsu_include/wsu_types.h  
+                    WSUServices/Common/wsu_include/wsu_util.h  
+                    WSUServices/Common/wsu_include/list_handler.h  
+                    WSUServices/Common/wsu_include/shm_inc/wsu_shm.h  
+                    WSUServices/Common/wsu_include/shm_inc/wsu_notify_shm.h  
+                    WSUServices/Common/wsu_include/shm_inc/wsu_shm_inc.h  
+                    WSUServices/Common/wsu_include/*.h  
+                    WSUServices/wsu_services_api/include/*.h
+                    WSUServices/wsu_services_api/lib/*.so*
+                    WSUServices/esbsmi/libesbsmi.so*
+                    WSUServices/Common/asn1_util/J2735  
+                    WSUServices/Common/asn1_util/lib  
+                    WSUServices/Common/asn1_util/rtbersrc  
+                    WSUServices/Common/asn1_util/rtpersrc  
+                    WSUServices/Common/asn1_util/rtsrc  
+                    WSUServices/Common/asn1_util/rtxsrc
+                    WSUServices/snmp/net-snmp-5.5/include
+                    WSUServices/snmp/net-snmp-5.5/snmplib/.libs/libnetsnmp.so*'
+
+export src_inc_i2vmonitor='I2V/util/i2vmonitor.c
+                           WSUServices/Common/wsu_include/wsu_lpf.h'
+
+# TODO: need to obtain libs for miniwsu and wsu5001 instead of assumption below
+# that affects libris*
+export src_inc_spat='I2V/spat/spat.c  
+                     I2V/spat/spat.h  
+                     I2V/spat/spat.conf  
+                     I2V/spat/bsmrx.c  
+                     WSUServices/Common/wsu_include/wsu_general.h  
+                     WSUServices/Common/wsu_include/wsu_logutil.h'
+
+export src_inc_scs='I2V/scs/scs.c  
+                    I2V/scs/icddecoder.c
+                    I2V/scs/scs.conf  
+                    WSUServices/snmp/api/snmpfunc.h'
+
+export src_inc_map='I2V/map/map.c
+                    I2V/map/map.conf
+                    WSUServices/Common/wsu_util/src/wsu_sharedmem.c'
+
+export src_inc_map_gen='I2V/map/map_gen.c
+                        I2V/map/map_gen.conf  
+                        WSUServices/Common/wsu_include/wsu_general.h  
+                        WSUServices/Common/wsu_include/wsu_logutil.h'
+
+export src_inc_tim='I2V/tim/tim.c  
+                    I2V/tim/tim.conf  
+                    I2V/tim/tim_message.txt  
+                    WSUServices/Common/wsu_include/wsu_general.h  
+                    WSUServices/Common/wsu_include/wsu_logutil.h'
+
+export src_inc_ipb='I2V/ipb/ipb.c
+                    I2V/ipb/ipb.conf'
+
+export src_inc_lmgr='I2V/logmgr/logmgr.c
+                     I2V/logmgr/syslogdot.conf'
+
+export src_inc_amh='I2V/amh/amh.c
+                    I2V/amh/amh.h
+                    I2V/amh/imf.c
+                    I2V/amh/amh.conf'
+
+export src_inc_sps='I2V/scs/signalProvider/sps.c
+                    I2V/scs/signalProvider/crc.c
+                    I2V/scs/signalProvider/ncrc.c
+                    I2V/scs/signalProvider/rse-sim.conf'
+
+export src_inc_iwmh='I2V/iwmh/iwmh.c'
+
+export src_inc_rtcm='I2V/rtcm/rtcm.c
+                     I2V/rtcm/rtcm.conf'
+
+export src_inc_sdm='I2V/sdm/sdm.c
+                    I2V/sdm/sdmutilities.c
+                    I2V/sdm/sdmcommon.h
+                    I2V/sdm/sdm.conf
+                    I2V/rsemib'
+
+export src_inc_capture_eth_pcap='I2V/test/capture_eth_pcap/capture_eth_pcap.c'
+
+export src_inc_ifclogger='I2V/test/ifclogger/ifclogger.c'
+
+export src_inc_cspat='I2V/test/raw_test_utils/spat/cfgspat.c
+                      I2V/test/raw_test_utils/spat/cfgspat.conf'
+

@@ -1,0 +1,55 @@
+asn1PerCppTypes$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rt_common.hh \
+    $(OSROOTDIR)/rtxsrc/OSRTStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtsrc/asn1CppEvtHndlr64.h \
+    $(PERSRCDIR)/asn1PerCppTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/OSRTOutputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtsrc/ASN1TOctStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(PERSRCDIR)/asn1PerCppTypes.cpp \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CppEvtHndlr.h \
+    $(OSROOTDIR)/rtsrc/ASN1TOctStr64.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/ASN1Context.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/asn1CppTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/OSRTOutputStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBufIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtsrc/ASN1TObjId.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolder.h
+	$(CCC) $(PERCFLAGS) $(RTCPPFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/asn1PerCppTypes.cpp
+

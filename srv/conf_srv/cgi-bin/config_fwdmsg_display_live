@@ -1,0 +1,664 @@
+#!/bin/sh
+
+# File: config_fwdmsg_display_live
+# Desc: Display Forward Message setting, allow updates
+
+# Set path
+PATH=/proc/boot:/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin:/opt/cohda/bin:/rwflash/bin:/usr/local/bin
+
+# Read in the shared functions
+#source /usr/local/www/cgi-bin/shared_webgui_functions.sh
+
+# Start the response
+echo 'Content-type: text/html'
+echo ''
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+
+print_text_input_tip()
+{
+    # Input parameters
+    #   ZZUNUSED---NAME=""
+    #   LABEL=""
+    #   ID=""
+    #   PHOLDER=""
+    #   TOOLTIP=""
+
+    echo "              <div class='col-sm-3' style='padding-left:2em; display:inline-block'"
+    echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>"
+    echo "                  <input type='text' data-ip='test' class='form-control form-control-ip' style='width:85%; min-width:80px' name='$ID' id='$ID' placeholder='$PHOLDER' value='$PHOLDER' onchange=\"change_notify($ID)\" >"
+    echo "              </div>"
+}
+
+print_text_input_tip_2()
+{
+    # Input parameters
+    #   ZZUNUSED---NAME=""
+    #   LABEL=""
+    #   ID=""
+    #   PHOLDER=""
+    #   TOOLTIP=""
+
+    echo "              <div class='col-sm-1' style='padding-left:0em; display:inline-block'"
+    echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>"
+    echo "                  <input type='text' class='form-control form-control-ip' style='width:55%; min-width:60px' name='$ID' id='$ID' placeholder='$PHOLDER' value='$PHOLDER' onchange=\"change_notify($ID)\" >"
+    echo "              </div>"
+}
+
+print_check_box_tip()
+{
+    # Input Params
+    #   ZZUNUSED---NAME=""
+    #   LABEL=""
+    #   ID=""
+    #   VALUE=""
+    #   TOOLTIP (TBD)
+
+    if [ "$VALUE" == "0" ]; then 
+        RESULT="" 
+    else 
+        RESULT="checked" 
+    fi
+    # adding change detect
+
+    echo "            <div class=\"form-check\" style='padding-left:2em; display:inline-block'>" 
+    echo "             <input title='$TOOLTIP' class=\"form-check-input-fwd\" type=\"checkbox\" name=\"$ID\" id=\"$ID\" $RESULT onchange=\"change_notify($ID)\" >"
+    echo "            </div>"
+}
+
+# Get current security config values
+PV_ForwardMessageIP1=`/usr/bin/conf_agent READ fwdmsg ForwardMessageIP1`
+PV_ForwardMessagePort1=`/usr/bin/conf_agent READ fwdmsg ForwardMessagePort1`
+PV_ForwardMessageMask1=`/usr/bin/conf_agent READ fwdmsg ForwardMessageMask1`
+
+PV_ForwardMessageIP2=`/usr/bin/conf_agent READ fwdmsg ForwardMessageIP2`
+PV_ForwardMessagePort2=`/usr/bin/conf_agent READ fwdmsg ForwardMessagePort2`
+PV_ForwardMessageMask2=`/usr/bin/conf_agent READ fwdmsg ForwardMessageMask2`
+
+PV_ForwardMessageIP3=`/usr/bin/conf_agent READ fwdmsg ForwardMessageIP3`
+PV_ForwardMessagePort3=`/usr/bin/conf_agent READ fwdmsg ForwardMessagePort3`
+PV_ForwardMessageMask3=`/usr/bin/conf_agent READ fwdmsg ForwardMessageMask3`
+
+PV_ForwardMessageIP4=`/usr/bin/conf_agent READ fwdmsg ForwardMessageIP4`
+PV_ForwardMessagePort4=`/usr/bin/conf_agent READ fwdmsg ForwardMessagePort4`
+PV_ForwardMessageMask4=`/usr/bin/conf_agent READ fwdmsg ForwardMessageMask4`
+
+PV_ForwardMessageIP5=`/usr/bin/conf_agent READ fwdmsg ForwardMessageIP5`
+PV_ForwardMessagePort5=`/usr/bin/conf_agent READ fwdmsg ForwardMessagePort5`
+PV_ForwardMessageMask5=`/usr/bin/conf_agent READ fwdmsg ForwardMessageMask5`
+
+FWDMSG_ENABLE1=`/usr/bin/conf_agent READ fwdmsg ForwardMessageEnable1`
+FWDMSG_ENABLE2=`/usr/bin/conf_agent READ fwdmsg ForwardMessageEnable2`
+FWDMSG_ENABLE3=`/usr/bin/conf_agent READ fwdmsg ForwardMessageEnable3`
+FWDMSG_ENABLE4=`/usr/bin/conf_agent READ fwdmsg ForwardMessageEnable4`
+FWDMSG_ENABLE5=`/usr/bin/conf_agent READ fwdmsg ForwardMessageEnable5`
+
+# Get the individual bits from the Mask 
+if [ "$(($PV_ForwardMessageMask1 & 0x01))" -ne 0 ]; then
+    PV_BSM_1=1
+else
+    PV_BSM_1=0
+fi
+if [ "$(($PV_ForwardMessageMask1 & 0x02))" -ne 0 ]; then
+    PV_MAP_1=1
+else
+    PV_MAP_1=0
+fi
+if [ "$(($PV_ForwardMessageMask1 & 0x04))" -ne 0 ]; then
+    PV_PSM_1=1
+else
+    PV_PSM_1=0
+fi
+if [ "$(($PV_ForwardMessageMask1 & 0x08))" -ne 0 ]; then
+    PV_SPAT_1=1
+else
+    PV_SPAT_1=0
+fi
+if [ "$(($PV_ForwardMessageMask1 & 0x10))" -ne 0 ]; then
+    PV_AMH_1=1
+else
+    PV_AMH_1=0
+fi
+if [ "$(($PV_ForwardMessageMask1 & 0x20))" -ne 0 ]; then
+    PV_SRM_1=1
+else
+    PV_SRM_1=0
+fi
+
+# Get the individual bits from the Mask 
+if [ "$(($PV_ForwardMessageMask2 & 0x01))" -ne 0 ]; then
+    PV_BSM_2=1
+else
+    PV_BSM_2=0
+fi
+if [ "$(($PV_ForwardMessageMask2 & 0x02))" -ne 0 ]; then
+    PV_MAP_2=1
+else
+    PV_MAP_2=0
+fi
+if [ "$(($PV_ForwardMessageMask2 & 0x04))" -ne 0 ]; then
+    PV_PSM_2=1
+else
+    PV_PSM_2=0
+fi
+if [ "$(($PV_ForwardMessageMask2 & 0x08))" -ne 0 ]; then
+    PV_SPAT_2=1
+else
+    PV_SPAT_2=0
+fi
+if [ "$(($PV_ForwardMessageMask2 & 0x10))" -ne 0 ]; then
+    PV_AMH_2=1
+else
+    PV_AMH_2=0
+fi
+if [ "$(($PV_ForwardMessageMask2 & 0x20))" -ne 0 ]; then
+    PV_SRM_2=1
+else
+    PV_SRM_2=0
+fi
+
+# Get the individual bits from the Mask 
+if [ "$(($PV_ForwardMessageMask3 & 0x01))" -ne 0 ]; then
+    PV_BSM_3=1
+else
+    PV_BSM_3=0
+fi
+if [ "$(($PV_ForwardMessageMask3 & 0x02))" -ne 0 ]; then
+    PV_MAP_3=1
+else
+    PV_MAP_3=0
+fi
+if [ "$(($PV_ForwardMessageMask3 & 0x04))" -ne 0 ]; then
+    PV_PSM_3=1
+else
+    PV_PSM_3=0
+fi
+if [ "$(($PV_ForwardMessageMask3 & 0x08))" -ne 0 ]; then
+    PV_SPAT_3=1
+else
+    PV_SPAT_3=0
+fi
+if [ "$(($PV_ForwardMessageMask3 & 0x10))" -ne 0 ]; then
+    PV_AMH_3=1
+else
+    PV_AMH_3=0
+fi
+if [ "$(($PV_ForwardMessageMask3 & 0x20))" -ne 0 ]; then
+    PV_SRM_3=1
+else
+    PV_SRM_3=0
+fi
+
+# Get the individual bits from the Mask 
+if [ "$(($PV_ForwardMessageMask4 & 0x01))" -ne 0 ]; then
+    PV_BSM_4=1
+else
+    PV_BSM_4=0
+fi
+if [ "$(($PV_ForwardMessageMask4 & 0x02))" -ne 0 ]; then
+    PV_MAP_4=1
+else
+    PV_MAP_4=0
+fi
+if [ "$(($PV_ForwardMessageMask4 & 0x04))" -ne 0 ]; then
+    PV_PSM_4=1
+else
+    PV_PSM_4=0
+fi
+if [ "$(($PV_ForwardMessageMask4 & 0x08))" -ne 0 ]; then
+    PV_SPAT_4=1
+else
+    PV_SPAT_4=0
+fi
+if [ "$(($PV_ForwardMessageMask4 & 0x10))" -ne 0 ]; then
+    PV_AMH_4=1
+else
+    PV_AMH_4=0
+fi
+if [ "$(($PV_ForwardMessageMask4 & 0x20))" -ne 0 ]; then
+    PV_SRM_4=1
+else
+    PV_SRM_4=0
+fi
+
+# Get the individual bits from the Mask 
+if [ "$(($PV_ForwardMessageMask5 & 0x01))" -ne 0 ]; then
+    PV_BSM_5=1
+else
+    PV_BSM_5=0
+fi
+if [ "$(($PV_ForwardMessageMask5 & 0x02))" -ne 0 ]; then
+    PV_MAP_5=1
+else
+    PV_MAP_5=0
+fi
+if [ "$(($PV_ForwardMessageMask5 & 0x04))" -ne 0 ]; then
+    PV_PSM_5=1
+else
+    PV_PSM_5=0
+fi
+if [ "$(($PV_ForwardMessageMask5 & 0x08))" -ne 0 ]; then
+    PV_SPAT_5=1
+else
+    PV_SPAT_5=0
+fi
+if [ "$(($PV_ForwardMessageMask5 & 0x10))" -ne 0 ]; then
+    PV_AMH_5=1
+else
+    PV_AMH_5=0
+fi
+if [ "$(($PV_ForwardMessageMask5 & 0x20))" -ne 0 ]; then
+    PV_SRM_5=1
+else
+    PV_SRM_5=0
+fi
+
+# Output
+cat << '##EOFEOFEOF1'
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, shrink-to-fit=no'>
+    <title>RSU - Forward Message Settings </title>
+    <link rel='stylesheet' href='../assets/bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='../assets/fonts/font-awesome.min.css'>
+    <link rel='stylesheet' href='../assets/css/Features-Boxed.css'>
+    <link rel='stylesheet' href='../assets/css/Features-Clean.css'>
+    <link rel='stylesheet' href='../assets/css/Footer-Basic.css'>
+    <link rel='stylesheet' href='../assets/css/styles.css'>
+<style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.form-control-ip {
+  padding: 0;
+}
+
+.center {
+  margin: auto;
+  width: 90%;
+  height: 200px;
+  overflow: auto;
+  border: 3px solid #adb5bd;
+  background-color: #eee;
+  padding: 10px;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.btn {
+  border: 2px solid gray;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.upload-btn-wrapper input[type=file] {
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.btn_round {
+  border: 2px solid gray;
+  background-color: white;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  color: black;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+.form-check-input-fwd {
+  margin-left: -1.35rem;
+}
+</style>
+</head>
+<body>
+##EOFEOFEOF1
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+source $SCRIPT_PATH/add_page_timeout.sh 
+source $SCRIPT_PATH/add_navbar.sh 
+
+cat << '##EOFEOFEOF2'
+<script>
+function submit_form()
+{
+    overlay_on()
+    var x = document.getElementsByName('fwdmsg_save');
+    x[0].submit();
+}
+function submit_imm_fwd_reset()
+{
+    var r = confirm('SAVE & APPLY will reboot the RSU!');
+    if (r == true) {
+        NAV.value='APPLY';
+        overlay_on();
+        var x = document.getElementsByName('fwdmsg_save');
+        x[0].submit();
+    }
+}
+function overlay_on() {
+  document.getElementById('overlay').style.display = 'block';
+  document.getElementById('spin01').style.visibility = 'visible';
+}
+function overlay_off() {
+  document.getElementById('overlay').style.display = 'none';
+}
+var pg_change = 0;
+function change_notify(change_id) {
+  pg_change = 1;
+  document.getElementById('SAVE_BTTN').disabled = false;
+  document.getElementById('APPLY_BTTN').disabled = false;
+  change_id.style.color = "#800080";    // purple
+  navbar_set_page_has_unsaved_changes(true);
+}
+function change_notify_checkbox() {
+  document.getElementById('SAVE_BTTN').disabled = false;
+  document.getElementById('APPLY_BTTN').disabled = false;
+  navbar_set_page_has_unsaved_changes(true);
+  pg_change = 1;
+}
+function check_changes_back() {
+    if (pg_change == 0) {
+      window.location.href = '/cgi-bin/config_display_default';
+    } else {
+        var ret = confirm("Save changes?");
+        if (ret == true) {
+          NAV.value='BACK';
+          submit_form();
+        } 
+        else {
+          window.location.href = '/cgi-bin/config_display_default';
+        }
+    }
+}
+function start_update() {
+    if (ready_for_update_request_status == "READY") {
+        ready_for_update_request_status = "REQ_SENT";
+    } else {
+        ready_for_update_request_status = ready_for_update_request_status + " ... STILL WAITING";
+    }
+    var t = setTimeout(start_update, 2000);
+}
+</script>
+<div id='overlay'>
+<div class=text-center>
+  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >
+    <span class='sr-only'>Loading...</span>
+  </div>
+</div>
+</div>
+    <div class='features-boxed'>
+        <div class='container'>
+
+            <div class='intro'>
+            <div class="intro-container">
+                <i class="fa fa-mail-forward icon"></i>
+                <h2 class='text-center'>Forward Message</h2>
+            </div>
+            </div>
+##EOFEOFEOF2
+
+# Status from previous save
+STATUS_FILE=/tmp/update.status.file
+if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+fi
+
+cat << '##EOFEOFEOF3'
+    <!-- Forward Settings Box -->
+    <div class='row justify-content-center features' style='padding-top: 0px;padding-bottom: 0px;'>
+      <div class='col-sm-10 col-md-10 col-lg-10 col-xl-10 text-left item'>
+        <div class='text-left box shadow p-3 mb-5 bg-white rounded' style='padding-top: 5px;mlargin-bottom: 15px;'>
+          <form name='fwdmsg_save' method='post' action='/cgi-bin/config_fwdmsg_save'>
+          <h3 class='text-center'>Forward Message Settings</h3>
+            <h4 class='text-left' style='color: #007BFF; font-size: 16px' > Enable  &emsp;   &emsp; IP Address &emsp; &emsp; &emsp; &emsp; &emsp; Port &emsp; &emsp; Active &emsp; BSM &emsp; PSM &emsp; SPAT &emsp; SRM </h4>
+            <h4 class='text-left' style='color: #007BFF; font-size: 16px' > &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &nbsp; Msgs. </h4>
+
+##EOFEOFEOF3
+
+    LABEL="Forward Message Enable1" ID="ForwardMessageEnable1" VALUE="$FWDMSG_ENABLE1" TOOLTIP="Forward Message Enable 1"
+    print_check_box_tip 
+
+    LABEL="Forward Message IP1" ID="ForwardMessageIP1" PHOLDER="$PV_ForwardMessageIP1" TOOLTIP="Forward Message IP1"
+    print_text_input_tip
+
+    LABEL="Forward Message Port1" ID="ForwardMessagePort1" PHOLDER="$PV_ForwardMessagePort1" TOOLTIP="Forward Message Port1"
+    print_text_input_tip_2
+
+    echo "&emsp;" 
+
+    LABEL="Forward Message AMH Enable1" ID="ForwardMessageAMHEnable1" VALUE="$PV_AMH_1" TOOLTIP="Forward Message AMH Enable 1"
+    print_check_box_tip 
+    echo "&emsp; &nbsp;" 
+
+    LABEL="Forward Message BSM Enable1" ID="ForwardMessageBSMEnable1" VALUE="$PV_BSM_1" TOOLTIP="Forward Message BSM Enable 1"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message PSM Enable1" ID="ForwardMessagePSMEnable1" VALUE="$PV_PSM_1" TOOLTIP="Forward Message PSM Enable 1"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SPAT Enable1" ID="ForwardMessageSPATEnable1" VALUE="$PV_SPAT_1" TOOLTIP="Forward Message SPAT Enable 1 (tscbm)"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SRM Enable1" ID="ForwardMessageSRMEnable1" VALUE="$PV_SRM_1" TOOLTIP="Forward Message SRM Enable 1(SRM and Heartbeat)"
+    print_check_box_tip 
+
+    echo "<br>"
+
+    LABEL="Forward Message Enable2" ID="ForwardMessageEnable2" VALUE="$FWDMSG_ENABLE2" TOOLTIP="Forward Message Enable 2"
+    print_check_box_tip 
+
+    LABEL="Forward Message IP2" ID="ForwardMessageIP2" PHOLDER="$PV_ForwardMessageIP2" TOOLTIP="Forward Message IP2"
+    print_text_input_tip
+
+    LABEL="Forward Message Port2" ID="ForwardMessagePort2" PHOLDER="$PV_ForwardMessagePort2" TOOLTIP="Forward Message Port2"
+    print_text_input_tip_2
+
+    echo "&emsp;" 
+
+    LABEL="Forward Message AMH Enable2" ID="ForwardMessageAMHEnable2" VALUE="$PV_AMH_2" TOOLTIP="Forward Message AMH Enable 2"
+    print_check_box_tip 
+    echo "&emsp; &nbsp;" 
+
+    LABEL="Forward Message BSM Enable2" ID="ForwardMessageBSMEnable2" VALUE="$PV_BSM_2" TOOLTIP="Forward Message BSM Enable 2"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message PSM Enable2" ID="ForwardMessagePSMEnable2" VALUE="$PV_PSM_2" TOOLTIP="Forward Message PSM Enable 2"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SPAT Enable2" ID="ForwardMessageSPATEnable2" VALUE="$PV_SPAT_2" TOOLTIP="Forward Message SPAT Enable 2 (tscbm)"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SRM Enable2" ID="ForwardMessageSRMEnable2" VALUE="$PV_SRM_2" TOOLTIP="Forward Message SRM Enable 2 (SRM and Heartbeat)"
+    print_check_box_tip 
+
+    echo "<br>"
+
+    LABEL="Forward Message Enable3" ID="ForwardMessageEnable3" VALUE="$FWDMSG_ENABLE3" TOOLTIP="Forward Message Enable 3"
+    print_check_box_tip 
+
+    LABEL="Forward Message IP3" ID="ForwardMessageIP3" PHOLDER="$PV_ForwardMessageIP3" TOOLTIP="Forward Message IP3"
+    print_text_input_tip
+
+    LABEL="Forward Message Port3" ID="ForwardMessagePort3" PHOLDER="$PV_ForwardMessagePort3" TOOLTIP="Forward Message Port3"
+    print_text_input_tip_2
+
+    echo "&emsp;" 
+
+    LABEL="Forward Message AMH Enable3" ID="ForwardMessageAMHEnable3" VALUE="$PV_AMH_3" TOOLTIP="Forward Message AMH Enable 3"
+    print_check_box_tip 
+    echo "&emsp; &nbsp;" 
+
+    LABEL="Forward Message BSM Enable3" ID="ForwardMessageBSMEnable3" VALUE="$PV_BSM_3" TOOLTIP="Forward Message BSM Enable 3"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message PSM Enable3" ID="ForwardMessagePSMEnable3" VALUE="$PV_PSM_3" TOOLTIP="Forward Message PSM Enable 3"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SPAT Enable3" ID="ForwardMessageSPATEnable3" VALUE="$PV_SPAT_3" TOOLTIP="Forward Message SPAT Enable 3 (tscbm)"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SRM Enable3" ID="ForwardMessageSRMEnable3" VALUE="$PV_SRM_3" TOOLTIP="Forward Message SRM Enable 3 (SRM and Heartbeat)"
+    print_check_box_tip 
+
+
+    echo "<br>"
+
+    LABEL="Forward Message Enable4" ID="ForwardMessageEnable4" VALUE="$FWDMSG_ENABLE4" TOOLTIP="Forward Message Enable 4"
+    print_check_box_tip 
+
+    LABEL="Forward Message IP4" ID="ForwardMessageIP4" PHOLDER="$PV_ForwardMessageIP4" TOOLTIP="Forward Message IP4"
+    print_text_input_tip
+
+    LABEL="Forward Message Port4" ID="ForwardMessagePort4" PHOLDER="$PV_ForwardMessagePort4" TOOLTIP="Forward Message Port4"
+    print_text_input_tip_2
+
+    echo "&emsp;" 
+
+    LABEL="Forward Message AMH Enable4" ID="ForwardMessageAMHEnable4" VALUE="$PV_AMH_4" TOOLTIP="Forward Message AMH Enable 4"
+    print_check_box_tip 
+    echo "&emsp; &nbsp;" 
+
+    LABEL="Forward Message BSM Enable4" ID="ForwardMessageBSMEnable4" VALUE="$PV_BSM_4" TOOLTIP="Forward Message BSM Enable 4"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message PSM Enable4" ID="ForwardMessagePSMEnable4" VALUE="$PV_PSM_4" TOOLTIP="Forward Message PSM Enable 4"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SPAT Enable4" ID="ForwardMessageSPATEnable4" VALUE="$PV_SPAT_4" TOOLTIP="Forward Message SPAT Enable 4 (tscbm)"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SRM Enable4" ID="ForwardMessageSRMEnable4" VALUE="$PV_SRM_4" TOOLTIP="Forward Message SRM Enable 4 (SRM and Heartbeat)"
+    print_check_box_tip 
+
+    echo "<br>"
+
+    LABEL="Forward Message Enable5" ID="ForwardMessageEnable5" VALUE="$FWDMSG_ENABLE5" TOOLTIP="Forward Message Enable 5"
+    print_check_box_tip 
+
+    LABEL="Forward Message IP5" ID="ForwardMessageIP5" PHOLDER="$PV_ForwardMessageIP5" TOOLTIP="Forward Message IP5"
+    print_text_input_tip
+
+    LABEL="Forward Message Port5" ID="ForwardMessagePort5" PHOLDER="$PV_ForwardMessagePort5" TOOLTIP="Forward Message Port5"
+    print_text_input_tip_2
+
+    echo "&emsp;" 
+
+    LABEL="Forward Message AMH Enable5" ID="ForwardMessageAMHEnable5" VALUE="$PV_AMH_5" TOOLTIP="Forward Message AMH Enable 5"
+    print_check_box_tip 
+    echo "&emsp; &nbsp;" 
+
+    LABEL="Forward Message BSM Enable5" ID="ForwardMessageBSMEnable5" VALUE="$PV_BSM_5" TOOLTIP="Forward Message BSM Enable 5"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message PSM Enable5" ID="ForwardMessagePSMEnable5" VALUE="$PV_PSM_5" TOOLTIP="Forward Message PSM Enable 5"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SPAT Enable5" ID="ForwardMessageSPATEnable5" VALUE="$PV_SPAT_5" TOOLTIP="Forward Message SPAT Enable 5 (tscbm)"
+    print_check_box_tip 
+    echo "&emsp; " 
+
+    LABEL="Forward Message SRM Enable5" ID="ForwardMessageSRMEnable5" VALUE="$PV_SRM_5" TOOLTIP="Forward Message SRM Enable 5 (SRM and Heartbeat)"
+    print_check_box_tip 
+
+    echo "<br>"
+    # Common text of the tooltips
+    IPTT="IP Address to send forward message"
+
+    # Add <form> HTML for the text inputs for the config items
+
+cat << '##EOFEOFEOF5'
+            <br/>
+
+    <input type='text' name='NAV' id='NAV' value='REFRESH' style='visibility: hidden;' > 
+        <br>
+   <div style='float: left;'>
+     <p align="left"> <input type="button" id='SAVE_BTTN' value="SAVE" onclick="submit_form()" disabled> </p>
+   </div>
+   <div style='float: left;'>
+     <p align="center"> <input type="button" id='APPLY_BTTN' value="SAVE & APPLY" onclick="submit_imm_fwd_reset()" disabled> </p>
+   </div>
+     <p align='right'> <input type='button' value='BACK' onclick="check_changes_back()"> </p>
+</form>
+        </div>
+        </div>
+    </div>
+    <!-- END Forward Message Settings -->
+
+    </div>
+    <!-- END div of center justification -->
+
+##EOFEOFEOF5
+
+# FW version
+echo "<p class='copyright' style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>VERSION:"
+cat /etc/version 
+echo "</p>"
+    
+# End of Page with Footer
+
+cat << '##EOFEOFEOF6'
+
+    <div class='footer-basic'>
+        <footer>
+            <p class='copyright'>MobiQ © 2023</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+##EOFEOFEOF6

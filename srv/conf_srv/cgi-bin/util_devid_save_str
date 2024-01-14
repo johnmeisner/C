@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+# Request to save a string as the customer Device ID
+#
+# NOTE: Debug log (DLOG) is disabled, to enable it, sed s/##DLOGDISABLED##//
+
+STATUS_FILE=/tmp/update.status.file
+DLOG=/tmp/zdbg.cust_devid_save_str_log.txt
+TMPHEXFILE=/tmp/ztmp.hex_devid.txt
+TMPOUTFILE=/tmp/ztmp.devid_write_out.txt
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/dnutils
+
+##DLOGDISABLED##`date +%H:%M:%S` - util_devid_save_str started >> $DLOG
+
+# Start HTML
+echo "Content-type: text/html"
+echo ""
+
+# Save POST query-string for get_token_val to use later
+SAVED_POST_FILE=/tmp/ztmp.saved_post_data
+/usr/bin/post_saver $SAVED_POST_FILE
+
+# Verify caller is logged in
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Get passed params
+CUSDEVID=`/usr/bin/get_token_val -f $SAVED_POST_FILE CUSDEVID`
+
+##DLOGDISABLED##echo `date +%H:%M:%S` - Post Saved file is: >> $DLOG
+##DLOGDISABLED##/bin/ls -l $SAVED_POST_FILE >> $DLOG
+##DLOGDISABLED##echo `date +%H:%M:%S` - Got CUSDEVID = "'$CUSDEVID'" >> $DLOG
+
+# Validate the devid string
+STRINGLEN=`echo "$CUSDEVID" | wc -c`
+if [ $STRINGLEN -lt 5 ]; then 
+    let STRINGLEN=$STRINGLEN-1
+    echo "<font color=red>Device ID '$CUSDEVID' is only $STRINGLEN characters long -- must be at least 4 characters</font>" > $STATUS_FILE
+elif [ $STRINGLEN -gt 33 ]; then
+    let STRINGLEN=$STRINGLEN-1
+    echo "<font color=red>Device ID '$CUSDEVID' is $STRINGLEN characters long -- must be at most 32 characters</font>" > $STATUS_FILE
+else
+    # Convert the devid string into hex bytes
+    /bin/rm -f $TMPHEXFILE
+    for ((i=0;i<${#CUSDEVID};i++));do
+        printf "%02X; " \'${CUSDEVID:$i:1}\' >> $TMPHEXFILE
+    done
+    # Write hex
+    /usr/bin/write_cust_devid $TMPHEXFILE > $TMPOUTFILE 2>&1
+##DLOGDISABLED##    echo `date +%H:%M:%S` - Call to write_cust_devid said: >> $DLOG
+##DLOGDISABLED##    sed -e 's/^/    /' $TMPOUTFILE >> $DLOG
+    RET=`grep ERROR: $TMPOUTFILE`
+    if [ x"$RET" == "x" ]; then
+##DLOGDISABLED##        echo `date +%H:%M:%S` - Successful response detected >> $DLOG
+        echo "<font color=green>Successfully updated Device ID to '$CUSDEVID'</font>" > $STATUS_FILE
+    else
+##DLOGDISABLED##        echo `date +%H:%M:%S` - Error response detected >> $DLOG
+        echo "<font color=red>Failed to update Device ID - $RET</font>" > $STATUS_FILE
+    fi
+fi
+
+# Cleanup /tmp files
+rm -f $TMPHEXFILE $TMPOUTFILE $SAVED_POST_FILE
+
+# And return user back to the deviceid util page
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/utility_page_deviceid' \" />"
+
+##DLOGDISABLED##echo `date +%H:%M:%S` - Done >> $DLOG

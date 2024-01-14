@@ -1,0 +1,4 @@
+
+UBlox configuration files are now in ~/work/trunk/hercules/Software/u-blox/configuration/
+    Relative path, is:  ../../../../../u-blox/configuration/
+

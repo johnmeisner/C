@@ -1,0 +1,172 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+echo "Content-type: text/html"
+echo ""
+
+# First check login status
+# NOTE: We must still check login status before reboot or else an attacker
+#     could continuously reboot this RSU
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then
+  # Expired/not logged in -- goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+  exit
+fi
+
+# Display reboot page content
+cat << '##EOFEOFEOF1'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RSU - 5940 Factory Defaults Reset</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 2;
+  cursor: pointer;
+}
+    </style>
+</head>
+
+<!-- print_feature_box_beg -->
+<body>
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+
+    <div class="features-boxed">
+        <div class="container">
+
+<!-- print_intro -->
+            <div class="intro">
+                <h2 class="text-center">Customer Defined Configuration: Backup and Restore</h2>
+            </div>
+
+##EOFEOFEOF2
+
+
+  # Status from previous defaults reset submit
+  STATUS_FILE=/tmp/update.status.file
+  if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+  fi
+
+cat << '##EOFEOFEOF3'
+
+<div class="row justify-content-center features" style="padding-top: 0px;padding-bottom: 0px;">
+
+
+<!-- BACKUP CONFIGS start -->
+<div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item">
+  <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;mlargin-bottom: 15px;">
+
+    <form name='backup_form' form action='/cgi-bin/customer_configs_backup'>
+      <h3 class="text-center">Backup Current Configuration</h3>
+
+      <div id='backup_text'> Backing up the current RSU configuration will overwrite any previously backed up customer defined configuration. </div>
+      <br>
+      <br/>
+
+      <div class="form-check"><input class="form-check-input" type="checkbox" name="confirm_backup" id="confirm_backup">
+        <label class="form-check-label" for="confirm_backup" data-toggle="tooltip" data-placement="top" title="Please confirm backup"> Yes, I really do want to backup the current configuration</label>
+      </div>
+      <br>
+
+      <div style='float: left;'>
+      <p align="left"> <input type='submit' value='CONFIRM'> </p>
+      </div>
+      <br>     
+     
+    </form>
+  </div>
+</div>       
+<!-- BACKUP CONFIGS end -->
+
+
+
+
+<!-- RESTORE CONFIGS start -->
+<div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item">
+  <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;mlargin-bottom: 15px;">
+
+    <form name='restore_form' form action='/cgi-bin/customer_configs_restore'>
+      <h3 class="text-center">Restore Customer Configuration</h3>
+
+      <div id='restore_text'> Restoring a customer defined configuration includes the network settings of this device.
+ After the reset, you will not be to use this Web GUI again until manually resetting network settings, unless the backed up settings are configured for your network.  Are you sure you wish to restore the backed up customer defined configuration? </div>
+      <br>
+      <br/>
+
+      <div class="form-check"><input class="form-check-input" type="checkbox" name="confirm_restore" id="confirm_restore">
+        <label class="form-check-label" for="confirm_restore" data-toggle="tooltip" data-placement="top" title="Please confirm restore"> Yes, I really do want to restore the previously backed up customer defined configuration</label>
+      </div>
+      <br>
+      
+      <div style='float: left;'>
+      <p align="left"><input type='submit' value='CONFIRM'></p>
+      </div>
+      <br>
+    </form>
+  </div>
+</div>
+<!-- RESTORE CONFIGS end -->
+
+
+</div>
+<p align='right'> <input type='button' value='BACK' onclick="go_back()"> </p>
+<br>
+
+
+
+<!-- print_feature_box_end -->
+        </div>
+    </div>
+
+<!-- print_footer_end -->
+    <div class="footer-basic">
+        <footer>
+            <p class="copyright">MobiQ © 2023</p>
+        </footer>
+    </div>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+function go_back()
+{
+     window.location.href = '/cgi-bin/util_display_live';
+}
+
+</script>
+
+
+</body>
+</html>
+
+
+##EOFEOFEOF3
+

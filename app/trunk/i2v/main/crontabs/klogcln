@@ -1,0 +1,5 @@
+#!/bin/sh
+
+/bin/sed -i '/Unsupported command/ d' /var/log/messages
+/bin/sed -i '/last message repeated 8 times/ d' /var/log/messages
+

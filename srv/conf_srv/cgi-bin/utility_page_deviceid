@@ -1,0 +1,296 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+TMPFILE=/tmp/ztmp.devid_data
+
+# Main
+echo "Content-type: text/html"
+echo ''
+
+# Verify caller is logged in
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+STATUS_FILE=/tmp/update.status.file
+
+# Get the device ID nor dump
+/usr/local/dnutils/denso_nor_read > $TMPFILE
+
+# Get the denso devid string
+DNDEVID=`dnr2str 0 $TMPFILE`
+
+# Get the customer devid string
+CUSDEVID=`dnr2str 2 $TMPFILE`
+
+# Get the hex data of the customer devid
+CUSDEVIDHEX=`egrep '0x00[23]0:' $TMPFILE | cut -c 9-`
+CUSDEVIDHEX1=`egrep '0x0020:' $TMPFILE | cut -c 9-`
+CUSDEVIDHEX2=`egrep '0x0030:' $TMPFILE | cut -c 9-`
+
+# Output to browser
+cat << '##EOFEOFEOF1'
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Utility - View/Edit Device ID</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="/assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="/assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+<style>
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+.circle {
+ height: 30px;
+ width: 30px;
+ border-radius: 50%;
+ background: #FFFFFF;
+ border: 2px solid gray;
+ display: inline-block;
+  }
+.roundcorner {
+height: 100px;
+width: 99%;
+border-radius: 25px;
+border: 2px solid #808080;
+padding: 10px;
+  }
+.monospace {
+    font-family: "Lucida Console", Courier, monospace;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+  <div id='overlay'>
+    <div class=text-center>
+      <div id='spin01' class='spinner-border text-primary' role='status' style='visibility: hidden;'>
+        <span class='sr-only'>Shutting down RSU Services ...</span>
+      </div>
+    </div>
+  </div>
+
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+
+<div class="features-boxed">
+    <ztmp div class="container">
+    <div class="grid">
+
+
+
+<!-- Old school way of doing a title - has icon tho -->
+<div class="row justify-content-center">    <!-- doing this class=row instead of <div class="intro"> will center the title, what we prefer -->
+<div class="intro-container">
+    <i class="fa fa-id-card-o icon"></i>
+    <h2 class="text-center">Device ID</h2>
+</div>
+</div>
+
+##EOFEOFEOF2
+
+
+# If any status from previous save, display it
+STATUS_FILE=/tmp/update.status.file
+if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+fi
+
+cat << '##EOFEOFEOF3'
+
+<!-- Overall container of boxes below title -->
+<div class="row m-0 p-0 justify-content-center features">
+
+<!-- Current Values Div -->
+<div class="col-6 text-left item" style="padding-left: 5px;padding-right: 5px; padding-bottom: 30px">
+    <div class="text-left box shadow bg-white rounded" style="padding-top: 15px; margin-bottom: 0px; min-height: 150px; min-width: 750px">
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>Current Device IDs</h3>
+        <br/>
+        <div class='name overflow' style='color: #808080; font-size: 15px; margin-bottom: 0px' id='top_txt'>
+##EOFEOFEOF3
+
+echo "MobiQ Device ID: $DNDEVID <br/>"
+echo "Customer Device ID (as string): $CUSDEVID <br/>"
+echo "<table><tr><td valign=top>Customer Device ID (as hex):&nbsp;</td><td><table><tr><td style='font-family: monospace'>$CUSDEVIDHEX1</td></tr><tr><td style='font-family: monospace;'>$CUSDEVIDHEX2</td></tr></table></td></tr></table>"
+cat << '##EOFEOFEOF4'
+        </div>
+    </div>
+</div>
+<!-- Padding Box
+<div class="col-2 text-left item">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; margin-bottom:0px">
+        &nbsp;
+    </div>
+</div>
+-->
+<!-- End of Current Values Div -->
+
+
+<!-- Force a new row -->
+</div>
+<div class="row m-0 p-0 justify-content-center features">
+
+<!-- Update The Value with Text Input Block -->
+<div class="col-4 text-left item" style="padding-left: 5px;padding-right: 20 px">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 325px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>Set Device ID with Text Input</h3>
+        <br/>
+
+    <form method='post' action='/cgi-bin/util_devid_save_str'>
+
+      <div>
+      This method uses the text input to set the device ID.  Update the value in the control below, 
+      and click "Update" to write the new device ID.
+      </div>
+
+<br>
+              <div class='form-group row' style='margin-bottom: 0px;' 
+                data-toggle='tooltip' data-placement='top' title='Customer DeviceID'>
+                <label for='CUSDEVID' class='col-sm-4 col-form-label'>Device ID:</label>
+                <div class='col-sm-7'>
+##EOFEOFEOF4
+
+echo "<input type='text' name='CUSDEVID' id='cusdevid' class='form-control' placeholder='$CUSDEVID' value='$CUSDEVID' style='color:#0c5460;text-align:center;font-size:13px;font-weight:bold' oninput='change_notify(cusdevid)'>"
+cat << '##EOFEOFEOF5'
+                </div>
+              </div>
+    <br/>
+    <input type='submit' value='Update' onclick="submit_string_update()">
+    </form>
+    </div>
+</div>
+<!-- END - Update The Value with Text Input Block -->
+
+
+
+<!-- Update The Value with CSV Block -->
+<div class="col-4 text-left item" style="padding-left: 15px;padding-right: 5px;">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 325px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>Set Device ID with a CSV Input File</h3>
+        <br/>
+
+    <form id='fileform'>
+
+      <div>
+      This method uses values in a .csv file to set the device ID.  Create your .csv file on your computer, up to 32 integer 
+      values in hexadecimal notation, values ranging from 0-255 (0x00-0xff), separated by commas.  Then
+      use this section to upload your file to write its values as the new device ID.
+      </div>
+      <br>
+
+      <div style='display: inline;' align='center'>
+      <div style='float: left;'>
+         <div class='upload-btn-wrapper'>
+           <button class='btn' style='margin-left: 50px;' >Upload CSV File</button>
+           <input type='file' name='csv_id_file' accept='.csv' id='csv_id_file' onchange='upload_new_csv()'/>
+         </div>
+      </div>
+      </div>
+    </form>
+    </div>
+</div>
+<!-- End of Update The Value Block -->
+
+
+<!-- Force a new row -->
+</div>
+<div class="row justify-content-center features" style="padding-top: 1px">
+<!-- END Force a new row -->
+
+
+
+<!-- Back block -->
+                <div id='back_block' class="item" style="width: 150px">
+                  <a href="/cgi-bin/util_display_live">
+                    <div class="shadow p-3 mb-3 bg-white rounded" style="width: 150px"><i class="fa fa-arrow-left icon"></i>
+                        <h3 class='name'>Back</h3>
+                    </div>
+                  </a>
+                </div>
+
+
+
+
+<!-- End of: Overall container of boxes below title -->
+</div>
+
+<!-- End of top two divs, div "container" and "features-boxed" -->
+    </div>
+</div>
+
+<!-- Footer -->
+    <div class="footer-basic">
+        <footer>
+            <p class="copyright">MobiQ &copy; 2023</p>
+        </footer>
+    </div>
+
+<script>
+function change_notify(change_id) {
+    change_id.style.color = "#800080";
+}
+function submit_upload() {
+    overlay_on();
+    document.getElementById('fileform').submit();
+}
+function submit_string_update() {
+    overlay_on();
+    document.getElementById('cusdevid').submit();
+}
+function overlay_on() {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('spin01').style.visibility = 'visible';
+}
+function back_clicked() {
+    window.location.href = '/cgi-bin/util_display_live';
+}
+function upload_new_csv() {
+    overlay_on();
+    var file_object = document.getElementById('csv_id_file').files[0];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Now refresh content by making browser reload this page
+            window.location.href = '/cgi-bin/utility_page_deviceid';
+        }
+    };
+    xhttp.open('post', '/cgi-bin/util_devid_save_hexfile', true);
+    xhttp.send(file_object);
+}
+</script>
+
+</body>
+</html>
+
+##EOFEOFEOF5
+
+# Cleanup
+rm $TMPFILE

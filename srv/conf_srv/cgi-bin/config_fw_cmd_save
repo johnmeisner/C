@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# File: config_fw_cmd_save
+# Desc: Save Apps setting for I2V
+# Note: This will save any changes in Apps Enable group
+#
+
+SCRPT_PATH="/usr/local/www/cgi-bin/"
+REFRESH_SCRPT="fw_update_display"
+REFRESH=$SCRPT_PATH$REFRESH_SCRPT
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+update_cmd_line_install()
+{
+#=== Process DHCP_EN - checkbox
+CMD_LINE_INSTALL=`/usr/bin/get_token_val $QUERY_STRING CMD_LINE_INSTALL`
+if [ "$CMD_LINE_INSTALL" == "on" ]; then
+    RESULT="1"
+else
+    RESULT="0"
+fi
+UPDATE=`/usr/bin/conf_agent WRITE RSU_INFO CONF_REVERT $RESULT`
+
+}
+
+#
+# Main
+#
+
+# run script to update
+update_cmd_line_install
+
+#= Refresh Page
+$REFRESH
+

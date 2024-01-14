@@ -1,0 +1,98 @@
+#!/bin/sh
+#
+# get_status_update_aio
+#   This provides, all in one script call, all data needed to update all the sections
+#        in the customer status display live page
+#   The "runagain" program is used to cache cpu-expensive data for a number of seconds.
+#        This allows multiple remote users, and allows faster updates for cpu-easy data
+#   The data is cached in two sets of files, so when there are multiple clients, each
+#        one will get an uncorrupted, full set of data because the new data is being
+#        collected in the other set.
+#
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Figure out which cache set is active
+CACHENO=`/bin/cat /tmp/zcache.active`
+
+### Update CPU-Demanding Data
+
+if [ `/usr/bin/runagain aio_update 2` == True ]; then
+
+    # Flip cacheno so we are updating the inactive set
+    # Also will set it for the first time on no file 
+    if [ "$CACHENO" == 1 ]; then 
+        CACHENO=0
+    else
+        CACHENO=1
+    fi
+
+    # The llc command inside quickradio needs this
+    export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+
+    #=== Get RSU position in one call ===
+    /usr/bin/nice /usr/bin/quickpos --webgui-format > /tmp/zcache$CACHENO.gps_pos
+
+    #=== Radio data
+    /usr/bin/nice /usr/bin/quickradio > /tmp/zcache$CACHENO.quickradio
+
+    #== CV2X Channel
+    I2VRadioType=`/usr/bin/nice /usr/bin/conf_agent READ i2v I2VRadioType` # Get Radio type to see if we need cv2x channel
+    if [ "$I2VRadioType" == 1 ]; then   # 1==CV2X
+        export PATH=/usr/local/bin:$PATH
+        /usr/bin/nice /usr/local/bin/dncmdctl cv2xcfg channel | head -1 | sed -e 's/$/,/' > /tmp/zcache$CACHENO.cv2xchannel
+        # Maybe one day but not today
+        #/usr/bin/nice /usr/bin/conf_agent READ i2v I2VUnifiedChannelNumber | head -1 | sed -e 's/$/,/' > /tmp/zcache$CACHENO.cv2xchannel
+    else
+        echo "DSRC," > /tmp/zcache$CACHENO.cv2xchannel      # Let status page know not to use cv2x channel
+    fi
+
+    #=== Services Running
+    /usr/bin/nice /usr/bin/quickservices.sh > /tmp/zcache$CACHENO.quickservices
+
+    #== LED Status
+    /usr/bin/nice /usr/local/bin/rsuhealth -Lw > /tmp/zcache$CACHENO.led_status
+
+    # Flip active CACHENO in storage
+    echo $CACHENO > /tmp/zcache.active
+
+fi
+
+### Output data
+
+echo "Content-type: text/html"
+echo ""
+
+#=== GPS position and CPU temp
+/bin/cat /tmp/zcache$CACHENO.gps_pos
+cat /sys/class/thermal/thermal_zone0/temp
+echo ","
+
+#=== RSU date ===
+/bin/date
+echo ","
+
+#=== Uptime data ===
+/usr/bin/quickuptime
+echo ","
+
+# Rest of cached data
+/bin/cat /tmp/zcache$CACHENO.quickradio    \
+         /tmp/zcache$CACHENO.cv2xchannel   \
+         /tmp/zcache$CACHENO.quickservices \
+         /tmp/zcache$CACHENO.led_status
+
+#== RH850 Data
+/usr/bin/quickrh850 status
+
+# Ambient CPU Temperatures
+/bin/cat /sys/class/hwmon/hwmon0/temp2_input
+echo ,

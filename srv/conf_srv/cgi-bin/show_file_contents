@@ -1,0 +1,25 @@
+#!/bin/sh
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+FILE=`/usr/bin/get_token_val $QUERY_STRING filename`
+
+echo "*****************************************************************"
+echo "   " $FILE
+echo "*****************************************************************"
+echo ""
+if test -f "$FILE"; then
+    /bin/cat $FILE
+else
+    echo "Error: $FILE does not exist!"
+fi
+

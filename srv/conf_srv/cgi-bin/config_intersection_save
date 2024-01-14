@@ -1,0 +1,81 @@
+#!/bin/sh
+
+# File: config_intersection_save
+# Desc: Save Intersection settings
+
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Status file to send back to user
+STATUS_FILE=/tmp/update.status.file
+rm -f $STATUS_FILE
+SUCCESS='<font color=green>Successful</font><br/>'
+FAILED='<font color=red>FAILED</font><br/>'
+
+#=== Figure out follow-up page to show user
+NAV=`/usr/bin/get_token_val $QUERY_STRING NAV`
+if [ "$NAV" == "BACK" ]; then
+    REFRESH_SCRPT="config_display_default"
+elif [ "$NAV" == "APPLY" ]; then
+    # do a reboot after the save
+    REFRESH_SCRPT="reboot_with_countdown"
+elif [ "$NAV" == "TSCBM" ]; then
+    # Head to tscbm page after save
+    REFRESH_SCRPT="config_tscbm_display_live"
+else
+    # go back to the display_live screen after the save
+    REFRESH_SCRPT="config_intersection_display_live"
+fi
+
+# Since we are using BASH and not perl or python, we don't have arrays
+# so have to pack our data to get a semi-intelligent multi-column data loop.
+# We make the <FORM> field names and the config setting names the same, so
+# our packed loop data is two items: config-file-w/o-.conf <colon> settingname.
+
+LOOPDATA="spat16:IntersectionID scs:SRMFwdInterface scs:LocalSignalControllerEnable scs:LocalSignalControllerIP scs:LocalSignalSNMPPort scs:LocalSignalControllerPort scs:LocalSignalControllerHW spat16:SPATInteroperabilityMode scs:BypassSignalControllerNTCIP scs:BypassYellowDuration"
+
+CHECKBOX_CONFIGS="LocalSignalControllerEnable BypassSignalControllerNTCIP"
+
+for XPACKED in $LOOPDATA ; do
+    CONFIG_FILE=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $1}'`
+    SETTING_NAME=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $2}'`
+
+    # Get setting's current value in config file
+    OLD_VALUE=`/usr/bin/conf_agent READ $CONFIG_FILE $SETTING_NAME`
+    # Get setting passed to us through form
+    NEW_VALUE=`/usr/bin/get_token_val $QUERY_STRING $SETTING_NAME`
+    # Massage the checkbox values: on=1 off=0
+    for CBOX_NAME in $CHECKBOX_CONFIGS ; do
+        if [ $SETTING_NAME == $CBOX_NAME ] ; then
+            if [ "$NEW_VALUE" == on ]; then
+                NEW_VALUE=1
+            else
+                NEW_VALUE=0
+            fi
+        fi
+    done
+    # If it's changed, update
+    if [ "$OLD_VALUE" != "$NEW_VALUE" ]; then
+        SAVEOUTPUT=`/usr/bin/conf_agent WRITE $CONFIG_FILE $SETTING_NAME $NEW_VALUE`
+        CONFIRM_VALUE=`/usr/bin/get_conf_val.sh $CONFIG_FILE $SETTING_NAME`
+        if [ "$CONFIRM_VALUE" == "$NEW_VALUE" ]; then
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $SUCCESS >> $STATUS_FILE
+        else
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $FAILED >> $STATUS_FILE
+        fi
+    fi
+done
+
+
+#= Redirect user to their next page
+echo 'Content-Type: text/html'
+echo ''
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/$REFRESH_SCRPT' \" /> "

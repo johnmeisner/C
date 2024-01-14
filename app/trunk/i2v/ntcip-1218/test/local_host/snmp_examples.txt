@@ -1,0 +1,845 @@
+MIBS=ALL snmpd  -f -Lo -Dntcip_1218,rsu_table -C -c /mnt/rwflash/snmpd.conf
+
+#works from /rwflash
+MIBS=ALL snmpd  -f -Lf /rwflash/mysnmpd.txt -Dntcip_1218,rsu_table -C -c /mnt/rwflash/snmpd.conf
+MIBS=ALL snmpd  -f -Lf /rwflash/mysnmpd.txt -Dntcip_1218,rsu_table,rsuIFM,XrsuIFM,xntcip_1218 -C -c /mnt/rwflash/configs/snmpd.conf
+
+snmpwalk -v 3 -u rsutweiadmin -l authPriv -a SHA-512 -A rsutweiauthpass  -x AES-256 -X rsutweiprivpass -mNTCIP1218-v01 localhost rsu
+snmpwalk -v 3 -u rsutweiadmin -l authPriv -a SHA-512 -A rsutweiauthpass  -x AES-256 -X rsutweiprivpass -mNTCIP1218-v01 localhost rsuIFM
+
+snmpset -v 3 -u rsutweiadmin -l authPriv -a SHA-512 -A rsutweiauthpass  -x AES-256 -X rsutweiprivpass -mNTCIP1218-v01 localhostrsuIFMStatus.1 i 6
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFM
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeat
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgRepeatStatus.2 i 1
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgRepeatStatus.1 i 4
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgRepeatStatus.1 i 6
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPriority.1 i 61
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgRepeatStatus.1 i 4  rsuMsgRepeatPriority.1 i 61
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgRepeatStatus.1 i 4  rsuMsgRepeatPriority.1 i 61 rsuMsgRepeatOptions.1 x 0xA0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgRepeatStatus.1 i 4  rsuMsgRepeatPriority.1 i 61 rsuMsgRepeatOptions.1 x 0xA0
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgRepeatPriority.2 i 60 rsuMsgRepeatOptions.2 x 0xC0 rsuMsgRepeatStatus.2 i 4
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgRepeatPriority.69 i 59 rsuMsgRepeatStatus.69 i 4  rsuMsgRepeatOptions.69 x 0x40
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgRepeatPriority.7 i 57 rsuMsgRepeatStatus.7 i 4  rsuMsgRepeatOptions.7 x 0xC0
+
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuIFMStatus.1 i 4  rsuIFMPriority.1 i 61 rsuIFMOptions.1 x 0xA0
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuIFMPriority.2 i 60 rsuIFMOptions.2 x 0xC0 rsuIFMStatus.2 i 4
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuIFMPriority.69 i 59 rsuIFMStatus.69 i 4  rsuIFMOptions.69 x 0x40
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuIFMPriority.7 i 57 rsuIFMStatus.7 i 4  rsuIFMOptions.7 x 0xC0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuIFMPriority.69 i 59 rsuIFMStatus.69 i 4  rsuIFMOptions.69 x 0x40 rsuIFMPsid.69 s "20" rsuIFMEnable.69 i 0  rsuIFMPayload.69 x "001612345678AAFFDEADABBA" rsuIFMTxChannel.69 i 172
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuIFMPriority.69 i 59 rsuIFMOptions.69 x 0x40 rsuIFMPsid.69 s "20" rsuIFMEnable.69 i 0  rsuIFMPayload.69 x "001612345678AAFFDEADABBA" rsuIFMTxChannel.69 i 172 rsuIFMStatus.69 i 4  
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMTxChannel.69 i 172
+
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaConfig
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutput
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationLat.0 i 332375830
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationLat.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationLon.0 i -1172850231
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationLon.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssMaxDeviation.0 i 100
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputAddress.0 s "10.52.11.47"
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysDescription
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallUpdate.0 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallUpdate.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallStatus.0
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuScheduledInstallTime.0 x FFFFFFFFFFFFFFFF                
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuScheduledInstallTime.0
+
+ 
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsu
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.100 i 5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.100
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.100 i 6
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.2 i 4
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.1
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.1 i 6
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatEnable.2 i 1
+
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeat
+
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost iso.3.6.1.4.1.1206.4.2.18
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTable
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTxPower2
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfig
+#1
+
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioDesc.1 s "Test Desc 2" rsuRadioCh1.1 i 183 rsuRadioCh2.1 i 183 rsuRadioTxPower1.1 i 10 rsuRadioTxPower2.1 i 10
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuRadios.0
+snmpget -v 1 -c public -mNTCIP1218-v01 localhost  maxRsuRadios.0   
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioIndex.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioIndex.2
+
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioDesc.1
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioDesc.1 s "Test Desc 1"
+
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioDesc.2
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioDesc.2 s "two desc test"
+
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioEnable.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioEnable.2
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioEnable.1 i 1
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioEnable.2 i 1
+
+
+snmpset -v 1 -c public -mNTCIP1218-v01 localhost rsuRadioEnable.1 i 1
+snmpset -v 1 -c public -mNTCIP1218-v01 remotehost udp:192.168.1.46:162 rsuRadioEnable.1 i 1
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioEnable.2 i 1
+
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioType.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioType.2
+
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioMacAddress1.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioMacAddress1.2
+
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioMacAddress2.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioMacAddress2.2
+ 
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioChanMode.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioChanMode.2
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioChanMode.1 i 4
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioChanMode.2 i 4
+ 
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioCh1.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioCh1.2
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioCh1.1 i 180
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioCh1.2 i 175
+ 
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioCh2.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioCh2.2
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioCh2.1 i 177
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioCh2.2 i 179
+ 
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTxPower1.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTxPower1.2
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTxPower1.1 i 6
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTxPower2.1 i 7
+ 
+ 
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTxPower2.1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTxPower2.2
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTxPower2.1 i -99
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuRadioTxPower2.2 i -78
+
+
+#2
+
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssStatus.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssAugmentation.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraLifetime.0 i 40 rsuGnssOutputPort.0 i 5115 rsuGnssMaxDeviation.0 i 128 rsuSecCredReq.0 i 8736
+
+
+#7
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputPort.0
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputPort.0 i 5115
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputAddress.0
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputAddress.0 s "0A34:0B2F:AABB:CCDD:0:0:0:0"
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputInterval.0
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputInterval.0 i 1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputInterface.0 s "eth0"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputInterface.0
+
+
+snmpset -v 1 -c public -mNTCIP1218-v01 localhost rsuGnssOutputInterval.0 i 15
+
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssOutputString.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssLat.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssLon.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssElv.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssMaxDeviation.0
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssMaxDeviation.0 i 128
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationDeviation.0 
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuGnssPositionError.0
+
+
+#8
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecurity
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecCredReq.0 i 8736
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecCredReq.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecAppCertReq.1 i 65535
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecAppCertReq.1 
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecCertRevocationInterval.0 i 255
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecCertRevocationInterval.0
+
+
+#10
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraIpPrefix.0 s "C0:A8:01:2E:AA:BB:CC:DD"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraIpPrefix.0
+#binary value weird ascii display on client side
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraIpPrefixLength.0 x 20
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraIpPrefixLength.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraGateway.0 s "BB:BB:BB:BB:BB:BB:BB:BB"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraGateway.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraPrimaryDns.0  s "CC:CC:CC:CC:CC:CC:CC:CC"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraPrimaryDns.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraSecondaryDns.0  s "EE:EE:EE:EE:EE:EE:EE:EE"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraSecondaryDns.0
+
+#MAC is OCTET
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraGatewayMacAddress.0 x 393939393939
+#NTCIP1218-v01::rsuWraGatewayMacAddress.0 = STRING: 39:39:39:39:39:39
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraGatewayMacAddress.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraLifetime.0 i 40
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWraLifetime.0
+
+#13
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMibVersion.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuFirmwareVersion.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationDesc.0  s  "Customer RSU unit 2"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationDesc.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuID.0  s "RSU ID 67"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuID.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationLat.0 i 332375830
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationLat.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationLon.0 i -1172850231
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationLon.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationElv.0 i 1699
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLocationElv.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuElevationOffset.0 i 1976
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuElevationOffset.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallUpdate.0 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallUpdate.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallFile.0 s "install_stuff.conf"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallFile.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallPath.0 s "/mydir"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallPath.0
+
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallStatus.0
+                                                                                                                                
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallTime.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInstallStatusMessage.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuScheduledInstallTime.0 x FFFFFFFFFFFFFFFF                
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuScheduledInstallTime.0
+
+
+#14
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuNotifyIpAddress.0  s "EE:EE:EE:EE:EE:EE:EE:EE"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuNotifyIpAddress.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuNotifyPort.0 i 1234
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuNotifyPort.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogQueryStart.0 x 07e10a0717220104
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogQueryStart.0 
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogQueryStop.0 x 07e10b0717220209
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogQueryStop.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogQueryPriority.0 i 6
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogQueryPriority.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogQueryGenerate.0 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogQueryGenerate.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogQueryStatus.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogCloseCommand.0 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogCloseCommand.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogSeverity.0 i 3
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogSeverity.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysConfigId.0 s "test config one"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysConfigId.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysRetries.0 i 3
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysRetries.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysRetryPeriod.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuShortCommLossTime.0  i 345  
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuShortCommLossTime.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLongCommLossTime.0 i 77
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLongCommLossTime.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysLogName.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSysDir.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLongCommLossReboot.0 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuLongCommLossReboot.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostIpAddr.0 s "EE:EE:EE:EE:EE:EE:EE:EE"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostIpAddr.0 
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostNetMask.0 s "255.255.255.10"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostNetMask.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostGateway.0 s "192.168.2.1"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostGateway.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostDNS.0 s "10.52.11.23"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostDNS.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostDHCPEnable.0 i 2
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuHostDHCPEnable.0
+
+#15
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntenna
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuAntennas.0 
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntLat.1 i  69000
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntLat.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntLong.1 i  -112000
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntLong.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntElv.1 i  2324
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntElv.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntGain.1  i 77
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntGain.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntDirection.1  i 235
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAntDirection.1
+
+#16
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuChanStatus.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMode.0 i 2
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMode.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuModeStatus.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReboot.0 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReboot.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuClockSource.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuClockSourceStatus.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuClockSourceTimeout.0 i 78
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuClockSourceTimeout.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuClockSourceFailedQuery.0 i 7
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuClockSourceFailedQuery.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuClockDeviationTolerance.0 i 65535
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuClockDeviationTolerance.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuStatus.0
+
+#17
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  messageFileIntegrityError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuMsgFileIntegrityMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuSecStorageIntegrityError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuSecStorageIntegrityMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuAuthError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuAuthMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuSignatureVerifyError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuSignatureVerifyMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuAccessError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuAccessMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuTimeSourceLost.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuTimeSourceLostMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuTimeSourceMismatch.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuTimeSourceMismatchMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuGnssAnomaly.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuGnssAnomalyMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuGnssDeviationError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuGnssDeviationMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuGnssNmeaNotify.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuGnssNmeaNotifyInterval.0 i 17
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuGnssNmeaNotifyInterval.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuCertificateError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuCertificateMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuServiceDenialError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuServiceDenialMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWatchdogError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWatchdogMsg.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuEnvironError.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuEnvironMsg.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuNotificationRepeatInterval.0 i 33
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuNotificationRepeatInterval.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAlertLevel.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuNotificationMaxRetries.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuNotificationRepeatInterval.0 i 45
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuNotificationRepeatInterval.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuNotificationMaxRetries.0 i 5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuNotificationMaxRetries.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuNotificationRepeatInterval.0 i 33 rsuNotificationMaxRetries.0 i 5 rsuSecCertRevocationUpdate.0 i  1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecCertRevocationUpdate.0 i  1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecCertRevocationUpdate.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuSecAppCertPsid.1 
+
+#18
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfig
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuApps.0
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfigName.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfigStartup.1 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfigStartup.1
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfigState.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfigStart.1 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfigStart.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfigStop.1 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuAppConfigStop.1
+
+#19
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuService
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuServices.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuServiceName.17  s "my service"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuServiceName.17
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuServiceStatus.1
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuServiceStatusDesc.1
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuServiceStatusTime.1
+
+
+#11
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageStats
+
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuMessageCountsByPsid.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidId.32 s "21" rsuMessageCountsByChannel.32 i 183 rsuMessageCountsDirection.32 i 2 rsuMessageCountsByPsidTime.32 x 07e10b0717220209
+
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidId.32 s "21"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidId.32
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByChannel.32 i 183
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByChannel.32
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsDirection.32 i 2
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsDirection.32
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidTime.32 x 07e10b0717220209
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidTime.32
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidCounts.32
+
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidRowStatus.32 i 6
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidRowStatus.32
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidRowStatus.6 i 5
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMessageCountsByPsidRowStatus.13 i 5
+
+#3
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeat
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.1 i 4
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.1 i 6
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.45
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.27
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuMsgRepeat.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatDeleteAll.0 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatDeleteAll.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.1 i 6
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPsid.3 s "20"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPsid.1
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPsid.1 x "00008002"
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPsid.1 x "00000020"
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatTxChannel.1 i 172
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatTxChannel.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatTxInterval.1 i 500
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatTxInterval.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatDeliveryStart.1 x 07e10b0717220209
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatDeliveryStart.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatDeliveryStop.1 x 07f10b0717320209
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatDeliveryStop.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPayload.1 x "001412345678"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPayload.23
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPayload.1 x ""
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatEnable.1 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatEnable.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.1 i 4
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPriority.1 i 29
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatPriority.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatOptions.1 x 0xA0
+#NTCIP1218-v01::rsuMsgRepeatOptions.23 = BITS: A0 bypass(0) shortTerm(2)
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatOptions.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.23 i 5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.100 i 6
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.100
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.2 i 6
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.2
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.1 i 4
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.1
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.10
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.101 i 4
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuMsgRepeatStatus.101
+
+#4
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPsid.20  
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMStatus.20 i 4
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFM
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPsid.69 x "7f" rsuIFMStatus.69 i 4
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuIFMs.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPriority.1 i 61 rsuIFMStatus.1 i 4 
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPsid.23 s "8002"
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPsid.1 x "00000020"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPsid.2
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMTxChannel.1 i 180
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMTxChannel.1
+
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPayload.1 x "001612345678AAFFDEADABBA"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPayload.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMEnable.3 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMEnable.3
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMStatus.1 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMStatus.23
+
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPriority.23 i 63
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMPriority.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMOptions.1 x 0xA0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMOptions.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMStatus.1 i 4
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMStatus.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMStatus.101 i 4
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIFMStatus.101
+#5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuReceivedMsgs.0
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsg
+
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgDestIpAddr.23 s "10.52.11.23" rsuReceivedMsgPsid.23 s "8007"
+
+#not visible
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgIndex.23 i 5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgIndex.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgPsid.1 s "8007"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgPsid.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgDestIpAddr.23 s "10.52.11.23"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgDestIpAddr.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgDestPort.23 i 2069
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgDestPort.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgProtocol.23 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgProtocol.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgRssi.23  i -66
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgRssi.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgInterval.23 i 3
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgInterval.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgDeliveryStart.23 x 07e10b0717220209
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgDeliveryStart.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgDeliveryStop.23  x 07e10b0717320203
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgDeliveryStop.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgSecure.23 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgSecure.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgAuthMsgInterval.1 i 7
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgAuthMsgInterval.1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgStatus.23 i 4
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgStatus.23
+
+#will cause fail on row
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgAuthMsgInterval.23 i 7
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgStatus.23 i 5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuReceivedMsgStatus.23
+
+#7
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuInterfaceLogs.0
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuInterfaceLog
+
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceGenerate.2 i 1 rsuIfaceMaxFileSize.2 i 40 rsuIfaceMaxFileTime.2 i 48 rsuIfaceLogByDir.2 i 4
+#.2
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceGenerate.2 i 1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceGenerate.2
+
+#.3
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceMaxFileSize.2 i 40
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceMaxFileSize.2
+
+#.4
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceMaxFileTime.2 i 48
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceMaxFileTime.2
+
+#.5
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogByDir.2 i 4
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogByDir.2
+
+#.6
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceName.2 s "my_interface"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceName.2
+
+#.7
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceStoragePath.2 s "/mydir/foobar"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceStoragePath.2
+
+#.8
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogName.2 s  "rsu1_dsrc1_Both_20211130_014201"
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogName.2
+
+#.9
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogStart.2 x 07e10b0717220209
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogStart.2
+
+#.10
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogStop.2 x 07e10b0717320203
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogStop.2
+
+#.11
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogOptions.2 x 0xC0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogOptions.2
+
+#.12
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogStatus.2 i 6
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogStatus.1
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogStatus.1 i 5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIfaceLogStatus.1
+
+#9
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuWsaServices.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaVersion.0
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaServiceTable
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaConfig
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaChannelTable
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPsid.23
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPsid.1 s "8008"
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPriority.1 i 5
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPSC.1    s "my_dot3PSC"
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaIpAddress.1 s "10.52.11.211"
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPort.1    i  1966
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannel.1 i 179
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaStatus.1 i 4
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaMacAddress.1  x 393939393939	   
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaOptions.1       x 0xf8       
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaRcpiThreshold.1  i 2         
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaCountThreshold.1    i 3     
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaCountThresholdInterval.1 i 4 
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaRepeatRate.1 i 5
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaAdvertiserIdentifier.1 s "my_dot3Ad"
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaEnable.1 i 1
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPsid.1 s "8008" rsuWsaPriority.1 i 5 rsuWsaPSC.1 s "my_dot3PSC" rsuWsaMacAddress.1  x 393939393939 rsuWsaEnable.1 i 0
+
+
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelStatus.1 
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelStatus.1 i 4
+	
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelPsid.1 s "8009"
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelNumber.1 i 181
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelTxPowerLevel.1  i 55
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelAccess.1 i 2
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelAccess.1 i 2 rsuWsaChannelTxPowerLevel.1  i 55 rsuWsaChannelNumber.1 i 181
+
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPsid.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPriority.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPSC.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaIpAddress.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaPort.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannel.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaStatus.1  
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaMacAddress.1		   
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaOptions.1              
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaRcpiThreshold.1           
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaCountThreshold.1         
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaCountThresholdInterval.1 
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaRepeatRate.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaAdvertiserIdentifier.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaEnable.1
+	
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelPsid.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelNumber.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelTxPowerLevel.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelAccess.1
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuWsaChannelStatus.1
+	
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaStatus.66 i 6
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaStatus.66
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaStatus.66 i 5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaStatus.66
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaChannelStatus.66 i 6
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaChannelStatus.66
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaChannelStatus.66 i 5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuWsaChannelStatus.66
+
+
+# 13
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost  rsuSystemStats
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuTimeSincePowerOn.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIntTemp.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIntTempLowThreshold.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuIntTempHighThreshold.0
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxRsuCommRange.0
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeSector.8 i 16   rsuCommRangeMsgId.8 i 12    rsuCommRangeFilterType.8 i 2  rsuCommRangeFilterValue.8 i 3
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeSector.8 i 16
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeMsgId.8 i 12
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeFilterType.8 i 2
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeFilterValue.8 i 3
+
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeStatus.8 i 6
+
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeSector.8
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeMsgId.8
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeFilterType.8
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeFilterValue.8
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRange1Min.8
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRange5Min.8
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRange15Min.8
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeAvg1Min.8
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeAvg5Min.8
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeAvg15Min.8
+	 
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeStatus.8 i 6
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeStatus.8
+snmpset  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeStatus.8 i 5
+snmpget  -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuCommRangeStatus.8	 
+
+#20
+
+snmpwalk -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwding
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost maxXmitMsgFwding.0
+
+
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingPsid.8  s "8008" rsuXmitMsgFwdingDestIpAddr.8 s "10.52.11.101" rsuXmitMsgFwdingDestPort.8 i 1025 rsuXmitMsgFwdingDeliveryStart.8  x 07e10b0717220209
+
+
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingPsid.8  s "8008"
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingDestIpAddr.8 s "10.52.11.101"
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingDestPort.8 i 1025
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingProtocol.8 i 1
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingDeliveryStart.8  x 07e10b0717220209
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingDeliveryStop.8   x 07e10b0717240309
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingSecure.8 i 1
+	
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingPsid.8
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingDestIpAddr.8
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingDestPort.8
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingProtocol.8
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingDeliveryStart.8
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingDeliveryStop.8
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingSecure.8
+		
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingStatus.8 i 6
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingStatus.32 i 6
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingStatus.1 i 6
+
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingStatus.8 i 1
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingStatus.8
+snmpset -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingStatus.8 i 5
+snmpget -v 3 -u linadmin -l authPriv -a SHA -A linauthpass -x DES -X linprivpass -mNTCIP1218-v01 localhost rsuXmitMsgFwdingStatus.8
+
+

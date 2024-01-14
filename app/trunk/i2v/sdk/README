@@ -1,0 +1,23 @@
+SDK Packaging Steps
+==============================
+The files generated for the SDK are connected to each release.  But,
+the rsuSdkShm.h file has array length values that are not correct because
+the utility generating the file is compatible with the VM and not the
+QNX OS on the target.  You must run the release on the target to obtain
+the actual lengths of the arrays.  If you do not, the SDK will be
+incompatible when used by external users.  Follow the steps below to
+finish the SDK.
+
+1. Install your firmware on a WSU/RSU system.
+2. Connect to the serial console, or set up the system to have i2v start manually.
+3. If connected to the serial console, boot the WSU.  If starting i2v manually, start i2v after rebooting.
+4. When i2v starts up, look for a message "S: xxxx yyyy" where xxxx and yyyy are actual numbers. The message displays near the end.
+5. The first number is for the rsvd1DONOTACCESS member in the rsuSdkShm.h.  The second number is the rsvd2DONOTACCESS member.
+6. Edit the rsuSdkShm.h file to add the correct values and remove the comment in the file about replacing the array values.
+7. Create a zip or tar file that contains the rsuSdkShm.h, sdk_types.h, and examples directory.  Keep them in the same directory structure.
+8. The zip is the SDK.
+
+
+
+For future modifications (new shared memory to expose), be sure to update i2v.c and i2vsdkgenerator.c appropriately.
+

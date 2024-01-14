@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# req_set_led_color
+#
+# Turn on Green LED: gpiodriver_ctl.sh 0x0592
+# Turn on Yellow LED: gpiodriver_ctl.sh 0x0580
+# Turn on Red LED: gpiodriver_ctl.sh 0x0594
+# Turn all LED's OFF: gpiodriver_ctl.sh 0x0590
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+
+REQCOLOR=`/usr/bin/get_token_val $QUERY_STRING color`
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Tell rsuhealth to take an led break; otherwise it'll interfere with the led tests 
+/usr/local/bin/rsuhealth -Slts
+
+# Run gpiodriver_ctl.sh, grep'ing for the Tx Rx Val=... lines
+# NOTE: No return code to check, it always returns exit code 0
+
+RET=Successful
+if [ "$REQCOLOR" == GREEN ]; then
+    /usr/src/wnc/scripts/gpiodriver_ctl.sh 0x0592 | grep Val
+elif [ "$REQCOLOR" == YELLOW ]; then
+    /usr/src/wnc/scripts/gpiodriver_ctl.sh 0x0580 | grep Val
+elif [ "$REQCOLOR" == RED ]; then
+    /usr/src/wnc/scripts/gpiodriver_ctl.sh 0x0594 | grep Val
+elif [ "$REQCOLOR" == OFF ]; then
+    /usr/src/wnc/scripts/gpiodriver_ctl.sh 0x0590 | grep Val
+elif [ "$REQCOLOR" == BACK ]; then
+    # Magic word, user hit BACK button, so restore rsuhealth's LED maintenance
+    /usr/local/bin/rsuhealth -Sltc
+else
+    RET=Invalid
+fi
+
+echo "."
+echo $RET
+

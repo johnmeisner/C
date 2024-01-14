@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+# Request to start a WSM_X util command
+#
+
+DLOG=/tmp/zdbg.start_util_wsm_log.txt
+
+UTIL_WSM_OUTPUT_FILE=/tmp/ztmp.util_wsm_output
+WEBGUI_WSM_COMMAND_PID_FILE=/tmp/ztmp.webgui.wsm_cmd_pid_file
+
+echo `date +%H:%M:%S` - start_requested.sh started >> $DLOG
+
+# Save POST query-string for get_token_val to use later
+SAVED_POST_FILE=/tmp/ztmp.util_wsm.saved_post_data
+
+# Verify caller is logged in
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Get passed params
+I2VRadioType=`/usr/bin/get_token_val "$QUERY_STRING" I2VRadioType`
+WsmDirection=`/usr/bin/get_token_val "$QUERY_STRING" WsmDirection`
+IPBPSID=`/usr/bin/get_token_val "$QUERY_STRING" IPBPSID`
+ChannelNumber=`/usr/bin/get_token_val "$QUERY_STRING" I2VUnifiedChannelNumber`
+TransmitPower=`/usr/bin/get_token_val "$QUERY_STRING" I2VTransmitPower`
+NextMsgDelayMS=`/usr/bin/get_token_val "$QUERY_STRING" NextMsgDelayMS`
+
+echo `date +%H:%M:%S` - Post Saved file is: >> $DLOG
+/bin/ls -l $SAVED_POST_FILE >> $DLOG
+echo `date +%H:%M:%S` - Got QUERY_STRING "$QUERY_STRING" >> $DLOG
+echo `date +%H:%M:%S` - Got Params $I2VRadioType $WsmDirection $ChannelNumber $TransmitPower $NextMsgDelayMS >> $DLOG
+
+# Build our command
+if [ $WsmDirection == "SEND" ]; then
+    CMDSTR="/usr/bin/wsm_send --rtype $I2VRadioType --psid $IPBPSID --txchan $ChannelNumber --pwr $TransmitPower --delay $NextMsgDelayMS --noesc xyz"
+else
+    CMDSTR="/usr/bin/wsm_recv --rtype $I2VRadioType --psid $IPBPSID --sch $ChannelNumber"
+fi
+
+echo `date +%H:%M:%S` - CMDSTR="$CMDSTR" >> $DLOG
+
+# Start the wsm util
+(/usr/bin/stdbuf -o0 -e0 $CMDSTR | /usr/bin/refresh_saver -d -s '<br/>' 50 $UTIL_WSM_OUTPUT_FILE) &
+
+# Save wsm command's PID in our pid file
+CMD_PID=`ps x | egrep '(wsm_send|wsm_recv)' | grep -v grep | awk '{print $1}'`
+echo $CMD_PID > $WEBGUI_WSM_COMMAND_PID_FILE
+echo `date +%H:%M:%S` - CMD_PID=$CMD_PID  >> $DLOG
+
+# Cleanup
+rm -f $SAVED_POST_FILE
+
+# And return to user's webgui telling it we're ok
+echo "Content-type: text/html"
+echo ""
+echo "OK"
+
+echo `date +%H:%M:%S` - Done >> $DLOG

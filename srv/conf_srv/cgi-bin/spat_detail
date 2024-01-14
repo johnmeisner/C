@@ -1,0 +1,895 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+# Main
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+
+# Output to browser
+cat << '##EOFEOFEOF1'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RSU-SPAT-Detail</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+<style>
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+.circle {
+ height: 30px;
+ width: 30px;
+ border-radius: 50%;
+ background: #FFFFFF;
+ border: 2px solid gray;
+ display: inline-block;
+  }
+.roundcorner {
+height: 100px;
+width: 99%;
+border-radius: 25px;
+border: 2px solid #808080;
+padding: 10px;
+  }
+.divOverflow {
+overflow: auto;
+overflow-x: hidden;
+height: 80px;
+margin-left: 2px;
+padding-left: 15px;
+scrollbar-width: thin;
+}
+.zmonospace {
+    font-family: "Lucida Console", Courier, monospace;
+    color: #000000;
+}
+</style>
+</head>
+<body onload="start_update()" >
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+    <div class="features-boxed">
+        <div class="container">
+
+            <div class="intro">
+            <div class="intro-container">
+                <i class="fa fa-feed icon"></i>
+                <h2 class="text-center">RSU SPAT Detail</h2>
+            </div>
+            </div>
+            <div class="row justify-content-center features pt-0">  <!-- pt-0 == padding top zero! -->
+
+
+
+<style>
+.bg-success {
+  background-color: #28a745 !important; }
+.bg-warning {
+  background-color: #ffc107 !important; }
+.bg-info {
+  background-color: #17a2b8 !important; }
+.bg-danger {
+  background-color: #dc3545 !important; }
+.bg-dark {
+  background-color: #343a40 !important; }
+.bg-feabox {
+  background-color: #eef4f7 }
+
+.table {
+  -webkit-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+  box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29); }
+  .table thead th {
+    border: none;
+    padding: 2px 3px;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 400; 
+    vertical-align: bottom; }
+  .table tbody th, .table tbody td {
+    border: none;
+    padding: 2px 3px;
+    color: #fff;
+    font-size: 14px;
+    vertical-align: middle; }
+
+
+</style>
+
+
+<!-- Fix for centering items in navbar - https://www.geeksforgeeks.org/how-to-align-navbar-items-to-center-using-bootstrap-4/  -->
+<style>
+        .navbar-nav.navbar-center {
+            position: absolute;
+            left: 50%;
+            transform: translatex(-50%);
+        }
+</style>
+
+
+</head>
+<body>
+
+<!--- Navbar Attempt - docs: https://getbootstrap.com/docs/4.6/components/navbar/   -->
+
+<!-- <nav class="navbar fixed-top navbar-light bg-light">
+<!--   <a class="navbar-brand" href="#">Fixed top</a>
+<!--   </nav>
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+-->
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+
+
+  <a class="navbar-brand" href="/cgi-bin/status_display_live"><i class="fa fa-arrow-left fa-3x" style="color: #1485ee;"></i><font color="#1485ee" size="+3">&nbsp;Back</font></a>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class=" nav navbar-nav navbar-center">
+          <a class="navbar-brand" href="#">
+                  <i class="fa fa-feed fa-3x"></i>
+                  <font size="+5">RSU SPAT Detail</font>
+          </a>
+     </ul>
+  </div>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+
+    <div>Time of SPAT Processing: <span id='spat_time_hhmmss'>xx:xx:xx</span> &nbsp; SecInHr: <span id='spat_time_secinhr'>3599</span></div>
+
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+<!---- Regular Program ---->
+<section class="ftco-section">
+   <center>
+
+
+<div id='no_data_overlay' class="row justify-content-center" style='display: none;'>
+    <div class="intro">
+        <div class="intro-container">
+            <i class="fa fa-thumbs-down icon" style="color: red;"></i>
+                <h2 class="text-center" style="color: red;">Invalid Data</h2>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-md-6 text-center mb-0">		<!-- mb-0 == margin bottom zero! -->
+<h3 class="heading-section">TSCBM Input</h3>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-12 mb-0">
+<div class="table-wrap">
+
+<table class="table table-dark">
+<thead>
+<tr class="bg-dark">
+<th>Phase</th>
+<th class="bg-feabox">&nbsp;</th>
+<th>Vehicle</th>
+<th>Min Time<br/>to Change</th>
+<th>Max Time<br/>to Change</th>
+<th>Flashing</th>
+<th class="bg-feabox">&nbsp;</th>
+<th>Overlap</th>
+<th>Min Time<br/>to Change</th>
+<th>Max Time<br/>to Change</th>
+<th>Flashing</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td class="bg-dark"><center>1</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v01_bg1' class="bg-info"><span id='tsc_v01_color'></span></td>
+<td id='tsc_v01_bg2' class="bg-info"><span id='tsc_v01_minttc'></span></td>
+<td id='tsc_v01_bg3' class="bg-info"><span id='tsc_v01_maxttc'></span></td>
+<td id='tsc_v01_bg4' class="bg-info"><span id='tsc_v01_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o01_bg1' class="bg-info"><span id='tsc_o01_color'></span></td>
+<td id='tsc_o01_bg2' class="bg-info"><span id='tsc_o01_minttc'></span></td>
+<td id='tsc_o01_bg3' class="bg-info"><span id='tsc_o01_maxttc'></span></td>
+<td id='tsc_o01_bg4' class="bg-info"><span id='tsc_o01_isflashing'></span></td>
+</tr>
+
+<tr id='tsc_v02_row'>
+<td class="bg-dark"><center>2</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v02_bg1' class="bg-info"><span id='tsc_v02_color'></span></td>
+<td id='tsc_v02_bg2' class="bg-info"><span id='tsc_v02_minttc'></span></td>
+<td id='tsc_v02_bg3' class="bg-info"><span id='tsc_v02_maxttc'></span></td>
+<td id='tsc_v02_bg4' class="bg-info"><span id='tsc_v02_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o02_bg1' class="bg-info"><span id='tsc_o02_color'></span></td>
+<td id='tsc_o02_bg2' class="bg-info"><span id='tsc_o02_minttc'></span></td>
+<td id='tsc_o02_bg3' class="bg-info"><span id='tsc_o02_maxttc'></span></td>
+<td id='tsc_o02_bg4' class="bg-info"><span id='tsc_o02_isflashing'></span></td>
+</tr>
+
+<tr id='tsc_v03_row'>
+<td class="bg-dark"><center>3</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v03_bg1' class="bg-info"><span id='tsc_v03_color'></span></td>
+<td id='tsc_v03_bg2' class="bg-info"><span id='tsc_v03_minttc'></span></td>
+<td id='tsc_v03_bg3' class="bg-info"><span id='tsc_v03_maxttc'></span></td>
+<td id='tsc_v03_bg4' class="bg-info"><span id='tsc_v03_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o03_bg1' class="bg-info"><span id='tsc_o03_color'></span></td>
+<td id='tsc_o03_bg2' class="bg-info"><span id='tsc_o03_minttc'></span></td>
+<td id='tsc_o03_bg3' class="bg-info"><span id='tsc_o03_maxttc'></span></td>
+<td id='tsc_o03_bg4' class="bg-info"><span id='tsc_o03_isflashing'></span></td>
+</tr>
+
+<tr id='tsc_v04_row'>
+<td class="bg-dark"><center>4</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v04_bg1' class="bg-info"><span id='tsc_v04_color'></span></td>
+<td id='tsc_v04_bg2' class="bg-info"><span id='tsc_v04_minttc'></span></td>
+<td id='tsc_v04_bg3' class="bg-info"><span id='tsc_v04_maxttc'></span></td>
+<td id='tsc_v04_bg4' class="bg-info"><span id='tsc_v04_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o04_bg1' class="bg-info"><span id='tsc_o04_color'></span></td>
+<td id='tsc_o04_bg2' class="bg-info"><span id='tsc_o04_minttc'></span></td>
+<td id='tsc_o04_bg3' class="bg-info"><span id='tsc_o04_maxttc'></span></td>
+<td id='tsc_o04_bg4' class="bg-info"><span id='tsc_o04_isflashing'></span></td>
+</tr>
+
+<tr id='tsc_v05_row'>
+<td class="bg-dark"><center>5</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v05_bg1' class="bg-info"><span id='tsc_v05_color'></span></td>
+<td id='tsc_v05_bg2' class="bg-info"><span id='tsc_v05_minttc'></span></td>
+<td id='tsc_v05_bg3' class="bg-info"><span id='tsc_v05_maxttc'></span></td>
+<td id='tsc_v05_bg4' class="bg-info"><span id='tsc_v05_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o05_bg1' class="bg-info"><span id='tsc_o05_color'></span></td>
+<td id='tsc_o05_bg2' class="bg-info"><span id='tsc_o05_minttc'></span></td>
+<td id='tsc_o05_bg3' class="bg-info"><span id='tsc_o05_maxttc'></span></td>
+<td id='tsc_o05_bg4' class="bg-info"><span id='tsc_o05_isflashing'></span></td>
+</tr>
+
+<tr id='tsc_v06_row'>
+<td class="bg-dark"><center>6</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v06_bg1' class="bg-info"><span id='tsc_v06_color'></span></td>
+<td id='tsc_v06_bg2' class="bg-info"><span id='tsc_v06_minttc'></span></td>
+<td id='tsc_v06_bg3' class="bg-info"><span id='tsc_v06_maxttc'></span></td>
+<td id='tsc_v06_bg4' class="bg-info"><span id='tsc_v06_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o06_bg1' class="bg-info"><span id='tsc_o06_color'></span></td>
+<td id='tsc_o06_bg2' class="bg-info"><span id='tsc_o06_minttc'></span></td>
+<td id='tsc_o06_bg3' class="bg-info"><span id='tsc_o06_maxttc'></span></td>
+<td id='tsc_o06_bg4' class="bg-info"><span id='tsc_o06_isflashing'></span></td>
+</tr>
+
+<tr id='tsc_v07_row'>
+<td class="bg-dark"><center>7</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v07_bg1' class="bg-info"><span id='tsc_v07_color'></span></td>
+<td id='tsc_v07_bg2' class="bg-info"><span id='tsc_v07_minttc'></span></td>
+<td id='tsc_v07_bg3' class="bg-info"><span id='tsc_v07_maxttc'></span></td>
+<td id='tsc_v07_bg4' class="bg-info"><span id='tsc_v07_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o07_bg1' class="bg-info"><span id='tsc_o07_color'></span></td>
+<td id='tsc_o07_bg2' class="bg-info"><span id='tsc_o07_minttc'></span></td>
+<td id='tsc_o07_bg3' class="bg-info"><span id='tsc_o07_maxttc'></span></td>
+<td id='tsc_o07_bg4' class="bg-info"><span id='tsc_o07_isflashing'></span></td>
+</tr>
+
+<tr id='tsc_v08_row'>
+<td class="bg-dark"><center>8</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v08_bg1' class="bg-info"><span id='tsc_v08_color'></span></td>
+<td id='tsc_v08_bg2' class="bg-info"><span id='tsc_v08_minttc'></span></td>
+<td id='tsc_v08_bg3' class="bg-info"><span id='tsc_v08_maxttc'></span></td>
+<td id='tsc_v08_bg4' class="bg-info"><span id='tsc_v08_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o08_bg1' class="bg-info"><span id='tsc_o08_color'></span></td>
+<td id='tsc_o08_bg2' class="bg-info"><span id='tsc_o08_minttc'></span></td>
+<td id='tsc_o08_bg3' class="bg-info"><span id='tsc_o08_maxttc'></span></td>
+<td id='tsc_o08_bg4' class="bg-info"><span id='tsc_o08_isflashing'></span></td>
+</tr>
+
+<tr>
+<td class="bg-dark"><center>9</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v09_bg1' class="bg-info"><span id='tsc_v09_color'></span></td>
+<td id='tsc_v09_bg2' class="bg-info"><span id='tsc_v09_minttc'></span></td>
+<td id='tsc_v09_bg3' class="bg-info"><span id='tsc_v09_maxttc'></span></td>
+<td id='tsc_v09_bg4' class="bg-info"><span id='tsc_v09_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o09_bg1' class="bg-info"><span id='tsc_o09_color'></span></td>
+<td id='tsc_o09_bg2' class="bg-info"><span id='tsc_o09_minttc'></span></td>
+<td id='tsc_o09_bg3' class="bg-info"><span id='tsc_o09_maxttc'></span></td>
+<td id='tsc_o09_bg4' class="bg-info"><span id='tsc_o09_isflashing'></span></td>
+</tr>
+
+<tr>
+<td class="bg-dark"><center>10</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v10_bg1' class="bg-info"><span id='tsc_v10_color'></span></td>
+<td id='tsc_v10_bg2' class="bg-info"><span id='tsc_v10_minttc'></span></td>
+<td id='tsc_v10_bg3' class="bg-info"><span id='tsc_v10_maxttc'></span></td>
+<td id='tsc_v10_bg4' class="bg-info"><span id='tsc_v10_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o10_bg1' class="bg-info"><span id='tsc_o10_color'></span></td>
+<td id='tsc_o10_bg2' class="bg-info"><span id='tsc_o10_minttc'></span></td>
+<td id='tsc_o10_bg3' class="bg-info"><span id='tsc_o10_maxttc'></span></td>
+<td id='tsc_o10_bg4' class="bg-info"><span id='tsc_o10_isflashing'></span></td>
+</tr>
+
+<tr>
+<td class="bg-dark"><center>11</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v11_bg1' class="bg-info"><span id='tsc_v11_color'></span></td>
+<td id='tsc_v11_bg2' class="bg-info"><span id='tsc_v11_minttc'></span></td>
+<td id='tsc_v11_bg3' class="bg-info"><span id='tsc_v11_maxttc'></span></td>
+<td id='tsc_v11_bg4' class="bg-info"><span id='tsc_v11_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o11_bg1' class="bg-info"><span id='tsc_o11_color'></span></td>
+<td id='tsc_o11_bg2' class="bg-info"><span id='tsc_o11_minttc'></span></td>
+<td id='tsc_o11_bg3' class="bg-info"><span id='tsc_o11_maxttc'></span></td>
+<td id='tsc_o11_bg4' class="bg-info"><span id='tsc_o11_isflashing'></span></td>
+</tr>
+
+<tr>
+<td class="bg-dark"><center>12</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v12_bg1' class="bg-info"><span id='tsc_v12_color'></span></td>
+<td id='tsc_v12_bg2' class="bg-info"><span id='tsc_v12_minttc'></span></td>
+<td id='tsc_v12_bg3' class="bg-info"><span id='tsc_v12_maxttc'></span></td>
+<td id='tsc_v12_bg4' class="bg-info"><span id='tsc_v12_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o12_bg1' class="bg-info"><span id='tsc_o12_color'></span></td>
+<td id='tsc_o12_bg2' class="bg-info"><span id='tsc_o12_minttc'></span></td>
+<td id='tsc_o12_bg3' class="bg-info"><span id='tsc_o12_maxttc'></span></td>
+<td id='tsc_o12_bg4' class="bg-info"><span id='tsc_o12_isflashing'></span></td>
+</tr>
+
+<tr>
+<td class="bg-dark"><center>13</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v13_bg1' class="bg-info"><span id='tsc_v13_color'></span></td>
+<td id='tsc_v13_bg2' class="bg-info"><span id='tsc_v13_minttc'></span></td>
+<td id='tsc_v13_bg3' class="bg-info"><span id='tsc_v13_maxttc'></span></td>
+<td id='tsc_v13_bg4' class="bg-info"><span id='tsc_v13_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o13_bg1' class="bg-info"><span id='tsc_o13_color'></span></td>
+<td id='tsc_o13_bg2' class="bg-info"><span id='tsc_o13_minttc'></span></td>
+<td id='tsc_o13_bg3' class="bg-info"><span id='tsc_o13_maxttc'></span></td>
+<td id='tsc_o13_bg4' class="bg-info"><span id='tsc_o13_isflashing'></span></td>
+</tr>
+
+<tr>
+<td class="bg-dark"><center>14</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v14_bg1' class="bg-info"><span id='tsc_v14_color'></span></td>
+<td id='tsc_v14_bg2' class="bg-info"><span id='tsc_v14_minttc'></span></td>
+<td id='tsc_v14_bg3' class="bg-info"><span id='tsc_v14_maxttc'></span></td>
+<td id='tsc_v14_bg4' class="bg-info"><span id='tsc_v14_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o14_bg1' class="bg-info"><span id='tsc_o14_color'></span></td>
+<td id='tsc_o14_bg2' class="bg-info"><span id='tsc_o14_minttc'></span></td>
+<td id='tsc_o14_bg3' class="bg-info"><span id='tsc_o14_maxttc'></span></td>
+<td id='tsc_o14_bg4' class="bg-info"><span id='tsc_o14_isflashing'></span></td>
+</tr>
+
+<tr>
+<td class="bg-dark"><center>15</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v15_bg1' class="bg-info"><span id='tsc_v15_color'></span></td>
+<td id='tsc_v15_bg2' class="bg-info"><span id='tsc_v15_minttc'></span></td>
+<td id='tsc_v15_bg3' class="bg-info"><span id='tsc_v15_maxttc'></span></td>
+<td id='tsc_v15_bg4' class="bg-info"><span id='tsc_v15_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o15_bg1' class="bg-info"><span id='tsc_o15_color'></span></td>
+<td id='tsc_o15_bg2' class="bg-info"><span id='tsc_o15_minttc'></span></td>
+<td id='tsc_o15_bg3' class="bg-info"><span id='tsc_o15_maxttc'></span></td>
+<td id='tsc_o15_bg4' class="bg-info"><span id='tsc_o15_isflashing'></span></td>
+</tr>
+
+<tr>
+<td class="bg-dark"><center>16</center></td>
+<td class="bg-feabox"></td>
+<td id='tsc_v16_bg1' class="bg-info"><span id='tsc_v16_color'></span></td>
+<td id='tsc_v16_bg2' class="bg-info"><span id='tsc_v16_minttc'></span></td>
+<td id='tsc_v16_bg3' class="bg-info"><span id='tsc_v16_maxttc'></span></td>
+<td id='tsc_v16_bg4' class="bg-info"><span id='tsc_v16_isflashing'></span></td>
+<td class="bg-feabox"></td>
+<td id='tsc_o16_bg1' class="bg-info"><span id='tsc_o16_color'></span></td>
+<td id='tsc_o16_bg2' class="bg-info"><span id='tsc_o16_minttc'></span></td>
+<td id='tsc_o16_bg3' class="bg-info"><span id='tsc_o16_maxttc'></span></td>
+<td id='tsc_o16_bg4' class="bg-info"><span id='tsc_o16_isflashing'></span></td>
+</tr>
+
+
+</tbody>
+</table>
+</div> <!-- class="table-wrap" -->
+</div> <!-- class="col-md-12 mb-0" -->
+</div> <!-- class="row" -->
+
+
+<!-- J2735 Table H2 Title -->
+<div class="row justify-content-center">
+<div class="col-md-6 text-center mb-0">
+    <h3 class="heading-section">J2735 Output</h3><span id='notes'></span>
+</div>
+</div>
+
+<!-- J2735 Table -->
+<div class="row">
+<div class="col-md-12">
+<div class="table-wrap">
+<table class="table table-dark">
+<thead>
+<tr class="bg-dark">
+<th>Signal Group ID</th>
+<th>Event State</th>
+<th>Min End Time</th>
+<th>Max End Time</th>
+<th>Phase Source</th>
+</tr>
+</thead>
+<tbody>
+
+<tr id='j2735_01_tr' class="bg-info">
+<th><center><span id='j2735_01_signum'></span></center></th>
+<td><span id='j2735_01_mps'></span></td>
+<td><span id='j2735_01_minttc'></span></td>
+<td><span id='j2735_01_maxttc'></span></td>
+<td><span id='j2735_01_source'></span></td>
+</tr>
+
+<tr id='j2735_12_tr' class="bg-info">
+<th><center><span id='j2735_12_signum'></span></center></th>
+<td><span id='j2735_12_mps'></span></td>
+<td><span id='j2735_12_minttc'></span></td>
+<td><span id='j2735_12_maxttc'></span></td>
+<td><span id='j2735_12_source'></span></td>
+</tr>
+
+<tr id='j2735_02_tr' class="bg-info">
+<th><center><span id='j2735_02_signum'></span></center></th>
+<td><span id='j2735_02_mps'></span></td>
+<td><span id='j2735_02_minttc'></span></td>
+<td><span id='j2735_02_maxttc'></span></td>
+<td><span id='j2735_02_source'></span></td>
+</tr>
+
+<tr id='j2735_03_tr' class="bg-info">
+<th><center><span id='j2735_03_signum'></span></center></th>
+<td><span id='j2735_03_mps'></span></td>
+<td><span id='j2735_03_minttc'></span></td>
+<td><span id='j2735_03_maxttc'></span></td>
+<td><span id='j2735_03_source'></span></td>
+</tr>
+
+<tr id='j2735_04_tr' class="bg-info">
+<th><center><span id='j2735_04_signum'></span></center></th>
+<td><span id='j2735_04_mps'></span></td>
+<td><span id='j2735_04_minttc'></span></td>
+<td><span id='j2735_04_maxttc'></span></td>
+<td><span id='j2735_04_source'></span></td>
+</tr>
+
+<tr id='j2735_14_tr' class="bg-info">
+<th><center><span id='j2735_14_signum'></span></center></th>
+<td><span id='j2735_14_mps'></span></td>
+<td><span id='j2735_14_minttc'></span></td>
+<td><span id='j2735_14_maxttc'></span></td>
+<td><span id='j2735_14_source'></span></td>
+</tr>
+
+<tr id='j2735_05_tr' class="bg-info">
+<th><center><span id='j2735_05_signum'></span></center></th>
+<td><span id='j2735_05_mps'></span></td>
+<td><span id='j2735_05_minttc'></span></td>
+<td><span id='j2735_05_maxttc'></span></td>
+<td><span id='j2735_05_source'></span></td>
+</tr>
+
+<tr id='j2735_06_tr' class="bg-info">
+<th><center><span id='j2735_06_signum'></span></center></th>
+<td><span id='j2735_06_mps'></span></td>
+<td><span id='j2735_06_minttc'></span></td>
+<td><span id='j2735_06_maxttc'></span></td>
+<td><span id='j2735_06_source'></span></td>
+</tr>
+
+<tr id='j2735_07_tr' class="bg-info">
+<th><center><span id='j2735_07_signum'></span></center></th>
+<td><span id='j2735_07_mps'></span></td>
+<td><span id='j2735_07_minttc'></span></td>
+<td><span id='j2735_07_maxttc'></span></td>
+<td><span id='j2735_07_source'></span></td>
+</tr>
+
+<tr id='j2735_08_tr' class="bg-info">
+<th><center><span id='j2735_08_signum'></span></center></th>
+<td><span id='j2735_08_mps'></span></td>
+<td><span id='j2735_08_minttc'></span></td>
+<td><span id='j2735_08_maxttc'></span></td>
+<td><span id='j2735_08_source'></span></td>
+</tr>
+
+<tr id='j2735_09_tr' class="bg-info">
+<th><center><span id='j2735_09_signum'></span></center></th>
+<td><span id='j2735_09_mps'></span></td>
+<td><span id='j2735_09_minttc'></span></td>
+<td><span id='j2735_09_maxttc'></span></td>
+<td><span id='j2735_09_source'></span></td>
+</tr>
+
+<tr id='j2735_10_tr' class="bg-info">
+<th><center><span id='j2735_10_signum'></span></center></th>
+<td><span id='j2735_10_mps'></span></td>
+<td><span id='j2735_10_minttc'></span></td>
+<td><span id='j2735_10_maxttc'></span></td>
+<td><span id='j2735_10_source'></span></td>
+</tr>
+
+<tr id='j2735_11_tr' class="bg-info">
+<th><center><span id='j2735_11_signum'></span></center></th>
+<td><span id='j2735_11_mps'></span></td>
+<td><span id='j2735_11_minttc'></span></td>
+<td><span id='j2735_11_maxttc'></span></td>
+<td><span id='j2735_11_source'></span></td>
+</tr>
+
+<tr id='j2735_13_tr' class="bg-info">
+<th><center><span id='j2735_13_signum'></span></center></th>
+<td><span id='j2735_13_mps'></span></td>
+<td><span id='j2735_13_minttc'></span></td>
+<td><span id='j2735_13_maxttc'></span></td>
+<td><span id='j2735_13_source'></span></td>
+</tr>
+
+<tr id='j2735_15_tr' class="bg-info">
+<th><center><span id='j2735_15_signum'></span></center></th>
+<td><span id='j2735_15_mps'></span></td>
+<td><span id='j2735_15_minttc'></span></td>
+<td><span id='j2735_15_maxttc'></span></td>
+<td><span id='j2735_15_source'></span></td>
+</tr>
+
+<tr id='j2735_16_tr' class="bg-info">
+<th><center><span id='j2735_16_signum'></span></center></th>
+<td><span id='j2735_16_mps'></span></td>
+<td><span id='j2735_16_minttc'></span></td>
+<td><span id='j2735_16_maxttc'></span></td>
+<td><span id='j2735_16_source'></span></td>
+</tr>
+
+<tr id='j2735_17_tr' class="bg-info">
+<th><center><span id='j2735_17_signum'></span></center></th>
+<td><span id='j2735_17_mps'></span></td>
+<td><span id='j2735_17_minttc'></span></td>
+<td><span id='j2735_17_maxttc'></span></td>
+<td><span id='j2735_17_source'></span></td>
+</tr>
+
+<tr id='j2735_18_tr' class="bg-info">
+<th><center><span id='j2735_18_signum'></span></center></th>
+<td><span id='j2735_18_mps'></span></td>
+<td><span id='j2735_18_minttc'></span></td>
+<td><span id='j2735_18_maxttc'></span></td>
+<td><span id='j2735_18_source'></span></td>
+</tr>
+
+<tr id='j2735_19_tr' class="bg-info">
+<th><center><span id='j2735_19_signum'></span></center></th>
+<td><span id='j2735_19_mps'></span></td>
+<td><span id='j2735_19_minttc'></span></td>
+<td><span id='j2735_19_maxttc'></span></td>
+<td><span id='j2735_19_source'></span></td>
+</tr>
+
+<tr id='j2735_20_tr' class="bg-info">
+<th><center><span id='j2735_20_signum'></span></center></th>
+<td><span id='j2735_20_mps'></span></td>
+<td><span id='j2735_20_minttc'></span></td>
+<td><span id='j2735_20_maxttc'></span></td>
+<td><span id='j2735_20_source'></span></td>
+</tr>
+
+<tr id='j2735_21_tr' class="bg-info">
+<th><center><span id='j2735_21_signum'></span></center></th>
+<td><span id='j2735_21_mps'></span></td>
+<td><span id='j2735_21_minttc'></span></td>
+<td><span id='j2735_21_maxttc'></span></td>
+<td><span id='j2735_21_source'></span></td>
+</tr>
+
+<tr id='j2735_22_tr' class="bg-info">
+<th><center><span id='j2735_22_signum'></span></center></th>
+<td><span id='j2735_22_mps'></span></td>
+<td><span id='j2735_22_minttc'></span></td>
+<td><span id='j2735_22_maxttc'></span></td>
+<td><span id='j2735_22_source'></span></td>
+</tr>
+
+<tr id='j2735_23_tr' class="bg-info">
+<th><center><span id='j2735_23_signum'></span></center></th>
+<td><span id='j2735_23_mps'></span></td>
+<td><span id='j2735_23_minttc'></span></td>
+<td><span id='j2735_23_maxttc'></span></td>
+<td><span id='j2735_23_source'></span></td>
+</tr>
+
+<tr id='j2735_24_tr' class="bg-info">
+<th><center><span id='j2735_24_signum'></span></center></th>
+<td><span id='j2735_24_mps'></span></td>
+<td><span id='j2735_24_minttc'></span></td>
+<td><span id='j2735_24_maxttc'></span></td>
+<td><span id='j2735_24_source'></span></td>
+</tr>
+
+<tr id='j2735_25_tr' class="bg-info">
+<th><center><span id='j2735_25_signum'></span></center></th>
+<td><span id='j2735_25_mps'></span></td>
+<td><span id='j2735_25_minttc'></span></td>
+<td><span id='j2735_25_maxttc'></span></td>
+<td><span id='j2735_25_source'></span></td>
+</tr>
+
+<tr id='j2735_26_tr' class="bg-info">
+<th><center><span id='j2735_26_signum'></span></center></th>
+<td><span id='j2735_26_mps'></span></td>
+<td><span id='j2735_26_minttc'></span></td>
+<td><span id='j2735_26_maxttc'></span></td>
+<td><span id='j2735_26_source'></span></td>
+</tr>
+
+<tr id='j2735_27_tr' class="bg-info">
+<th><center><span id='j2735_27_signum'></span></center></th>
+<td><span id='j2735_27_mps'></span></td>
+<td><span id='j2735_27_minttc'></span></td>
+<td><span id='j2735_27_maxttc'></span></td>
+<td><span id='j2735_27_source'></span></td>
+</tr>
+
+<tr id='j2735_28_tr' class="bg-info">
+<th><center><span id='j2735_28_signum'></span></center></th>
+<td><span id='j2735_28_mps'></span></td>
+<td><span id='j2735_28_minttc'></span></td>
+<td><span id='j2735_28_maxttc'></span></td>
+<td><span id='j2735_28_source'></span></td>
+</tr>
+
+<tr id='j2735_29_tr' class="bg-info">
+<th><center><span id='j2735_29_signum'></span></center></th>
+<td><span id='j2735_29_mps'></span></td>
+<td><span id='j2735_29_minttc'></span></td>
+<td><span id='j2735_29_maxttc'></span></td>
+<td><span id='j2735_29_source'></span></td>
+</tr>
+
+<tr id='j2735_30_tr' class="bg-info">
+<th><center><span id='j2735_30_signum'></span></center></th>
+<td><span id='j2735_30_mps'></span></td>
+<td><span id='j2735_30_minttc'></span></td>
+<td><span id='j2735_30_maxttc'></span></td>
+<td><span id='j2735_30_source'></span></td>
+</tr>
+
+<tr id='j2735_31_tr' class="bg-info">
+<th><center><span id='j2735_31_signum'></span></center></th>
+<td><span id='j2735_31_mps'></span></td>
+<td><span id='j2735_31_minttc'></span></td>
+<td><span id='j2735_31_maxttc'></span></td>
+<td><span id='j2735_31_source'></span></td>
+</tr>
+
+<tr id='j2735_32_tr' class="bg-info">
+<th><center><span id='j2735_32_signum'></span></center></th>
+<td><span id='j2735_32_mps'></span></td>
+<td><span id='j2735_32_minttc'></span></td>
+<td><span id='j2735_32_maxttc'></span></td>
+<td><span id='j2735_32_source'></span></td>
+</tr>
+
+
+
+</tbody>
+</table>
+</div> <!-- class="table-wrap" -->
+</div> <!-- class="col-md-12 mb-0" -->
+</div> <!-- class="row" -->
+<!-- END OF TABLE HTML -->
+
+
+<!-- There's two unclosed <div>'s somewhere that needs this or copyright footer doesn't extend full width.  [20210604]-->
+</div>
+</div>
+
+<div class="footer-basic">
+        <footer>
+            <p class="copyright">MobiQ © 2023</p>
+        </footer>
+</div>
+
+</center>
+</section>
+
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
+<script>
+    function start_update() {
+      if (ready_for_update_request_status == "READY") {
+          ready_for_update_request_status = "REQ_SENT";
+          send_update_kaio_refresh();
+      } else {
+          ready_for_update_request_status = ready_for_update_request_status + " ... STILL WAITING";
+      }
+      var t = setTimeout(start_update, 1000);
+    }
+
+    // Returns root string for element names for the tsc table element
+    //   -- table element template is "tsc_01_xyz"
+    //   -- dataindex is 0-15 for Vehicle, 16-31 for Overlap
+    function tsc_element_name_root(dataindex)
+    {
+        var name_root = "tsc";
+        if (dataindex < 16) { name_root += "_v"; } else { name_root += "_o"; }
+        if (dataindex % 16 < 9) { name_root += "0"; }    // Add leading zero NOTE: < 9 not 10 because next, name adds str(dataindex%16+1)
+        name_root += (1 + (dataindex % 16));
+        return name_root;
+    }
+
+    // Returns root string for element names for the j2735 table element
+    //   -- table element template is "j2735_01_xyz"
+    //   -- number is the data index + 1, goes 1-16 not 0-15
+    function j2735_element_name_root(number)
+    {
+        var name_root = "j2735_";
+        if (number < 10) { name_root += "0"; }    // Add leading zero
+        name_root = name_root + number;
+        return name_root;
+    }
+
+    // Returns a bg-xxx class name corresponding to passed color
+    function getBGClassForColor(color)
+    {
+        // TSC colors have leading spaces
+        color = color.trim();
+        // Handle flashing
+        if (color.substring(0,8) == "Flashing") {
+            var color2 = color.substring(9);
+            // But turn it to bg-dark every other second so it flashes
+            var d = new Date();
+            if (d.getSeconds() % 2 == 1) {
+                return "bg-dark";
+            } else {
+                return getBGClassForColor(color2);
+            }
+        }
+        if (color == "Green") { return "bg-success"; }
+        if (color == "Yellow") { return "bg-warning"; }
+        if (color == "Red") { return "bg-danger"; }
+        if (color == "Dark") { return "bg-info"; }
+        return "bg-dark";
+    }
+
+    // Poll for data update and process
+    var ready_for_update_request_status = "READY";
+    function send_update_kaio_refresh() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          ready_for_update_request_status = "READY";
+          var str = this.responseText;
+          var bits_arr = str.split(',');
+          // No Data
+          if (bits_arr[0] == "False") {
+              document.getElementById("no_data_overlay").style.display = "inline-block";
+          // Good Data
+          } else {
+              document.getElementById("no_data_overlay").style.display = "none";
+
+              // Determine if flashing colors are dark this second; used below
+              var d = new Date();
+              var flashing_is_dark_now = d.getSeconds() % 2 == 1;
+
+              // Update time displays
+              document.getElementById("spat_time_hhmmss").innerHTML = bits_arr[1];
+              document.getElementById("spat_time_secinhr").innerHTML = bits_arr[2];
+
+              // Update TSC table
+              var num_tsc_data_rows = bits_arr[3];  // Always 32 should just not pass it
+              for (i = 0; i < 32; i++) {
+                var field_root = tsc_element_name_root(i);
+                document.getElementById(field_root + "_color").innerHTML = bits_arr[4 + i*4];
+                document.getElementById(field_root + "_minttc").innerHTML = bits_arr[4 + i*4 + 1];
+                document.getElementById(field_root + "_maxttc").innerHTML = bits_arr[4 + i*4 + 2];
+                document.getElementById(field_root + "_isflashing").innerHTML = bits_arr[4 + i*4 + 3];
+                // Set color of row
+                for (j=1; j<=4; j++) {
+                  // Take into account flashing
+                  if (flashing_is_dark_now && bits_arr[4 + i*4 + 3] == "Yes") {
+                     document.getElementById(field_root+"_bg"+j).className = "bg-dark";
+                  } else {
+                     document.getElementById(field_root+"_bg"+j).className = getBGClassForColor(bits_arr[4 + i*4]);
+                  }
+                }
+              }
+
+              // Update J2735 table
+              var j2735_data_start = 4 + 4 * num_tsc_data_rows;
+              var num_j2735_data_rows = parseInt(bits_arr[j2735_data_start]);
+              for (i = 0; i < num_j2735_data_rows; i++) {
+                var field_root = j2735_element_name_root(i+1);
+                var row_start = j2735_data_start + 1 + i * 6;
+                // Set passed values into their table row cells
+                document.getElementById(field_root + "_signum").innerHTML = bits_arr[row_start];
+                document.getElementById(field_root + "_mps").innerHTML = bits_arr[row_start+1];
+                document.getElementById(field_root + "_minttc").innerHTML = bits_arr[row_start+2];
+                document.getElementById(field_root + "_maxttc").innerHTML = bits_arr[row_start+3];
+                document.getElementById(field_root + "_source").innerHTML = bits_arr[row_start+5];
+                // Set color of row
+                document.getElementById(field_root + "_tr").className = getBGClassForColor(bits_arr[row_start+4]);
+                // Make sure row is showing
+                document.getElementById(field_root + "_tr").style.display = "table-row";
+              }
+              // Collapse unused J2735 rows
+              for (i=num_j2735_data_rows; i<32; i++) {
+                var field_root = j2735_element_name_root(i+1);
+                document.getElementById(field_root + "_tr").style.display = "none";
+              }
+          }
+        }
+      };
+      xhttp.open("GET", '/cgi-bin/get_spat_detail_data', true);
+      xhttp.send();
+    }
+</script>
+</body>
+</html>
+
+##EOFEOFEOF2
+
+

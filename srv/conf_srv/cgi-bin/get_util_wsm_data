@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# get_util_wsm_data
+#
+# Send the wsm_xxxx command's output back to the user's web browser
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+
+WATCHDOG_PAT_FILE=/tmp/ztmp.util_wsm_want_data
+UTIL_WSM_OUTPUT_FILE=/tmp/ztmp.util_wsm_output
+
+echo 'Content-Type: text/html'
+echo ''
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Tell util_wsm monitor watchdog that someone is still watching - give watchdog a pat
+touch $WATCHDOG_PAT_FILE
+
+# Send output content to browser
+cat $UTIL_WSM_OUTPUT_FILE

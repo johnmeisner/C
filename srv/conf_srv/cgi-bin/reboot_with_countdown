@@ -1,0 +1,186 @@
+#!/bin/sh
+
+echo "Content-type: text/html"
+echo ""
+
+# First check login status
+# NOTE: We must still check login status before reboot or else an attacker
+#     could continuously reboot this RSU
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then
+  # Expired/not logged in -- goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+  exit
+fi
+
+# In case user is doing a Save-And-Apply after changes the webgui port number,
+# we get the webgui port number from the config files, to build the log-back-in
+# link.  We also have to figure out if we are in HTTP or HTTPS mode, which is
+# done by checking if bozo has set the HTTP_SEC (https) env variables.
+HTTPS_MODE=`env | grep HTTP_SEC | wc -l`
+if [ $HTTPS_MODE -ne 0 ]; then
+    # Https mode
+    BOZO_PORT=`conf_agent READ RSU_INFO WEBGUI_HTTPS_SERVICE_PORT`
+    LOGIN_URL='https://'$SERVER_NAME':'$BOZO_PORT'/index.html'
+else
+    # Http mode
+    BOZO_PORT=`conf_agent READ RSU_INFO WEBGUI_HTTP_SERVICE_PORT`
+    LOGIN_URL='http://'$SERVER_NAME':'$BOZO_PORT'/index.html'
+fi
+
+
+# Display reboot page content
+cat << '##EOFEOFEOF1'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RSU - 5940 I2V Config Settings</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="/assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="/assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 2;
+  cursor: pointer;
+}
+    </style>
+</head>
+
+<zbody onload='overlay_on_timeout()'>
+
+<!-- print_feature_box_beg -->
+<body>
+<!-- print_overlay -->
+<div id='overlay'>
+
+<div class="text-center">
+
+  <div id='spin01' class='spinner-border text-primary' role='status' >
+    <span class='sr-only'>This text is not visible ...</span>
+  </div>
+
+</div>
+</div> <!-- /overlay -->
+
+    <div class="features-boxed">
+        <div class="container">
+
+<!-- print_intro -->
+            <div class="intro">
+                <h2 class="text-center">Rebooting RSU ...</h2>
+            </div>
+
+##EOFEOFEOF1
+
+  # If any status from previous save, display it
+  STATUS_FILE=/tmp/update.status.file
+  if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+  fi
+
+cat << '##EOFEOFEOF2'
+
+    <div class="row justify-content-center features" style="padding-top: 0px;padding-bottom: 0px;">
+
+<!-- jprint_reset -->
+      <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item">
+        <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;mlargin-bottom: 15px;">
+
+<!-- === form action -->
+<form name='x' action=''>
+        <h6 class="text-center" id='saydone'>Please wait for RSU to complete reboot</h6>
+        <br/>
+        <h6 class="text-center" id='counter'>Time Remaining: 50</h6>
+        <h6 class='text-center' id='relog'>
+##EOFEOFEOF2
+
+echo "<a href='$LOGIN_URL'>Click here to log back in</a></h6>"
+
+cat << '##EOFEOFEOF3'
+</form>
+
+<!-- === End -->
+        </div>
+        </div>
+
+    </div>
+
+
+<!-- print_feature_box_end -->
+        </div>
+    </div>
+
+<!-- print_footer_end -->
+    <div class="footer-basic">
+        <footer>
+            <p class="copyright">MobiQ © 2023</p>
+        </footer>
+    </div>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Overlay spinner with timeout -->
+<script>
+    function overlay_on_timeout() {
+        overlay_on()
+        setInterval(overlay_off, 20000);
+    }
+    function overlay_on() {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('spin01').style.visibility = 'visible';
+    }
+    function overlay_off() {
+      document.getElementById('spin01').style.visibility = 'hidden';
+      document.getElementById('overlay').style.display = 'none';
+    }
+    function countdowner() {
+
+    }
+</script>
+<script>
+document.getElementById("relog").style.visibility = 'hidden';
+var count_remaining = 50;
+// Decrement the counter every 1 second
+var x = setInterval(function() {
+
+  count_remaining = count_remaining - 1;
+
+  if (count_remaining > 0) {
+    document.getElementById("counter").innerHTML = "Time Remaining: " + count_remaining;
+  } else {
+    // count down is finished
+    clearInterval(x);
+    document.getElementById("saydone").innerHTML = "Reboot Complete";
+    document.getElementById("counter").innerHTML = "";
+    document.getElementById("relog").style.visibility = 'visible';
+  }
+}, 1000);
+
+</script>
+
+
+</body>
+</html>
+
+
+##EOFEOFEOF3
+
+# Reboot
+/sbin/reboot

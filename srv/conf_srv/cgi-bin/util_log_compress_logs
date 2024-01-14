@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# File: compress_logs
+#   - Builds a compressed tar of user's desired logs in /tmp, and returns the filename
+
+LOGDIR=/rwflash/I2V/syslog
+TARBZ2FILE=rsu_logfiles.`/bin/date +%Y%m%d-%H%M%S`.zip
+DOWNLOAD_FILE_LIST=/tmp/ztmp.to_tar_list.txt
+
+DEBUGLOG=/tmp/zdbg.util_logs_tarup.txt
+# To enable debugging, uncomment all the '##' lines
+##date > $DEBUGLOG
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+
+# Save post data
+SAVED_POST_FILE=/tmp/ztmp.saved_post_data
+/usr/bin/upload_saver $SAVED_POST_FILE    > /dev/null
+##/usr/bin/upload_saver $SAVED_POST_FILE        >> $DEBUGLOG 2>&1
+
+# The content on $SAVED_POST_FILE will look like this:
+#    i2vstat_20180813_213917--0000000091--1.0.log=on&i2vstat_20180813_215445--0000000342--1.0.log=on
+# We need to process that into a file list that we can give to tar
+/bin/sed -e 's/=on&*/\n/g' $SAVED_POST_FILE > $DOWNLOAD_FILE_LIST
+
+##echo 'Processed file list is:'  >> $DEBUGLOG
+##cat $DOWNLOAD_FILE_LIST            >> $DEBUGLOG
+
+# Create a compressed tar file of all the user's selected logfiles
+#  NOTE: The -T and -X commands of yocto tar do not seem to work, even
+#    though they are in the --help output of that command.  So we have
+#    to pass the file list via cat .. which might have a size limit.
+#    If we ever hit that limit, this can be rewritten to create a 
+#    tar and then append one file at a time, then compress it afterwards.
+cd $LOGDIR
+/usr/bin/zip -9 /tmp/$TARBZ2FILE `cat $DOWNLOAD_FILE_LIST` > /dev/null
+##/usr/bin/zip -9 /tmp/$TARBZ2FILE `cat $DOWNLOAD_FILE_LIST` >> $DEBUGLOG  2>&1
+##/usr/bin/file /tmp/$TARBZ2FILE   >> $DEBUGLOG 2>&1
+##/usr/bin/unzip -l /tmp/$TARBZ2FILE    >> $DEBUGLOG
+
+# Cleanup
+rm -f $SAVED_POST_FILE $DOWNLOAD_FILE_LIST
+
+# Send the filename back to the browser so it knows it's ok to start the download
+echo 'Content-Type: text/html'
+echo ''
+echo $TARBZ2FILE
+
+# Done

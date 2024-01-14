@@ -1,0 +1,618 @@
+#!/bin/sh
+
+# Set path
+PATH=/bin:/sbin:/usr/sbin:/usr/bin:/opt/bin:/opt/cohda/bin:/rwflash/bin:/usr/local/bin
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+# Outputs HTML to add a table row for an AMH message file
+# Input Param: $1 - filename of amh file
+print_active_message_file_row_html()
+{
+    echo "              <tr>"
+    echo "                <td>"
+    echo "                <input type='checkbox'  style='text-align:center; vertical-align: middle;'> "
+    echo "                </td>"
+    echo "                <td onclick='show_file_content(this.innerText)'>$1</td>"
+    echo "              </tr>"
+}
+
+print_text_input_tip()
+{
+    # Input parameters
+    #   LABEL=""
+    #   ID=""
+    #   PHOLDER=""
+    #   TOOLTIP=""
+
+    echo "              <div class='form-group row' style='margin-bottom: 0px;' "
+    echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>"
+    echo "                <label for='$ID' class='col-sm-5 col-form-label'>$LABEL </label>"
+    echo "                <div class='col-sm-6'>"
+    echo "                  <input type='text' class='form-control' name='$ID' id='$ID' placeholder='$PHOLDER' value='$PHOLDER' onchange=\"change_notify($ID)\" >"
+    echo "                </div>"
+    echo "              </div>"
+}
+
+print_check_box_tip()
+{
+    # Input Params
+    #   LABEL=""
+    #   ID=""
+    #   VALUE=""
+    #   TOOLTIP (TBD)
+
+    if [ "$VALUE" == "0" ]; then 
+        RESULT="" 
+    else 
+        RESULT="checked" 
+    fi
+    # adding change detect
+    echo "            <div class=\"form-check\"><input class=\"form-check-input\" type=\"checkbox\" name=\"$ID\" id=\"$ID\" $RESULT onchange=\"change_notify($ID)\" >"
+    echo "            <label class=\"form-check-label\" for=\"$ID\" "
+    echo "            data-toggle=\"tooltip\" data-placement=\"top\" title=\"$TOOLTIP\"> "
+    echo "            $LABEL</label></div>"
+}
+
+print_icon_style()
+{
+echo "<style>" 
+
+echo ".icon {" 
+echo "  font-size: 60px;" 
+echo "  text-align: center;" 
+echo "  margin-top: 20px;" 
+echo "  padding: 10px;" 
+echo "}" 
+
+echo ".intro-container {" 
+echo "  display: -ms-flexbox;" 
+echo "  display: flex;" 
+echo "}" 
+
+echo "</style>" 
+}
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+    echo "<!DOCTYPE html>"
+    echo "<html>" 
+
+    echo "<head>" 
+    echo "    <meta charset='utf-8'>" 
+    echo "    <meta name='viewport' content='width=device-width, initial-scale=1.0, shrink-to-fit=no'>" 
+    echo "    <title>RSU - 5940 I2V Config Settings</title>" 
+    echo "    <link rel='stylesheet' href='/assets/bootstrap/css/bootstrap.min.css'>" 
+    echo "    <link rel='stylesheet' href='/assets/fonts/font-awesome.min.css'>" 
+    echo "    <link rel='stylesheet' href='/assets/css/Features-Boxed.css'>" 
+    echo "    <link rel='stylesheet' href='/assets/css/Features-Clean.css'>" 
+    echo "    <link rel='stylesheet' href='/assets/css/Footer-Basic.css'>" 
+    echo "    <link rel='stylesheet' href='/assets/css/styles.css'>" 
+
+    echo "    <style>" 
+    echo "#overlay {" 
+    echo "  position: fixed;" 
+    echo "  display: none;" 
+    echo "  width: 100%;" 
+    echo "  height: 100%;" 
+    echo "  top: 0;" 
+    echo "  left: 0;" 
+    echo "  right: 0;" 
+    echo "  bottom: 0;" 
+    echo "  background-color: rgba(0,0,0,0.3);" 
+    echo "  z-index: 2;" 
+    echo "  cursor: pointer;" 
+    echo "}" 
+    echo "    </style>" 
+
+    echo "<style>"
+    echo ".center {"
+    echo "  margin: auto;"
+    echo "  width: 90%;"
+    echo "  height: 200px;"
+    echo "  overflow: auto;"
+    echo "  border: 3px solid #adb5bd;"
+    echo "  background-color: #eee;"
+    echo "  padding: 10px;"
+    echo "</style>"
+    
+    #=== Customize upload button
+    echo "<style>"
+    echo ".upload-btn-wrapper {"
+    echo "  position: relative;"
+    echo "  overflow: hidden;"
+    echo "  display: inline-block;"
+    echo "}"
+
+    echo ".btn {"
+    echo "  border: 2px solid gray;"
+    #echo "  color: gray;"
+    echo "  background-color: white;"
+    echo "  color: black;"
+    #echo "  padding: 6px 14px;"
+    echo "  border-radius: 8px;"
+    echo "  font-size: 16px;"
+    #echo "  font-weight: bold;"
+    echo "}"
+
+    echo ".upload-btn-wrapper input[type=file] {"
+    echo "  font-size: 16px;"
+    echo "  position: absolute;"
+    echo "  left: 0;"
+    echo "  top: 0;"
+    echo "  opacity: 0;"
+    echo "}"
+    echo "</style>"
+    #===================
+
+    echo "<style>"
+    echo ".btn_round {"
+    echo "  border: 2px solid gray;"
+    echo "  background-color: white;"
+    echo "  padding-top: 6px;"
+    echo "  padding-bottom: 6px;"
+    echo "  color: black;"
+    echo "  border-radius: 8px;"
+    echo "  font-size: 16px;"
+    echo "}"
+    echo "</style>"
+
+    print_icon_style
+    
+    echo "</head>" 
+}
+
+print_overlay()
+{
+    echo "<div id='overlay'>" 
+
+    echo "<div class="text-center">" 
+
+    echo "  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >" 
+    echo "    <span class='sr-only'>Loading...</span>" 
+    echo "  </div>" 
+    echo "</div>" 
+    echo "</div>" 
+}
+
+print_stored_active_message()
+{
+    #=== Get AMH Settings ===
+    echo "      <div class='col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item'>" 
+    echo "        <div class='text-left box shadow p-3 mb-5 bg-white rounded' style='padding-top: 5px;mlargin-bottom: 15px;'>"        # box begin
+
+    #=== form action
+    echo "<form name='wrapper_form' action='All actions done through javascript'>" 
+    echo "        <h3 class='text-center'>Stored Active Messages</h3>" 
+
+    # Frame
+    echo "        <div class=\"center\" id='active_file_frame'>"
+    # Table
+    echo "        <div class='container'>"
+    echo "          <table class='table table-bordered' id='file_list_table'>"
+    
+    echo "            <thead>"
+    echo "              <tr>"
+    echo "                <th></th>"
+    echo "                <th>Click on a file name to view the file contents in a popup window</th>"
+    echo "              </tr>"
+    echo "            </thead>"
+
+    # populate table
+    echo "            <tbody>"
+    for file in "/rwflash/I2V/amh/"*.txt ; do
+        if [ -f "$file" ]; then
+          # validate file and add to table
+          amhValidator $file > /dev/null 2>&1
+          result=`echo $?`
+          if [ "$result" == "0" ]; then    
+            print_active_message_file_row_html $file
+          fi
+        fi
+    done
+    echo "            </tbody>"
+
+    echo "          </table>"
+    echo "        </div>"
+    
+    echo "        </div>"
+
+    echo "        <h6 class=\"text-center\"  style='color:gray'><b>Note: </b>An Empty List Means No Stored Active Message</h6>"
+    echo "</form>  <!-- End the form encopassing the file list -->"
+    echo "<br>"
+
+    #=== Add button 
+    echo "<form>"
+    echo "   <div style='float: left;'>"
+    echo "     <div class='upload-btn-wrapper'>"
+    echo "       <button class='btn' style='margin-left: 50px;' >Add New Message</button>"
+    echo "       <input type='file' accept='.txt' id='new_message_input' onchange='add_new_active_message()'/>"
+    echo "     </div>"
+    echo "   </div>"    # style float left
+
+    echo "     <p align='right'> <button class='btn_round' style='margin-right: 50px;' input type='button' onclick=\"delete_selected()\">Delete Selected</button> </p>"
+
+    echo "</form>" 
+
+
+    #=== End
+    echo "        </div>"          # box end
+    echo "        </div>" 
+}
+
+
+print_settings()
+{
+    #=== Get AMH Settings ===
+    echo "      <div class='col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item'>" 
+    echo "        <div class='text-left box shadow p-3 mb-5 bg-white rounded' style='padding-top: 5px;mlargin-bottom: 15px;'>"        # box begin
+
+    #=== form action
+    echo "<form name='imm_fwd_form' action='/cgi-bin/config_imm_fwd_save'>" 
+    echo "        <h3 class='text-center'>Immediate Forward Settings</h3>" 
+
+    # IM_FWD_FILTER
+    IM_FWD_FILTER=`/usr/bin/conf_agent READ amh ImmediateIPFilter`
+    LABEL="Enable IP Filter";  ID="ImmediateIPFilter";  VALUE="$IM_FWD_FILTER"; TOOLTIP="Enable IP Filter. Default: Disabled"
+    print_check_box_tip
+
+
+    # IM_FWD_IP
+    IM_FWD_IP=`/usr/bin/conf_agent READ amh ImmediateIP`
+    LABEL="Immediate Forward Allowed IP Addr";  ID="ImmediateIP";  PHOLDER="$IM_FWD_IP"; TOOLTIP="Immediate Forward Allowed IP Addr (e.g. 192.168.1.100). Default: 192.168.2.47."
+    print_text_input_tip
+
+    # IM_FWD_PORT
+    IM_FWD_PORT=`/usr/bin/conf_agent READ amh ImmediatePort`
+    LABEL="Immediate Forward Port";  ID="ImmediatePort";  PHOLDER="$IM_FWD_PORT"; TOOLTIP="Immediate Forward Port (Range 0-65535). Default: 1516"
+    print_text_input_tip
+
+    #======
+    # place holder for various flags
+    echo "    <input type='text' name='NAV' id='NAV' value='REFRESH' style='visibility: hidden;' > "
+
+    # line
+    echo "        <br>"   # header
+
+    #=== 3 buttons on same line (float 1st two
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"left\"> <input type=\"button\" id='SAVE_BTTN' value=\"SAVE\" onclick=\"submit_imm_fwd()\" disabled> </p>"
+    echo "   </div>"
+
+    # Apply button
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"center\"> <input type=\"button\" id='APPLY_BTTN' value=\"SAVE & APPLY\" onclick=\"submit_imm_fwd_reset()\" disabled> </p>"
+    echo "   </div>"
+
+    # Back button one level up - prompt user if changes made
+    echo "     <p align='right'> <input type='button' value='BACK' onclick=\"check_changes_back()\"> </p>"
+    
+    #======
+
+    echo "</form>" 
+
+
+    #=== End
+    echo "        </div>"          # box end
+    echo "        </div>" 
+}
+
+print_i2v_conf_row1()
+{
+    echo "    <div class='row justify-content-center features' style='padding-top: 0px;padding-bottom: 0px;'>" 
+    print_stored_active_message
+    echo "    </div>" 
+
+}
+
+print_i2v_conf_row2()
+{
+    echo "    <div class='row justify-content-center features' style='padding-top: 0px;padding-bottom: 0px;'>" 
+    print_settings
+    echo "    </div>" 
+
+}
+
+print_feature_box_beg()
+{
+    echo "<body>" 
+    source $SCRIPT_PATH/add_navbar.sh 
+    source $SCRIPT_PATH/add_page_timeout.sh
+    print_overlay
+    echo "    <div class='features-boxed'>" 
+    echo "        <div class='container'>" 
+}
+
+print_feature_box_end()
+{
+    echo "        </div>" 
+    echo "    </div>" 
+}
+
+print_intro()
+{
+    echo "            <div class='intro'>" 
+    echo "            <div class=\"intro-container\">"
+    echo "                <i class=\"fa fa-rss icon\"></i>"
+    echo "                <h2 class='text-center'>Active Message and Immediate Forward Settings</h2>" 
+    echo "            </div>" 
+    echo "            </div>" 
+}
+
+print_Home_box()
+{
+    echo "                <div class='col-sm-6 col-md-5 col-lg-4 item'>" 
+    echo "                  <a href=\"/cgi-bin/rsu_main\">"
+    echo "                        <h3 class='name'>Home</h3>" 
+    echo "                    </div>" 
+    echo "                  </a>" 
+    echo "                </div>" 
+}
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+    echo "    <div class='footer-basic'>" 
+    echo "        <footer>" 
+    echo "            <p class='copyright'>MobiQ © 2023</p>" 
+    echo "        </footer>" 
+    echo "    </div>" 
+    echo "    <script src='/assets/js/jquery.min.js'></script>" 
+    echo "    <script src='/assets/bootstrap/js/bootstrap.min.js'></script>" 
+
+    echo "<script>" 
+        print_submit_imm_fwd
+        print_submit_imm_fwd_reset
+        print_overlay_on
+        print_change_notify
+        print_check_changes_back
+        print_show_file_content
+        print_sleep
+        print_delete_file
+        print_delete_selected
+        print_add_new_active_message
+    echo "</script>" 
+
+
+    echo "</body>" 
+    echo "</html>" 
+}
+
+print_submit_imm_fwd()
+{
+    # Submit imm fwd
+    echo "function submit_imm_fwd() {" 
+    echo "overlay_on()" 
+    echo "    var x = document.getElementsByName('imm_fwd_form');" 
+    echo "    x[0].submit();" 
+    echo "}" 
+}
+
+print_submit_imm_fwd_reset()
+{
+    # Submit imm fwd
+    echo "function submit_imm_fwd_reset() {" 
+    # Make sure user want to SAVE and REBOOT
+        echo "var r = confirm('SAVE & APPLY will reboot the RSU!');"
+        echo "if (r == true) {"
+            echo "    NAV.value='APPLY';"  # Tells save script to reboot after saving
+            echo "    overlay_on()" 
+            echo "    var x = document.getElementsByName('imm_fwd_form');" 
+            echo "    x[0].submit();" 
+        echo "}"
+     echo "}"
+}
+
+print_overlay_on()
+{
+    echo "    function overlay_on() {" 
+    echo "      document.getElementById('overlay').style.display = 'block';" 
+    echo "      document.getElementById('spin01').style.visibility = 'visible';" 
+    echo "    }" 
+
+    echo "    function overlay_off() {" 
+    echo "      document.getElementById('overlay').style.display = 'none';" 
+    echo "    }" 
+}
+
+# test function to validate onchange events
+print_change_notify()
+{
+    echo "var pg_change = 0;"
+    echo "function change_notify(change_id) {"
+    echo "  pg_change = 1;"
+    # set color to purple - #800080
+    echo "  change_id.style.color = \"#800080\"; "
+    # enable SAVE button
+    echo "  document.getElementById('SAVE_BTTN').disabled = false;"
+    echo "  document.getElementById('APPLY_BTTN').disabled = false;"
+    # Tell the navbar to tell the user to save first
+    echo "  navbar_set_page_has_unsaved_changes(true);"
+    echo "}"
+}
+
+
+print_show_file_content()
+{
+    echo "    function show_file_content(file_name) {" 
+
+    echo "      var xhttp = new XMLHttpRequest();" 
+    # Handle response
+    echo "      xhttp.onreadystatechange = function() {" 
+    echo "        if (this.readyState == 4 && this.status == 200) {" 
+    echo "          alert(this.responseText);"
+    echo "        }" 
+    echo "      };" 
+    # Pass desired filename to be cat'ed as a param in the URL
+    echo "      xhttp.open('GET', '/cgi-bin/show_file_contents?filename='+file_name, true);" 
+    echo "      xhttp.send();" 
+    echo "    }" 
+}
+
+
+print_sleep()
+{
+    echo "    function sleep(ms) {"
+    echo "      return new Promise(resolve => setTimeout(resolve, ms));"
+    echo "    }"
+}
+
+print_delete_file()
+{
+    echo "    function delete_file(file_name) {" 
+
+    echo "      var xhttp = new XMLHttpRequest();" 
+    # Handle response
+    echo "      xhttp.onreadystatechange = function() {" 
+    echo "          if (this.readyState == 4 && this.status == 200) {" 
+    echo "            var status_ctr = document.getElementById('status_center');"
+    echo "            status_ctr.innerHTML = status_ctr.innerHTML + this.responseText + ' ';"
+    echo "          }" 
+    echo "        };" 
+    echo "      xhttp.open('post', '/cgi-bin/delete_file', true);" 
+    echo "      xhttp.send(file_name + String.fromCharCode(10));" 
+
+    echo "    }" 
+}
+
+
+print_delete_selected()
+{
+    echo "async function delete_selected() {"
+    echo "        var grid = document.getElementById('file_list_table');"
+ 
+    echo "        var checkBoxes = grid.getElementsByTagName('INPUT');"
+    echo "        var delete_file_name = '';"
+    echo "        overlay_on();"
+    # Clear status from any last operation
+    echo "        var status_ctr = document.getElementById('status_center');"
+    echo "        status_ctr.innerHTML = '';"
+
+    #Loop through the CheckBoxes.
+    echo "        for (var i = checkBoxes.length -1; i >= 0; i--) {"
+    echo "            if (checkBoxes[i].checked) {"
+    echo "                var row = checkBoxes[i].parentNode.parentNode;"
+    echo "                delete_file_name = row.cells[1].innerHTML;"
+    # call routine to delete file
+    echo "                delete_file(delete_file_name);"
+    echo "                await sleep(500);"
+    echo "                grid.deleteRow(i+1);"
+    echo "            }"
+    echo "        }"
+    echo "        overlay_off();"
+    echo "}"
+}
+
+
+print_add_new_active_message()
+{
+    cat << '##EOFEOFEOF1'
+    function add_new_active_message() {
+
+        // Function to upload file
+        function send_file_content_to_server(file_object)
+        {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Now refresh content by making browser reload this page
+                    window.location.href = '/cgi-bin/config_imm_fwd_display_live';
+                }
+            }
+            xhttp.open('post', '/cgi-bin/upload_new_active_message', true);
+            xhttp.send(file_object);
+        };
+
+        overlay_on();
+
+        // Send the file's name, then the file's content
+        var file_object = document.getElementById('new_message_input').files[0];
+        var file_name = file_object.name;
+
+        var xhttp = new XMLHttpRequest();
+        // When we get a status=200 response, send the file
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                send_file_content_to_server(file_object);
+            }
+        };
+        xhttp.open('post', '/cgi-bin/upload_name_for_next_uploaded_file', true);
+        xhttp.send(file_name + String.fromCharCode(10));
+    }
+##EOFEOFEOF1
+}
+
+
+print_check_changes_back()
+{
+    # check changes
+    echo "function check_changes_back() {"
+    echo "if (pg_change == 0) {"    #   check for changes
+            # No changes - go back one level up
+    echo "  window.location.href = '/cgi-bin/config_display_default';"
+    echo "} else {"
+            # Else prompt user to save changes
+    echo "    var ret = confirm(\"Save changes?\");"
+    echo "    if (ret == true) {"
+                # Save changes and go back
+    echo "      NAV.value='BACK';"
+    echo "      submit_imm_fwd();"
+    echo "    } "
+    echo "    else {"
+    echo "      window.location.href = '/cgi-bin/config_display_default';"
+    echo "    }"
+    echo "}"
+    echo "}"
+}
+
+
+#
+# Main
+### Generate Page - then redirect to rsu-config (check if user is logged in)
+#
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+else  
+  print_header                   # print header
+  print_feature_box_beg          # feature box beg
+  print_intro
+
+  # Status from previous save or from deletes/adds
+  STATUS_FILE=/tmp/update.status.file
+  echo '<center id='status_center'>'
+  if [ -f $STATUS_FILE ]; then
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+  fi
+  echo '</center><br/>'
+
+    # Show 1st row - App settings, Network settings
+    print_i2v_conf_row1
+
+    # Show 2nd row - Radio settings
+    print_i2v_conf_row2
+
+  print_feature_box_end          # feature box end
+
+  # FW version
+  echo "<p class='copyright' style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>VERSION:"
+  cat /etc/version 
+  echo "</p>"
+    
+  # End of Page with Footer
+  print_footer_end  
+
+fi

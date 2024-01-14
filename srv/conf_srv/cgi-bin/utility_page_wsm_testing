@@ -1,0 +1,407 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+UTIL_WSM_OUTPUT_FILE=/tmp/ztmp.util_wsm_output
+
+# Main
+echo "Content-type: text/html"
+echo ''
+
+# Verify caller is logged in
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Clear any output leftover from when user was in this page previously
+rm -f $UTIL_WSM_OUTPUT_FILE
+
+# Check if I2V is still running
+I2VDETECT=`ps x | grep i2v_app | grep -v grep`
+
+# Output to browser
+cat << '##EOFEOFEOF1'
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Utility - WSM Send / Recv</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="/assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="/assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+<style>
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+.circle {
+ height: 30px;
+ width: 30px;
+ border-radius: 50%;
+ background: #FFFFFF;
+ border: 2px solid gray;
+ display: inline-block;
+  }
+.roundcorner {
+height: 100px;
+width: 99%;
+border-radius: 25px;
+border: 2px solid #808080;
+padding: 10px;
+  }
+.divOverflow {
+overflow: auto;
+overflow-x: hidden;
+height: 80px;
+margin-left: 2px;
+padding-left: 15px;
+scrollbar-width: thin;
+}
+.monospace {
+    font-family: "Lucida Console", Courier, monospace;
+    color: #000000;
+}
+</style>
+</head>
+<body onload="page_startup()">
+  <div id='overlay'>
+    <div class=text-center>
+      <div id='spin01' class='spinner-border text-primary' role='status' style='visibility: hidden;'>
+        <span class='sr-only'>Shutting down RSU Services ...</span>
+      </div>
+    </div>
+  </div>
+
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+
+<div class="features-boxed">
+    <div class="container">
+
+
+<div id='i2v_still_running_warning' class="row justify-content-center">
+        <div class="intro-container">
+            <i class="fa fa-warning icon" style="color: red;"></i>
+                <h2 class="text-center" style="color: red;">Warning: RSU Services are still running</h2>
+        </div>
+</div>
+
+
+<!-- Old school way of doing a title - has icon tho -->
+<div class="row justify-content-center">    <!-- doing this class=row instead of <div class="intro"> will center the title, what we prefer -->
+<div class="intro-container">
+    <i class="fa fa-bar-chart icon"></i>
+    <h2 class="text-center">WSM Send/Recv Utility</h2>
+</div>
+</div>
+
+
+<!-- Overall container of boxes below title -->
+<div class="row justify-content-center features">
+
+
+<!-- A block for stopping RSU services -->
+<div id='stop_services' class="col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left item" style="padding-left: 5px;padding-right: 5px;">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 260px; min-width: 500px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'><font color=red>Stopping RSU Services</font></h3>
+        <br/>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 0px'>
+        To use the WSM test utilities, the RSU services must be shut down, to free up full access to the radio.
+        RSU Services will not be available during this time.  Also, once you are done with testing,
+        the RSU will be rebooted to restart the RSU services.
+        If this is OK, please click the "STOP Services" button.
+        </div>
+        <br/>
+        <!-- Button -->
+        <form id='i2v_shutdown_submit' action='/cgi-bin/util_wsm_i2v_shutdown'></form>
+        <div style='float: left; margin-top: 10px'>
+           <p align='left'> <input type='button' value='STOP Services' onclick='stop_rsu_services()'> </p>
+        </div>
+        <div style='float: right; margin-top: 10px'>
+           <p align='right'> <input type='button' value='BACK' onclick='back_clicked()'> </p>
+        </div>
+    </div>
+</div>
+<!-- End of stopping RSU services block -->
+
+
+<!-- This puts the shutdown block into its own row -->
+</div>
+<div class="row justify-content-center features">
+
+<!-- Command Parameters Block -->
+<div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 text-left item" style="padding-left: 5px;padding-right: 5px;">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 350px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>Configure WSM Send utility and press Start</h3>
+        <br/>
+    <form id='util_wsm_form' enctype='application/x-www-form-urlencoded'>
+
+
+##EOFEOFEOF2
+
+    # I2VRadioType
+    LABEL="Radio Type";  ID="I2VRadioType";  PHOLDER="$I2VRadioType"; TOOLTIP="Choose between DSRC (defaults tx pwr to 23 db) and CV2X (defaults tx power to 22 db)"
+    SELECTED0=""
+    SELECTED1=""
+    if [ "$I2VRadioType" == 0 ]; then
+        SELECTED0="checked"
+    else
+        if [ "$I2VRadioType" == 1 ]; then
+            SELECTED1="checked"
+        fi
+    fi
+    SELECTED0="checked"
+    echo "              <div class='form-group row' style='margin-bottom: 5px;' "
+    echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>"
+    echo "                <label zrmfor='$ID' class='col-sm-4 col-form-label' style='height:25px; line-height:10px'>$LABEL</label>"
+    echo "                <div class='col-sm-6'>"
+    echo "                  <input type='radio' name='$ID' id='rt0' value='0' $SELECTED0>"
+    echo "                  <label for='rt0'>DSRC</label>"
+    echo "                  &nbsp;"
+    echo "                  <input type='radio' name='$ID' id='rt1' value='1' $SELECTED1>"
+    echo "                  <label for='rt1'>CV2X</label>"
+    echo "                </div>"
+    echo "              </div>"
+
+
+    ID="WsmDirection";
+    SELECTED0="checked"
+    echo "              <div class='form-group row' style='margin-bottom: 5px;' "
+    echo "                data-toggle='tooltip' data-placement='top' title='Choose between sending and receiving'>"
+    echo "                <label zrmfor='$ID' class='col-sm-4 col-form-label' style='height:25px; line-height:10px;'>WSM Direction</label>"
+    echo "                <div class='col-sm-6'>"
+    echo "                  <input type='radio' name='$ID' id='wd0' value='0' $SELECTED0>"
+    echo "                  <label for='wd0'>Send</label>"
+    echo "                  &nbsp;"
+    echo "                  <input type='radio' name='$ID' id='wd1' value='1' $SELECTED1>"
+    echo "                  <label for='wd1'>Receive</label>"
+    echo "                </div>"
+    echo "              </div>"
+
+function k_print_text_input_tip {
+    # Input parameters
+    LABEL="$1"   #   $1 = LABEL
+    ID="$2"      #   $2 = ID
+    PHOLDER="$3" #   $3 = PHOLDER
+    TOOLTIP="$4" #   $4 = TOOLTIP
+
+    echo "              <div class='form-group row' style='margin-bottom: 0px;' "
+    echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>"
+    echo "                <label for='$ID' class='col-sm-4 col-form-label'>$LABEL </label>"
+    echo "                <div class='col-sm-6'>"
+    echo "                  <input type='text' class='form-control' name='$ID' id='$ID' placeholder='$PHOLDER' value='$PHOLDER'>"
+    echo "                </div>"
+    echo "              </div>"
+}
+
+
+    # Add some input boxes
+    k_print_text_input_tip "WSM PSID" IPBPSID 0x20 "Message PSID (cannot conflict with active PSIDs)"
+    k_print_text_input_tip "Transmit&nbsp;Channel&nbsp;#" I2VUnifiedChannelNumber 172 "RSU V2X Broadcast Channel (172,174,176,178,180,182,183,184). DSRC Default: 172, CV2X Default: 183"
+    k_print_text_input_tip "Transmit Power(db)"  I2VTransmitPower 21 "RSU V2X Transmit Power (Range 0-23 db). Default: 22 db"
+    k_print_text_input_tip "Send&nbsp;Delay&nbsp;(msec)" NextMsgDelayMS 100 ""
+
+
+cat << '##EOFEOFEOF3'
+
+    <!-- Start and Stop buttons -->
+    <div style='float: left; margin-top: 10px'>
+       <p align='left'> <input type='button' id='start_btn' value='START' onclick='start_clicked()'> </p>
+    </div>
+    <div style='float: right; margin-top: 10px'>
+       <p align='right'> <input type='button' id='stop_btn' value='STOP' onclick='stop_clicked()' disabled> </p>
+    </div>
+
+
+    </form>
+
+    </div>
+
+</div>
+
+<!-- Results Div - copied from Top Command Output -->
+<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left item" style="padding-left: 5px;padding-right: 5px;">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 350px; min-width: 600px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>Activity Output</h3>
+        <br/>
+        <div class='name overflow' style='color: #808080; font-size: 15px; margin-bottom: 0px' id='top_txt'>
+        </div>
+    </div>
+</div>
+<!-- End of Results Div -->
+
+
+<!-- Back block -->
+                <div id='back_block' class="col-sm-3 col-md-3 col-lg-3 item" style="width: 150px">
+                  <a href="/cgi-bin/util_display_live">
+                    <div class="shadow p-3 mb-3 bg-white rounded" style="width: 150px"><i class="fa fa-arrow-left icon"></i>
+                        <h3 class='name'>Back</h3>
+                    </div>
+                  </a>
+                </div>
+
+<!-- Reboot block -->
+                <div id='reboot_block' class="col-sm-3 col-md-3 col-lg-3 item" style="width: 150px; display: none;">
+                   <a href="/cgi-bin/reboot_with_countdown">
+                    <div class="shadow p-3 mb-3 bg-white rounded" style="width: 150px"><i class="fa fa-power-off icon"></i>
+                        <h3 class='name'>Reboot</h3>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+
+
+<!-- End of: Overall container of boxes below title -->
+</div>
+
+<!-- End of top two divs, div "container" and "features-boxed" -->
+    </div>
+</div>
+
+<!-- Footer -->
+    <div class="footer-basic">
+        <footer>
+            <p class="copyright">MobiQ &copy; 2023</p>
+        </footer>
+    </div>
+
+<script>
+    function start_clicked()
+    {
+       document.getElementById("start_btn").disabled = true;
+       document.getElementById("stop_btn").disabled = false;
+       document.getElementById("top_txt").innerHTML = "<font color=blue>Start clicked</font>, sending start request ...";
+       var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+             document.getElementById("top_txt").innerHTML = "<font color=green>WSM Command started</font>";
+             // start_update();
+          }
+       };
+
+       // Manually build get-method value string
+       var varstr = "?I2VRadioType=" + (document.getElementById("rt1").checked ? "cv2x" : "dsrc");
+       varstr += "&WsmDirection=" + (document.getElementById("wd1").checked ? "RECV" : "SEND");
+       varstr += "&IPBPSID=" + document.getElementById("IPBPSID").value;
+       varstr += "&I2VUnifiedChannelNumber=" + document.getElementById("I2VUnifiedChannelNumber").value;
+       varstr += "&I2VTransmitPower=" + document.getElementById("I2VTransmitPower").value;
+       varstr += "&NextMsgDelayMS=" + document.getElementById("NextMsgDelayMS").value;
+       
+       // Send
+       xhttp.open('get', '/cgi-bin/util_wsm_start_requested' + varstr, true);
+       xhttp.send();
+    }
+    function stop_clicked()
+    {
+       var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+             document.getElementById("start_btn").disabled = false;
+             document.getElementById("stop_btn").disabled = true;
+          }
+       };
+       xhttp.open('GET', '/cgi-bin/util_wsm_stop_requested', true);
+       xhttp.send();
+    }
+    // Poll for data update and display
+    var ready_for_update_request_status = "READY";
+    function send_wsm_output_request() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          ready_for_update_request_status = "READY";
+          // Entire response just goes into top_txt
+          document.getElementById("top_txt").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", '/cgi-bin/get_util_wsm_data', true);
+      xhttp.send();
+    }
+    function page_startup()
+    {
+        // Just one timer to start
+        start_update();
+
+        // Depending on if I2V is still running, change Warning, Back, Reboot and Start button
+        if (is_i2v_running()) {
+            document.getElementById("start_btn").disabled = true;
+            document.getElementById("reboot_block").style.display = "none";
+            document.getElementById("back_block").style.display = "inline-block";
+        } else {
+            document.getElementById("i2v_still_running_warning").style.display = "none";
+            document.getElementById("start_btn").disabled = false;
+            document.getElementById("reboot_block").style.display = "inline-block";
+            document.getElementById("back_block").style.display = "none";
+            document.getElementById("stop_services").style.display = "none";
+            // Disable navbar links, set a custom is-blocked message
+            navbar_set_navbar_disabled(true, "You must reboot when you are done with this page.  Click the Reboot button.");
+        }
+    }
+    function start_update() {
+      if (ready_for_update_request_status == "READY") {
+          ready_for_update_request_status = "REQ_SENT";
+          send_wsm_output_request();
+      } else {
+          ready_for_update_request_status = ready_for_update_request_status + " ... STILL WAITING";
+      }
+      var t = setTimeout(start_update, 1000);
+    }
+    function overlay_on() {
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('spin01').style.visibility = 'visible';
+    }
+    function stop_rsu_services() {
+        // Make sure user wants to WSM and REBOOT
+        var r = confirm('Stopping RSU Services.  Are you sure?');
+        if (r == true) {
+            overlay_on();
+            var x = document.getElementById('i2v_shutdown_submit');
+            x.submit();
+        } else {
+        }
+    }
+    function back_clicked() {
+        window.location.href = '/cgi-bin/util_display_live';
+    }
+</script>
+
+##EOFEOFEOF3
+
+# Put I2VDetect in a javascript variable so javascript can use it
+echo '<script>'
+echo 'function is_i2v_running() {'
+echo '    return "'$I2VDETECT'".length > 0;'
+echo '}'
+echo '</script>'
+
+# Finish page
+cat << '##EOFEOFEOF4'
+
+</body>
+</html>
+
+##EOFEOFEOF4
+
+

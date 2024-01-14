@@ -1,0 +1,55 @@
+#!/bin/sh
+#
+# Request to save a string as the customer Device ID
+#
+# NOTE: Debug log (DLOG) is disabled, to enable it, sed s/##DLOGDISABLED##//
+
+STATUS_FILE=/tmp/update.status.file
+DLOG=/tmp/zdbg.cust_devid_save_str_log.txt
+TMPHEXFILE=/tmp/ztmp.hex_devid.txt
+TMPOUTFILE=/tmp/ztmp.devid_write_out.txt
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/dnutils
+
+##DLOGDISABLED##echo `date +%H:%M:%S` - util_devid_save_hexfile started >> $DLOG
+
+# Start the html
+echo "Content-type: text/html"
+echo ""
+
+# Verify caller is logged in
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Save uploaded file to tmp file
+/bin/rm -f $TMPHEXFILE
+/usr/bin/upload_saver $TMPHEXFILE
+
+# Copy the downloaded file to debug log
+##DLOGDISABLED##echo `date +%H:%M:%S` - Post Saved file is: >> $DLOG
+##DLOGDISABLED##/bin/ls -l $TMPHEXFILE >> $DLOG
+##DLOGDISABLED##echo `date +%H:%M:%S` - File contains HEXDATA: >> $DLOG
+##DLOGDISABLED##sed -e 's/^/    /' $TMPHEXFILE >> $DLOG
+
+# Following code block is indented to match indent of identical block in util_dev_save_str
+    # Write hex
+    /usr/bin/write_cust_devid $TMPHEXFILE > $TMPOUTFILE 2>&1
+##DLOGDISABLED##    echo `date +%H:%M:%S` - Call to write_cust_devid said: >> $DLOG
+##DLOGDISABLED##    sed -e 's/^/    /' $TMPOUTFILE >> $DLOG
+    RET=`grep ERROR: $TMPOUTFILE`
+    if [ x"$RET" == "x" ]; then
+##DLOGDISABLED##        echo `date +%H:%M:%S` - Successful response detected >> $DLOG
+        echo "<font color=green>Successfully updated Device ID !</font>" > $STATUS_FILE
+    else
+##DLOGDISABLED##        echo `date +%H:%M:%S` - Error response detected >> $DLOG
+        echo "<font color=red>Failed to update Device ID - $RET</font>" > $STATUS_FILE
+    fi
+
+# Cleanup /tmp files
+rm -f $TMPHEXFILE $TMPOUTFILE
+
+##DLOGDISABLED##echo `date +%H:%M:%S` - Done >> $DLOG

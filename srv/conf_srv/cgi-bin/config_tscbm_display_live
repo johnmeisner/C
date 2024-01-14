@@ -1,0 +1,507 @@
+#!/bin/sh
+
+# Set path
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+
+# Output
+cat << '##EOFEOFEOF1'
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, shrink-to-fit=no'>
+    <title>RSU - Signal Group Mappings</title>
+    <link rel='stylesheet' href='/assets/bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/assets/fonts/font-awesome.min.css'>
+    <link rel='stylesheet' href='/assets/css/Features-Boxed.css'>
+    <link rel='stylesheet' href='/assets/css/Features-Clean.css'>
+    <link rel='stylesheet' href='/assets/css/Footer-Basic.css'>
+    <link rel='stylesheet' href='/assets/css/styles.css'>
+<style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.center {
+  margin: auto;
+  width: 90%;
+  height: 200px;
+  overflow: auto;
+  border: 3px solid #adb5bd;
+  background-color: #eee;
+  padding: 10px;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.btn {
+  border: 2px solid gray;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.upload-btn-wrapper input[type=file] {
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.btn_round {
+  border: 2px solid gray;
+  background-color: white;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  color: black;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+</style>
+</head>
+<body>
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+<script>
+function submit_form()
+{
+    overlay_on();
+    var x = document.getElementsByName('config_tscbm_form');
+    x[0].submit();
+}
+function submit_form_and_reboot()
+{
+    var r = confirm('SAVE & APPLY will reboot the RSU!');
+    if (r == true) {
+        NAV.value='APPLY';
+        overlay_on();
+        var x = document.getElementsByName('config_tscbm_form');
+        x[0].submit();
+    }
+}
+function overlay_on() {
+  document.getElementById('overlay').style.display = 'block';
+  document.getElementById('spin01').style.visibility = 'visible';
+}
+function overlay_off() {
+  document.getElementById('overlay').style.display = 'none';
+}
+var pg_change = 0;
+function change_notify(change_id) {
+  pg_change = 1;
+  document.getElementById('SAVE_BTTN').disabled = false;
+  document.getElementById('APPLY_BTTN').disabled = false;
+  change_id.style.color = "#bc35d5"; 
+  navbar_set_page_has_unsaved_changes(true); // Tell Navbar to remind user dont skip town w/o saving
+}
+function change_sgid_notify(el) {
+  change_notify(el);
+  // If validation failed, also disable SAVE & APPLY buttons
+  if (!validate_new_sgid(el)) {
+      document.getElementById('SAVE_BTTN').disabled = true;
+      document.getElementById('APPLY_BTTN').disabled = true;
+  }
+}
+function change_phsno_notify(el) {
+  change_notify(el);
+  if (!validate_new_phaseno(el)) {
+      document.getElementById('SAVE_BTTN').disabled = true;
+      document.getElementById('APPLY_BTTN').disabled = true;
+  }
+}
+function check_changes_back() {
+    if (pg_change == 0) {
+      window.location.href = '/cgi-bin/config_intersection_display_live';
+    } else {
+        // If user updates are all valid, ask if they want to save before back
+        if (validate_table_for_save()) {
+            var ret = confirm("Save changes?");
+            if (ret == true) {
+              NAV.value='BACK';
+              submit_form();
+            } 
+            else {
+              window.location.href = '/cgi-bin/config_intersection_display_live';
+            }
+        // User has input issues, ask if they wants to stay to resolve or just leave
+        } else {
+            var ret = confirm("You still have some input conflicts.\n\nClick OK to leave anyway without saving, or Cancel to stay to fix them.");
+            if (ret == true) {
+              window.location.href = '/cgi-bin/config_intersection_display_live';
+            }
+        }
+    }
+}
+</script>
+
+<!-- Page content start -->
+
+    <!-- Overlay -->
+    <div id='overlay'>
+    <div class=text-center>
+      <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >
+        <span class='sr-only'>Saving</span>
+      </div>
+    </div>
+    </div>
+
+
+<!-- Main content container -->
+<div class='features-boxed'>
+    <div class='container'>
+
+        <div class='intro'>
+        <br/>
+        <div class="intro-container">
+            <h2 class="text-center">Signal Group Mappings Editor</h2>
+        </div>
+        </div>
+
+
+<br>
+
+    <div class="row justify-content-center features" style="padding-top: 0px;padding-bottom: 0px;">
+      <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9 text-left item">
+        <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 15px;">
+<form name='config_tscbm_form' action='/cgi-bin/config_tscbm_save'>
+        <h3 class="text-center">Signal Group Mappings</h3>
+
+
+<!-- Start of fancy table for javascript manipulation -->
+<table id='MapTable'>
+  <thead>
+      <tr><th>Phase&nbsp;Type&nbsp;&nbsp;</th><th>Phase&nbsp;#&nbsp;&nbsp;</th><th>Signal&nbsp;Group&nbsp;ID&nbsp;&nbsp;</th><th>Green&nbsp;Means&nbsp;&nbsp;</th><th>Delete&nbsp;Row</th></tr>
+  </thead>
+  <tbody>
+##EOFEOFEOF2
+
+
+# Read tcsbm.conf and output populated table rows
+PARSED=`parse_tscbm_conf /rwflash/configs/tscbm.conf`
+NUM_ROWS=`echo $PARSED | awk '{print $1}'`
+DATA=`echo $PARSED | sed -e 's/^[^ ]* *//'`
+
+# If we got zero rows, print a row with empty values
+if [ "$NUM_ROWS" == 0 -o "$NUM_ROWS" == "FAIL:" -o x"$NUM_ROWS" == x ]; then
+    cat << '##EOFEOFEOF3'
+  <tr><td>
+        <select id="male" name="phasetype1" onchange="change_notify(this)">
+            <option value="vehicle">Vehicle</option>
+            <option value="overlap">Overlap</option>
+        </select>
+      </td><td>
+        <input type='text' class='form-control' name='phaseno1' id='phaseno1' placeholder='' value='' onchange="change_phsno_notify(this)" >
+      </td><td>
+        <input type='text' class='form-control' name='siggroup1' id='siggroup1' placeholder='' value='' onchange="change_sgid_notify(this)" >
+      </td><td>
+        <select id="male" name="greenmeans1" id="greenmeans1" onchange="change_notify(this)">
+            <option value='protected'>Protected</option>
+            <option value='permitted'>Permitted</option>
+        </select>
+      </td><td align="center">
+        <input type="button" id='delbutton' value="Delete" onclick="deleteRow(this)">
+  </td></tr>
+##EOFEOFEOF3
+
+# Otherwise, print out populated table rows
+else
+    ROWNUM=1
+    while [ $ROWNUM -le $NUM_ROWS ]; do
+        PTYPE=`echo $DATA | awk '{print $1}'`
+        PNO=`echo $DATA | awk '{print $2}'`
+        SGID=`echo $DATA | awk '{print $3}'`
+        GMNS=`echo $DATA | awk '{print $4}'`
+
+        # Echo out a table row
+        echo "   <tr><td>"
+        echo "         <select name='phasetype$ROWNUM' onchange='change_notify(this)'>"
+        if [ "$PTYPE" == v ]; then
+            echo "             <option value='vehicle'>Vehicle</option>"
+            echo "             <option value='overlap'>Overlap</option>"
+        else 
+            echo "             <option value='overlap'>Overlap</option>"
+            echo "             <option value='vehicle'>Vehicle</option>"
+        fi
+        echo "         </select>"
+        echo "       </td><td>"
+        echo "         <input type='text' class='form-control' name='phaseno$ROWNUM' id='phaseno$ROWNUM' placeholder='' value='$PNO' onchange='change_phsno_notify(this)' >"
+        echo "       </td><td>"
+        echo "         <input type='text' class='form-control' name='siggroup$ROWNUM' id='siggroup$ROWNUM' placeholder='' value='$SGID' onchange='change_sgid_notify(this)' >"
+        echo "       </td><td>"
+        echo "         <select name='greenmeans$ROWNUM' id='greenmeans$ROWNUM' onchange='change_notify(this)'>"
+        if [ "$GMNS" == e ]; then
+            echo "             <option value='permitted'>Permitted</option>"
+            echo "             <option value='protected'>Protected</option>"
+        else 
+            echo "             <option value='protected'>Protected</option>"
+            echo "             <option value='permitted'>Permitted</option>"
+        fi
+        echo "         </select>"
+        echo "       </td><td align='center'>"
+        echo "         <input type='button' id='delbutton' value='Delete' onclick='deleteRow(this)'>"
+        echo "   </td></tr>"
+
+        let ROWNUM=$ROWNUM+1
+        # Remaining data -- chop out first four words
+        DATA=`echo $DATA | sed -e 's/^[^ ]* *[^ ]* *[^ ]* *[^ ]* *//'`
+    done
+fi
+
+
+# Output rest of table and its modifying javascript
+cat << '##EOFEOFEOF4'
+
+  </tbody>
+  <tbody>
+  <tr>
+      <td align="left" colspan="4">
+        <input type="button" id='ADD_BTTN' value="+ ADD" onclick="insRow()">
+      </td></tr>
+
+  </tbody>
+</table>
+                <!-- Undo the two divs that started the form-group row and col-sm-6 -->
+                <!--
+                </div>
+              </div>
+              -->
+
+<!-- Javascript for manipulating map table -->
+<script>
+var table = document.getElementById('MapTable'),
+tbody = table.getElementsByTagName('tbody')[0],
+clone = tbody.rows[0].cloneNode(true);
+
+function deleteRow(el) {
+    pg_change = 1;
+    document.getElementById('SAVE_BTTN').disabled = false;
+    document.getElementById('APPLY_BTTN').disabled = false;
+    var i = el.parentNode.parentNode.rowIndex;
+    table.deleteRow(i);
+    while (table.rows[i]) {
+        updateRowIds(table.rows[i], i, false);
+        i++;
+    }
+}
+
+function insRow() {
+    var new_row = updateRowIds(clone.cloneNode(true), ++tbody.rows.length, true);
+    tbody.appendChild(new_row);
+    document.getElementById('SAVE_BTTN').disabled = false;
+    document.getElementById('APPLY_BTTN').disabled = false;
+}
+
+function updateRowIds(row, i, reset) {
+
+    var inp0 = row.cells[0].getElementsByTagName('select')[0];
+    var inp1 = row.cells[1].getElementsByTagName('input')[0];
+    var inp2 = row.cells[2].getElementsByTagName('input')[0];
+    var inp3 = row.cells[3].getElementsByTagName('select')[0];
+    inp0.name = 'phasetype' + i;
+    inp1.name = 'phaseno' + i;
+    inp2.name = 'siggroup' + i;
+    inp3.name = 'greenmeans' + i;
+    if (reset) {
+        inp1.value = inp2.value = '';
+    }
+    return row;
+}
+
+function validate_new_sgid(el)
+{
+    // NOTE: Table data row index starts at 1 not 0 because row 0 is the column headers!!
+    var rowno = el.parentNode.parentNode.rowIndex;
+    var row_sgid_inp = table.rows[rowno].cells[2].getElementsByTagName('input')[0];
+    var row_sgid_value = row_sgid_inp.value
+    var i;
+
+    // Dont validate unpopulated inputs
+    if (row_sgid_value == "" || row_sgid_value == null) {
+        return true;
+    }
+
+    // Validate the sgid_value is within valid range
+    if (row_sgid_value < 0 || row_sgid_value > 255) {
+        el.style.backgroundColor = "#ffa0a0"; 
+        window.alert('ERROR: Invalid Value!\n\nThe Signal Group ID value must be between 1 and 255!');
+        row_sgid_inp.focus();
+        return false;
+    }
+
+    // Reset every SGID's background color.  This resets cell backgrounds
+    //   to normal when user has fixed the input sgid to be unique.
+    //   NOTE: We dont reset backgrounds that haven't been changed
+    //     from default, which is the empty string.
+    //   NOTE: While default backgrounds seem to be the empty string,
+    //     setting an empty string doesn't clear the red background.
+    //     Setting a white bg does.
+    //   NOTE: We do this background reset here, before the unique
+    //   check, to handle the edge case where user was caught with an
+    //   input conflict, user fixed it but now input conflicts with a
+    //   dfferent row.  Resetting background now, rather than after the
+    //   conflict check, prevents three red rows; just the newly conflicting
+    //   ones will be red.
+    for (i=1; i<=tbody.rows.length; i++) {
+        if (table.rows[i].cells[2].getElementsByTagName('input')[0].style.backgroundColor) {
+            table.rows[i].cells[2].getElementsByTagName('input')[0].style.backgroundColor = "#ffffff";
+        }
+    }
+
+    // CHECK for matches -- cant have them!  Starting at row 1, skipping header row.
+    for (i=1; i<=tbody.rows.length; i++) {
+        if (i != rowno) {
+            irow_sgid_value = table.rows[i].cells[2].getElementsByTagName('input')[0].value;
+            if (irow_sgid_value == row_sgid_value) {
+                table.rows[i].cells[2].getElementsByTagName('input')[0].style.backgroundColor = "#ffa0a0";
+                el.style.backgroundColor = "#ffa0a0"; 
+                window.alert('ERROR: Duplicate value conflict!\n\nThe Signal Group ID value must be unique!\nRow ' + i + ' and row ' + rowno + ' have the same Signal Group ID value of ' + row_sgid_value + ' !!!');
+                row_sgid_inp.focus();
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function validate_new_phaseno(el)
+{
+    // NOTE: Table data row index starts at 1 not 0 because row 0 is the column headers!!
+    var rowno = el.parentNode.parentNode.rowIndex;
+    var row_phsno_inp = table.rows[rowno].cells[1].getElementsByTagName('input')[0];
+    var row_phsno_value = row_phsno_inp.value
+
+    // Dont validate unpopulated inputs
+    if (row_phsno_value == "" || row_phsno_value == null) {
+        return true;
+    }
+
+    // Validate the phaseno value is within valid range
+    if (row_phsno_value < 1 || row_phsno_value > 16) {
+        el.style.backgroundColor = "#ffa0a0"; 
+        window.alert('ERROR: Invalid Value!\n\nThe Phase # value must be between 1 and 16!');
+        row_phsno_inp.focus();
+        return false;
+    } else {
+        el.style.backgroundColor = "#ffffff";   // Reset to white in case user just fixed an error
+        return true;
+    }
+}
+
+
+// One last check before saving ... in case user didnt fix a problem and
+// clicked save, or user hit back, and opted to SAVE before leaving.
+// NOTE: We dont touch cell backgrounds because any conflicts will still be
+// set by the validate_new_xyz() functions and they'll also clear resolved 
+// conflicts too.
+function validate_table_for_save()
+{
+    var i,j;
+
+    // Check for out of range phase #'s and out of range SGID's
+    for (i=1; i<=tbody.rows.length; i++) {
+        row_phaseno = table.rows[i].cells[1].getElementsByTagName('input')[0].value;
+        row_sgid_value = table.rows[i].cells[2].getElementsByTagName('input')[0].value;
+        if (row_phaseno < 1 || row_phaseno > 16 || row_sgid_value < 0 ||  row_sgid_value > 255) {
+            return false;
+        }
+    }
+    // Check for SGID duplicates in O(N log N) time
+    for (i=1; i<tbody.rows.length; i++) {
+        for (j=i+1; j<=tbody.rows.length; j++) {
+            irow_sgid_value = table.rows[i].cells[2].getElementsByTagName('input')[0].value;
+            jrow_sgid_value = table.rows[j].cells[2].getElementsByTagName('input')[0].value;
+            if (irow_sgid_value == jrow_sgid_value) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+</script>
+
+
+<br>
+    <input type='text' name='NAV' id='NAV' value='REFRESH' style='visibility: hidden;' > 
+   <div style='float: left;'>
+     <p align="left"> <input type="button" id='SAVE_BTTN' value="SAVE" onclick="submit_form()" disabled> </p>
+   </div>
+   <div style='float: left;'>
+     <p align="center"> <input type="button" id='APPLY_BTTN' value="SAVE & APPLY" onclick="submit_form_and_reboot()" disabled> </p>
+   </div>
+     <p align='right'> <input type='button' value='BACK' onclick="check_changes_back()"> </p>
+</form>
+
+
+        <!-- Undo the three divs that start the form -->
+        </div>
+        </div>
+    </div>
+
+        <!-- Undo the two divs that started the features-boxed and container -->
+        </div>
+    </div>
+
+
+##EOFEOFEOF4
+
+# FW version
+  echo "<p class='copyright' style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>VERSION:"
+  cat /etc/version 
+  echo "</p>"
+    
+# End of Page with Footer
+
+cat << '##EOFEOFEOF5'
+
+    <div class='footer-basic'>
+        <footer>
+            <p class='copyright'>MobiQ © 2023</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+##EOFEOFEOF5

@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# File: factory_reset_save
+# Desc: Confirm user checked the confirm button, then reset to factory defaults
+#
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Status file to send back to user to see as reboot is happening
+STATUS_FILE=/tmp/update.status.file
+rm -f $STATUS_FILE
+
+# Get confirmation checkbox content
+CONFIRM_VALUE=`/usr/bin/get_token_val $QUERY_STRING confirm_reset`
+PRESERVE_NETWORK=`/usr/bin/get_token_val $QUERY_STRING preserve_network`
+
+# If user checked the box, do the factory reset and do a reboot
+if [ "$CONFIRM_VALUE" == "on" ]; then
+    if [ "$PRESERVE_NETWORK" == "on" ]; then
+        /usr/bin/conf_agent FACTORY_DEFAULTS_RESET_BUT_PRESERVE_NETWORKING Yes
+    else
+        /usr/bin/conf_agent FACTORY_DEFAULTS_RESET Yes
+    fi
+    # Test defaults reset success by its return code, which is non-zero if there was an error
+    if [ $? -eq 0 ]; then
+        echo 'Factory Defaults Reset was <font color=green>Successful</font><br/>' >> $STATUS_FILE
+        echo 'Rebooting RSU ... ' >> $STATUS_FILE
+        REFRESH_SCRPT="reboot_with_countdown"
+    else
+        echo 'Factory Defaults Reset <font color=red>FAILED</font><br/>' >> $STATUS_FILE
+        echo ERROR: config agent returned with error code $? >> $STATUS_FILE
+        REFRESH_SCRPT="factory_reset_display_live"
+    fi 
+else
+    echo 'Factory Defaults Reset <font color=orange>NOT CONFIRMED</font><br/>' >> $STATUS_FILE
+    echo NOTE: User must check the confirm box on the factory defaults page to allow reset >> $STATUS_FILE
+    REFRESH_SCRPT="factory_reset_display_live"
+fi
+
+
+#= Redirect user to their next page
+echo 'Content-Type: text/html'
+echo ''
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/$REFRESH_SCRPT' \" /> "

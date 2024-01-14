@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+# get_top_data
+#
+# Cache top data and refresh every 5 secs
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+
+CACHE_NUMFILE=/tmp/zcache.top.active
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Get active number of cache
+CACHE_NUM=`/bin/cat $CACHE_NUMFILE`
+
+### Update CACHE data if it is time
+if [ `/usr/bin/runagain radio_update_a 5` == True ]; then
+
+    # Flip cache_num so we are updating the inactive set
+    # Also will set it for the first time on no file 
+    if [ "$CACHE_NUM" == 1 ]; then 
+        CACHE_NUM=0
+    else
+        CACHE_NUM=1
+    fi
+
+    #=== Radio Stack data
+    top -b -n 1 -w 140 | head -20 > /tmp/zcache.top.$CACHE_NUM.txt
+
+    # Flip active CACHE_NUM in storage
+    echo $CACHE_NUM > $CACHE_NUMFILE
+fi
+
+
+### Output data
+
+echo "Content-type: text/html"
+echo ""
+
+cat /tmp/zcache.top.$CACHE_NUM.txt

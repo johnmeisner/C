@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Logs out the user
+
+echo 'Content-Type: text/html'
+echo ''
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Call conf_agent to log out the user
+/usr/bin/conf_agent LOGOUT $REMOTE_ADDR
+
+# Send our logged-out user to the login page
+echo "<meta http-equiv='refresh' content='0; URL=/index.html'/>"
+exit 0
+

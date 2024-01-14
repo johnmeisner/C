@@ -1,0 +1,178 @@
+#!/bin/sh
+
+MAXI2VRESTARTS=5
+rsuhealthlog=/mnt/rwflash/rsuhealth.log
+i2voutlog=/mnt/rwflash/i2vout.log
+
+PATH=/proc/boot:/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin:/opt/cohda/bin:/rwflash/bin:/usr/local/bin
+LD_LIBRARY_PATH=/proc/boot:/lib:/usr/lib:/lib/dll:/opt/lib:/opt/cohda/lib:/opt/cohda/bin:/rwflash/lib:/usr/local/lib
+
+ECHO()
+{
+    echo $*
+    if [ ! -e /mnt/rwflash/suppressHealthLog ]; then
+      echo `date`: $* >> $rsuhealthlog
+    fi
+}
+
+safe_shutdown()
+{
+    if [ ! -e /rwflash/six332 ]; then
+      # if logging allow some time for entry to apply to file (driver may not be complete destaging data)
+      sleep 2
+      led_cmd red off
+      shutdown
+    else
+      ECHO "shutdown condition detected; system not in safe state to shutdown"
+    fi
+}
+
+# loop forever
+while [ 1 ]; do
+led_cmd green on
+# iteration sleep (maybe tweak for future use)
+sleep 50
+
+##########################################
+### LLC health check ###
+##########################################
+llc config >/dev/null &
+cmdpid=`echo $!`
+
+# wait to allow command to execute; should not take 10 seconds
+sleep 10
+
+if [ ! -z "`pidin | grep $cmdpid`" ]; then
+  # looks like the command is hung
+  led_cmd red on
+  sleep 10
+  if [ ! -z "`pidin | grep $cmdpid`" ]; then
+    # same command is still hung
+    ECHO "Rebooting system for hung llc..."
+    safe_shutdown
+    # end of execution
+  fi
+fi
+### END LLC health check ###
+
+
+##########################################
+### Radio activity check ###
+##########################################
+# give some time for radio inactivity (approx 5 minutes at minimum)
+# timeout counter won't reset until restart, so it may be much more than 5 minutes
+MAXRADIOTIMEOUTS=5
+currRadStats=`llc stats | grep TxReq | grep -v Count | awk '{print $3}' | sed 's/,//g'`
+i=1
+if [ -z $rsuhealthRadTracker1 ]; then
+  # no previous statistics, just move along after setting vals
+  for v in `echo $currRadStats`; do export rsuhealthRadTracker$i=$v; i=$((i+1)); done
+else
+  # compare to previous and take appropriate action
+  unset radioHealthy
+  for v in `echo $currRadStats`; do 
+    export newRadTracker=$v
+    if  [[ $newRadTracker -gt $((rsuhealthRadTracker$i)) ]]; then
+      # radio transmitted since last check
+      radioHealthy=1
+    fi
+    export rsuhealthRadTracker$i=$newRadTracker
+    i=$((i+1))
+  done
+  if [[ -z $radioHealthy ]]; then
+    # no transmissions, increment counter until max
+    radioRestartTracker=$((radioRestartTracker+1))
+    if [[ $radioRestartTracker -gt MAXRADIOTIMEOUTS ]]; then
+      ECHO "Restarting radio stack..."
+      unset radioRestartTracker
+      slay Radio_ns
+      startradio=`cat /rwflash/configs/startup.sh | grep Radio_ns | grep -v "\#"`
+      sleep 5
+      # must start radio from /rwflash/root (TODO: this MUST get fixed; amateur hour)
+      cd /rwflash/root
+      $startradio &
+      cd - >/dev/null 2>&1
+    fi
+  fi
+fi
+### END Radio activity check ###
+
+
+
+##########################################
+### I2V Alive? ###
+##########################################
+# NEVER set I2VForceAlive, otherwise this may not work 
+if [ -z "`pidin | grep i2v`" ]; then
+  led_cmd red on
+  i2vrestartctr=$((i2vrestartctr + 1))
+  if [ $i2vrestartctr -gt $MAXI2VRESTARTS ]; then
+    ECHO "RSU services have ceased numerous times...system unhealth...rebooting system.."
+    safe_shutdown
+    # end of execution
+  fi
+  ECHO "RSU services have stopped...restarting RSU services..."
+  i2v >>$i2voutlog 2>&1 &
+fi
+
+led_cmd green on
+
+##########################################
+### Daily (or weekly) reboot schedule ###
+### DENSO ENGINEERS: Uncomment the below (single '#' lines only) if you want to enable this feature
+### BE SURE TO SET THE TIMEZONE OFFSET!!
+##########################################
+# # below is the hours ahead or behind GMT (Pacific Time is -7 hours)
+# GMTTIMEZONEOFFSET=-7
+# # below is the time to trigger the reboot, 24 hour clock (i.e. 1500 = 3 pm local time; 0315 = 3:15 am)
+# REBOOTHOUR=03
+# REBOOTMIN=00
+# REBOOTDAY=07 # uncomment and set to 1 - 7 if desiring a specific day; 1 = Monday
+# nowday=`date +%u`
+# nowhour=`date +%H`
+# nowmin=`date +%M`
+# nowhour=$((nowhour + GMTTIMEZONEOFFSET))
+#if [ $nowhour -gt 23 ]; then
+#   nowhour=$((nowhour - 24))
+# fi
+# if [ $nowhour -eq $REBOOTHOUR ]; then
+#   # the logic needs to protect against reboot loops during the hour; but should not miss a reboot
+#   if [ -z "`uptime | grep min`" ]; then
+#     # the system has been up for more than minutes; don't reboot if its been up only minutes
+#     if [[ $nowmin -eq $REBOOTMIN || $nowmin -gt $REBOOTMIN ]]; then
+#       if [[ ! -z $REBOOTDAY && $REBOOTDAY -eq $nowday ]]; then
+#         ECHO "Weekly scheduled reboot occurring...rebooting system..."
+#        safe_shutdown
+#       elif [[ -z $REBOOTDAY || $REBOOTDAY -eq 0 ]]; then
+#         ECHO "Daily scheduled reboot occurring...rebooting system..."
+#         safe_shutdown
+#       fi
+#       # end of execution
+#     fi
+#   fi
+# fi
+
+
+##########################################
+### Log file size check ###
+##########################################
+# 50 MB max
+MAXLOGSIZE=52428800
+if [[ -e $rsuhealthlog ]]; then
+  logsize=`ls -l $rsuhealthlog | awk '{print $5}'`
+  if [[ $logsize -gt MAXLOGSIZE ]]; then
+    rm $rsuhealthlog
+    ECHO "Removed prior RSU health log"
+  fi
+fi
+if [[ -e $i2voutlog ]]; then
+  logsize=`ls -l $i2voutlog | awk '{print $5}'`
+  if [[ $logsize -gt MAXLOGSIZE ]]; then
+    rm $i2voutlog
+    ECHO "Removed prior RSU services log"
+  fi
+fi
+
+
+done
+

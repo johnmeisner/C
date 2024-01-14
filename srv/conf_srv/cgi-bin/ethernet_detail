@@ -1,0 +1,221 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+# Main
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+
+
+# Pre-grab a set of data so we can start the page off populated
+TMPFILE=/tmp/ztmp.eth_detail
+/usr/local/www/cgi-bin/get_eth_detail_data > $TMPFILE
+
+# Output to browser
+cat << '##EOFEOFEOF1'
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RSU-5940-Status</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+<style>
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+.circle {
+ height: 30px;
+ width: 30px;
+ border-radius: 50%;
+ background: #FFFFFF;
+ border: 2px solid gray;
+ display: inline-block;
+  }
+.roundcorner {
+height: 100px;
+width: 99%;
+border-radius: 25px;
+border: 2px solid #808080;
+padding: 10px;
+  }
+.divOverflow {
+overflow: auto;
+overflow-x: hidden;
+height: 80px;
+margin-left: 2px;
+padding-left: 15px;
+scrollbar-width: thin;
+}
+.monospace {
+    font-family: "Lucida Console", Courier, monospace;
+    color: #000000;
+}
+</style>
+</head>
+<body onload="start_page()" >
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro">
+            <div class="intro-container">
+                <i class="fa fa-exchange icon"></i>
+                <h2 class="text-center">RSU Ethernet Detail</h2>
+            </div>
+            </div>
+
+            <!-- Overall container of boxes below title -->
+            <div class="row justify-content-center features">
+
+
+<!-- Ethernet Properties block -->
+<div class='col-sm-4 col-md-5 col-lg-3 item'>
+    <div class='text-left box shadow p-3 mb-5 bg-white rounded' style='padding-top: 5px;margin-bottom: 15px; min-height: 200px; margin-bottom:0px'>
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>Ethernet Properties</h3>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>Active NIC: <span id='nic_name' style='color: #000000'>.</span></div>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>Link Detected: <span id='nic_detect' style='color: #000000'>.</span></div>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>Link Speed: <span id='nic_speed'  style='color: #000000'>.</span></div>
+    </div>
+</div>
+
+<!-- Ethernet Interface Activity -->
+<div class="col-sm-7 col-md-7 col-lg-7 col-xl-7 text-left item" style="padding-left: 5px;padding-right: 5px;">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 200px; min-width: 600px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>Ethernet Interface Activity</h3>
+        <br/>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 0px'><span><pre id='eth_activity'>.</pre>
+        </span></div>
+    </div>
+</div>
+<!-- END Ethernet Interface Activity -->
+
+
+<!-- IP Show Dev display -->
+<div class="col-sm-7 col-md-7 col-lg-7 col-xl-7 text-left item" style="padding-left: 5px;padding-right: 5px;">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 200px; min-width: 600px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>IP Show Dev</h3>
+        <br/>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 0px'><span><pre id='ip_show'>.</pre>
+        </span></div>
+    </div>
+</div>
+<!-- END IP Show Dev -->
+
+
+
+<!-- IP Route -->
+<div class="col-sm-7 col-md-7 col-lg-7 col-xl-7 text-left item" style="padding-left: 5px;padding-right: 5px;">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 200px; min-width: 600px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>IP Route</h3>
+        <br/>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 0px'><span><pre id='ip_route'>.</pre>
+        </span></div>
+    </div>
+</div>
+<!-- END IP Route -->
+
+
+<!-- Back block -->
+                <div class="col-sm-6 col-md-5 col-lg-3 item">
+                  <a href="/cgi-bin/status_display_live">
+                    <div class="shadow p-3 mb-5 bg-white rounded"><i class="fa fa-arrow-left icon"></i>
+                        <h3 class='name'>Back</h3>
+                    </div>
+                  </a>
+                </div>
+<!-- END Back block -->
+
+
+
+        </div>
+  <h4 class="text-center" id="rsu_time"></h4>
+    </div>
+</div>
+        <p class="copyright" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>
+        </p>
+<div class="footer-basic">
+    <footer>
+        <p class="copyright">MobiQ © 2023</p>
+    </footer>
+</div>
+<zcript src="../assets/js/jquery.min.js"></script>
+<zcript src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script>
+function populate_initial_page_data()
+{
+    var initial_response_text = `
+##EOFEOFEOF2
+
+# Output the initial data
+cat $TMPFILE
+cat << '##EOFEOFEOF3'
+    `;
+    process_new_data(initial_response_text);
+}
+function process_new_data(response_text) {
+    var bits_arr = response_text.split('<COMMA>');
+    document.getElementById("nic_name").innerHTML = bits_arr[0].trim();
+    document.getElementById("nic_detect").innerHTML = bits_arr[1].trim();
+    document.getElementById("nic_speed").innerHTML = bits_arr[2].trim();
+    document.getElementById("eth_activity").innerHTML = bits_arr[3].trim();
+    document.getElementById("ip_show").innerHTML = bits_arr[4].trim();
+    document.getElementById("ip_route").innerHTML = bits_arr[5].trim();
+}
+function start_update() {
+  send_data_update_request();
+  var t = setTimeout(start_update, 2000);
+}
+function send_data_update_request() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      process_new_data(this.responseText);
+    }
+  };
+  xhttp.open("GET", '/cgi-bin/get_eth_detail_data', true);
+  xhttp.send();
+}
+function start_page() {
+  populate_initial_page_data();
+  start_update();
+}
+</script>
+</body>
+</html>
+
+##EOFEOFEOF3
+
+# Cleanup
+rm $TMPFILE

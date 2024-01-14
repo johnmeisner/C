@@ -1,0 +1,77 @@
+#!/bin/sh
+
+# File: delete_logs
+#   - Deletes user's chosen logs
+
+LOGDIR=/rwflash/I2V/syslog
+DELETE_FILE_LIST=/tmp/ztmp.delete_list.txt
+DEBUGLOG=/tmp/zdbg.util_logs_tarup.txt
+
+# To enable debugging, uncomment all the '##' lines
+## date > $DEBUGLOG     ##DBG
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Save post data -- NOTE run only one of normal/debug below !!
+SAVED_POST_FILE=/tmp/ztmp.saved_post_data
+/usr/bin/upload_saver $SAVED_POST_FILE    > /dev/null    ##Non-DBG NOTE: ONLY ONE
+## /usr/bin/upload_saver $SAVED_POST_FILE       >> $DEBUGLOG  ##DBG NOTE: ONLY ONE
+## echo 'Saved_Post file is:'      >> $DEBUGLOG   ##DBG
+## cat $SAVED_POST_FILE            >> $DEBUGLOG   ##DBG
+
+# The content on $SAVED_POST_FILE will look like this:
+#    i2vstat_20180813_213917--0000000091--1.0.log=on&i2vstat_20180813_215445--0000000342--1.0.log=on
+# We need to process that into a file list that we can give to tar
+/bin/sed -e 's/=on&*/\n/g' $SAVED_POST_FILE > $DELETE_FILE_LIST
+
+## echo 'Processed file list is:'  >> $DEBUGLOG   ##DBG
+## cat $DELETE_FILE_LIST            >> $DEBUGLOG   ##DBG
+
+# Delete the logfiles one by one
+cd $LOGDIR
+DELCNT=0
+FAILCNT=0
+## echo Processing `wc -l $DELETE_FILE_LIST|awk '{print $1}'` files to be deleted ... >> $DEBUGLOG  ##DBG
+for F in `cat $DELETE_FILE_LIST` ; do
+##     ls -l $F >> $DEBUGLOG    ##DBG
+    if [ -f "$F" ]; then
+        rm "$F"
+        if [ -f "$F" ]; then
+            let FAILCNT++
+        else
+            let DELCNT++
+        fi
+    else
+        let FAILCNT++
+    fi
+done
+## echo Delete loop done. $DELCNT deletions $FAILCNT failures >> $DEBUGLOG  ##DBG
+
+# Status file to send back to user
+STATUS_FILE=/tmp/update.status.file
+rm -f $STATUS_FILE
+SUCCESS='<font color=green>Successful</font><br/>'
+FAILED='<font color=red>FAILED</font><br/>'
+if [ $DELCNT -gt 0 ]; then
+    echo $DELCNT deletions $SUCCESS >> $STATUS_FILE
+fi
+if [ $FAILCNT -gt 0 ]; then
+    echo ' ' $FAILCNT deletions $FAILED >> $STATUS_FILE
+fi
+
+# Cleanup
+rm -f $DELETE_FILE_LIST $SAVED_POST_FILE
+
+# Return a little something back to the browser so it knows it's time to refresh the page
+echo 'Content-Type: text/html'
+echo ''
+
+# Done

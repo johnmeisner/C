@@ -1,0 +1,3349 @@
+pd_16BitConstrainedString$(OBJ): \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(PERSRCDIR)/pd_16BitConstrainedString.c \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_16BitConstrainedString.c
+
+pd_32BitConstrainedString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(PERSRCDIR)/pd_32BitConstrainedString.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_32BitConstrainedString.c
+
+pd_BigInteger$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(PERSRCDIR)/pd_BigInteger.c \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_BigInteger.c
+
+pd_BigIntegerEx$(OBJ): \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(PERSRCDIR)/pd_BigIntegerEx.c \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_BigIntegerEx.c
+
+pd_BitString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(PERSRCDIR)/pd_BitString.c \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_BitString.c
+
+pd_BMPString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(PERSRCDIR)/pd_BMPString.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_BMPString.c
+
+pd_ChoiceOpenTypeExt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(PERSRCDIR)/pd_ChoiceOpenTypeExt.c \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ChoiceOpenTypeExt.c
+
+pd_common$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1intl.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(PERSRCDIR)/pd_common.c \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_common.c
+
+pd_ConsInt16$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(PERSRCDIR)/pd_ConsInt16.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConsInt16.c
+
+pd_ConsInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(PERSRCDIR)/pd_ConsInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConsInt64.c
+
+pd_ConsInt8$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(PERSRCDIR)/pd_ConsInt8.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConsInt8.c
+
+pd_ConsInteger$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(PERSRCDIR)/pd_ConsInteger.c \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConsInteger.c
+
+pd_ConstrainedString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(PERSRCDIR)/pd_ConstrainedString.c \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1intl.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConstrainedString.c
+
+pd_ConsUInt16$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(PERSRCDIR)/pd_ConsUInt16.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConsUInt16.c
+
+pd_ConsUInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(PERSRCDIR)/pd_ConsUInt64.c \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConsUInt64.c
+
+pd_ConsUInt8$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(PERSRCDIR)/pd_ConsUInt8.c \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConsUInt8.c
+
+pd_ConsUnsigned$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(PERSRCDIR)/pd_ConsUnsigned.c \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConsUnsigned.c
+
+pd_ConsWholeNumber64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(PERSRCDIR)/pd_ConsWholeNumber64.c \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ConsWholeNumber64.c
+
+pd_DateStr$(OBJ): \
+    $(PERSRCDIR)/pd_DateStr.c \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_DateStr.c
+
+pd_DateTimeStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(PERSRCDIR)/pd_DateTimeStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_DateTimeStr.c
+
+pd_deprecated$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(PERSRCDIR)/pd_deprecated.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_deprecated.c
+
+pd_Duration$(OBJ): \
+    $(PERSRCDIR)/pd_Duration.c \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_Duration.c
+
+pd_DynBitString$(OBJ): \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(PERSRCDIR)/pd_DynBitString.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_DynBitString.c
+
+pd_DynOctetString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(PERSRCDIR)/pd_DynOctetString.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_DynOctetString.c
+
+pd_extension$(OBJ): \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(PERSRCDIR)/pd_extension.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_extension.c
+
+pd_Interval$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(PERSRCDIR)/pd_Interval.c \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_Interval.c
+
+pd_ObjectIdentifier$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(PERSRCDIR)/pd_ObjectIdentifier.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_ObjectIdentifier.c
+
+pd_OctetString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(PERSRCDIR)/pd_OctetString.c \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_OctetString.c
+
+pd_oid64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(PERSRCDIR)/pd_oid64.c \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_oid64.c
+
+pd_OpenType$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(PERSRCDIR)/pd_OpenType.c \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_OpenType.c
+
+pd_OpenTypeExt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(PERSRCDIR)/pd_OpenTypeExt.c
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_OpenTypeExt.c
+
+pd_Real$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(PERSRCDIR)/pd_Real.c \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_Real.c
+
+pd_RelativeOID$(OBJ): \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(PERSRCDIR)/pd_RelativeOID.c \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_RelativeOID.c
+
+pd_SemiConsInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(PERSRCDIR)/pd_SemiConsInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_SemiConsInt64.c
+
+pd_SemiConsInteger$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(PERSRCDIR)/pd_UnconsInteger.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(PERSRCDIR)/pd_SemiConsInteger.c \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_SemiConsInteger.c
+
+pd_SemiConsUInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(PERSRCDIR)/pd_SemiConsUInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_SemiConsUInt64.c
+
+pd_SemiConsUnsigned$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(PERSRCDIR)/pd_SemiConsUnsigned.c \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_SemiConsUnsigned.c
+
+pd_TimeDiff$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(PERSRCDIR)/pd_TimeDiff.c \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_TimeDiff.c
+
+pd_TimeStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(PERSRCDIR)/pd_TimeStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_TimeStr.c
+
+pd_UnconsInteger$(OBJ): \
+    $(PERSRCDIR)/pd_UnconsInteger.c
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_UnconsInteger.c
+
+pd_UniversalString$(OBJ): \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(PERSRCDIR)/pd_UniversalString.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_UniversalString.c
+
+pd_VarWidthCharString$(OBJ): \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(PERSRCDIR)/pd_VarWidthCharString.c \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_VarWidthCharString.c
+
+pd_Year$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(PERSRCDIR)/pd_Year.c \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pd_Year.c
+
+pe_16BitConstrainedString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(PERSRCDIR)/pe_16BitConstrainedString.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_16BitConstrainedString.c
+
+pe_2sCompBinInt$(OBJ): \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(PERSRCDIR)/pe_2sCompBinInt.c \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_2sCompBinInt.c
+
+pe_2sCompBinInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(PERSRCDIR)/pe_2sCompBinInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_2sCompBinInt64.c
+
+pe_32BitConstrainedString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(PERSRCDIR)/pe_32BitConstrainedString.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_32BitConstrainedString.c
+
+pe_BigInteger$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(PERSRCDIR)/pe_BigInteger.c \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_BigInteger.c
+
+pe_BitString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(PERSRCDIR)/pe_BitString.c \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_BitString.c
+
+pe_BMPString$(OBJ): \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(PERSRCDIR)/pe_BMPString.c \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_BMPString.c
+
+pe_ChoiceTypeExt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(PERSRCDIR)/pe_ChoiceTypeExt.c \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_ChoiceTypeExt.c
+
+pe_common$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(PERSRCDIR)/pe_common.c \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_common.c
+
+pe_common64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(PERSRCDIR)/pe_common64.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_common64.c
+
+pe_ConsInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(PERSRCDIR)/pe_ConsInt64.c \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_ConsInt64.c
+
+pe_ConstrainedString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(PERSRCDIR)/pe_ConstrainedString.c \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_ConstrainedString.c
+
+pe_ConsUInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(PERSRCDIR)/pe_ConsUInt64.c \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_ConsUInt64.c
+
+pe_ConsWholeNumber64$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(PERSRCDIR)/pe_ConsWholeNumber64.c \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_ConsWholeNumber64.c
+
+pe_DateStr$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(PERSRCDIR)/pe_DateStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_DateStr.c
+
+pe_DateTimeStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(PERSRCDIR)/pe_DateTimeStr.c \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_DateTimeStr.c
+
+pe_Duration$(OBJ): \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(PERSRCDIR)/pe_Duration.c \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_Duration.c
+
+pe_extension$(OBJ): \
+    $(PERSRCDIR)/pe_extension.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_extension.c
+
+pe_identifier$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(PERSRCDIR)/pe_identifier.c \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_identifier.c
+
+pe_identifier64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(PERSRCDIR)/pe_identifier64.c \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_identifier64.c
+
+pe_Interval$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(PERSRCDIR)/pe_Interval.c \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_Interval.c
+
+pe_NonNegBinInt$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(PERSRCDIR)/pe_NonNegBinInt.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_NonNegBinInt.c
+
+pe_NonNegBinInt64$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(PERSRCDIR)/pe_NonNegBinInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_NonNegBinInt64.c
+
+pe_ObjectIdentifier$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(PERSRCDIR)/pe_ObjectIdentifier.c \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_ObjectIdentifier.c
+
+pe_OctetString$(OBJ): \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(PERSRCDIR)/pe_OctetString.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_OctetString.c
+
+pe_oid64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(PERSRCDIR)/pe_oid64.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_oid64.c
+
+pe_OpenType$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(PERSRCDIR)/pe_OpenType.c \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_OpenType.c
+
+pe_OpenTypeExt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(PERSRCDIR)/pe_OpenTypeExt.c \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_OpenTypeExt.c
+
+pe_Real$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(PERSRCDIR)/pe_Real.c \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_Real.c
+
+pe_RelativeOID$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(PERSRCDIR)/pe_RelativeOID.c \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_RelativeOID.c
+
+pe_SemiConsInt64$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(PERSRCDIR)/pe_SemiConsInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_SemiConsInt64.c
+
+pe_SemiConsInteger$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(PERSRCDIR)/pe_SemiConsInteger.c \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_SemiConsInteger.c
+
+pe_SemiConsUInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(PERSRCDIR)/pe_SemiConsUInt64.c \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_SemiConsUInt64.c
+
+pe_SemiConsUnsigned$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(PERSRCDIR)/pe_SemiConsUnsigned.c \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_SemiConsUnsigned.c
+
+pe_SmallNonNegWholeNumber$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(PERSRCDIR)/pe_SmallNonNegWholeNumber.c \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_SmallNonNegWholeNumber.c
+
+pe_TimeDiff$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.hh \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(PERSRCDIR)/pe_TimeDiff.c \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_TimeDiff.c
+
+pe_TimeStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(PERSRCDIR)/pe_TimeStr.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_TimeStr.c
+
+pe_UniversalString$(OBJ): \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(PERSRCDIR)/pe_UniversalString.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_UniversalString.c
+
+pe_VarWidthCharString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(PERSRCDIR)/pe_VarWidthCharString.c \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_VarWidthCharString.c
+
+pe_Year$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(PERSRCDIR)/pe_Year.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtpersrc/pe_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.hh \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pe_Year.c
+
+perDecDecimal$(OBJ): \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxDecimal.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(PERSRCDIR)/perDecDecimal.c \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/perDecDecimal.c
+
+perDecReal10$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(PERSRCDIR)/perDecReal10.c \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/perDecReal10.c
+
+perEncReal10$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(PERSRCDIR)/perEncReal10.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/perEncReal10.c
+
+pu_16BitCharSet$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(PERSRCDIR)/pu_16BitCharSet.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_16BitCharSet.c
+
+pu_32BitCharSet$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(PERSRCDIR)/pu_32BitCharSet.c \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_32BitCharSet.c
+
+pu_addSizeConstraint$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(PERSRCDIR)/pu_addSizeConstraint.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_addSizeConstraint.c
+
+pu_alignCharStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(PERSRCDIR)/pu_alignCharStr.c \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_alignCharStr.c
+
+pu_checkSize$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(PERSRCDIR)/pu_checkSize.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_checkSize.c
+
+pu_common$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(PERSRCDIR)/pu_common.c
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_common.c
+
+pu_DateStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(PERSRCDIR)/pu_DateStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtpersrc/pd_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_DateStr.c
+
+pu_deprecated$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(PERSRCDIR)/pu_deprecated.c \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_deprecated.c
+
+pu_dump$(OBJ): \
+    $(PERSRCDIR)/pu_dump.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_dump.c
+
+pu_field$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(PERSRCDIR)/pu_field.c \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_field.c
+
+pu_GetLibInfo$(OBJ): \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1version.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(PERSRCDIR)/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(PERSRCDIR)/pu_GetLibInfo.c \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_GetLibInfo.c
+
+pu_insLenField$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(PERSRCDIR)/pu_insLenField.c \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_insLenField.c
+
+pu_internal$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(PERSRCDIR)/pu_internal.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_internal.c
+
+pu_setCharSet$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(PERSRCDIR)/pu_setCharSet.c \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/pu_common.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_setCharSet.c
+
+pu_setFldBitCount$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(PERSRCDIR)/pu_setFldBitCount.c \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_setFldBitCount.c
+
+pu_setFldBitOffset$(OBJ): \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtpersrc/asn1per.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitEncode.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1CharSet.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxPrintToStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(PERSRCDIR)/pu_setFldBitOffset.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitDecode.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiagBitTrace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h
+	$(CC) $(PERCFLAGS) -c -I$(OSROOTDIR) $(IPATHS_) $(PERSRCDIR)/pu_setFldBitOffset.c
+

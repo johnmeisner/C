@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# File: config_advanced_save
+# Desc: Save advanced config settings
+#
+
+# Save POST query-string for get_token_val to use later
+SAVED_POST_FILE=/tmp/ztmp.saved_post_data
+/usr/bin/post_saver $SAVED_POST_FILE
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Catch any errors
+echo "<pre>"
+
+# Status file to send back to user
+STATUS_FILE=/tmp/update.status.file
+rm -f $STATUS_FILE
+SUCCESS='<font color=green>Successful</font><br/>'
+FAILED='<font color=red>FAILED</font><br/>'
+
+#=== Figure out follow-up page to show user
+NAV=`/usr/bin/get_token_val -f $SAVED_POST_FILE NAV`
+if [ "$NAV" == "BACK" ]; then
+    REFRESH_SCRPT="rsu_main"
+elif [ "$NAV" == "APPLY" ]; then
+    # do a reboot after the save
+    REFRESH_SCRPT="reboot_with_countdown"
+else
+    # go back to the display_live screen after the save
+    REFRESH_SCRPT="config_advanced_live"
+fi
+
+# Since we are using BASH and not perl or python, we don't have arrays
+# so have to pack our data to get a semi-intelligent multi-column data loop.
+# Luckily, the <FORM> field names and the config setting names are the same, so
+# our packed loop data is two items: config-file-w/o-.conf <colon> settingname.
+
+LOOPDATA="amh:EnableStoreAndRepeat amh:ImmediateEnable amh:AMHForwardEnable i2v:I2VIPBAppEnable i2v:I2VSCSAppEnable i2v:I2VSRMAppEnable i2v:I2VWSAEnable i2v:I2VUseDeviceID i2v:I2VUseGPSTXControl scs:SPATEnableValue scs:SRMFwdEnable spat16:BSMRxEnable i2v:BSMRxPSIDPERU i2v:I2VSPATSecPSID nsconfig:AC_BE_CCH_RADIO_0 nsconfig:AC_BK_CCH_RADIO_0 nsconfig:AC_VI_CCH_RADIO_0  nsconfig:AC_VO_CCH_RADIO_0  nsconfig:AC_BE_SCH_RADIO_0 nsconfig:AC_BK_SCH_RADIO_0  nsconfig:AC_VI_SCH_RADIO_0  nsconfig:AC_VO_SCH_RADIO_0  nsconfig:AC_BE_CCH_RADIO_1  nsconfig:AC_BK_CCH_RADIO_1  nsconfig:AC_VI_CCH_RADIO_1  nsconfig:AC_VO_CCH_RADIO_1  nsconfig:AC_BE_SCH_RADIO_1 nsconfig:AC_BK_SCH_RADIO_1  nsconfig:AC_VI_SCH_RADIO_1  nsconfig:AC_VO_SCH_RADIO_1 srm_rx:SRMPermissive srm_rx:SRMTXVehBasicRole srm_rx:SRMVODMsgVerifyCount "
+
+
+for XPACKED in $LOOPDATA ; do
+    CONFIG_FILE=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $1}'`
+    SETTING_NAME=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $2}'`
+
+    # Get setting's current value in config file
+    OLD_VALUE=`/usr/bin/conf_agent READ $CONFIG_FILE $SETTING_NAME`
+
+    # Get setting passed to us through form
+    NEW_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE $SETTING_NAME`
+
+    # If it's changed, update
+    if [ "$OLD_VALUE" != "$NEW_VALUE" ]; then
+        SAVEOUTPUT=`/usr/bin/conf_agent WRITE $CONFIG_FILE $SETTING_NAME $NEW_VALUE`
+        CONFIRM_VALUE=`/usr/bin/get_conf_val.sh $CONFIG_FILE $SETTING_NAME`
+        if [ "$CONFIRM_VALUE" == "$NEW_VALUE" ]; then
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $SUCCESS >> $STATUS_FILE
+        else
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $FAILED >> $STATUS_FILE
+        fi
+    fi
+
+done
+
+echo "</pre>"
+
+# Cleanup
+rm -f $SAVED_POST_FILE
+
+#= Refresh Page
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/$REFRESH_SCRPT' \" /> "

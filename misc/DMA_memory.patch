@@ -1,0 +1,62 @@
+Index: llc-msg.h
+===================================================================
+--- llc-msg.h	(revision 95703)
++++ llc-msg.h	(working copy)
+@@ -97,6 +97,8 @@
+   struct timespec Before;
+   struct timespec After;
+ 
++  /// Pointer to output buffer for USB mode (DMA capable memory)(Dynamic)
++  uint8_t *pUSBBuf;
+ } tLLCOutCtx;
+ 
+ /// RxAlloc()/*Ind()/*.Cnf() message context  (cast from tLLCListItem)
+Index: llc-usb.c
+===================================================================
+--- llc-usb.c	(revision 95703)
++++ llc-usb.c	(working copy)
+@@ -155,6 +155,11 @@
+     pCtx->pBulkUrb = NULL;
+     usb_free_urb(pUrb);
+   }
++  if (pCtx->pUSBBuf != NULL)
++  {
++    kfree(pCtx->pUSBBuf);
++    pCtx->pUSBBuf = NULL;
++  }
+ 
+   // Peek at the message type and do message specific stuff
+   if (pCtx->pBuf != NULL)
+@@ -453,12 +458,19 @@
+   if (pCtx->pBulkUrb == NULL)
+     goto Error;
+ 
++  pCtx->pUSBBuf = kcalloc(pCtx->Len, 1, GFP_KERNEL);
++  if (pCtx->pUSBBuf == NULL)
++    goto Error;
++
++  // copy the data to a dynamically allocated DMA capable buffer
++  memcpy(pCtx->pUSBBuf, pCtx->pBuf, pCtx->Len);
++  
+   // Fill the bulk urb
+   usb_fill_bulk_urb(pCtx->pBulkUrb,
+                     pDev->USB.pDevice,
+                     usb_sndbulkpipe(pDev->USB.pDevice,
+                                     pDev->USB.BulkOutEndpointAddr),
+-                    pCtx->pBuf,
++                    pCtx->pUSBBuf,
+                     pCtx->Len,
+                     LLC_USBOutReqBulkCallback,
+                     pCtx);
+@@ -521,6 +533,11 @@
+     usb_free_urb(pCtx->pBulkUrb);
+     pCtx->pBulkUrb = NULL;
+   }
++  if (pCtx->pUSBBuf != NULL)
++  {
++    kfree(pCtx->pUSBBuf);
++    pCtx->pUSBBuf = NULL;
++  }
+ Success:
+   d_fnend(D_TST, NULL, "() = %d\n", Res);
+   return Res;

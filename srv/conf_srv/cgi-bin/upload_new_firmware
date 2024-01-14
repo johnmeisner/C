@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# This just receives the firmware file and saves it to disk as $TMPFWFILE
+
+TMPFWFILE=/tmp/tmp.new_firmie
+
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+/bin/rm -f $TMPFWFILE
+/usr/bin/upload_saver $TMPFWFILE
+
+echo "OK"

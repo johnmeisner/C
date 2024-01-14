@@ -1,0 +1,9 @@
+The source code in this directory was originally in Source/C/dnutils.
+That was not the correct location since everything in that folder gets pushed
+into the final image.  Upon closer inspection, the associated Makefile for
+the source code was never quite integrated into the build so this source
+code is not compiled as part of the build.  If changes are required to the
+binary utilities in the Source/C/dnutils directory, these are the files to
+modify and build.  It may be more appropriate in the future to build them
+as part of the build rather than use stored binaries.
+

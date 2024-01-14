@@ -1,0 +1,56 @@
+PCAPTool (resend) Instructions
+( for the Ethernet replay tool see readme-eth )
+===================================
+
+The resend utility (what it is called upon compilation) will
+take a pcap file with WSMs and broadcast the WSMs on a WSU.
+The resend utility can be compiled for both the WSU5001 and
+the WSU1.0/1.5.  You must be in the appropriate development
+environment in order to compile the tool.
+
+The initial implementation only supports BSMs.  Future updates
+may add support for other types of WSMs (or possibly a mix).
+
+
+BUILD
+***************
+Run 'make' in your development environment.
+
+
+DEPLOY
+***************
+Copy the file to your desired WSU.  Also copy the
+resend.conf file if you don't plan on providing all of the
+configuration parameters via the command line.
+
+
+CONFIGURATION
+***************
+The resend utility supports broadcasting with security
+enabled or disabled.  The setting will override whatever
+WSMs are in the pcap file (ex: enable security and 
+unsigned WSMs in the pcap will be broadcast signed).  If
+enabling security, you must provide the location of the
+security directory with the certificates as part of the
+configuration.  The resend utility will automatically start
+the security module so do not start that manually.
+Additional configuration options are available (such as an
+override PSID).  See the resend.conf file for all of the
+settings or type resend -h on the WSU.
+
+
+RUNNING
+***************
+The resend utility will accept command line options with the
+configuration parameters.  If you use the resend.conf file,
+all you need to do is start the resend program on the WSU
+without any parameters.  You may choose to enable the iterate
+mode which will continue broadcasting until you press Ctrl+C
+to quit.  If you do not enable iteration, the program will
+automatically exit once the end of the pcap file is reached.
+If you enable debug, a resend.log and optional resend.csv file
+will be created in the same directory as the resend utility.
+Only one pcap file is supported.  If you need to use multiple
+pcap files, merge the contents into a single file.
+
+

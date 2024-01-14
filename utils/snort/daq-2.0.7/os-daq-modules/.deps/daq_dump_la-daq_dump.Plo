@@ -1,0 +1,279 @@
+daq_dump_la-daq_dump.lo: daq_dump.c \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/stdc-predef.h \
+ ../config.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/stdlib.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/libc-header-start.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/features.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/cdefs.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/wordsize.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/wordsize-64.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/long-double.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/long-double-64.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/gnu/stubs.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/gnu/stubs-64.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/gnu/stubs-lp64.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/7.3.0/include/stddef.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/waitflags.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/waitstatus.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/floatn.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/floatn-64.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/floatn-common.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/locale_t.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/__locale_t.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/types.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/typesizes.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/typesizes-64.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/clock_t.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/clockid_t.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/time_t.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/timer_t.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/stdint-intn.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/endian.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/endian.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/endian-64.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/byteswap.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/byteswap-16.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/uintn-identity.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/select.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/select.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/sigset_t.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/__sigset_t.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/struct_timeval.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/struct_timespec.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/sysmacros.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/sysmacros.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/pthreadtypes.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/pthreadtypes-64.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/thread-shared-types.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/pthreadtypes-arch.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/pthreadtypes-arch-64.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/alloca.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/stdlib-float.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/string.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/strings.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap/pcap.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap/export-defs.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/time.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap/bpf.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap/dlt.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/stdio.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/__FILE.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/FILE.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/libio.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/_G_config.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/__mbstate_t.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/7.3.0/include/stdarg.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/stdio_lim.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/sys_errlist.h \
+ ../api/daq.h ../api/daq_common.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/7.3.0/include/stdint.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/stdint.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/wchar.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/stdint-uintn.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/unistd.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/posix_opt.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/environments.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/confname.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/getopt_posix.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/getopt_core.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/netinet/in.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/socket.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/struct_iovec.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/socket.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/socket_type.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/sockaddr.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/asm/socket.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/asm-generic/socket.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/asm/sockios.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/asm-generic/sockios.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/struct_osockaddr.h \
+ /opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/in.h \
+ ../api/daq_api.h
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/stdc-predef.h:
+
+../config.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/stdlib.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/libc-header-start.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/features.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/cdefs.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/wordsize.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/wordsize-64.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/long-double.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/long-double-64.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/gnu/stubs.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/gnu/stubs-64.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/gnu/stubs-lp64.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/7.3.0/include/stddef.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/waitflags.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/waitstatus.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/floatn.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/floatn-64.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/floatn-common.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/locale_t.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/__locale_t.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/types.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/typesizes.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/typesizes-64.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/clock_t.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/clockid_t.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/time_t.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/timer_t.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/stdint-intn.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/endian.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/endian.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/endian-64.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/byteswap.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/byteswap-16.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/uintn-identity.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/select.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/select.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/sigset_t.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/__sigset_t.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/struct_timeval.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/struct_timespec.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/sysmacros.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/sysmacros.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/pthreadtypes.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/pthreadtypes-64.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/thread-shared-types.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/pthreadtypes-arch.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/pthreadtypes-arch-64.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/alloca.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/stdlib-float.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/string.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/strings.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap/pcap.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap/export-defs.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/time.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap/bpf.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/pcap/dlt.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/stdio.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/__FILE.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/FILE.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/libio.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/_G_config.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/__mbstate_t.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/7.3.0/include/stdarg.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/stdio_lim.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/sys_errlist.h:
+
+../api/daq.h:
+
+../api/daq_common.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/x86_64-pokysdk-linux/usr/lib/aarch64-poky-linux/gcc/aarch64-poky-linux/7.3.0/include/stdint.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/stdint.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/wchar.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/stdint-uintn.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/unistd.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/posix_opt.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/environments.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/confname.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/getopt_posix.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/getopt_core.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/netinet/in.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/sys/socket.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/struct_iovec.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/socket.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/socket_type.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/sockaddr.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/asm/socket.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/asm-generic/socket.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/asm/sockios.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/asm-generic/sockios.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/types/struct_osockaddr.h:
+
+/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/bits/in.h:
+
+../api/daq_api.h:

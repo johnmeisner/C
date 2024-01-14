@@ -1,0 +1,23 @@
+lcms = [
+     {
+          lcm_type                            pseudonym
+          lcm_name                            bsmLcm
+          lcm_directory                       certificates
+          acf_prefix                          bsm
+          use_scms                            false
+     },
+     {
+          lcm_type                            pseudonym
+          lcm_name                            wsaLcm
+          lcm_directory                       wsa_certificates
+          acf_prefix                          psid-0x87
+          use_scms                            false
+     },
+     {
+          lcm_type                            pseudonym
+          lcm_name                            testLcm
+          lcm_directory                       test_certificates
+          acf_prefix                          psid-0x214283
+          use_scms                            false
+     }
+]

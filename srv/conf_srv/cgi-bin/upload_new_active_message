@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# Set path
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin:/opt/cohda/bin:/rwflash/bin:/usr/local/bin
+
+# Where we stored the filename for the next uploaded file
+FILENAME_FILE=/tmp/ztmp.next_uploads_filename.txt
+
+# This script's Temp files
+TMPFILE=/tmp/tmp.active_msg.tmp
+
+# Status file to send back to user
+STATUS_FILE=/tmp/update.status.file
+rm -f $STATUS_FILE
+SUCCESS='<font color=green>Successful</font><br/>'
+FAILED='<font color=red>FAILED</font><br/>'
+
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Create directory, jic
+/bin/mkdir -p /mnt/rwflash/I2V/amh
+
+# Save upload file as tmp file $TMPFILE
+/bin/rm -f $TMPFILE
+/usr/bin/upload_saver $TMPFILE
+
+# Read the name of the uploaded file, this will name the destination file
+DESTNAME=`cat $FILENAME_FILE`
+# Run DESTNAME through basename to make sure it has no path stuff in it
+DESTNAME=`basename $DESTNAME`
+
+# Validate file
+RESULT=`amhValidator $TMPFILE`
+if [ "$RESULT" == "OK" ]; then    
+    # File is valid!
+    echo -n "$DESTNAME is a valid Active Message file.  " >> $STATUS_FILE
+    # Let's copy it into place
+    /bin/cp $TMPFILE /mnt/rwflash/I2V/amh/$DESTNAME
+    result=`echo $?`
+    if [ "$result" == "0" ]; then
+        echo "Copied file to amh/$DESTNAME. $SUCCESS" >> $STATUS_FILE
+    else
+        echo "But FAILED to copy file to amh !! $FAILED" >> $STATUS_FILE
+    fi
+else
+    echo "$RESULT  $FAILED" | sed 's/File provided/File "'$DESTNAME'"/' >> $STATUS_FILE
+fi
+
+# Cleanup
+rm -f $TMPFILE $FILENAME_FILE
+

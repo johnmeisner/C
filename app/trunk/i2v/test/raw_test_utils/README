@@ -1,0 +1,14 @@
+##########################################
+
+The programs in this directory are minimal function
+test utilities designed to exercise I2V features in the
+absence of actual connected components.
+
+These utilities are added for version control 
+and archival purposes.  Use of these utilities 
+is not documented.
+
+Feel free to enhance or develop new test utilities
+as the need arises.
+
+##########################################

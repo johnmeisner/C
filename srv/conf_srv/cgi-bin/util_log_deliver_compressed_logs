@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# deliver_compressed_logs - give a compressed log to user's browser
+
+# To turn on debug logging, uncomment all the "##" lines
+DEBUGLOG=/tmp/zdbg.logs_dload.txt
+
+##date > $DEBUGLOG
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Get the tar filename
+TARFILENAME=`/usr/bin/get_token_val "$QUERY_STRING" file`
+
+# Remove all the slashes those mean attackers will put into the filename
+TARFILENAME=`/usr/bin/basename $TARFILENAME`
+
+# Send the file
+##echo Caller requested file "-->$TARFILENAME<--"  >> $DEBUGLOG
+
+# Make sure it existeds
+if [ ! -f /tmp/$TARFILENAME ]; then
+  ##echo ERROR: Filename /tmp/$TARFILENAME doesnt exist'!' >> $DEBUGLOG
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "ERROR: Requested file $TARFILENAME doesnt exist"
+  exit 0
+fi
+
+# Send it to the user via mime
+echo "Content-Type: application/x-download"
+echo "Content-Disposition: attachment; filename=$TARFILENAME"
+echo ''
+cat /tmp/$TARFILENAME
+
+# Cleanup
+/bin/rm /tmp/$TARFILENAME

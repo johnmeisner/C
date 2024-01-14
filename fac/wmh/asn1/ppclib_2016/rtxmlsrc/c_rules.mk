@@ -1,0 +1,7861 @@
+rtAsn1XmlAddAnyAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlAddAnyAttr.c \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlAddAnyAttr.c
+
+rtAsn1XmlEncGenTime$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncGenTime.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncGenTime.c
+
+rtAsn1XmlEncObjId$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncObjId.c \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncObjId.c
+
+rtAsn1XmlEncOpenType$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncOpenType.c \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncOpenType.c
+
+rtAsn1XmlEncOpenTypeExt$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncOpenTypeExt.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncOpenTypeExt.c
+
+rtAsn1XmlEncReal$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncReal.c \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncReal.c
+
+rtAsn1XmlEncRelOID$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncRelOID.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncRelOID.c
+
+rtAsn1XmlEncUnivStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncUnivStr.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncUnicode.c \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncUnivStr.c
+
+rtAsn1XmlEncUTCTime$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncUTCTime.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlEncUTCTime.c
+
+rtAsn1XmlFmtAttrStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlFmtAttrStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlFmtAttrStr.c
+
+rtAsn1XmlParseAttrStr$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlParseAttrStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlParseAttrStr.c
+
+rtAsn1XmlpDecDynBitStr$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecDynBitStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecDynBitStr.c
+
+rtAsn1XmlpDecGenTime$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecGenTime.c \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecGenTime.c
+
+rtAsn1XmlpDecObjId$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecObjId.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecObjId.c
+
+rtAsn1XmlpDecOpenType$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecOpenType.c \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecOpenType.c
+
+rtAsn1XmlpDecReal$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecReal.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecReal.c
+
+rtAsn1XmlpDecUnivStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecUnicode.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecUnivStr.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecUnivStr.c
+
+rtAsn1XmlpDecUTCTime$(OBJ): \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecUTCTime.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtAsn1XmlpDecUTCTime.c
+
+rtLx2DomSerializeToMem$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtLx2DomSerializeToMem.c \
+    $(LIBXML2INC)/libxml/tree.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtLx2Dom.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtLx2DomSerializeToMem.c
+
+rtSaxCAny$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCParser.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCAny.c \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCAny.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCAny.c
+
+rtSaxCAnyType$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCAnyType.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCAnyType.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCParser.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCAnyType.c
+
+rtSaxCSimpleType$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCSimpleType.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxToken.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCSimpleType.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCParser.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCSimpleType.c
+
+rtSaxCSoap$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCSoap.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCSoap.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxToken.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCParser.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCSoap.c
+
+rtSaxCStrList$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCStrList.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxTokenConst.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCStrList.c
+
+rtSaxCXmlHandler$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCXmlHandler.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCXmlHandler.c \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCParser.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCXmlHandler.c
+
+rtSaxCXmlStreamHandler$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCParser.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCXmlStreamHandler.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCXmlStreamHandler.c \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCXmlStreamHandler.c
+
+rtSaxDiag$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCParser.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDiag.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxDiag.c
+
+rtSaxErrors$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxErrors.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxErrors.c
+
+rtSaxFindElemID$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxFindElemID.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxFindElemID.c
+
+rtSaxFindElemID8$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxFindElemID.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxFindElemID8.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxFindElemID8.c
+
+rtSaxGetAttributeID$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxGetAttributeID.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxGetAttributeID.c
+
+rtSaxGetAttrValue$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxGetAttrValue.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxGetAttrValue.c
+
+rtSaxGetElemID$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxGetElemID.c \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxGetElemID.c
+
+rtSaxGetElemID8$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxGetElemID.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxGetElemID8.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxGetElemID8.c
+
+rtSaxHasXMLNSAttrs$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxHasXMLNSAttrs.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxHasXMLNSAttrs.c
+
+rtSaxIsEmptyBuffer$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxIsEmptyBuffer.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxIsEmptyBuffer.c
+
+rtSaxLookupElemID$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxLookupElemID.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxLookupElemID.c
+
+rtSaxLookupElemID8$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxLookupElemID.c \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxLookupElemID8.c \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxLookupElemID8.c
+
+rtSaxParseNSAttrs$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxParseNSAttrs.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxParseNSAttrs.c
+
+rtSaxReportUnexpAttrs$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxReportUnexpAttrs.c \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxReportUnexpAttrs.c
+
+rtSaxSetSkipLevelToCurrent$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxSetSkipLevelToCurrent.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxSetSkipLevelToCurrent.c
+
+rtSaxSortAttrs$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxSortAttrs.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxSortAttrs.c
+
+rtSaxTestAttributesPresent$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxTestAttributesPresent.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxTestAttributesPresent.c
+
+rtXmlCheckBuffer$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlCheckBuffer.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlCheckBuffer.c
+
+rtXmlCmpBase64Str$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlCmpBase64Str.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlCmpBase64Str.c
+
+rtXmlCmpHexStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlCmpHexStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlCmpHexStr.c
+
+rtXmlCmpQName$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlCmpQName.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlCmpQName.c
+
+rtXmlContext$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlContext.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlCtxtAppInfo.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlContext.c
+
+rtXmlContextInit$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlContextInit.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlContextInit.c
+
+rtXmlDecBase64Binary$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecBase64Binary.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecBase64Binary.c
+
+rtXmlDecBase64Common$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecBase64Common.c \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecBase64Common.c
+
+rtXmlDecBase64Str$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecBase64Str.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecBase64Str.c
+
+rtXmlDecBase64StrValue$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecBase64StrValue.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecBase64StrValue.c
+
+rtXmlDecBigInt$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecBigInt.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecBigInt.c
+
+rtXmlDecBool$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecBool.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecBool.c
+
+rtXmlDecDates$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecDates.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecDates.c
+
+rtXmlDecDateTime$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecDateTime.c \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecDateTime.c
+
+rtXmlDecDecimal$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecDecimal.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecDecimal.c
+
+rtXmlDecDouble$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecDouble.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecDouble.c
+
+rtXmlDecDynBase64Str$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecDynBase64Str.c \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecDynBase64Str.c
+
+rtXmlDecDynHexStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecDynHexStr.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecDynHexStr.c
+
+rtXmlDecDynUTF8Str$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecDynUTF8Str.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCParser.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecDynUTF8Str.c
+
+rtXmlDecHexBinary$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecHexBinary.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecHexBinary.c
+
+rtXmlDecHexStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecHexStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecHexStr.c
+
+rtXmlDecHexStrValue$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecHexStrValue.c \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecHexStrValue.c
+
+rtXmlDecInt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecInt.c \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecInt.c
+
+rtXmlDecInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecInt64.c
+
+rtXmlDecNSAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecNSAttr.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecNSAttr.c
+
+rtXmlDecQName$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecQName.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecQName.c
+
+rtXmlDecUInt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecUInt.c \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecUInt.c
+
+rtXmlDecUInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecUInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecUInt64.c
+
+rtXmlDecXSIAttr$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecXSIAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecXSIAttr.c
+
+rtXmlDecXSIAttrs$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlDecXSIAttrs.c \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlDecXSIAttrs.c
+
+rtXmlEncAny$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncAny.c \
+    $(OSROOTDIR)/rtxsrc/rtxStreamMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncAny.c
+
+rtXmlEncAnyAttr$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncAnyAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncAnyAttr.c
+
+rtXmlEncAnyTypeValue$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncAnyTypeValue.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncAnyTypeValue.c
+
+rtXmlEncAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncAttr.c
+
+rtXmlEncAttrC14N$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncAttrC14N.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncAttrC14N.c
+
+rtXmlEncBase64Binary$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncBase64Binary.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncBase64Binary.c
+
+rtXmlEncBase64BinaryAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncBase64BinaryAttr.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncBase64BinaryAttr.c
+
+rtXmlEncBigInt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncBigInt.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncBigInt.c
+
+rtXmlEncBigIntAttr$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncBigIntAttr.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncBigIntAttr.c
+
+rtXmlEncBigIntValue$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncBigIntValue.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncBigIntValue.c
+
+rtXmlEncBitString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncBitString.c \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncBitString.c
+
+rtXmlEncBool$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncBool.c \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncBool.c
+
+rtXmlEncBoolAttr$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncBoolAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncBoolAttr.c
+
+rtXmlEncCanonicalSort$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncCanonicalSort.c \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncCanonicalSort.c
+
+rtXmlEncComment$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncComment.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncComment.c
+
+rtXmlEncDates$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDateTmpl.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDates.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDates.c
+
+rtXmlEncDatesValue$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDatesValue.c \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDatesValue.c
+
+rtXmlEncDateTime$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDateTmpl.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDateTime.c \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDateTime.c
+
+rtXmlEncDateTimeValue$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDateTimeValue.c \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDateTimeValue.c
+
+rtXmlEncDecimal$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDecimal.c \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDecimal.c
+
+rtXmlEncDecimalAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDecimalAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDecimalAttr.c
+
+rtXmlEncDecimalPattern$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDecimalPattern.c \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDecimalPattern.c
+
+rtXmlEncDecimalValue$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDecimalValue.c \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDecimalValue.c
+
+rtXmlEncDouble$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDouble.c \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDouble.c
+
+rtXmlEncDoubleAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDoubleAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDoubleAttr.c
+
+rtXmlEncDoublePattern$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDoublePattern.c \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDoublePattern.c
+
+rtXmlEncDoubleValue$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDoubleValue.c \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncDoubleValue.c
+
+rtXmlEncEmptyElement$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncEmptyElement.c \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncEmptyElement.c
+
+rtXmlEncEndDocument$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncEndDocument.c \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncEndDocument.c
+
+rtXmlEncEndElement$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncEndElement.c \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncEndElement.c
+
+rtXmlEncFloat$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncFloat.c \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncDouble.c \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncFloat.c
+
+rtXmlEncFloatAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncFloatAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncFloatAttr.c
+
+rtXmlEncHexBinary$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncHexBinary.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncHexBinary.c
+
+rtXmlEncHexBinaryAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncHexBinaryAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncHexBinaryAttr.c
+
+rtXmlEncIndent$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncIndent.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncIndent.c
+
+rtXmlEncInt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt.c \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt.c
+
+rtXmlEncInt64$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt.c \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt64.c
+
+rtXmlEncInt64Attr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt64Attr.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncIntAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt64Attr.c
+
+rtXmlEncInt64Pattern$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt64Pattern.c \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncIntPattern.c \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt64Pattern.c
+
+rtXmlEncIntAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncIntAttr.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncIntAttr.c
+
+rtXmlEncIntPattern$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncIntPattern.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncIntPattern.c
+
+rtXmlEncNamedBits$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncNamedBits.c \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncNamedBits.c
+
+rtXmlEncNSAttrs$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncNSAttrs.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncNSAttrs.c
+
+rtXmlEncReal10$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncReal10.c \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncReal10.c
+
+rtXmlEncSoapArrayTypeAttr$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncSoapArrayTypeAttr.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncSoapArrayTypeAttr.c
+
+rtXmlEncSoapEnvelope$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncSoapEnvelope.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncSoapEnvelope.c
+
+rtXmlEncStartDocument$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncStartDocument.c \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncStartDocument.c
+
+rtXmlEncStartElement$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncStartElement.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncStartElement.c
+
+rtXmlEncString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncString.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncString.c
+
+rtXmlEncUInt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt.c \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncUInt.c \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncUInt.c
+
+rtXmlEncUInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncInt.c \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncUInt64.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncUInt64.c
+
+rtXmlEncUInt64Attr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncUInt64Attr.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncIntAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncUInt64Attr.c
+
+rtXmlEncUInt64Pattern$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncUIntPattern.c \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncUInt64Pattern.c \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncUInt64Pattern.c
+
+rtXmlEncUIntAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncUIntAttr.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncIntAttr.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncUIntAttr.c
+
+rtXmlEncUIntPattern$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncUIntPattern.c \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxRegExp.hh \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncUIntPattern.c
+
+rtXmlEncUnicode$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncUnicode.c \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncUnicode.c
+
+rtXmlEncXSIAttrs$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncXSIAttrs.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncXSIAttrs.c
+
+rtXmlEncXSINilAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncXSINilAttr.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncXSINilAttr.c
+
+rtXmlEncXSITypeAttr$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlEncXSITypeAttr.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlEncXSITypeAttr.c
+
+rtXmlError$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlError.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlError.c
+
+rtXmlKeyArray$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlKeyArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlKeyArray.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlKeyArray.c
+
+rtXmlMatchBase64Str$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlMatchBase64Str.c \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlMatchBase64Str.c
+
+rtXmlMatchDates$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlMatchDates.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlMatchDates.c
+
+rtXmlMatchDateTime$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlMatchDateTime.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlMatchDateTime.c
+
+rtXmlMatchHexStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlMatchHexStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlMatchHexStr.c
+
+rtXmlMemFree$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlMemFree.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlMemFree.c
+
+rtXmlNamespace$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.c
+
+rtXmlNewQName$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNewQName.c \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlNewQName.c
+
+rtXmlParseElementName$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlParseElementName.c \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlParseElementName.c
+
+rtXmlParseElemQName$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlParseElemQName.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlParseElemQName.c
+
+rtXmlpCreateReader$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpCreateReader.c \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpCreateReader.c
+
+rtXmlpDecAny$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecAny.c \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecAny.c
+
+rtXmlpDecAnyAttrStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecAnyAttrStr.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecAnyAttrStr.c
+
+rtXmlpDecAnyElem$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecAnyElem.c \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecAnyElem.c
+
+rtXmlpDecBase64Str$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecBase64Str.c \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecBase64Str.c
+
+rtXmlpDecBigInt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecBigInt.c \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecBigInt.c
+
+rtXmlpDecBitString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecBitString.c \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecBitString.c
+
+rtXmlpDecBool$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecBool.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecBool.c
+
+rtXmlpDecDateTime$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDateTime.c \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDateTime.c
+
+rtXmlpDecDecimal$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDecimal.c \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDecimal.c
+
+rtXmlpDecDouble$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDouble.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDouble.c
+
+rtXmlpDecDynBase64Str$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDynBase64Str.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDynBase64Str.c
+
+rtXmlpDecDynBitString$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDynBitString.c \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDynBitString.c
+
+rtXmlpDecDynHexStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDynHexStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecDynHexStr.c
+
+rtXmlpDecHexStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecHexStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecHexStr.c
+
+rtXmlpDecInt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecInt.c \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecInt.c
+
+rtXmlpDecInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecInt64.c
+
+rtXmlpDecListOfASN1DynBitStr$(OBJ): \
+    $(OSROOTDIR)/rtsrc/asn1ErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtsrc/rtContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/asn1xml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtsrc/asn1tag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtsrc/asn1type.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecListOfASN1DynBitStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtsrc/asn1CEvtHndlr.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtsrc/rtExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecListOfASN1DynBitStr.c
+
+rtXmlpDecNamedBits$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecNamedBits.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecNamedBits.c
+
+rtXmlpDecStrList$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecStrList.c \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecStrList.c
+
+rtXmlpDecUInt$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecUInt.c \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecUInt.c
+
+rtXmlpDecUInt64$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecUInt64.c \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecUInt64.c
+
+rtXmlpDecUnicode$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecUnicode.c \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecUnicode.c
+
+rtXmlpDecXmlStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecXmlStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecXmlStr.c
+
+rtXmlpDecXSIAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecXSIAttr.c \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecXSIAttr.c
+
+rtXmlpDecXSITypeAttr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpDecXSITypeAttr.c \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpDecXSITypeAttr.c
+
+rtXmlpEvent$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpEvent.c \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpEvent.c
+
+rtXmlpGetAttributeCount$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpGetAttributeCount.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpGetAttributeCount.c
+
+rtXmlpGetAttributeID$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpGetAttributeID.c \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpGetAttributeID.c
+
+rtXmlpGetContent$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpGetContent.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpGetContent.c
+
+rtXmlpGetNextAllElemID$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpGetNextAllElemID.c
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpGetNextAllElemID.c
+
+rtXmlpGetNextElem$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpGetNextElem.c \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpGetNextElem.c
+
+rtXmlpGetNextElemID$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpGetNextAllElemID.c \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpGetNextElemID.c \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpGetNextElemID.c
+
+rtXmlpHasAttributes$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpHasAttributes.c \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpHasAttributes.c
+
+rtXmlpIsInGroup$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpIsInGroup.c \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpIsInGroup.c
+
+rtXmlpIsUTF8Encoding$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpIsUTF8Encoding.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpIsUTF8Encoding.c
+
+rtXmlpMatch$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpMatch.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpMatch.c
+
+rtXmlpReadBytes$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpReadBytes.c \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpReadBytes.c
+
+rtXmlPrintNSAttrs$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPrintNSAttrs.c \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlPrintNSAttrs.c
+
+rtXmlpSelectAttribute$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlpSelectAttribute.c \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlpSelectAttribute.c
+
+rtXmlPull$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxStreamDirectBuf.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.c \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxUnicode.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPull.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlPull.c
+
+rtXmlPutChar$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF16.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlPutChar.c \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlPutChar.c
+
+rtXmlSetEncBufPtr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlSetEncBufPtr.c \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlSetEncBufPtr.c
+
+rtXmlSetEncodingStr$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlSetEncodingStr.c \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlSetEncodingStr.c
+
+rtXmlStrCmpAsc$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlStrCmpAsc.c \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlStrCmpAsc.c
+
+rtXmlStrnCmpAsc$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlStrnCmpAsc.c \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlStrnCmpAsc.c
+
+rtXmlTreatWhitespaces$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlTreatWhitespaces.c \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlTreatWhitespaces.c
+
+rtXmlWriteChars$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF16.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlWriteChars.c \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxLatin1.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlWriteChars.c
+
+rtXmlWriteToFile$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlWriteToFile.c \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlWriteToFile.c
+
+rtXmlWriteUTF16ToFile$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlWriteUTF16ToFile.c \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h
+	$(CC) $(XMLCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlWriteUTF16ToFile.c
+
+OSXMLDecodeBuffer$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParserIF.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLDecodeBuffer.cpp \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/OSRTFileInputStream.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStream.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolder.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStreamIF.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStream.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBufIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLDecodeBuffer.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLMessageBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMemoryInputStream.h
+	$(CCC) $(XMLCCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/OSXMLDecodeBuffer.cpp
+
+OSXMLEncodeBuffer$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLMessageBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLEncodeBuffer.cpp \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBufIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLEncodeBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolder.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h
+	$(CCC) $(XMLCCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/OSXMLEncodeBuffer.cpp
+
+OSXMLEncodeStream$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLEncodeStream.cpp \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBuf.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLMessageBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBufIF.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/OSRTOutputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStream.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolder.h \
+    $(OSROOTDIR)/rtxsrc/OSRTOutputStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLEncodeStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h
+	$(CCC) $(XMLCCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/OSXMLEncodeStream.cpp
+
+OSXMLMessageBuffer$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLMessageBuffer.cpp \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolder.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBuf.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBufIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLMessageBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h
+	$(CCC) $(XMLCCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/OSXMLMessageBuffer.cpp
+
+rtSaxCppAny$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.hh \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppAny.cpp \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLEncodeBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBuf.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.hh \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParser.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLDecodeBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMsgBufIF.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLMessageBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStream.h \
+    $(OSROOTDIR)/rtxsrc/OSRTOutputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxToken.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStream.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolder.h \
+    $(OSROOTDIR)/rtxsrc/OSRTOutputStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppAny.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlCppMsgBuf.h \
+    $(OSROOTDIR)/rtxmlsrc/OSXMLEncodeStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParserIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.hh
+	$(CCC) $(XMLCCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCppAny.cpp
+
+rtSaxCppParser$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolder.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStream.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/OSRTFileInputStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParserIF.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParser.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/OSRTMemoryInputStream.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParser.cpp \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h
+	$(CCC) $(XMLCCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCppParser.cpp
+
+rtSaxCppSimpleType$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParser.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppSimpleType.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppSimpleType.cpp \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxToken.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParserIF.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h
+	$(CCC) $(XMLCCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCppSimpleType.cpp
+
+rtSaxCppStrList$(OBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxToken.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStreamIF.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParserIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/OSRTBaseType.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCppDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParser.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppStrList.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppStrList.cpp \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h
+	$(CCC) $(XMLCCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtSaxCppStrList.cpp
+
+rtXmlXercesIF$(OBJ): \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlXercesIF.cpp \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParserIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h
+	$(CCC) $(XMLCCFLAGS) -c $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlXercesIF.cpp
+

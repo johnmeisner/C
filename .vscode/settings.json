@@ -1,0 +1,12 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "bozohttpd.h": "c",
+        "param.h": "c",
+        "pwd.h": "c",
+        "syslog.h": "c",
+        "errno.h": "c",
+        "types.h": "c"
+    },
+    "cmake.configureOnOpen": false
+}

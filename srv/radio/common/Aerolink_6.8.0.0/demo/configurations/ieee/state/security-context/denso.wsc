@@ -1,0 +1,9 @@
+lcms = [
+     {
+          lcm_type                            pseudonym
+          lcm_name                            bsmLcm
+          lcm_directory                       certificates
+          acf_prefix                          bsm
+          use_scms                            false
+     }
+]

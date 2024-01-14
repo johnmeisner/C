@@ -1,0 +1,12 @@
+Version=0.7
+Type=PDM
+PSID=0x8006
+Priority=7
+TxMode=ALT
+TxChannel=172
+TxInterval=1
+DeliveryStart=04/16/2017, 01:01
+DeliveryStop=11/30/2028, 23:50
+Signature=False
+Encryption=False
+Payload1=0068

@@ -1,0 +1,17 @@
+# fstab v1.0 20200304
+# mmcblk1p2 is for microSD.  mmcblk0p2 is for eMMC.
+
+/dev/mmcblk0p2       /                    auto       defaults,ro              1  1
+proc                 /proc                proc       defaults              0  0
+devpts               /dev/pts             devpts     mode=0620,gid=5       0  0
+tmpfs                /run                 tmpfs      mode=0755,nodev,nosuid,strictatime 0  0
+tmpfs                /var/volatile        tmpfs      defaults              0  0
+
+# uncomment this if your device has a SD/MMC/Transflash slot
+/dev/mmcblk0p3       /mnt/rwflash          auto      noauto,nofail,x-systemd.device-timeout=3s,x-systemd.automount	0  0
+
+# microsd
+/dev/mmcblk1p3       /mnt/microsd          auto      noauto,nofail,x-systemd.device-timeout=3s,x-systemd.automount	0  0
+
+# usbdrv
+/dev/sda1            /mnt/usbdrv           auto      noauto,nofail,x-systemd.device-timeout=3s,x-systemd.automount	0  0

@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+#  upload_name_for_next_uploaded_file
+#    - This script is the first step in a two-step upload.
+#    - Instead of using form/multi-part to upload named files,
+#      we first upload the name of the file with this script,
+#      and then upload the file itself with currently the only 
+#      named file uploader, upload_new_active_message.
+#    - The parsing of form/multi-part is fairly complicated and
+#      we only upload one named file at a time, so this two-step
+#      approach works as well and is much simpler
+
+# Set path
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin:/opt/cohda/bin:/rwflash/bin:/usr/local/bin
+
+# Where to store the filename for the next uploaded file
+FILENAME_FILE=/tmp/ztmp.next_uploads_filename.txt
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Save the next upload's filename, sent through a POST request
+/usr/bin/post_saver $FILENAME_FILE > /dev/null
+
+# Make sure there's some size to this filename
+WCLEN=`wc -c $FILENAME_FILE`
+if [ $WCLEN -lt 2 ]; then
+    echo ERROR: Uploaded filename is $WCLEN chars long -- too short'!'
+else
+    # Say OK
+    echo OK
+fi

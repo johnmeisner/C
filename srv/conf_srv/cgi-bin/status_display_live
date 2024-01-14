@@ -1,0 +1,475 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+print_icon_style()
+{
+echo "<style>" 
+
+echo ".icon {" 
+echo "  font-size: 60px;" 
+echo "  text-align: center;" 
+echo "  margin-top: 20px;" 
+echo "  padding: 10px;" 
+echo "}" 
+
+echo ".intro-container {" 
+echo "  display: -ms-flexbox;" 
+echo "  display: flex;" 
+echo "}" 
+
+echo ".circle {"
+echo " height: 30px;"
+echo " width: 30px;"
+echo " border-radius: 50%;"
+echo " background: #FFFFFF;"
+echo " border: 2px solid gray;"
+echo " display: inline-block;"
+echo "  }"
+
+echo ".roundcorner {"
+echo "height: 100px;"
+echo "width: 99%;"
+echo "border-radius: 25px;"
+echo "border: 2px solid #808080;"
+echo "padding: 10px;"
+echo "  }"
+
+echo ".divOverflow {"
+echo "overflow: auto;"
+echo "overflow-x: hidden;"
+echo "height: 80px;"
+echo "margin-left: 2px;"
+echo "padding-left: 15px;"
+echo "scrollbar-width: thin;"
+echo "}"
+
+echo ".monospace {"
+echo "    font-family: \"Lucida Console\", Courier, monospace;"
+echo "    color: #000000;"
+echo "}"
+
+echo "</style>" 
+
+}
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+echo "<!DOCTYPE html>"
+echo "<html>" 
+
+echo "<head>" 
+echo "    <meta charset=\"utf-8\">" 
+echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">" 
+echo "    <title>RSU-5940-Status</title>" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/bootstrap/css/bootstrap.min.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/fonts/font-awesome.min.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Boxed.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Clean.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/css/Footer-Basic.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/css/styles.css\">" 
+print_icon_style
+
+echo "</head>" 
+}
+
+print_feature_box_beg()
+{
+echo "<body onload=\"start_timers()\" >" 
+echo "    <div class=\"features-boxed\">" 
+echo "        <div class=\"container\">" 
+}
+
+print_feature_box_end()
+{
+echo "        </div>" 
+echo "    </div>" 
+}
+
+print_intro_beg()
+{
+echo "            <div class=\"intro\">" 
+echo "            <div class=\"intro-container\">" 
+echo "                <i class=\"fa fa-heartbeat icon\"></i>" 
+echo "                <h2 class=\"text-center\">RSU System Status</h2>" 
+echo "            </div>" 
+}
+
+print_intro_end()
+{
+echo "            </div>" 
+}
+
+print_class_row_beg()
+{
+echo "            <div class=\"row justify-content-center features\">" 
+}
+
+print_class_row_end()
+{
+echo "            </div>" 
+}
+
+print_Temperature_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-3 item\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-thermometer icon\"></i>" 
+echo "                        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>CPU Temp: <span id='rsu_temp' style='color: #000000'></span></div>"
+# NOTE: The Fan Controller temperature is labeled Ambient Temp and is OK.
+#    Since we do not use a fan for the EVK-5940, Kevin and Joe repurposed the
+#    fan controller temperature sensor to measure something close to the RSU
+#    enclosure ambient temperature.  We do not have a dedicated ambient temp
+#    sensor for EVK-5940 so this works instead.   [2022/03]
+echo "                        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>Ambient Temp: <span id='hwmon_temp1' style='color: #000000'></span></div>"
+echo "                    </div>" 
+echo "                </div>" 
+}
+
+
+print_GPS_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-3 item\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-map-marker icon\" style=\"margin-bottom: 20px; padding-bottom: 0px\"></i>" 
+echo "                        <h3 id='rsu_lat'  class=\"name\" style='color: #007bff'>Lat: </h3>" 
+echo "                        <h3 id='rsu_long' class=\"name\" style='color: #007bff'>Long: </h3>" 
+echo "                        <h3 id='rsu_alt'  class=\"name\" style='color: #007bff'>Alt: </h3>" 
+echo "                        <center><input type='button' value='GNSS Detail' onclick='go_gnss_detail()'></center>"
+echo "                    </div>" 
+echo "                </div>" 
+}
+
+print_UpTime_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-3 item\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-clock-o icon\"></i>" 
+echo "                        <h3 id='up_time_title' class='name' style='color: #007bff' > Uptime </h3>" 
+echo "                        <h3 id='up_time' class='name' style='margin-bottom: 16px; color: #007bff'>.</h3>" 
+echo "                        <center><input type='button' value='System Activity' onclick='go_system_top()'></center>"
+echo "                    </div>" 
+echo "                </div>" 
+}
+
+
+print_Home_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-3 item\">" 
+echo "                  <a href=\"/cgi-bin/rsu_main\">"
+#echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-home icon\" style='color: #000000' ></i>" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-home icon\"></i>" 
+echo "                        <h3 class='name' style='margin-bottom: 74px'>Home</h3>" 
+echo "                    </div>" 
+echo "                  </a>" 
+echo "                </div>" 
+}
+
+
+
+print_RSU_Services_box()
+{
+echo "                  <div class=\"col-sm-4 col-md-4 col-lg-4 col-xl-4 text-left item\" style=\"padding-left: 5px;padding-right: 5px;\">"
+echo "                      <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;margin-bottom: 15px; min-height: 315px; margin-bottom:0px\">"        # box begin
+echo "                                      <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>RSU Services Active</h3>"
+echo "                                      <div id='pro_1' class=\"name\" style='color: #808080; font-size: 15px; margin-bottom: 7px'>.</div>" 
+echo "                                      <div id='pro_2' class=\"name\" style='color: #808080; font-size: 15px; margin-bottom: 7px'>.</div>" 
+echo "                                      <div id='pro_3' class=\"name\" style='color: #808080; font-size: 15px; margin-bottom: 7px'>.</div>" 
+echo "                                      <div id='pro_4' class=\"name\" style='color: #808080; font-size: 15px; margin-bottom: 7px'>.</div>" 
+echo "                                      <div id='pro_5' class=\"name\" style='color: #808080; font-size: 15px; margin-bottom: 7px'>.</div>" 
+echo "                                      <div id='pro_6' class=\"name\" style='color: #808080; font-size: 15px; margin-bottom: 7px'>.</div>" 
+echo "                    </div>" 
+echo "                </div>" 
+}
+
+print_LED_Status_box()
+{
+cat << '##EOFEOFEOF9'
+    <div class='col-sm-4 col-md-5 col-lg-3 item'>
+        <div class='shadow p-3 mb-5 bg-white rounded'>
+            <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>RSU LED Status</h3>
+                <span id='status_color_led_1' class='circle'></span>
+                <span id='status_color_led_2' class='circle'></span>
+                <span id='status_color_led_3' class='circle'></span>
+            <hr style='height:1px; margin:2px; border-width:1px;background-color:lightskyblue'>
+                <br/>
+            <h3 class='name' style='color: #007BFF; margin-bottom: 16px'>SPAT Transmission Status</h3>
+                <div style='float: center;'>
+                <input type='button' id='GO_BTTN' value='SPAT Detail' onclick='go_spat_detail()'>
+                </div>
+                <br/>
+            <hr style='height:1px; margin:2px; border-width:1px;background-color:lightskyblue'>
+                <br/>
+            <h3 class='name' style='color: #007BFF; margin-bottom: 16px'>Ethernet Status</h3>
+                <div style='float: center;'>
+                <input type='button' id='GO_BTTN' value='Ethernet Status' onclick='go_ethernet_detail()'>
+                </div>
+        </div>
+    </div>
+<script>
+    function go_spat_detail() {
+        window.location.href = '/cgi-bin/spat_detail';
+    }
+    function go_system_top() {
+        window.location.href = '/cgi-bin/system_top_live';
+    }
+    function go_gnss_detail() {
+        window.location.href = '/cgi-bin/gnss_detail_live';
+    }
+    function go_ethernet_detail() {
+        window.location.href = '/cgi-bin/ethernet_detail';
+    }
+</script>
+##EOFEOFEOF9
+
+
+}
+
+
+print_DC_Voltage_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-3 item\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-battery-4 icon\"></i>" 
+echo "                        <h3 id='dcin' class='name' style='margin-bottom: 74px; color: #007bff' >" 
+echo "                        </h3>" 
+echo "                    </div>" 
+echo "                </div>" 
+}
+
+
+
+print_Radio_Activity_box()
+{
+    cat << '#EOFEOFEOF2'
+<div class='col-sm-4 col-md-5 col-lg-3 item'>
+    <!-- Original way but box height is too short
+    <div class='text-left box shadow p-3 mb-5 bg-white rounded'>
+    -->
+    <!-- Copying inner div from RSU Services Active box -->
+    <div class='text-left box shadow p-3 mb-5 bg-white rounded' style='padding-top: 5px; min-height: 315px; margin-bottom:0px'>
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>Radio Activity</h3>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>CV2X Tx: <span id='radio_cv2x_tx' style='color: #000000'></span></div>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>CV2X Rx: <span id='radio_cv2x_rx' style='color: #000000'></span></div>
+        <!-- <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>DSRC Tx: <span id='radio_dsrc_tx'  style='color: #000000'></span></div> -->
+        <!-- <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>DSRC Rx: <span id='radio_dsrc_rx'  style='color: #000000'></span></div> -->
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>Radio Channel: <span id='radio_channel'  style='color: #000000'></span></div>
+        <br/>
+        <br/>
+        <br/>
+        <div style='float: center;'>
+        <input type="button" id='GO_BTTN' value="Radio Detail" onclick="go_radio_detail()">
+        </div>
+    </div>
+</div>
+<script>
+    function go_radio_detail() {
+        window.location.href = '/cgi-bin/radio_detail';
+    }
+</script>
+#EOFEOFEOF2
+}
+
+
+
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+echo "    <div class=\"footer-basic\">" 
+echo "        <footer>" 
+echo "            <p class=\"copyright\">MobiQ © 2023</p>" 
+echo "        </footer>" 
+echo "    </div>" 
+echo "    <script src=\"../assets/js/jquery.min.js\"></script>" 
+echo "    <script src=\"../assets/bootstrap/js/bootstrap.min.js\"></script>" 
+
+    #=== Custom scripts ===
+    echo "    <script>" 
+        print_rsu_time_refresh
+        print_start_update
+        print_update_kaio_refresh
+        print_start_timers
+    echo "    </script>" 
+
+echo "</body>" 
+echo "</html>" 
+}
+
+# Refreshes the server time display every second even though we pull data only once every five
+print_rsu_time_refresh()
+{
+    echo "    var msec = 0;" 
+    echo "    function rsu_time_refresh() {" 
+    echo "      var t = setTimeout(rsu_time_refresh, 1000);"    # Create next callback first, makes sure timer lives through script errors
+    echo "      if (msec > 0) {" 
+    echo "         msec = msec + 1000;" 
+    echo "         var n_date = new Date(msec);" 
+    echo "         var utc_date = n_date.toUTCString();" 
+    echo "         var utc_date = utc_date.replace(\"GMT\", \"UTC\");" 
+    echo "         document.getElementById(\"rsu_time\").innerHTML = utc_date;" 
+    echo "      }" 
+    echo "    };" 
+}
+
+
+# FUNCTION send_update_kaio_refresh() - Sends a cgi-bin requested for all-in-one data, with an inline-function to parse it and update the HTML with the new values
+print_update_kaio_refresh()
+{
+    echo "    var ready_for_update_request_status = \"READY\";" 
+    echo "    function send_update_kaio_refresh() {" 
+    echo "      var xhttp = new XMLHttpRequest();" 
+    echo "      xhttp.onreadystatechange = function() {" 
+    echo "        if (this.readyState == 4 && this.status == 200) {" 
+    echo "          ready_for_update_request_status = \"READY\";" 
+    # Break AIO response into pieces by commas
+    echo "          var str = this.responseText;" 
+    echo "          var bits_arr = str.split(',');"
+    # Now update top-row status fields and date field - Posn, temp, date, uptime - Fields [0-5]
+    echo "          document.getElementById(\"rsu_lat\").innerHTML = 'Lat: ' + bits_arr[0];" 
+    echo "          document.getElementById(\"rsu_long\").innerHTML = 'Long: ' + bits_arr[1];" 
+    echo "          document.getElementById(\"rsu_alt\").innerHTML = 'Alt: ' + bits_arr[2];" 
+    echo "          cpu_temp = (parseFloat(bits_arr[3]) / 1000).toFixed(1);"
+    echo "          if (cpu_temp != NaN) {"
+    echo "              document.getElementById(\"rsu_temp\").innerHTML = cpu_temp + \" C\";"
+    echo "          } else {"
+    echo "              document.getElementById(\"rsu_temp\").innerHTML = \"\";"
+    echo "          }"
+    echo "          msec = Date.parse(bits_arr[4]);"   # Will be used by rsu_time_refresh(), updates the "rsu_time" HTML element
+    echo "          document.getElementById(\"up_time\").innerHTML = bits_arr[5];"
+    # Radio Activity [6-10]
+    echo "          document.getElementById(\"radio_cv2x_tx\").innerHTML = bits_arr[6];"
+    #echo "          document.getElementById(\"radio_dsrc_tx\").innerHTML = bits_arr[7];"
+    echo "          document.getElementById(\"radio_cv2x_rx\").innerHTML = bits_arr[8];"
+    #echo "          document.getElementById(\"radio_dsrc_rx\").innerHTML = bits_arr[9];"
+    echo "          document.getElementById(\"radio_channel\").innerHTML = bits_arr[10];"
+    # CV2X Channel [11] - value also determines if we display dsrc channel or cv2x channel
+    echo "          if (bits_arr[11].trim() != 'DSRC') {"
+    echo "              document.getElementById(\"radio_channel\").innerHTML = 'CV2X:' + bits_arr[11];"
+    echo "          }"
+    # RSU Services - AMH_PRO SCS_PRO IPB_PRO SNMPD_PRO SRM_RX_PRO SPAT16_PRO   [12 - 17]
+    echo "          var pro_counter = 1;"
+    echo "          for (i = 0; i < 6; i++) {"
+    echo "              var trim_bit = bits_arr[12+i].replace(/\\s+/g, ' ').trim();"
+    echo "              if (trim_bit != \"0\") {"
+    echo "                  var element = document.getElementById(\"pro_\" + pro_counter);"
+    echo "                  element.innerHTML = trim_bit;"
+    echo "                  pro_counter = pro_counter + 1;"
+    echo "              }"
+    echo "          }"
+    # Clear out unused service pro_X elements in case RSU Service list shrank since last update
+    echo "          while (pro_counter <= 6) {"
+    echo "                  var element = document.getElementById(\"pro_\" + pro_counter);"
+    echo "                  element.innerHTML = '';"
+    echo "                  pro_counter = pro_counter + 1;"
+    echo "          }"
+    # LED - 3 datums [18-20]
+    echo "          const led_on_color = ['green', '#FFBF00', 'red'];"
+    echo "          var now = new Date();"
+    echo "          var nowSeconds = now.getSeconds();"
+    echo "          for (i = 0; i < 3; i++) {"
+    echo "              var element = document.getElementById(\"status_color_led_\" + (i+1));"
+    echo "              var trim_bit = bits_arr[18+i].replace(/\\s+/g, ' ').trim();"
+    echo "              if (trim_bit == 'Active') {"
+    echo "                  element.style.background = led_on_color[i];"
+    echo "              } else if ((trim_bit == 'Blink') && (nowSeconds % 2 == 0)) {"
+    echo "                  element.style.background = led_on_color[i];"
+    echo "              } else {"
+    echo "                  element.style.background = '#FFFFFF';"
+    echo "              }"
+    echo "          }"
+    # RH850 Data [21 - 28] (8 items, only using first item, voltage value)
+    #     (other items are antenna statuses shown on gnss_details and radio_detail pages)
+    echo "          document.getElementById(\"dcin\").innerHTML = bits_arr[21] + \"v\";"
+    # Ambient temperature through HWMON [29]
+    echo "          document.getElementById('hwmon_temp1').innerHTML = (bits_arr[29]/1000.0 - 64.0) + ' C';"
+    # All Done
+    echo "        }"
+    echo "      };" 
+    echo "      xhttp.open(\"GET\", '/cgi-bin/get_status_update_aio', true);" 
+    echo "      xhttp.send();" 
+    echo "    }" 
+}
+
+
+
+print_start_update()
+{
+    echo "    function start_update() {" 
+    # Check if last_update request is complete.  Let's send a new one!
+    echo "      if (ready_for_update_request_status == \"READY\") {"
+    echo "          ready_for_update_request_status = \"REQ_SENT\";"
+    echo "          send_update_kaio_refresh();" 
+    echo "      } else {"
+    echo "          ready_for_update_request_status = ready_for_update_request_status + \" ... STILL WAITING\";"
+    echo "      }"
+    echo "      var t = setTimeout(start_update, 1000);"
+    echo "    }" 
+}
+
+print_start_timers()
+{
+    echo "    function start_timers() {" 
+    echo "      start_update();"                                ## status data updater
+    echo "      var t = setTimeout(rsu_time_refresh, 1000);"    ## time updater
+    echo "    }" 
+}
+
+
+#
+### Output tmp page - then redirect to rsu-config (check if user is logged in)
+#
+echo "Content-type: text/html"
+echo ""
+
+# Get current logged in IP
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+
+else
+  print_header                   # print header
+  source $SCRIPT_PATH/add_navbar.sh 
+  source $SCRIPT_PATH/add_page_timeout.sh
+  print_feature_box_beg
+    print_intro_beg
+    print_intro_end
+    
+    # main body show 3 boxes "config", "status", and "utilities"
+    print_class_row_beg
+        # Temperature 
+        print_Temperature_box
+        # GPS
+        print_GPS_box
+        #uptime
+        print_UpTime_box
+        # Voltage
+        print_DC_Voltage_box
+
+        # Next row
+        print_Radio_Activity_box
+        print_RSU_Services_box
+        print_LED_Status_box
+        # Home
+        print_Home_box
+
+    print_class_row_end
+    # Insert RSU date here
+    echo "      <h4 class=\"text-center\" id=\"rsu_time\"></h4>"  
+  print_feature_box_end
+
+  # FW version
+  echo "<p class='copyright' style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>VERSION:"
+  cat /etc/version 
+  echo "</p>"
+
+  # End of Page with Footer
+  print_footer_end
+
+fi

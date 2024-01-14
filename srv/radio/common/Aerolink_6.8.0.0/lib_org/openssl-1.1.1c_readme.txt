@@ -1,0 +1,6 @@
+Be sure you have sourced setup_crosscc_toolchain.sh from ~ before running this.
+
+To build openssl v1.1, execute the following script from within this directory:
+
+build_openssl.sh
+

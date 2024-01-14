@@ -1,0 +1,192 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+# Main
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+
+# Output to browser
+cat << '##EOFEOFEOF1'
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>System-Top-Processes</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+<style>
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+.circle {
+ height: 30px;
+ width: 30px;
+ border-radius: 50%;
+ background: #FFFFFF;
+ border: 2px solid gray;
+ display: inline-block;
+  }
+.roundcorner {
+height: 100px;
+width: 99%;
+border-radius: 25px;
+border: 2px solid #808080;
+padding: 10px;
+  }
+.divOverflow {
+overflow: auto;
+overflow-x: hidden;
+height: 80px;
+margin-left: 2px;
+padding-left: 15px;
+scrollbar-width: thin;
+}
+.monospace {
+    font-family: "Lucida Console", Courier, monospace;
+    color: #000000;
+}
+</style>
+</head>
+<body onload="start_update()" >
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+   <div class="features-boxed">
+     <div class="container">
+
+
+<div id='no_data_overlay' class="row justify-content-center" style='display: none;'>
+    <div class="intro">
+        <div class="intro-container">
+            <i class="fa fa-thumbs-down icon" style="color: red;"></i>
+                <h2 class="text-center" style="color: red;">Invalid Data</h2>
+        </div>
+    </div>
+</div>
+
+
+<!-- Old school way of doing a title - has icon tho -->
+<div class="intro">
+<div class="intro-container">
+    <i class="fa fa-exchange icon"></i>
+    <h2 class="text-center">RSU System Activity</h2>
+</div>
+</div>
+
+
+<!-- Overall container of boxes below title -->
+<div class="row justify-content-center features">
+
+
+
+
+<!-- Top Command Output -->
+<div class="col-sm-7 col-md-7 col-lg-7 col-xl-7 text-left item" style="padding-left: 5px;padding-right: 5px;">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 275px; min-width: 600px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>System Activity</h3>
+        <br/>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 0px'><span>
+        <pre id='top_txt'>Loading....</pre>
+        </span></div>
+    </div>
+</div>
+<!-- END Top Command Output -->
+
+
+
+
+
+<!-- Home block -->
+                <div class="col-sm-6 col-md-5 col-lg-3 item">
+                  <a href="/cgi-bin/status_display_live">
+                    <div class="shadow p-3 mb-5 bg-white rounded"><i class="fa fa-arrow-left icon"></i>
+                        <h3 class='name'>Back</h3>
+                    </div>
+                  </a>
+                </div>
+
+
+            <!-- End of Overall container of boxes below title -->
+            </div>
+
+    <!-- End of top two divs, div "container" and "features-boxed" -->
+        </div>
+    </div>
+
+    <p class="copyright" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>
+    </p>
+
+
+<!-- Footer ->
+    <div class="footer-basic">
+        <footer>
+            <p class="copyright">MobiQ © 2023</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
+<script>
+    function start_update() {
+      if (ready_for_update_request_status == "READY") {
+          ready_for_update_request_status = "REQ_SENT";
+          send_update_kaio_refresh();
+      } else {
+          ready_for_update_request_status = ready_for_update_request_status + " ... STILL WAITING";
+      }
+      var t = setTimeout(start_update, 1000);
+    }
+
+    // Poll for data update and process
+    var ready_for_update_request_status = "READY";
+    function send_update_kaio_refresh() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          ready_for_update_request_status = "READY";
+          // Entire response just goes into top_txt
+          document.getElementById("top_txt").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", '/cgi-bin/get_top_data', true);
+      xhttp.send();
+    }
+</script>
+</body>
+</html>
+
+##EOFEOFEOF2
+
+

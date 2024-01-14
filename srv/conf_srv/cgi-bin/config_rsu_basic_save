@@ -1,0 +1,126 @@
+#!/bin/sh
+
+# File: config_rsu_basic_save
+# Desc: Save Apps setting for I2V
+
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Status file to send back to user
+STATUS_FILE=/tmp/update.status.file
+rm -f $STATUS_FILE
+SUCCESS='<font color=green>Successful</font><br/>'
+FAILED='<font color=red>FAILED</font><br/>'
+
+#=== Figure out follow-up page to show user
+NAV=`/usr/bin/get_token_val $QUERY_STRING NAV`
+if [ "$NAV" == "BACK" ]; then
+    REFRESH_SCRPT="config_display_default"
+elif [ "$NAV" == "APPLY" ]; then
+    # do a reboot after the save
+    REFRESH_SCRPT="reboot_with_countdown"
+else
+    # go back to the display_live screen after the save
+    REFRESH_SCRPT="config_rsu_basic_display_live"
+fi
+
+# Since we are using BASH and not perl or python, we don't have arrays
+# so have to pack our data to get a semi-intelligent multi-column data loop.
+# We make the <FORM> field names and the config setting names the same, so
+# our packed loop data is two items: config-file-w/o-.conf <colon> settingname.
+# 20230804: VLAN_ENABLE should be last for VLAN settings
+
+#LOOPDATA="RSU_INFO:NETWORK_MODE RSU_INFO:SC0IPADDRESS RSU_INFO:NETMASK RSU_INFO:MTU RSU_INFO:VLAN_ID RSU_INFO:VLAN_IP RSU_INFO:VLAN_MASK RSU_INFO:VLAN_ENABLE RSU_INFO:WEBGUI_HTTP_SERVICE_PORT RSU_INFO:WEBGUI_HTTPS_SERVICE_PORT snmpd:agentaddress ph:sshport i2v:I2VTransmitPower i2v:I2VGPSOverrideEnable i2v:I2VGPSOverrideLat i2v:I2VGPSOverrideLong i2v:I2VGPSOverrideElev i2v:I2VEnableEthIPv6 i2v:I2VEthIPv6Addr i2v:I2VEthIPv6Scope i2v:I2VIPv6DefaultGateway"
+
+LOOPDATA="RSU_INFO:NETWORK_MODE RSU_INFO:SC0IPADDRESS RSU_INFO:NETMASK RSU_INFO:MTU RSU_INFO:VLAN_ID RSU_INFO:VLAN_IP RSU_INFO:VLAN_MASK RSU_INFO:VLAN_ENABLE RSU_INFO:WEBGUI_HTTP_SERVICE_PORT RSU_INFO:WEBGUI_HTTPS_SERVICE_PORT snmpd:agentaddress ph:sshport i2v:I2VTransmitPower"
+
+for XPACKED in $LOOPDATA ; do
+    CONFIG_FILE=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $1}'`
+    SETTING_NAME=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $2}'`
+
+    if [ $SETTING_NAME == sshport ]; then
+        OLD_VALUE=`/usr/scripts/sshproctor`
+        NEW_VALUE=`/usr/bin/get_token_val $QUERY_STRING $SETTING_NAME`
+        if [ "$OLD_VALUE" != "$NEW_VALUE" ]; then
+            SAVEOUTPUT=`/usr/local/bin/dnssh $NEW_VALUE`
+            CONFIRM_VALUE=`/usr/scripts/sshproctor`
+            if [ "$CONFIRM_VALUE" == "$NEW_VALUE" ]; then
+                echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $SUCCESS >> $STATUS_FILE
+            else
+                echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $FAILED >> $STATUS_FILE
+            fi
+        fi
+        continue
+    fi
+
+    # Get setting's current value in config file
+    OLD_VALUE=`/usr/bin/conf_agent READ $CONFIG_FILE $SETTING_NAME`
+    # Get setting passed to us through form
+    NEW_VALUE=`/usr/bin/get_token_val $QUERY_STRING $SETTING_NAME`
+    # Massage the checkbox values: on=1 off=0
+    if [ $SETTING_NAME == NETWORK_MODE -o $SETTING_NAME == I2VGPSOverrideEnable -o $SETTING_NAME == I2VEnableEthIPv6 -o $SETTING_NAME == VLAN_ENABLE ] ; then
+        if [ "$NEW_VALUE" == on ]; then
+            NEW_VALUE=1
+        else
+            NEW_VALUE=0
+        fi
+    fi
+    # Only save i2v:I2VUnifiedChannelNumber if i2v:I2VRadioType == 0 (DSRC)
+    if [ $SETTING_NAME == I2VUnifiedChannelNumber ] ; then
+        if [ `/usr/bin/get_token_val $QUERY_STRING I2VRadioType` != 0 ]; then
+            NEW_VALUE="$OLD_VALUE"    # Make identical so it doesn't save
+        fi
+    fi
+    # Only save VLAN_ENABLE (when activating) if VLAN_ID != 0
+    if [ $SETTING_NAME == VLAN_ENABLE && $NEW_VALUE == 1 ] ; then
+        if [ `/usr/bin/get_token_val $QUERY_STRING VLAN_ID` == 0 ]; then
+            NEW_VALUE=0    # Make identical so it doesn't save
+        fi
+    fi
+    # Only save SC0IPADDRESS or VLAN_IP when both are not equal
+    # TODO: this check creates a PERMANENT limitation where if a user tries to
+    # exchange IPs on RSU IP/VLAN IP in one operation, the RSU IP will FAIL
+    # This limitation must be documented.
+    if [ $SETTING_NAME == SC0IPADDRESS ] ; then
+        if [ `/usr/bin/get_token_val $QUERY_STRING VLAN_IP` == $NEW_VALUE ]; then
+            NEW_VALUE="$OLD_VALUE"    # Make identical so it doesn't save
+        fi
+    fi
+    if [ $SETTING_NAME == VLAN_IP ] ; then
+        if [ `/usr/bin/get_token_val $QUERY_STRING SC0IPADDRESS` == $NEW_VALUE ]; then
+            NEW_VALUE="$OLD_VALUE"    # Make identical so it doesn't save
+        fi
+    fi
+    # If it's changed, update
+    if [ "$OLD_VALUE" != "$NEW_VALUE" ]; then
+        SAVEOUTPUT=`/usr/bin/conf_agent WRITE $CONFIG_FILE $SETTING_NAME $NEW_VALUE`
+        CONFIRM_VALUE=`/usr/bin/get_conf_val.sh $CONFIG_FILE $SETTING_NAME`
+        # NETWORK_MODE in get_conf_val.sh needs translating TRUE/FALSE back into 1/0
+        if [ $SETTING_NAME == NETWORK_MODE -o $SETTING_NAME == VLAN_ENABLE ]; then
+            if [ $CONFIRM_VALUE == "TRUE" ]; then
+                CONFIRM_VALUE=1
+            else
+                CONFIRM_VALUE=0
+            fi
+        fi
+        if [ "$CONFIRM_VALUE" == "$NEW_VALUE" ]; then
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $SUCCESS >> $STATUS_FILE
+        else
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $FAILED >> $STATUS_FILE
+        fi
+    fi
+done
+
+
+#= Refresh Page
+echo 'Content-Type: text/html'
+echo ''
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/$REFRESH_SCRPT' \" /> "

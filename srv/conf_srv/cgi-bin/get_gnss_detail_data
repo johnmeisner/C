@@ -1,0 +1,101 @@
+#!/bin/sh
+#
+# get_gnss_aio
+#
+
+CACHENUMFILE=/tmp/zcache.gnss.active
+
+TMPFILE=/tmp/ztmp.gnss_det.tmp$$
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Figure out which cache set is active
+CACHENO=`/bin/cat $CACHENUMFILE`
+
+### Update CPU-Demanding Data
+
+if [ `/usr/bin/runagain aio_update 2` == True ]; then
+
+    # Flip cacheno so we are updating the inactive set
+    # Also will set it for the first time on no file 
+    if [ "$CACHENO" == 1 ]; then 
+        CACHENO=0
+    else
+        CACHENO=1
+    fi
+
+#ZRM    # Run Kinematics collection
+#ZRM    /usr/bin/nice kinematics-sample-client -a -n 1 > /tmp/zcache$CACHENO.kinematics
+
+    # Run Tpstestapp data collection
+    (echo q ; echo k; echo x) | /usr/bin/nice /usr/bin/tpstestapp > /tmp/zcache$CACHENO.tpstestapp
+
+    # Flip active CACHENO in storage
+    echo $CACHENO > $CACHENUMFILE
+
+fi
+
+### Output data
+
+echo "Content-type: text/html"
+echo ""
+
+# This section needs to become autotalks metrics - maybe tx and rx tallies?
+echo 'TODO: Autotalks Metrics'
+# No kinematics available on 5940
+#ZRM #=== Chop out the kinematics output we want
+#ZRM sed -e '1,/^v2x newfix/d' \
+#ZRM     -e '/gnss_status:/,/networkCorrectionsPresent/d' \
+#ZRM     -e '/-------/d'  \
+#ZRM     -e 's/^  *//' \
+#ZRM     /tmp/zcache$CACHENO.kinematics \
+#ZRM     > $TMPFILE
+#ZRM # Change the field<spaces>-data format to field<colon><spaces>data
+#ZRM sed -e 's/ /:/' -e 's/   - //' $TMPFILE
+#ZRM rm $TMPFILE
+# Big fancy comma (to split on, since there are regular commas in output)
+echo '<COMMA>'
+#== Chop out the tpstestapp status output we want
+sed -e '1,/valid:/d' \
+    -e '/ubx_fix_type:/,$d' \
+    -e 's/^  *//' \
+    /tmp/zcache$CACHENO.tpstestapp
+# Grab the aquisition times for postion, time, and good time accuracy from tpstestapp's status output
+echo '<COMMA>'
+grep 'Time to Posn Fix' /tmp/zcache$CACHENO.tpstestapp | awk '{print $5}'
+echo '<COMMA>'
+grep 'Time to First Time Accuracy' /tmp/zcache$CACHENO.tpstestapp | awk '{print $6}'
+echo '<COMMA>'
+grep 'Time to Acceptable Time Accuracy' /tmp/zcache$CACHENO.tpstestapp | awk '{print $6}'
+echo '<COMMA>'
+# Grab UBlox Firmware version
+grep 'ublox firmware ver:' /tmp/zcache$CACHENO.tpstestapp \
+     | sed -e 's/.*firmware ver://' \
+           -e 's/,.*//' \
+           -e 's/"//g' \
+           -e 's/^  *//'
+echo '<COMMA>'
+# Grab UBlox Configuration version
+grep 'ublox config:' /tmp/zcache$CACHENO.tpstestapp \
+     | sed -e 's/.*ublox config://' \
+           -e 's/"//g' \
+           -e 's/^  *//'
+echo '<COMMA>'
+# Grab Antenna status out of RH850 status - take the 2nd column == GNSS Antenna
+quickrh850 status | awk 'BEGIN{FS=","}{print $2}'
+# Grab Noise and Jamming data, also out of tpstestapp output
+echo '<COMMA>'
+grep 'GNSS Noise Level:' /tmp/zcache$CACHENO.tpstestapp | awk '{print $NF}'
+echo '<COMMA>'
+grep 'CW Jamming Indicator:' /tmp/zcache$CACHENO.tpstestapp | awk '{print $NF}'
+echo '<COMMA>'
+# Also remove "Warning - " if it is in text to reduce text size
+grep 'Jamming Status:' /tmp/zcache$CACHENO.tpstestapp | sed -e 's/ *Jamming Status: *//' | sed -e 's/^Warning - //'

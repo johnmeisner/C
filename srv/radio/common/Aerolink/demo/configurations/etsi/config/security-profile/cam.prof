@@ -1,0 +1,55 @@
+### Configuration for CAM (Cooperative Awareness Message from OBU) security profile.
+
+psid  0x24
+
+# Interval, in ms, at which full certificates are included in signed SPDUs.
+certificate_interval                    1000    # TS 103 097 requires 1 sec.
+
+##############################################################################
+### Set which fields are included in the security headers.
+
+include_generation_time                 true    # TS 103 097 requires true
+
+include_expiry_time                    false    # TS 103 097 requires false
+
+    # SPDU expiry time is set to generation time plus this value, in ms.
+    spdu_lifetime                          0    # arbitrary, not used in CAM
+
+include_generation_location            false    # TS 103 097 requires false
+
+##############################################################################
+### Set which relevance checks are executed.
+
+check_replays                          false    # no requirement
+
+check_relevance_past_freshness          true    # C2C-CC BSP requires true
+
+    # Maximum time in the past, in us, to accept an SPDU as valid.
+    past_freshness_tolerance         2000000    # C2C-CC BSP requires 2s
+
+check_relevance_future_freshness        true    # C2C-CC BSP requires true
+
+    # Maximum time in the future, in us, to accept an SPDU as valid.
+    future_freshness_tolerance         40000    # C2C-CC BSP requires 40ms
+
+check_relevance_expiry_time            false    # no requirement
+
+check_relevance_generation_location    false    # no requirement
+
+    # Maximum distance from receiver, in meters, to accept an SPDU as valid.
+    distance_tolerance                     0    # arbitrary, not used
+
+check_relevance_certificate_expiry      true    # no requirement
+
+##############################################################################
+### Set which consistency checks are executed.
+
+check_consistency_generation_location  false    # no requirement
+
+##############################################################################
+### Peer To Peer Certificate Distribution or Certificate Learning or
+### Unknown Certificate Request
+
+# Set if and how certificates are requested and provided if unknown to the
+# receiver.  Choices are none, inline, out_of_band.
+p2pcd_flavor                          inline    # TS 103 097 requires inline

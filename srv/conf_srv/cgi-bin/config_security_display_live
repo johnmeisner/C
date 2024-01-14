@@ -1,0 +1,459 @@
+#!/bin/sh
+
+# File: config_security_display_live
+# Desc: Display Security setting(s) and metrics, allow updates
+
+# Set path
+PATH=/proc/boot:/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin:/opt/cohda/bin:/rwflash/bin:/usr/local/bin
+
+# Read in the shared functions
+source /usr/local/www/cgi-bin/shared_webgui_functions.sh
+
+# Start the response
+echo 'Content-type: text/html'
+echo ''
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Get current security config values
+PV_I2VSPATSecPSID=`/usr/bin/conf_agent READ i2v I2VSPATSecPSID`
+PV_I2VSPATSspString=`/usr/bin/conf_agent READ i2v I2VSPATSspString`
+PV_I2VSPATSspMaskString=`/usr/bin/conf_agent READ i2v I2VSPATSspMaskString`
+PV_I2VMAPSecPSID=`/usr/bin/conf_agent READ i2v I2VMAPSecPSID`
+PV_I2VMAPSspString=`/usr/bin/conf_agent READ i2v I2VMAPSspString`
+PV_I2VMAPSspMaskString=`/usr/bin/conf_agent READ i2v I2VMAPSspMaskString`
+PV_I2VTIMSspString=`/usr/bin/conf_agent READ i2v I2VTIMSspString`
+PV_I2VTIMSspMaskString=`/usr/bin/conf_agent READ i2v I2VTIMSspMaskString`
+PV_I2VTIMSecPSID=`/usr/bin/conf_agent READ i2v I2VTIMSecPSID`
+PV_I2VSecurityVTPMsgRateMs=`/usr/bin/conf_agent READ i2v I2VSecurityVTPMsgRateMs`
+X=`/usr/bin/conf_agent READ i2v I2VSecurityEnable`
+if [ "$X" == 1 ]; then
+    IS_CHECKED_ENABLE_SECURITY="checked"
+else
+    IS_CHECKED_ENABLE_SECURITY=""
+fi
+
+X=`/usr/bin/conf_agent READ i2v I2VEnableVOD`
+if [ "$X" == 1 ]; then
+    IS_VOD_ENABLED="checked"
+else
+    IS_VOD_ENABLED=""
+fi
+
+# Output
+cat << '##EOFEOFEOF1'
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, shrink-to-fit=no'>
+    <title>RSU - 5940 Security</title>
+    <link rel='stylesheet' href='../assets/bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='../assets/fonts/font-awesome.min.css'>
+    <link rel='stylesheet' href='../assets/css/Features-Boxed.css'>
+    <link rel='stylesheet' href='../assets/css/Features-Clean.css'>
+    <link rel='stylesheet' href='../assets/css/Footer-Basic.css'>
+    <link rel='stylesheet' href='../assets/css/styles.css'>
+<style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.center {
+  margin: auto;
+  width: 90%;
+  height: 200px;
+  overflow: auto;
+  border: 3px solid #adb5bd;
+  background-color: #eee;
+  padding: 10px;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.btn {
+  border: 2px solid gray;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.upload-btn-wrapper input[type=file] {
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.btn_round {
+  border: 2px solid gray;
+  background-color: white;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  color: black;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+</style>
+</head>
+<body onload="start_update()">
+##EOFEOFEOF1
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+source $SCRIPT_PATH/add_page_timeout.sh 
+source $SCRIPT_PATH/add_navbar.sh 
+
+cat << '##EOFEOFEOF2'
+<script>
+function submit_form()
+{
+    overlay_on()
+    var x = document.getElementsByName('security_save');
+    x[0].submit();
+}
+function submit_imm_fwd_reset()
+{
+    var r = confirm('SAVE & APPLY will reboot the RSU!');
+    if (r == true) {
+        NAV.value='APPLY';
+        overlay_on();
+        var x = document.getElementsByName('security_save');
+        x[0].submit();
+    }
+}
+function overlay_on() {
+  document.getElementById('overlay').style.display = 'block';
+  document.getElementById('spin01').style.visibility = 'visible';
+}
+function overlay_off() {
+  document.getElementById('overlay').style.display = 'none';
+}
+var pg_change = 0;
+function change_notify(change_id) {
+  pg_change = 1;
+  document.getElementById('SAVE_BTTN').disabled = false;
+  document.getElementById('APPLY_BTTN').disabled = false;
+  change_id.style.color = "#800080";    // purple
+  navbar_set_page_has_unsaved_changes(true);
+}
+function change_notify_checkbox() {
+  document.getElementById('SAVE_BTTN').disabled = false;
+  document.getElementById('APPLY_BTTN').disabled = false;
+  navbar_set_page_has_unsaved_changes(true);
+  pg_change = 1;
+}
+function check_changes_back() {
+    if (pg_change == 0) {
+      window.location.href = '/cgi-bin/config_display_default';
+    } else {
+        var ret = confirm("Save changes?");
+        if (ret == true) {
+          NAV.value='BACK';
+          submit_form();
+        } 
+        else {
+          window.location.href = '/cgi-bin/config_display_default';
+        }
+    }
+}
+// FUNCTION send_new_security_file - uploads a ZIP security file
+function send_new_security_file() {
+
+    var file = document.getElementById('new_security_zip').files[0];
+    document.getElementById('new_security_zip').value = null;
+
+    // This sends the file contents
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            overlay_off();
+            var str1 = this.responseText;
+            var cmp_result = str1.includes('Valid');
+            if (cmp_result == true) {
+                document.getElementById('action_results_box').innerHTML = '<font color=green>Success</font> with ' + file.name + '<br/>' + str1;
+            } else {
+                document.getElementById('action_results_box').innerHTML = '<font color=red>Failure</font> with ' + file.name + '<br/>' + str1;
+                alert(file.name + ' failed to install!');
+            }
+        }
+    };
+    overlay_on();
+    xhttp.open('post', '/cgi-bin/upload_new_security', true);
+    xhttp.send(file);
+}
+// FUNCTION send_update_data_refresh() - Sends a cgi-bin requested for all-in-one data, with an inline-function to parse it and update the HTML with the new values
+var ready_for_update_request_status = "READY";
+function send_update_data_refresh() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        ready_for_update_request_status = "READY";
+        var str = this.responseText;
+        var bits_arr = str.split(',');
+        if (bits_arr.length >= 8) {
+          // Update security metrics
+          for (i = 0; i < 12; i++) {
+            document.getElementById("metric_" + (i+1)).innerHTML = bits_arr[i];
+          }
+          // Certificate Status - # of OER files
+          for (i = 12; i < 16; i++) {
+            document.getElementById("cert_" + (i-11)).innerHTML = bits_arr[i];
+          }
+        }
+      }
+    };
+    xhttp.open("GET", '/cgi-bin/get_security_data', true);
+    xhttp.send();
+}
+function start_update() {
+    if (ready_for_update_request_status == "READY") {
+        ready_for_update_request_status = "REQ_SENT";
+        send_update_data_refresh();
+    } else {
+        ready_for_update_request_status = ready_for_update_request_status + " ... STILL WAITING";
+    }
+    var t = setTimeout(start_update, 2000);
+}
+</script>
+<div id='overlay'>
+<div class=text-center>
+  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >
+    <span class='sr-only'>Loading...</span>
+  </div>
+</div>
+</div>
+    <div class='features-boxed'>
+        <div class='container'>
+
+            <div class='intro'>
+            <div class="intro-container">
+                <i class="fa fa-handshake-o icon"></i>
+                <h2 class='text-center'>Security Configuration</h2>
+            </div>
+            </div>
+##EOFEOFEOF2
+
+
+# Status from previous save
+STATUS_FILE=/tmp/update.status.file
+if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+fi
+
+
+cat << '##EOFEOFEOF3'
+    <!-- Security Settings Box -->
+    <div class='row justify-content-center features' style='padding-top: 0px;padding-bottom: 0px;'>
+      <div class='col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item'>
+        <div class='text-left box shadow p-3 mb-5 bg-white rounded' style='padding-top: 5px;mlargin-bottom: 15px;'>
+          <form name='security_save' method='post' action='/cgi-bin/config_security_save'>
+          <h3 class='text-center'>Security Settings</h3>
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="I2VSecurityEnable" id="I2VSecurityEnable"  onchange="change_notify_checkbox()"
+##EOFEOFEOF3
+    echo $IS_CHECKED_ENABLE_SECURITY '>'
+
+cat << '##EOFEOFEOF4'
+            <label class="form-check-label" for="ImmediateIPFilter" 
+                data-toggle="tooltip" data-placement="top" title="Enable Security. Default: Disabled"> 
+                Enable Security</label>
+            </div><!-- End of form-check div -->
+##EOFEOFEOF4
+
+    # Common text of the tooltips
+    SECBLURB="setting must match the values for the V2X certificates used in the target deployment.  You must carefully review the V2X security profile for the agency operating the RSUs to confirm the settings here match in order for the RSU to properly transmit messages."
+
+    # Add <form> HTML for the text inputs for the config items
+    k_print_text_input_tip "SPAT Security PSID" I2VSPATSecPSID "$PV_I2VSPATSecPSID" "The I2VSPATSecPSID $SECBLURB"
+    k_print_text_input_tip "SPAT Ssp String" I2VSPATSspString "$PV_I2VSPATSspString" "The I2VSPATSspString $SECBLURB"
+    k_print_text_input_tip "SPAT SspMask String" I2VSPATSspMaskString "$PV_I2VSPATSspMaskString" "The I2VSPATSspMaskString $SECBLURB"
+    k_print_text_input_tip "MAP Security PSID" I2VMAPSecPSID "$PV_I2VMAPSecPSID" "The I2VMAPSecPSID $SECBLURB"
+    k_print_text_input_tip "MAP Ssp String" I2VMAPSspString "$PV_I2VMAPSspString" "The I2VMAPSspString $SECBLURB"
+    k_print_text_input_tip "MAP SspMask String" I2VMAPSspMaskString "$PV_I2VMAPSspMaskString" "The I2VMAPSspMaskString $SECBLURB"
+    k_print_text_input_tip "TIM Ssp String" I2VTIMSspString "$PV_I2VTIMSspString" "The I2VTIMSspString $SECBLURB"
+    k_print_text_input_tip "TIM SspMask String" I2VTIMSspMaskString "$PV_I2VTIMSspMaskString" "The I2VTIMSspMaskString $SECBLURB"
+    k_print_text_input_tip "TIM Security PSID" I2VTIMSecPSID "$PV_I2VTIMSecPSID" "The I2VTIMSecPSID $SECBLURB"
+
+cat << '##EOFEOFEOF8'
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="I2VEnableVOD" id="I2VEnableVOD"  onchange="change_notify_checkbox()"
+##EOFEOFEOF8
+
+    echo $IS_VOD_ENABLED'>'
+cat << '##EOFEOFEOF7'
+            <label class="form-check-label" for="ImmediateIPFilter" 
+                data-toggle="tooltip" data-placement="top" title="Enable VOD. Default: Disabled"> 
+                Enable VOD</label>
+            </div><!-- End of form-check div -->
+##EOFEOFEOF7
+
+    # Comment for VTP
+    VTP_COMMENT="No of Ms between security credential verification using VTP. 0 = Verify every message; 1..65534 = No of milliseconds between verifications; 65535 = Disable VTP verification;"
+    k_print_text_input_tip "VTP in Milliseconds" I2VSecurityVTPMsgRateMs "$PV_I2VSecurityVTPMsgRateMs" "$VTP_COMMENT"
+
+
+cat << '##EOFEOFEOF5'
+            <br/>
+
+    <input type='text' name='NAV' id='NAV' value='REFRESH' style='visibility: hidden;' > 
+        <br>
+   <div style='float: left;'>
+     <p align="left"> <input type="button" id='SAVE_BTTN' value="SAVE" onclick="submit_form()" disabled> </p>
+   </div>
+   <div style='float: left;'>
+     <p align="center"> <input type="button" id='APPLY_BTTN' value="SAVE & APPLY" onclick="submit_imm_fwd_reset()" disabled> </p>
+   </div>
+     <p align='right'> <input type='button' value='BACK' onclick="check_changes_back()"> </p>
+</form>
+        </div>
+        </div>
+    </div>
+    <!-- END Security Settings -->
+
+
+
+
+    <!-- Security Status -->
+    <div class='row justify-content-center features' style='padding-top: 0px;padding-bottom: 0px;'>
+    <div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 text-left item" style="padding-left: 5px;padding-right: 5px;">
+        <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 15px; min-height: 230px; margin-bottom:0px">
+            <h3 class='text-center'>Security Metrics</h3>
+            <br/>
+            <table align=center>
+                <tr><td></td>
+                    <td><div class="name" style='color: #808080; font-size: 15px; margin-bottom: 7px'> &nbsp; &nbsp; Requests</div></td>
+                    <td><div class="name" style='color: #808080; font-size: 15px; margin-bottom: 7px'> &nbsp; &nbsp; Successes</div></td>
+                    <td><div class="name" style='color: #808080; font-size: 15px; margin-bottom: 7px'> &nbsp; Failures</div></td>
+                    <td><div class="name" style='color: #808080; font-size: 15px; margin-bottom: 7px'> &nbsp; Err.Code</div></td>
+                </tr>
+                <tr><td><div class="name" style='color: #808080; font-size: 15px; margin-bottom: 7px'>Message Signs</td>
+                    <td><div id='metric_1' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                    <td><div id='metric_2' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                    <td><div id='metric_3' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                    <td><div id='metric_4' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                </tr>
+                <tr><td><div class="name" style='color: #808080; font-size: 15px; margin-bottom: 7px'>Security Strips</div></td>
+                    <td><div id='metric_5' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                    <td><div id='metric_6' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                    <td><div id='metric_7' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                    <td><div id='metric_8' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                </tr>
+                <tr><td><div class="name" style='color: #808080; font-size: 15px; margin-bottom: 7px'>Message Verifies</div></td>
+                    <td><div id='metric_9' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                    <td><div id='metric_10' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                    <td><div id='metric_11' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                    <td><div id='metric_12' class="name text-right" style='color: #000000; font-size: 15px; margin-bottom: 7px'></div></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- END Security Status -->
+
+
+    <!-- Certificate Status -->
+    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 text-left item" style="padding-left: 5px;padding-right: 5px;">
+        <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 15px; min-height: 230px; margin-bottom:0px">
+            <h3 class='text-center'>Security Certificate Status</h3>
+            <br/>
+            <table align=center><tr><td>
+            <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>Enrollment Requests: <span id='cert_1' style='color: #000000'></span></div>
+            <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>Signed Enrollment Responses: <span id='cert_2' style='color: #000000'></span></div>
+            <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>Total Number of .OER Files: <span id='cert_3' style='color: #000000'></span></div>
+            <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 7px'>Weeks of Downloaded Certs: <span id='cert_4' style='color: #000000'></span></div>
+            </td></tr></table>
+        </div>
+    </div>
+    <!-- END Certificate Status -->
+
+    </div>
+    <!-- END div of center justification -->
+
+
+
+    <!-- Security Certificates Box -->
+    <div class='row justify-content-center features' style='padding-top: 0px;padding-bottom: 0px;'>
+      <div class='col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item'>
+        <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 15px; min-height: 350px; margin-bottom:0px">
+
+<form enctype='multipart/form-data' method='post' action='/cgi-bin/upload_new_security'>
+        <h3 class='text-center'>ISS Certificate Management Status</h3>
+        <div class="center" id='active_file_frame'>
+        <div class='container'>
+          <div class='table table-bordered' id='action_results_box'>
+            Upload results will appear here
+          </div>
+        </div>
+        </div>
+   <br/>
+   <div style='float: left;'>
+     <div class='upload-btn-wrapper'>
+       <button class='btn' style='margin-left: 50px;'>Upload new ISS CMS Response zip</button>
+       <input type='file' name='rule_file' accept='.zip' id='new_security_zip' onchange='send_new_security_file()'/>
+     </div>
+   </div>
+</form>
+
+        </div>
+        </div>
+    </div>
+    <!-- END Security Certificates Box -->
+
+
+        </div>
+    </div>
+
+
+##EOFEOFEOF5
+
+# FW version
+echo "<p class='copyright' style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>VERSION:"
+cat /etc/version 
+echo "</p>"
+    
+# End of Page with Footer
+
+cat << '##EOFEOFEOF6'
+
+    <div class='footer-basic'>
+        <footer>
+            <p class='copyright'>MobiQ © 2023</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+##EOFEOFEOF6

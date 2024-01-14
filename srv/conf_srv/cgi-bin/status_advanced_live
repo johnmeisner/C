@@ -1,0 +1,165 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+function print_header
+{
+
+cat << '##EOFEOFEOF1'
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RSU - 5940 - Advanced Status</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+      #overlay {
+          position: fixed;
+          display: none;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0,0,0,0.3);
+          z-index: 2;
+          cursor: pointer;
+      }
+    </style>
+    <style>
+    .icon {
+      font-size: 60px;
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+    }
+    .intro-container {
+      display: -ms-flexbox;
+      display: flex;
+    }
+    </style>
+    <script>
+        function go_to_main() {
+            window.location.href = '/cgi-bin/rsu_main';
+        }
+        function overlay_on() {
+          document.getElementById('overlay').style.display = 'block';
+          document.getElementById('spin01').style.visibility = 'visible';
+        }
+        function overlay_off() {
+          document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+  <div id='overlay'>
+    <div class=text-center>
+      <div id='spin01' class='spinner-border text-primary' role='status' style='visibility: hidden;'>
+        <span class='sr-only'>Loading...</span>
+      </div>
+    </div>
+  </div>
+  <div class="features-boxed">
+    <div class="container">
+      <div class="intro">
+        <div class="intro-container">
+          <i class="fa fa-bullhorn icon"></i>
+          <h2 class="text-center">Advanced Status</h2>
+        </div>
+      </div>
+      <br>
+      <div class="row justify-content-center features" style="padding-top: 0px;padding-bottom: 0px;">
+        <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9 text-left item" style="padding-left: 5px;padding-right: 5px;">
+          <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 15px;">
+
+##EOFEOFEOF2
+
+}
+
+
+function print_body_to_end
+{
+  cat << '##EOFEOFEOF3'
+
+            <p align='right'> <input type='button' value='BACK' onclick="go_to_main()"> </p>
+
+          </div>  <!-- class="text-left box shadow p-3 mb-5 bg-white rounded" -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="copyright" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>
+  VERSION:
+##EOFEOFEOF3
+
+  cat /etc/version 
+
+  cat << '##EOFEOFEOF4'
+  </p>
+
+  <div class="footer-basic">
+    <footer>
+            <p class="copyright">MobiQ © 2023</p>
+            <br>
+    </footer>
+  </div>
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+</script>
+</body>
+</html>
+
+##EOFEOFEOF4
+
+}
+
+
+function print_status
+{
+    # Run this collector only once and then we're good, data won't change without an upgrade requiring a reboot
+    DATA_OPB=/tmp/zcache.once_per_boot.txt
+    if [ ! -e $DATA_OPB ]; then
+        echo '<script>'
+        echo 'overlay_on();'
+        echo '</script>'
+        /usr/local/www/cgi-bin/collect_onceperboot_data.sh $DATA_OPB
+        echo '<script>'
+        echo 'overlay_off();'
+        echo '</script>'
+    fi
+    echo "<pre>"
+    cat $DATA_OPB
+    echo "</pre>"
+}
+
+
+# Main
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+else  
+    print_header
+    print_status
+    print_body_to_end
+fi

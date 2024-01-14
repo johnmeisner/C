@@ -1,0 +1,75 @@
+#!/bin/sh
+
+# File: config_imm_fwd_save
+# Desc: Save immmediate forward user settings
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Status file to send back to user
+STATUS_FILE=/tmp/update.status.file
+rm -f $STATUS_FILE
+SUCCESS='<font color=green>Successful</font><br/>'
+FAILED='<font color=red>FAILED</font><br/>'
+
+#=== Figure out follow-up page to show user
+NAV=`/usr/bin/get_token_val $QUERY_STRING NAV`
+if [ "$NAV" == "BACK" ]; then
+    REFRESH_SCRPT="config_display_default"
+elif [ "$NAV" == "APPLY" ]; then
+    # do a reboot after the save
+    REFRESH_SCRPT="reboot_with_countdown"
+else
+    # go back to the display_live screen after the save
+    REFRESH_SCRPT="config_imm_fwd_display_live"
+fi
+
+
+# Process the <FORM> fields we may need to change and perform changes
+# Since we are using BASH and not perl or python, we don't have arrays
+# so have to pack our data to get a semi-intelligent multi-column data loop.
+# We make the <FORM> field names and the config setting names the same, so
+# our packed loop data is two items: config-file-w/o-.conf <colon> settingname.
+
+LOOPDATA="amh:ImmediateIPFilter amh:ImmediateIP amh:ImmediatePort"
+
+for XPACKED in $LOOPDATA ; do
+    CONFIG_FILE=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $1}'`
+    SETTING_NAME=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $2}'`
+
+    # Get setting's current value in config file
+    OLD_VALUE=`/usr/bin/conf_agent READ $CONFIG_FILE $SETTING_NAME`
+    # Get setting passed to us through form
+    NEW_VALUE=`/usr/bin/get_token_val $QUERY_STRING $SETTING_NAME`
+    # Massage the checkbox values: on=1 off=0
+    if [ "$SETTING_NAME" == "ImmediateIPFilter" ] ; then
+        if [ "$NEW_VALUE" == on ]; then
+            NEW_VALUE=1
+        else
+            NEW_VALUE=0
+        fi
+    fi
+    # If it's changed, update
+    if [ "$OLD_VALUE" != "$NEW_VALUE" ]; then
+        /usr/bin/conf_agent WRITE $CONFIG_FILE $SETTING_NAME $NEW_VALUE > /dev/null
+        CONFIRM_VALUE=`/usr/bin/get_conf_val.sh $CONFIG_FILE $SETTING_NAME`
+        if [ "$CONFIRM_VALUE" == "$NEW_VALUE" ]; then
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $SUCCESS >> $STATUS_FILE
+        else
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $FAILED >> $STATUS_FILE
+        fi
+    fi
+done
+
+
+#= Refresh Page
+echo 'Content-Type: text/html'
+echo ''
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/$REFRESH_SCRPT'\"/>"

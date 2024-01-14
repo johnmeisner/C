@@ -1,0 +1,18 @@
+#!/bin/sh
+
+[Unit]
+Description=RSU Health Service
+Before=denso_startup.service
+
+[Service]
+Type=oneshot
+StandardOutput=journal+console
+ExecStart=/usr/scripts/lpwrmonitor.sh
+ExecStart=/usr/scripts/rsuhealth.sh
+ExecStart=/usr/bin/dcu -imasterkey
+ExecStart=/rwflash/configs/startup.sh
+RemainAfterExit=yes
+ExecStop=/rwflash/configs/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target

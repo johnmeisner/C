@@ -1,0 +1,108 @@
+#!/bin/sh
+#
+# get_radio_data
+#
+# We use two different caches here, one updates every 2 secs, one every 10 secs
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+
+CACHE_A_NUMFILE=/tmp/zcache.radio.A.active
+CACHE_B_NUMFILE=/tmp/zcache.radio.B.active
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Get active number of each cache set
+CACHE_A_NUM=`/bin/cat $CACHE_A_NUMFILE`
+CACHE_B_NUM=`/bin/cat $CACHE_B_NUMFILE`
+
+### Update CACHE_A data if it is time
+if [ `/usr/bin/runagain radio_update_a 2` == True ]; then
+
+    # Flip cacheno so we are updating the inactive set
+    # Also will set it for the first time on no file 
+    if [ "$CACHE_A_NUM" == 1 ]; then 
+        CACHE_A_NUM=0
+    else
+        CACHE_A_NUM=1
+    fi
+
+    # The llc command inside quickradio needs this
+    export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+
+    #=== Radio Stack data
+    /usr/bin/nice /usr/bin/quickradio > /tmp/zcache.radio.$CACHE_A_NUM.quickradio
+
+    #== CV2X Channel
+    I2VRadioType=`/usr/bin/nice /usr/bin/conf_agent READ i2v I2VRadioType` # Get Radio type to see if we need cv2x channel
+    if [ "$I2VRadioType" == 1 ]; then   # 1==CV2X
+        export PATH=/usr/local/bin:$PATH
+        /usr/bin/nice /usr/local/bin/dncmdctl cv2xcfg channel | head -1 | sed -e 's/$/,/' > /tmp/zcache.radio.$CACHE_A_NUM.cv2x_channel
+        #/usr/bin/nice /usr/bin/conf_agent READ i2v I2VUnifiedChannelNumber | head -1 | sed -e 's/$/,/' > /tmp/zcache.radio.$CACHE_A_NUM.cv2x_channel
+    else
+        echo "DSRC," > /tmp/zcache.radio.$CACHE_A_NUM.cv2x_channel      # Let status page know not to use cv2x channel
+    fi
+
+    #== CV2X Status
+    /usr/bin/nice rsuhealth -c | tr \\012 ' ' | awk '{print $5 "," $7 ","}' \
+        > /tmp/zcache.radio.$CACHE_A_NUM.cv2x_get_status
+
+    #== Security data
+    /usr/bin/nice quicksecurity --webgui-format > /tmp/zcache.radio.$CACHE_A_NUM.secdata
+
+    # Flip active CACHE_A_NUM in storage
+    echo $CACHE_A_NUM > $CACHE_A_NUMFILE
+fi
+
+### Update CACHE_B data if it is time
+if [ `/usr/bin/runagain radio_update_b 10` == True ]; then
+
+    # Flip cacheno so we are updating the inactive set
+    # Also will set it for the first time on no file 
+    if [ "$CACHE_B_NUM" == 1 ];
+        then CACHE_B_NUM=0 ;
+        else CACHE_B_NUM=1 ;
+    fi
+
+    # Get CV2X CPU and PMIC temperatures
+    # for example, need csv ie : echo "69,66," > /tmp/zcache.radio.$CACHE_B_NUM.cv2x_temps
+    /usr/local/bin/rsuhealth -tcv2x  > /tmp/zcache.radio.$CACHE_B_NUM.cv2x_temps
+
+    # Get DSRC temperature: A don't care but need to keep order of output correct for gui
+    echo "0,"  > /tmp/zcache.radio.$CACHE_B_NUM.dsrc_temp
+
+    # Get HSM Temperature: from get_rsu_temps.sh
+    # cd /usr/bin   #Necessary so v2xse-example-app can find hsm security key
+    # /usr/bin/nice v2xse-example-app hsm_temp > /tmp/zcache.radio.$CACHE_B_NUM.hsmtemp
+    /usr/local/bin/rsuhealth -thsm > /tmp/zcache.radio.$CACHE_B_NUM.hsmtemp
+
+    # Store new CACHE_B_NUM
+    echo $CACHE_B_NUM > $CACHE_B_NUMFILE
+fi
+
+
+### Output data
+
+echo "Content-type: text/html"
+echo ""
+
+cat /tmp/zcache.radio.$CACHE_A_NUM.quickradio \
+    /tmp/zcache.radio.$CACHE_A_NUM.cv2x_channel \
+    /tmp/zcache.radio.$CACHE_A_NUM.cv2x_get_status
+cat /sys/class/net/cw-llc0/operstate | sed -e s/up/Active/ -e s/down/Inactive/
+echo ","
+#== RH850 Data
+/usr/bin/quickrh850 status
+# More radio detail data
+cat /tmp/zcache.radio.$CACHE_A_NUM.secdata     \
+    /tmp/zcache.radio.$CACHE_B_NUM.cv2x_temps  \
+    /tmp/zcache.radio.$CACHE_B_NUM.dsrc_temp   \
+    /tmp/zcache.radio.$CACHE_B_NUM.hsmtemp
+

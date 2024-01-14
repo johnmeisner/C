@@ -1,0 +1,509 @@
+#!/bin/sh
+#
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+#=== Generate Config Page ===
+
+#=== Global vars
+
+#==== Helper functions ===
+print_line()
+{
+    echo "<br>"
+}
+
+# Read in the shared functions
+source /usr/local/www/cgi-bin/shared_webgui_functions.sh
+
+#
+# Embedded scripts
+#
+
+print_icon_style()
+{
+echo "<style>" 
+
+echo ".icon {" 
+echo "  font-size: 60px;" 
+echo "  text-align: center;" 
+echo "  margin-top: 20px;" 
+echo "  padding: 10px;" 
+echo "}" 
+
+echo ".intro-container {" 
+echo "  display: -ms-flexbox;" 
+echo "  display: flex;" 
+echo "}" 
+
+echo "</style>" 
+}
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+    cat << '##EOFEOFEOF1'
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RSU 5940 - Advanced Config Settings</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
+    <style>
+      #overlay {
+          position: fixed;
+          display: none;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0,0,0,0.3);
+          z-index: 2;
+          cursor: pointer;
+      }
+    </style>
+
+##EOFEOFEOF1
+
+    print_icon_style
+    
+    echo "</head>"
+}
+
+print_overlay()
+{
+    echo "<div id='overlay'>"
+
+    echo "<div class="text-center">"
+
+    echo "  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >"
+    echo "    <span class='sr-only'>Loading...</span>"
+    echo "  </div>"
+    echo "</div>"
+    echo "</div>"
+}
+
+read_current_values()
+{
+    PV_EnableStoreAndRepeat=`/usr/bin/conf_agent READ amh EnableStoreAndRepeat`
+    PV_ImmediateEnable=`/usr/bin/conf_agent READ amh ImmediateEnable`
+    PV_BSMRxPSIDPERU=`/usr/bin/conf_agent READ i2v BSMRxPSIDPERU`
+    PV_I2VIPBAppEnable=`/usr/bin/conf_agent READ i2v I2VIPBAppEnable`
+    PV_I2VSCSAppEnable=`/usr/bin/conf_agent READ i2v I2VSCSAppEnable`
+    PV_I2VSRMAppEnable=`/usr/bin/conf_agent READ i2v I2VSRMAppEnable`
+    PV_I2VWSAEnable=`/usr/bin/conf_agent READ i2v I2VWSAEnable`
+    PV_I2VUseDeviceID=`/usr/bin/conf_agent READ i2v I2VUseDeviceID`
+    PV_I2VUseGPSTXControl=`/usr/bin/conf_agent READ i2v I2VUseGPSTXControl`
+    PV_SPATEnableValue=`/usr/bin/conf_agent READ scs SPATEnableValue`
+    PV_SRMFwdEnable=`/usr/bin/conf_agent READ scs SRMFwdEnable`
+    PV_BSMRxEnable=`/usr/bin/conf_agent READ spat16 BSMRxEnable`
+    PV_I2VSPATSecPSID=`/usr/bin/conf_agent READ i2v I2VSPATSecPSID`
+    PV_AMHForwardEnable=`/usr/bin/conf_agent READ amh AMHForwardEnable`
+    PV_AC_BE_CCH_RADIO_0=`/usr/bin/conf_agent READ nsconfig AC_BE_CCH_RADIO_0`
+    PV_AC_BK_CCH_RADIO_0=`/usr/bin/conf_agent READ nsconfig AC_BK_CCH_RADIO_0`
+    PV_AC_VI_CCH_RADIO_0=`/usr/bin/conf_agent READ nsconfig AC_VI_CCH_RADIO_0`
+    PV_AC_VO_CCH_RADIO_0=`/usr/bin/conf_agent READ nsconfig AC_VO_CCH_RADIO_0`
+    PV_AC_BE_SCH_RADIO_0=`/usr/bin/conf_agent READ nsconfig AC_BE_SCH_RADIO_0`
+    PV_AC_BK_SCH_RADIO_0=`/usr/bin/conf_agent READ nsconfig AC_BK_SCH_RADIO_0`
+    PV_AC_VI_SCH_RADIO_0=`/usr/bin/conf_agent READ nsconfig AC_VI_SCH_RADIO_0`
+    PV_AC_VO_SCH_RADIO_0=`/usr/bin/conf_agent READ nsconfig AC_VO_SCH_RADIO_0`
+    PV_AC_BE_CCH_RADIO_1=`/usr/bin/conf_agent READ nsconfig AC_BE_CCH_RADIO_1`
+    PV_AC_BK_CCH_RADIO_1=`/usr/bin/conf_agent READ nsconfig AC_BK_CCH_RADIO_1`
+    PV_AC_VI_CCH_RADIO_1=`/usr/bin/conf_agent READ nsconfig AC_VI_CCH_RADIO_1`
+    PV_AC_VO_CCH_RADIO_1=`/usr/bin/conf_agent READ nsconfig AC_VO_CCH_RADIO_1`
+    PV_AC_BE_SCH_RADIO_1=`/usr/bin/conf_agent READ nsconfig AC_BE_SCH_RADIO_1`
+    PV_AC_BK_SCH_RADIO_1=`/usr/bin/conf_agent READ nsconfig AC_BK_SCH_RADIO_1`
+    PV_AC_VI_SCH_RADIO_1=`/usr/bin/conf_agent READ nsconfig AC_VI_SCH_RADIO_1`
+    PV_AC_VO_SCH_RADIO_1=`/usr/bin/conf_agent READ nsconfig AC_VO_SCH_RADIO_1`
+    PV_SRMPermissive=`/usr/bin/conf_agent READ srm_rx SRMPermissive`
+    PV_SRMTXVehBasicRole=`/usr/bin/conf_agent READ srm_rx SRMTXVehBasicRole`
+    PV_SRMVODMsgVerifyCount=`/usr/bin/conf_agent READ srm_rx SRMVODMsgVerifyCount`
+}
+
+print_form_section()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">"
+
+    echo "                <div class=\"col-sm-9 col-md-9 col-lg-9 col-xl-9 text-left item\" style=\"padding-left: 5px;padding-right: 5px;\">"
+    # adding box
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;margin-bottom: 15px;\">"       # box begin
+
+    #=== form action
+    echo "<form name='rsu_adv_form' action='/cgi-bin/config_advanced_save' method='post'>"
+
+    echo "        <h3 class=\"text-center\">Settings</h3>"
+
+    #==========================
+
+    k_print_block_header AMH
+    k_print_text_input_tip EnableStoreAndRepeat EnableStoreAndRepeat "$PV_EnableStoreAndRepeat" ""
+    k_print_text_input_tip ImmediateEnable ImmediateEnable "$PV_ImmediateEnable" ""
+    k_print_text_input_tip AMHForwardEnable AMHForwardEnable "$PV_AMHForwardEnable" ""
+
+    print_line
+    k_print_block_header I2V
+    k_print_text_input_tip I2VIPBAppEnable I2VIPBAppEnable "$PV_I2VIPBAppEnable" ""
+    k_print_text_input_tip I2VSCSAppEnable I2VSCSAppEnable "$PV_I2VSCSAppEnable" ""
+    k_print_text_input_tip I2VSRMAppEnable I2VSRMAppEnable "$PV_I2VSRMAppEnable" ""
+    k_print_text_input_tip I2VWSAEnable I2VWSAEnable "$PV_I2VWSAEnable" ""
+    k_print_text_input_tip I2VUseDeviceID I2VUseDeviceID "$PV_I2VUseDeviceID" ""
+    k_print_text_input_tip I2VUseGPSTXControl I2VUseGPSTXControl "$PV_I2VUseGPSTXControl" ""
+
+    print_line
+    k_print_block_header SCS
+    k_print_text_input_tip SPATEnableValue SPATEnableValue "$PV_SPATEnableValue" ""
+    k_print_text_input_tip SRMFwdEnable SRMFwdEnable "$PV_SRMFwdEnable" ""
+
+    print_line
+    k_print_block_header SPAT16
+    k_print_text_input_tip BSMRxEnable BSMRxEnable "$PV_BSMRxEnable" ""
+    k_print_text_input_tip BSMRxPSIDPERU BSMRxPSIDPERU "$PV_BSMRxPSIDPERU" ""
+    k_print_text_input_tip I2VSPATSecPSID I2VSPATSecPSID "$PV_I2VSPATSecPSID" ""
+
+    print_line
+    k_print_block_header NSCONFIG
+    k_print_text_input_tip AC_BE_CCH_RADIO_0 AC_BE_CCH_RADIO_0 "$PV_AC_BE_CCH_RADIO_0" ""
+    k_print_text_input_tip AC_BK_CCH_RADIO_0 AC_BK_CCH_RADIO_0 "$PV_AC_BK_CCH_RADIO_0" ""
+    k_print_text_input_tip AC_VI_CCH_RADIO_0 AC_VI_CCH_RADIO_0 "$PV_AC_VI_CCH_RADIO_0" ""
+    k_print_text_input_tip AC_VO_CCH_RADIO_0 AC_VO_CCH_RADIO_0 "$PV_AC_VO_CCH_RADIO_0" ""
+    k_print_text_input_tip AC_BE_SCH_RADIO_0 AC_BE_SCH_RADIO_0 "$PV_AC_BE_SCH_RADIO_0" ""
+    k_print_text_input_tip AC_BK_SCH_RADIO_0 AC_BK_SCH_RADIO_0 "$PV_AC_BK_SCH_RADIO_0" ""
+    k_print_text_input_tip AC_VI_SCH_RADIO_0 AC_VI_SCH_RADIO_0 "$PV_AC_VI_SCH_RADIO_0" ""
+    k_print_text_input_tip AC_VO_SCH_RADIO_0 AC_VO_SCH_RADIO_0 "$PV_AC_VO_SCH_RADIO_0" ""
+    k_print_text_input_tip AC_BE_CCH_RADIO_1 AC_BE_CCH_RADIO_1 "$PV_AC_BE_CCH_RADIO_1" ""
+    k_print_text_input_tip AC_BK_CCH_RADIO_1 AC_BK_CCH_RADIO_1 "$PV_AC_BK_CCH_RADIO_1" ""
+    k_print_text_input_tip AC_VI_CCH_RADIO_1 AC_VI_CCH_RADIO_1 "$PV_AC_VI_CCH_RADIO_1" ""
+    k_print_text_input_tip AC_VO_CCH_RADIO_1 AC_VO_CCH_RADIO_1 "$PV_AC_VO_CCH_RADIO_1" ""
+    k_print_text_input_tip AC_BE_SCH_RADIO_1 AC_BE_SCH_RADIO_1 "$PV_AC_BE_SCH_RADIO_1" ""
+    k_print_text_input_tip AC_BK_SCH_RADIO_1 AC_BK_SCH_RADIO_1 "$PV_AC_BK_SCH_RADIO_1" ""
+    k_print_text_input_tip AC_VI_SCH_RADIO_1 AC_VI_SCH_RADIO_1 "$PV_AC_VI_SCH_RADIO_1" ""
+    k_print_text_input_tip AC_VO_SCH_RADIO_1 AC_VO_SCH_RADIO_1 "$PV_AC_VO_SCH_RADIO_1" ""
+
+    print_line
+    k_print_block_header SRM_RX
+    k_print_text_input_tip SRMPermissive SRMPermissive "$PV_SRMPermissive" ""
+    k_print_text_input_tip SRMTXVehBasicRole SRMTXVehBasicRole "$PV_SRMTXVehBasicRole" ""
+    k_print_text_input_tip SRMVODMsgVerifyCount SRMVODMsgVerifyCount "$PV_SRMVODMsgVerifyCount" ""
+
+    print_line
+    # 8 lines chopped. Add them at bottom to maintain page size.
+    print_line
+    print_line
+    print_line
+    print_line
+    print_line
+    print_line
+    print_line
+    print_line
+
+    # place holder for various flags
+    echo "    <input type='text' name='NAV' id='NAV' value='NONE' style='visibility: hidden;' > "
+
+    # line
+    echo "        <br>"   # header
+
+    #=== 3 buttons on same line (float 1st two
+
+    # Save button - disabled by default, enable when there are changes
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"left\"> <input type=\"button\" id='SAVE_BTTN' value=\"SAVE\" onclick=\"submit_rsu_form()\" disabled> </p>"
+    echo "   </div>"
+
+    # Apply button
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"center\"> <input type=\"button\" id='APPLY_BTTN' value=\"SAVE & APPLY\" onclick=\"submit_rsu_form_and_apply()\" disabled> </p>"
+    echo "   </div>"
+
+    # Back button one level up - prompt user if changes made
+    echo "     <p align='right'> <input type='button' value='BACK' onclick=\"check_changes_back()\"> </p>"
+
+    # form end
+    echo "</form>"
+
+    # End
+    echo "        </div>"         # box end
+
+    echo "        </div>"
+
+    echo "    </div>"
+}
+
+print_feature_box_beg()
+{
+    echo "<body>"
+    source $SCRIPT_PATH/add_navbar.sh 
+    source $SCRIPT_PATH/add_page_timeout.sh
+    print_overlay
+    echo "    <div class=\"features-boxed\">"
+    echo "        <div class=\"container\">"
+}
+
+print_feature_box_end()
+{
+    echo "        </div>"
+    echo "    </div>"
+}
+
+print_intro()
+{
+    echo "            <div class=\"intro\">"
+    echo "            <div class=\"intro-container\">"
+    echo "                <i class=\"fa fa-server icon\"></i>"
+    echo "                <h2 class=\"text-center\">Advanced Config Settings"
+    echo "                </h2>"
+    echo "            </div>"
+    echo "            </div>"
+}
+
+print_Home_box()
+{
+    echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+    echo "                  <a href=\"/cgi-bin/rsu_main\">"
+    echo "                        <h3 class=\"name\">Home</h3>"
+    echo "                    </div>"
+    echo "                  </a>"
+    echo "                </div>"
+}
+
+print_fw_version()
+{
+  # FW version
+  echo "      <p class=\"copyright\" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>"
+  echo VERSION:
+  cat /etc/version 
+  echo "      </p>"
+}  
+
+#
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+    echo "    <div class=\"footer-basic\">"
+    echo "        <footer>"
+    echo "            <p class=\"copyright\">MobiQ © 2023</p>"
+    echo "            <br>"
+    echo "        </footer>"
+    echo "    </div>"
+    echo "    <script src=\"../assets/js/jquery.min.js\"></script>"
+    echo "    <script src=\"../assets/bootstrap/js/bootstrap.min.js\"></script>"
+
+    #=== Custom scripts ===
+    echo "<script>"
+        print_submit_functions
+        print_overlay_on
+        print_overlay_off
+        print_ValidateIPaddress
+        print_change_notify
+        print_check_changes_back
+        print_check_changes_save
+        print_run_srv_script
+        print_advance_network_settings
+    echo "</script>"
+
+    echo "</body>"
+    echo "</html>"
+}
+
+print_ValidateIPaddress()
+{
+    echo "function ValidateIPaddress(ipaddress)"
+    echo "{"
+    echo "  if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress))"
+    echo "  {"
+    echo "     return (true)"
+    echo "  }"
+    echo "  alert('You have entered an invalid IP address: ' + ipaddress)  "
+    echo "  return (false)  "
+    echo "} "
+}
+
+print_overlay_on()
+{
+    echo "    function overlay_on() {"
+    echo "      document.getElementById('overlay').style.display = 'block';"
+    echo "      document.getElementById('spin01').style.visibility = 'visible';"
+    echo "    }"
+}
+
+print_overlay_off()
+{
+    echo "    function overlay_off() {"
+    echo "      document.getElementById('overlay').style.display = 'none';"
+    echo "    }"
+}
+
+print_submit_functions()
+{
+    # Submit rsu_basic
+    echo "function submit_rsu_form() {"
+
+            echo "overlay_on()"
+            echo "    var x = document.getElementsByName('rsu_adv_form');"
+            echo "    x[0].submit();"
+    echo "}"
+
+    # Submit rsu_basic_reset
+    echo "function submit_rsu_form_and_apply() {"
+        # = Make sure user wants to SAVE and REBOOT
+        echo "var r = confirm('SAVE & APPLY will reboot the RSU!');"
+        echo "if (r == true) {"
+                echo "NAV.value='APPLY';"
+                echo "overlay_on()"
+                echo "    var x = document.getElementsByName('rsu_adv_form');"
+                echo "    x[0].submit();"
+        echo "}"
+    echo "}"
+}
+
+
+print_check_changes_back()
+{
+    # check changes
+    echo "function check_changes_back() {"
+    echo "if (pg_change == 0) {"    #   check for changes
+            # No changes - go back one level up
+    echo "  window.location.href = '/cgi-bin/rsu_main';"
+    echo "} else {"
+            # Else prompt user to save changes
+    echo "    var ret = confirm(\"Save changes?\");"
+    echo "    if (ret == true) {"
+                # Save changes and go back
+    echo "      NAV.value='BACK';"
+    echo "      submit_rsu_form();"
+    echo "    } "
+    echo "    else {"
+    echo "      window.location.href = '/cgi-bin/rsu_main';"
+    echo "    }"
+    echo "}"
+    echo "}"
+}
+
+print_check_changes_save()
+{
+    # check changes
+    echo "function check_changes_save() {"
+    echo "if (pg_change == 0) {"    #   check for changes
+            # No changes - go back one level up
+    echo "  window.location.href = '/cgi-bin/config_display_default';"
+    echo "} else {"
+            # Else prompt user to save changes
+    echo "    var ret = confirm(\"Save changes?\");"
+    echo "    if (ret == true) {"
+                # Save changes and go back
+    echo "      submit_rsu_form();"
+    echo "    } "
+    echo "    else {"
+    echo "      window.location.href = '/cgi-bin/config_display_default';"
+    echo "    }"
+    echo "}"
+    echo "}"
+}
+
+# Function to validate onchange events
+print_change_notify()
+{
+    echo "var pg_change = 0;"
+    echo "function change_notify(change_id) {"
+    echo "  pg_change = 1;"
+    # set color to purple - #800080
+    echo "  change_id.style.color = \"#800080\"; "
+    # enable SAVE button
+    echo "  document.getElementById('SAVE_BTTN').disabled = false;"
+    # enable SAVE & APPLY button
+    echo "  document.getElementById('APPLY_BTTN').disabled = false;"
+    # Tell the navbar to tell the user to save first
+    echo "  navbar_set_page_has_unsaved_changes(true);"
+
+    echo "}"
+}
+
+print_save_org()
+{
+    # function to be called onload to save loaded settings
+    # Will be used to notify user for proper action
+    echo "function save_org() {"
+    # save all displayed config items
+
+    echo "}"
+}
+
+print_advance_network_settings()
+{
+    echo "function advance_network_settings() {"
+    echo "  window.location.href = '/cgi-bin/config_rsu_advance_network_settings_live';"
+    echo "}"
+}
+
+
+
+print_run_srv_script()
+{
+    echo "    function run_srv_script(req_script) {" 
+    echo "      var xhttp = new XMLHttpRequest();" 
+    echo "      xhttp.open(\"GET\", req_script, true);" 
+    echo "      xhttp.send();" 
+    echo "    }" 
+}
+
+
+#
+# Main
+### Generate Page - then redirect to rsu-config (check if user is logged in)
+#
+echo "Content-type: text/html"
+echo ""
+
+# Get current logged in IP
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+else
+
+
+  print_header                   # print header
+  print_feature_box_beg          # feature box beg
+  print_intro
+
+  # Status from previous save
+  STATUS_FILE=/tmp/update.status.file
+  if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+  fi
+
+
+  # read settings
+  read_current_values
+  # Show 1st row - App settings, Network settings
+  print_form_section
+
+  print_feature_box_end          # feature box end
+
+  print_fw_version
+  
+  # End of Page with Footer
+  print_footer_end  
+  
+fi

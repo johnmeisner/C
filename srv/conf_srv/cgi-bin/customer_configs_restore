@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# File: factory_reset_save
+# Desc: Confirm user checked the confirm button, then reset to factory defaults
+#
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Status file to send back to user to see as reboot is happening
+STATUS_FILE=/tmp/update.status.file
+rm -f $STATUS_FILE
+
+
+# Get confirmation checkbox content
+echo "query string = $QUERY_STRING" >> /rwflash/customer/querystr.txt
+ 
+CONFIRM_VALUE=`/usr/bin/get_token_val $QUERY_STRING confirm_restore`
+
+# If user checked the box, do the factory reset and do a reboot
+if [ "$CONFIRM_VALUE" == "on" ]; then
+
+    # First require that a customer config blob already exists to restore
+    if [ ! -e /rwflash/customer_config_blob ]; then
+        echo 'Customer Configuration Restore <font color=orange>UNABLE TO PROCEED</font><br/>' >> $STATUS_FILE
+        echo NOTE: No customer defined configuration backup exists >> $STATUS_FILE
+        REFRESH_SCRPT="customer_configs_display_live"
+    else
+        /usr/bin/conf_agent CUSTOMER_RESET Yes
+    
+        # Test defaults reset success by its return code, which is non-zero if there was an error
+        if [ $? -eq 0 ]; then
+            echo 'Customer Configuration Restore was <font color=green>Successful</font><br/>' >> $STATUS_FILE
+            echo 'Rebooting RSU ... ' >> $STATUS_FILE
+            REFRESH_SCRPT="reboot_with_countdown"
+        else
+            echo 'Customer Configuraiton Restore <font color=red>FAILED</font><br/>' >> $STATUS_FILE
+            echo ERROR: config agent returned with error code $? >> $STATUS_FILE
+            REFRESH_SCRPT="customer_configs_display_live"
+        fi 
+    fi
+else
+    echo 'Customer Configuration Restore <font color=orange>NOT CONFIRMED</font><br/>' >> $STATUS_FILE
+    echo NOTE: User must check the confirmation box to allow restore >> $STATUS_FILE
+    REFRESH_SCRPT="customer_configs_display_live"
+
+fi 
+
+#= Redirect user to their next page
+echo 'Content-Type: text/html'
+echo ''
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/$REFRESH_SCRPT' \" /> "

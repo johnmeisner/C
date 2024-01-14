@@ -1,0 +1,452 @@
+#!/bin/sh
+
+# Set path
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+
+# Output
+cat << '##EOFEOFEOF1'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RSU - 5940 I2V Config Settings</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+<style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 2;
+  cursor: pointer;
+}
+</style>
+<style>
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+</style>
+<style>
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+.inputfile + label:hover {
+    background-color: red;
+}
+.inputfile + label {
+    cursor: pointer; /* hand cursor */
+}
+</style>
+<style>
+.scrolling-box {
+  background-color: #fafafa;
+  display: block;
+  height: 200px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  text-align: left;
+  width: 688px;
+}
+</style>
+<style>
+.popup {
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+.popup .popuptext {
+visibility: hidden;
+width: 160px;
+background-color: #555;
+color: #fff;
+text-align: center;
+border-radius: 6px;
+padding: 8px 0;
+position: absolute;
+z-index: 1;
+bottom: 125%;
+left: 50%;
+margin-left: -80px;
+}
+.popup .popuptext::after {
+content: ;
+position: absolute;
+top: 100%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: #555 transparent transparent transparent;
+}
+.popup .show {
+visibility: visible;
+-webkit-animation: fadeIn 1s;
+animation: fadeIn 1s
+}
+@-webkit-keyframes fadeIn {
+from {opacity: 0;}
+to {opacity: 1;}
+}
+@keyframes fadeIn {
+from {opacity: 0;}
+to {opacity:1 ;}
+}
+</style>
+</head>
+<body>
+<div id='overlay'>
+<div class=text-center>
+  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >
+    <span class='sr-only'>Busy...</span>
+  </div>
+</div>
+</div>
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro">
+            <div class="intro-container">
+                <i class="fa fa-download icon"></i>
+                <h2 class="text-center">Firmware Update</h2>
+            </div>
+            </div>
+
+    <div class="row justify-content-center features" style="padding-top: 0px;padding-bottom: 0px;">
+                <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item">
+                    <div class="shadow p-3 mb-5 bg-white rounded">
+                        <form enctype='multipart/form-data' method='post' id='fw_update_form' name='fw_update_form' action='/cgi-bin/upload_new_firmware'>
+                            <h3 class="text-center">Firmware Update</h3>
+<br>
+              <div class='form-group row' style='margin-bottom: 0px;'
+                data-toggle='tooltip' data-placement='top' title='Current Firmware Version'>
+                <label for='CURR_FW_VER' class='col-sm-4 col-form-label'>Current Firmware Version : </label>
+                <div class='col-sm-7'>
+##EOFEOFEOF1
+
+# Get version numbers
+CURR_FW_VER=`/bin/cat /etc/version`
+
+echo "<input type='text' class='form-control' placeholder='$CURR_FW_VER' value='$CURR_FW_VER' style='color:#0c5460;text-align:center;font-size:13px;font-weight:bold' readonly>"
+
+cat << '##EOFEOFEOF2'
+                </div>
+              </div>
+
+<!-- WARNING BOX 1 -->
+<div id='warning_box1' style='visibility: hidden;' >
+<h3 id='warnbox1_text'>
+<font color=orange>Warning:</font> Do not power off or reboot until complete!!!
+</h3>
+</div>
+<!-- END of WARNING BOX -->
+
+<br/>
+
+<!-- PROGRESS BOX -->
+<div>
+<b>Progress:</b><br/>
+<table border=2><tr><td>
+<div class="scrolling-box" id="scrolling_box">
+</div>
+</td></tr></table>
+</div>
+<!-- END of PROGRESS BOX -->
+
+<br>
+
+<!-- WARNING BOX 2 -->
+<div id='warning_box2' style='visibility: hidden;' >
+<h3 id='warnbox2_text'>
+<font color=orange>Warning:</font> Do not power off or reboot until complete!!!
+</h3>
+</div>
+<!-- END of WARNING BOX -->
+
+
+                            <div style='display: inline;' align='center'>
+                            <div style='float: left;'>
+                            <br>
+                            <input type='button' id='left_button' value='BUSY' onclick="do_leftbutton_go()" disabled>
+                            </div>
+                            </div>
+                            <p align='right'> <br> <input type='button' id='right_button' value='BACK' onclick="window.location.href='/cgi-bin/util_display_live'" disabled> </p>
+                        </form>
+                    </div>
+                </div>
+    </div>
+        </div>
+    </div>
+<p class="copyright" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>
+</p>
+    <div class="footer-basic">
+        <footer>
+            <p class="copyright">MobiQ © 2023</p>
+        </footer>
+    </div>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script>
+function submit_upload() {
+    overlay_on()
+    var x = document.getElementsByName('fw_update_form');
+    x[0].submit();
+}
+function overlay_on() {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('spin01').style.visibility = 'visible';
+}
+function overlay_off() {
+      document.getElementById('overlay').style.display = 'none';
+}
+function add_to_status(str) {
+    sclbox = document.getElementById('scrolling_box')
+    sclbox.innerHTML = sclbox.innerHTML + str;
+    sclbox.scrollTop = sclbox.scrollHeight;     // Scroll to bottom
+}
+function set_warning_boxes_visibility(t_or_f)
+{
+    if (t_or_f) {
+        document.getElementById("warning_box1").style.visibility = 'visible';
+        document.getElementById("warning_box2").style.visibility = 'visible';
+    } else {
+        document.getElementById("warning_box1").style.visibility = 'hidden';
+        document.getElementById("warning_box2").style.visibility = 'hidden';
+    }
+}
+// Perform left button's function based on its button text
+// This lets us change destination on the fly in fwup_success/fail().
+// NOTE: Method of just changing the button's .on_click in there does not work
+function do_leftbutton_go()
+{
+    if (document.getElementById('left_button').value == 'REBOOT') {
+        window.location.href = '/cgi-bin/reboot_with_countdown';
+    } else if (document.getElementById('left_button').value == 'RETRY') {
+        window.location.href='/cgi-bin/fw_update_display_live';
+    } else {
+        window.alert('WARNING: Invalid LeftButton Value!');
+    }
+}
+// Update and activate the buttons, disable "busy" overlay and change warning boxes to summarize
+function fw_update_succeeded() {
+    document.getElementById('left_button').disabled = false;
+    document.getElementById('left_button').value = 'REBOOT';
+    document.getElementById('right_button').disabled = false;
+    overlay_off();
+    document.getElementById('warnbox1_text').innerHTML = '<font color=green>Firmware Update Succeeded</font>';
+    document.getElementById('warning_box2').style.visibility = 'hidden';
+}
+function fw_update_failed() {
+    document.getElementById('left_button').disabled = false;
+    document.getElementById('left_button').value = 'RETRY';
+    document.getElementById('right_button').disabled = false;
+    overlay_off();
+    document.getElementById('warnbox1_text').innerHTML = '<font color=red>Firmware Update Failed</font>';
+    document.getElementById('warning_box2').style.visibility = 'hidden';
+}
+
+</script>
+##EOFEOFEOF2
+
+# Start with the "busy" overlay active
+echo '<script>'
+echo '   overlay_on();'
+echo '</script>'
+
+# Save the uploaded firmware
+# Created from upload_new_resolv @ 20210502
+
+TMPFWFILE=/tmp/tmp.new_firmie
+VERIFOUT=/tmp/tmp.verifyout
+VERIFERR=/tmp/tmp.verifyerr
+FWDEST=/rwflash/densonor.bz2
+UPGRADEOUT=/tmp/tmp.fwupgradeout
+TMPOUT=/tmp/tmp.fwup_newtext
+
+# A shell function to update our status box in our HTML page
+function add_status()
+{
+    echo "<script>"
+    echo "add_to_status('$1');"
+    echo "</script>"
+}
+
+# Mention length of file
+UPLEN=`/bin/ls -l $TMPFWFILE | awk '{print $5}'`
+add_status "Successfully uploaded file of length $UPLEN bytes<br/>"
+
+# Validate this is a good densonor.bz2 !!
+# Tar tvjf of a good file:
+#    root@imx8qxpc0mek:/rwflash# tar tvf densonor.bz2
+#    -rw-r--r-- 1000/1000     84597 2021-05-03 19:35:21 ./dtb
+#    -rw-rw-r-- 1000/1000        33 2021-05-03 19:35:22 ./dtb.md5
+#    -rw-r--r-- 1000/1000  17250816 2021-05-03 19:35:21 ./kernel
+#    -rw-rw-r-- 1000/1000        33 2021-05-03 19:35:22 ./kernel.md5
+#    -rw-r--r-- 1000/1000  83944512 2021-05-03 19:35:21 ./rootfs
+#    -rw-rw-r-- 1000/1000        33 2021-05-03 19:35:22 ./rootfs.md5
+#    -rw-r--r-- 1000/1000   1337344 2021-05-03 19:35:21 ./uboot
+#    -rw-rw-r-- 1000/1000        33 2021-05-03 19:35:22 ./uboot.md5
+# TAR is smart enough to detect when you've gotten the compression wrong:
+#    root@imx8qxpc0mek:/rwflash# tar tvzf densonor.bz2
+#    tar: invalid magic
+#    tar: short read
+# And smart the other way around too:
+#    root@imx8qxpc0mek:/rwflash# tar czf /tmp/x1.tgz /etc
+#    tar: removing leading '/' from member names
+#    root@imx8qxpc0mek:/rwflash# tar tjvf /tmp/x1.tgz
+#    tar: invalid magic
+#    tar: short read
+
+# Since the tar takes so long, we run tar in background and wait for it
+#    to finish, adding dots for user so they can see some progress
+add_status 'Validating uploaded file ..'
+/bin/tar tvjf $TMPFWFILE > $VERIFOUT 2> $VERIFERR &
+DONE=False
+while [ $DONE == False ]; do
+    sleep 5
+    # See if untar process is still running
+    PSOUT=`ps aux | grep bin.tar.tvjf | grep -v grep`
+    if [ "$PSOUT" == "" ]; then
+        DONE=True
+    else
+        add_status '.'
+    fi
+done
+add_status ' done<br/>'
+# See if we got any error lines
+X=`/usr/bin/wc -l $VERIFERR | awk '{print $1}'`
+if [ $X -gt 0 ]; then
+    add_status '<font color=red>Error: Format errors unpacking uploaded firmware file </font><br/>'
+    CONTINUE_UPGRADE=False
+else
+    # See if we got our six required items in the tar (uboot is optional)
+    X=`/bin/egrep 'dtb|kernel|rootfs' $VERIFOUT | wc -l | awk '{print $1}'`
+    if [ $X -lt 6 ]; then
+        add_status '<font color=red>Error: Uploaded file missing essential firmware components</font><br/>'
+        CONTINUE_UPGRADE=False
+    else
+        add_status '<font color=green>Uploaded file passed validation.</font><br/>'
+        CONTINUE_UPGRADE=True
+    fi
+fi
+
+# If valid, copy file into place
+if [ $CONTINUE_UPGRADE == True ]; then
+    add_status 'Saving uploaded file into /rwflash for upgrading ...<br/>'
+    /bin/cp $TMPFWFILE $FWDEST
+    retval=$?
+    if [ $retval -eq 0 ]; then
+#       add_status '<font color=green>Successfully saved uploaded firmware</font><br/>'
+        add_status 'Successfully saved uploaded firmware<br/>'
+    else
+#       add_status '<font color=red>Error: Unable to copy firmware to /rwflash !!</font><br/>'
+        add_status 'Error: Unable to copy firmware to /rwflash !!<br/>'
+        CONTINUE_UPGRADE=False
+    fi
+fi
+
+# All right .. now it's time to upgrade!
+if [ $CONTINUE_UPGRADE == True ]; then
+    # Pop out our warning boxes
+    echo '<script>'
+    echo '   set_warning_boxes_visibility(true);'
+    echo '</script>'
+    add_status 'Running upgrade process (this will take several minutes) ...<br/>'
+    /usr/local/bin/densonor > $UPGRADEOUT 2>&1 &
+    DONE=False
+    PREVOUTLEN=0
+    while [ $DONE == False ]; do
+        # Tail upgrade output into the webgui
+        CURLEN=`ls -l $UPGRADEOUT | awk '{print $5}'`
+        if [ $CURLEN != $PREVOUTLEN ]; then
+            NEWOUTPUT=`tail -c +$PREVOUTLEN $UPGRADEOUT | sed -z -e 's!\n!<br/>!g' | tr -c -d '^[:print:]'`
+            add_status "$NEWOUTPUT"
+            PREVOUTLEN=$CURLEN
+        fi
+        # See if upgrade process is still running
+        PSOUT=`ps aux | grep bin.densonor | grep -v grep`
+        if [ "$PSOUT" == "" ]; then
+            add_status 'Upgrade process has exited<br/>'
+            DONE=True
+        else
+            sleep 5
+            add_status '.'
+        fi
+    done
+    add_status 'Completed upgrade wait loop<br/>'
+fi
+
+# Give feedback to user if upgrade completed successfully or didn't
+LINESAYINGCOMPLETE=""
+if [ $CONTINUE_UPGRADE == True ]; then
+    LINESAYINGCOMPLETE=`grep 'NOR flashing complete' $UPGRADEOUT`
+fi
+if [ "$LINESAYINGCOMPLETE" != "" ]; then
+    add_status '<font color=green>Successfully upgraded firmware.  Please reboot RSU</font><br/>'
+else
+    add_status '<font color=red>Firmware upgrade FAILED!!</font><br/>'
+fi
+
+# Update and activate the buttons, disable "busy" overlay and change warning boxes to summarize
+echo '<script>'
+if [ "$LINESAYINGCOMPLETE" != "" ]; then
+    echo '   fw_update_succeeded();'
+else
+    echo '   fw_update_failed();'
+fi
+echo '</script>'
+
+# Complete the page's HTML
+echo '</body>'
+echo '</html>'
+
+# Do another session check, to reset the logout timer.  If the user leaves
+# for a while during the firmware update, this gives them the maximum
+# amount of time to come back and click the reboot button without having to
+# log in again.
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+
+# And we're done.  Not going to clean up our tmp files as we're going to
+# reboot if we succeeded, and if we failed, we might want the user to
+# save them.
+

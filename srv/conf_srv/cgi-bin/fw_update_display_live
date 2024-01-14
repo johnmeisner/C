@@ -1,0 +1,226 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+# Set path
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+
+
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+
+# Output
+cat << '##EOFEOFEOF1'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RSU - 5940 I2V Config Settings</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+<style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 2;
+  cursor: pointer;
+}
+</style>
+<style>
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+</style>
+<style>
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+.inputfile + label:hover {
+    background-color: red;
+}
+.inputfile + label {
+    cursor: pointer; /* hand cursor */
+}
+</style>
+<style>
+.popup {
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+.popup .popuptext {
+visibility: hidden;
+width: 160px;
+background-color: #555;
+color: #fff;
+text-align: center;
+border-radius: 6px;
+padding: 8px 0;
+position: absolute;
+z-index: 1;
+bottom: 125%;
+left: 50%;
+margin-left: -80px;
+}
+.popup .popuptext::after {
+content: ;
+position: absolute;
+top: 100%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: #555 transparent transparent transparent;
+}
+.popup .show {
+visibility: visible;
+-webkit-animation: fadeIn 1s;
+animation: fadeIn 1s
+}
+@-webkit-keyframes fadeIn {
+from {opacity: 0;}
+to {opacity: 1;}
+}
+@keyframes fadeIn {
+from {opacity: 0;}
+to {opacity:1 ;}
+}
+</style>
+</head>
+<body>
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+<div id='overlay'>
+<div class=text-center>
+  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >
+    <span class='sr-only'>Loading...</span>
+  </div>
+</div>
+</div>
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro">
+            <div class="intro-container">
+                <i class="fa fa-download icon"></i>
+                <h2 class="text-center">Firmware Update</h2>
+            </div>
+            </div>
+
+    <div class="row justify-content-center features" style="padding-top: 0px;padding-bottom: 0px;">
+                <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item">
+                    <div class="shadow p-3 mb-5 bg-white rounded">
+                        <form method='post' id='fw_update_form' name='fw_update_form' action='none'>
+                        <!-- ^---- used to be upload_new_firmware -->
+                            <h3 class="text-center">Firmware Update</h3>
+<br>
+              <div class='form-group row' style='margin-bottom: 0px;' 
+                data-toggle='tooltip' data-placement='top' title='Current Firmware Version'>
+                <label for='CURR_FW_VER' class='col-sm-4 col-form-label'>Current Firmware Version : </label>
+                <div class='col-sm-7'>
+##EOFEOFEOF2
+
+# Get version numbers
+CURR_FW_VER=`/bin/cat /etc/version`
+
+echo "<input type='text' class='form-control' placeholder='$CURR_FW_VER' value='$CURR_FW_VER' style='color:#0c5460;text-align:center;font-size:13px;font-weight:bold' readonly>"
+
+cat << '##EOFEOFEOF3'
+                </div>
+              </div>
+                            <br>
+                            <input type='file' name='fileupload' value='fileupload' id='fileupload' accept='.bz2'>
+<br>
+<br>
+
+                            <div style='display: inline;' align='center'>
+                            <div style='float: left;'>
+                            <br>
+                            <input type='button' value='Upload Firmware File' onclick="firmware_upload()">
+                            </div>
+                            </div>
+                            <p align='right'> <br> <input type='button' value='CANCEL' onclick="window.location.href='/cgi-bin/util_display_live'"> </p>
+                        </form>
+                    </div>
+                </div>
+    </div>
+        </div>
+    </div>
+<p class="copyright" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>
+</p>
+    <div class="footer-basic">
+        <footer>
+            <p class="copyright">MobiQ © 2023</p>
+        </footer>
+    </div>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script>
+function firmware_upload() {
+    overlay_on();
+
+    var file_object = document.getElementById('fileupload').files[0];
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // When we get a status=200 response, send user to the firmware-updating page
+            window.location.href = '/cgi-bin/fw_update_save';
+        }
+    };
+    // Send the firmware file
+    xhttp.open('post', '/cgi-bin/upload_new_firmware', true);
+    xhttp.send(file_object);
+}
+function overlay_on() {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('spin01').style.visibility = 'visible';
+}
+</script>
+</body>
+</html>
+
+##EOFEOFEOF3

@@ -1,0 +1,82 @@
+/*
+ * Copyright (c) 2019-2023 Objective Systems, Inc.
+ *
+ * This software is furnished under a license and may be used and copied
+ * only in accordance with the terms of such license and with the
+ * inclusion of the above copyright notice. This software or any other
+ * copies thereof may not be provided or otherwise made available to any
+ * other person. No title to and ownership of the software is hereby
+ * transferred.
+ *
+ * The information in this software is subject to change without notice
+ * and should not be construed as a commitment by Objective Systems, Inc.
+ *
+ * PROPRIETARY NOTICE
+ *
+ * This software is an unpublished work subject to a confidentiality agreement
+ * and is protected by copyright and trade secret law.  Unauthorized copying,
+ * redistribution or other use of this work is prohibited.
+ *
+ * The above notice of copyright on this source code product does not indicate
+ * any actual or intended publication of such source code.
+ *
+ *****************************************************************************/
+
+#include "rtjsonsrc/osrtjson.h"
+
+int rtJsonEncStartObject(OSCTXT* pctxt, const OSUTF8CHAR* name, OSBOOL noComma)
+{
+   int stat = 0;
+   OSOCTET state = pctxt->state;
+
+   if (noComma)
+   {
+      // Set state to not write comma for prior line...
+      pctxt->state = OSJSONNOCOMMA;
+   }
+   rtJsonEncIndent(pctxt);
+   pctxt->state = state;
+
+   // Don't add name if top-level or name is empty...
+   if ( (rtJsonGetIndentLevels(pctxt) > 1) &&
+       (strlen((const char *)name) > 0) && !noComma)
+   {
+      stat = rtJsonEncStringValue(pctxt, name);
+      rtJsonEncBetweenObject(pctxt);
+   }
+
+   OSRTSAFEPUTCHAR(pctxt, (OSJSONSEQOF == pctxt->state) ? '[' : '{');
+
+   return stat;
+}
+
+int rtJsonEncEndObject(OSCTXT* pctxt)
+{
+   OSOCTET state = pctxt->state;
+
+   // Set state to not write comma for prior line, then restore to
+   //  previous state...
+   pctxt->state = OSJSONNOCOMMA;
+   rtJsonEncIndent(pctxt);
+   pctxt->state = state;
+   OSRTSAFEPUTCHAR(pctxt, (OSJSONSEQOF == pctxt->state) ? ']' : '}');
+
+   return 0;
+}
+
+int rtJsonEncBetweenObject(OSCTXT* pctxt)
+{
+   OSBOOL whitespace = (!(rtxCtxtTestFlag(pctxt, OSJSONNOWS)));
+
+   if (whitespace)
+   {
+      OSRTSAFEPUTCHAR(pctxt, ' ');
+   }
+   OSRTSAFEPUTCHAR(pctxt, ':');
+   if (whitespace)
+   {
+      OSRTSAFEPUTCHAR(pctxt, ' ');
+   }
+
+   return 0;
+}

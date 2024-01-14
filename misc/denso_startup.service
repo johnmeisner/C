@@ -1,0 +1,16 @@
+#!/bin/sh
+
+[Unit]
+Description=DENSO Startup Service
+After=cv2x.service dsrc.service
+Requires=cv2x.service dsrc.service rsuhealth.service
+
+[Service]
+Type=oneshot
+StandardOutput=journal+console
+ExecStart=/usr/local/bin/dnlast
+RemainAfterExit=yes
+ExecStop=/rwflash/configs/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target

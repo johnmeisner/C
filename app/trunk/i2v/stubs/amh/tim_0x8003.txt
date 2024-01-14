@@ -1,0 +1,12 @@
+Version=0.7
+Type=TIM
+PSID=0x8003
+Priority=7
+TxMode=ALT
+TxChannel=172
+TxInterval=1
+DeliveryStart=04/01/2020, 01:01
+DeliveryStop=11/30/2028, 23:50
+Signature=True
+Encryption=False
+Payload1=00994b201000000000008aa4814082b292c5d7324afacb522c95fffe4fc4d8433f4030407e5258bae6495f596a459280b72ffff00015bbf68cedb5092589c04fb000c37334edd3d10326a826d090

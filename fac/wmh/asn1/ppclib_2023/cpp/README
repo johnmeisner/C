@@ -1,0 +1,26 @@
+This subdirectory contains run-time libraries built with the following 
+compilers:
+
+Compiler                        platform.mk     lib subdir
+------------------------------  --------------  ---------------------
+GNU gcc/g++ 4.9.4 (default)     platform.gpp4   libgpp4 / lib_optgpp4
+GNU gcc/g++ 5.4.0               platform.gpp5   libgpp5 / lib_optgpp5
+GNU gcc/g++ 6.1.0               platform.gpp6   libgpp6 / lib_optgpp6
+GNU gcc/g++ 7.2.0               platform.gpp7   libgpp7 / lib_optgpp7
+GNU gcc/g++ 8.4.0               platform.gpp8   libgpp8 / lib_optgpp8
+GNU gcc/g++ 9.3.0               platform.gpp9   libgpp9 / lib_optgpp9
+
+Optimized libraries are located in lib_optXXXX directories (not available in
+evaluation and SDK kits).
+
+To change the run-time library configuration, do the following: 
+
+1. Change the 'lib' symbolic link to point at the lib subdir. 
+2. Change the 'platform.mk' link to point at the platform.mk file.
+
+For example, to change to 32-bit libs built with the g++ 5.3.0 compiler:
+
+rm lib platform.mk
+ln -s libgpp5 lib
+ln -s platform.gpp5 platform.mk
+

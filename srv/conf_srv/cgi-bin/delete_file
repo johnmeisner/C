@@ -1,0 +1,38 @@
+#!/bin/sh
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Directory check
+if [ ! -d "/mnt/rwflash/I2V/amh" ]
+then
+    /bin/mkdir /mnt/rwflash/I2V/amh
+fi
+
+# Extract the name of the desired file, sent through a POST request
+SAVED_POST_FILE=/tmp/ztmp.saved_post_data
+/usr/bin/post_saver $SAVED_POST_FILE > /dev/null
+FILE=`/bin/cat $SAVED_POST_FILE`
+BASEFILE=`basename $FILE`
+rm -f $SAVED_POST_FILE
+
+# Delete file
+if test -f "$FILE"; then
+    /bin/rm $FILE
+    RESULT_CODE=$?
+    if [ $RESULT_CODE != 0 ]; then
+        echo File $FILE Delete Failed - $RESULT_CODE.
+    else
+        echo File $BASEFILE Deleted.
+    fi
+else
+    echo File $FILE not found'!'
+fi

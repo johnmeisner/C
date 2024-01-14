@@ -1,0 +1,384 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+# Main
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+# Determine current LED color -- start with buttons supporting that LED state
+LED_STATUS=`/usr/local/bin/rsuhealth -Lw`
+if [ $LED_STATUS == "Active,Off,Off," ]; then
+    GREEN_CHECKED=" checked"
+elif [ $LED_STATUS == "Off,Active,Off," ]; then
+    AMBER_CHECKED=" checked"
+elif [ $LED_STATUS == "Off,Off,Active," ]; then
+    RED_CHECKED=" checked"
+else
+    NONE_CHECKED=" checked"
+fi
+
+
+# Output to browser
+cat << '##EOFEOFEOF1'
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Utility - LED Testing</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="../assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+<style>
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+.circle {
+ height: 30px;
+ width: 30px;
+ border-radius: 50%;
+ background: #FFFFFF;
+ border: 2px solid gray;
+ display: inline-block;
+  }
+.roundcorner {
+height: 100px;
+width: 99%;
+border-radius: 25px;
+border: 2px solid #808080;
+padding: 10px;
+  }
+.divOverflow {
+overflow: auto;
+overflow-x: hidden;
+height: 80px;
+margin-left: 2px;
+padding-left: 15px;
+scrollbar-width: thin;
+}
+.monospace {
+    font-family: "Lucida Console", Courier, monospace;
+    color: #000000;
+}
+</style>
+</head>
+<body>
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+
+   <div class="features-boxed">
+     <div class="container">
+
+
+<div id='no_data_overlay' class="row justify-content-center" style='display: none;'>
+    <div class="intro">
+        <div class="intro-container">
+            <i class="fa fa-thumbs-down icon" style="color: red;"></i>
+                <h2 class="text-center" style="color: red;">Invalid Data</h2>
+        </div>
+    </div>
+</div>
+
+
+<!-- Old school way of doing a title - has icon tho -->
+<div class="row justify-content-center">    <!-- doing this class=row instead of <div class="intro"> will center the title, what we prefer -->
+<div class="intro-container">
+    <i class="fa fa-dot-circle-o icon"></i>
+    <h2 class="text-center">LED Testing Utility</h2>
+</div>
+</div>
+
+
+<!-- Overall container of boxes below title -->
+<div class="row justify-content-center features">
+
+
+<!-- Top Command Output -->
+<div class="col-sm-7 col-md-7 col-lg-7 col-xl-7 text-left item" style="padding-left: 5px;padding-right: 5px;">
+    <div class="text-left box shadow p-3 mb-5 bg-white rounded" style="padding-top: 5px;margin-bottom: 0px; min-height: 275px; min-width: 740px; margin-bottom:0px">
+
+        <h3 class='name' style='color: #007BFF' style='margin-bottom: 16px'>Select An LED State To Change Colors</h3>
+        <br/>
+        <br/>
+        <div class='name' style='color: #808080; font-size: 15px; margin-bottom: 0px'><span>
+
+
+<!-- Toggle3.htm -->
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+ztml,zody{
+  display: grid;
+  height: 100%;
+  place-items: center;
+  zackground: #0069d9;
+  font-family: 'Lato', sans-serif;
+}
+.wrapper{
+  display: inline-flex;
+  background: #fff;
+  height: 100px;
+  width: 700px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 20px 15px;
+  box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
+}
+.wrapper .option{
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 2px solid lightgrey;
+  transition: all 0.3s ease;
+}
+.wrapper .option .dot{
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #0069d9;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"]{
+  display: none;
+}
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2,
+#option-3:checked:checked ~ .option-3,
+#option-4:checked:checked ~ .option-4{
+  border-color: #0069d9;
+  background: #0069d9;
+}
+#option-1:checked:checked ~ .option-1 .dot{
+  background: #00ff0f;
+}
+#option-2:checked:checked ~ .option-2 .dot{
+  background: #ffff00;
+}
+#option-3:checked:checked ~ .option-3 .dot{
+  background: #ff000f;
+}
+
+#option-4:checked:checked ~ .option-4 .dot{
+  background: #000fff;
+}
+#option-1:checked:checked ~ .option-1 .dot::before,
+#option-2:checked:checked ~ .option-2 .dot::before,
+#option-3:checked:checked ~ .option-3 .dot::before,
+#option-4:checked:checked ~ .option-4 .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span{
+  font-size: 20px;
+  color: #808080;
+}
+#option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span,
+#option-3:checked:checked ~ .option-3 span,
+#option-4:checked:checked ~ .option-4 span{
+  color: #fff;
+}
+</style>
+
+
+<div class="wrapper">
+##EOFEOFEOF2
+echo " <input type='radio' name='select' id='option-1' onclick='set_led_green()'$GREEN_CHECKED>"
+echo " <input type='radio' name='select' id='option-2' onclick='set_led_yellow()'$AMBER_CHECKED>"
+echo " <input type='radio' name='select' id='option-3' onclick='set_led_red()'$RED_CHECKED>"
+echo " <input type='radio' name='select' id='option-4' onclick='set_led_off()'$NONE_CHECKED>"
+cat << '##EOFEOFEOF3'
+   <label for="option-1" class="option option-1">
+     <div class="dot"></div>
+      <span>Green</span>
+   </label>
+   <label for="option-2" class="option option-2">
+     <div class="dot"></div>
+      <span>Yellow</span>
+   </label>
+   <label for="option-3" class="option option-3">
+     <div class="dot"></div>
+      <span>Red</span>
+   </label>
+   <label for="option-4" class="option option-4">
+     <div class="dot"></div>
+      <span>Off</span>
+   </label>
+</div>
+
+<div><br/><span id="request_desc"></span><span id="response_txt"></span></div>
+
+<!-- END of toggle3.html --->
+
+
+        </span></div>
+    </div>
+</div>
+<!-- END Top Command Output -->
+
+
+<!-- This forces the back button box to be below the main box -->
+</div>
+<div class="row justify-content-center features" style="padding-top: 0px;">
+
+
+
+    <!-- BACK block -->
+    <div class="col-sm-6 col-md-5 col-lg-3 item">
+      <a href="#" onClick="javascript:go_back();">
+        <div class="shadow p-3 mb-5 bg-white rounded"><i class="fa fa-arrow-left icon"></i>
+            <h3 class='name'>Back</h3>
+        </div>
+      </a>
+    </div>
+
+
+            <!-- End of Overall container of boxes below title -->
+            </div>
+
+    <!-- End of top two divs, div "container" and "features-boxed" -->
+        </div>
+    </div>
+
+    <p class="copyright" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>
+    </p>
+
+<!-- Footer ->
+    <div class="footer-basic">
+        <footer>
+            <p class="copyright">MobiQ © 2023</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
+<script>
+    function set_led_green() {
+      // Disable navbar, user must us BACK button to exit here
+      navbar_set_navbar_disabled(true, "Using this utility page disables the navbar.  Please use the BACK button below to exit this page, as this restores normal LED function from testing lockdown");
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("request_desc").innerHTML = "GREEN Request:";
+          document.getElementById("response_txt").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", '/cgi-bin/req_set_led_color?color=GREEN', true);
+      xhttp.send();
+    }
+
+    function set_led_yellow() {
+      navbar_set_navbar_disabled(true, "Using this utility page disabled the navbar.  Please use the BACK button below to exit this page, as this restores normal LED function from testing lockdown");
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("request_desc").innerHTML = "YELLOW Request:";
+          document.getElementById("response_txt").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", '/cgi-bin/req_set_led_color?color=YELLOW', true);
+      xhttp.send();
+    }
+
+    function set_led_red() {
+      navbar_set_navbar_disabled(true, "Using this utility page disabled the navbar.  Please use the BACK button below to exit this page, as this restores normal LED function from testing lockdown");
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("request_desc").innerHTML = "RED Request:";
+          document.getElementById("response_txt").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", '/cgi-bin/req_set_led_color?color=RED', true);
+      xhttp.send();
+    }
+
+    function set_led_off() {
+      navbar_set_navbar_disabled(true, "Using this utility page disabled the navbar.  Please use the BACK button below to exit this page, as this restores normal LED function from testing lockdown");
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("request_desc").innerHTML = "OFF Request:";
+          document.getElementById("response_txt").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", '/cgi-bin/req_set_led_color?color=OFF', true);
+      xhttp.send();
+    }
+
+    function go_back() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          // Send user back
+          document.getElementById("request_desc").innerHTML = "Back button:";
+          document.getElementById("response_txt").innerHTML = "clicked";
+          window.location.href = '/cgi-bin/util_display_live';
+        }
+      };
+      // Tell rsuhealth it's back on LED color maintenance
+      xhttp.open("GET", '/cgi-bin/req_set_led_color?color=BACK', true);
+      xhttp.send();
+    }
+
+</script>
+</body>
+</html>
+
+##EOFEOFEOF3
+
+

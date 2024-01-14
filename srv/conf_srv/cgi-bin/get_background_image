@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# get_background_image for the login page
+#
+# If you save a png or jpg as /rwflash/customer/background_image.(jpg|png),
+#    it will be used for the background image of the login screen
+
+# See if there's customer images overriding the default, else send default
+for F in /rwflash/customer/background_image.png \
+         /rwflash/customer/background_image.jpg \
+         /usr/local/www/html/assets/img/MobiQback.jpg ; do
+    if [ -f $F ]; then
+        IMGLEN=`/bin/ls -l $F | awk '{print $5}'`
+        # Send Content-Type /png or /jpg depending on extension of file
+        if [ x"`echo $F | grep 'png$'`" != x ]; then
+            echo 'Content-Type: image/png'
+        else
+            echo 'Content-Type: image/jpg'
+        fi
+        echo "Content-Length: $IMGLEN"
+        echo ''
+        cat $F
+        echo ""
+        exit 0
+    fi
+done
+
+# If we ever get here, someone changed the default background
+#    and didnt update this script!
+echo "Content-type: text/html"
+echo ""
+echo "ERROR ERROR ERROR ERROR"
+echo "I NEED PROGRAMMING!"
+exit 0
+

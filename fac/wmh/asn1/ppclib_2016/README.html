@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+
+  <title>ASN1C V7.2.x README</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+  <center>
+    <h1>ASN1C V7.2.x README</h1>
+  </center>
+
+  <p>This file contains release notes on the latest release of the ASN1C
+  compiler (version 7.2.x).</p>
+
+  <h2>Contents</h2>
+
+  <ul>
+    <li><a href="#Intro">Introduction</a></li>
+
+    <li><a href="#WhatsNew">Release Notes</a></li>
+
+    <li><a href="#CodeGenChanges">Compatibility</a></li>
+
+    <li><a href="#Documentation">Documentation</a></li>
+
+    <li><a href="#UnixInstall">UNIX Installation</a></li>
+
+    <li><a href="#RelContents">Contents of the Release</a></li>
+
+    <li><a href="#GettingStartedCCpp">Getting Started with C or C++</a></li>
+
+    <li><a href="#GettingStartedJava">Getting Started with Java</a></li>
+
+    <li><a href="#ReportingBugs">Reporting Problems</a></li>
+  </ul>
+
+  <h2><a name="Intro" id="Intro"></a>Introduction</h2>
+
+  <blockquote>
+    Thank you for downloading this release of the ASN1C software. ASN1C is an
+    ASN.1 compiler (code generator) capable of parsing and generating C, C++,
+    C#, or Java source code for the most advanced ASN.1 syntax.
+
+    <p>This package contains the ASN1C compiler executables and run-time
+    libraries. Documentation is available online at <a href=
+    "http://obj-sys.com/support/asn1c-manuals.php">http://www.obj-sys.com/support/asn1c-manuals.php</a></p>
+  </blockquote>
+
+  <h2><a name="WhatsNew" id="WhatsNew"></a>Release Notes</h2>
+
+  <blockquote>
+    This release of ASN1C adds the following new capabilities:
+
+    <dl>
+      <dt><b>Added capability to generate client/server programs in C/C++</b></dt>
+      <dd>
+        <p>The capability to generate client and server programs in C/C++
+          has been added.  This is done using the -client and -server 
+          command-line options.  Generation of these programs is done using
+          template files, so it is possible for users to modify the base
+          code used in the generation procedure.</p>
+      </dd>
+
+      <dt><b>Added capability to do template-based code gen in C/C++</b></dt>
+      <dd>
+        <p>The -gen-from-template command-line option was added to 
+          support the general capability to generate code using a template 
+          file.  A template file is a program with placeholders for 
+          generated code items which allows substitution to create 
+          complete application programs.</p>
+      </dd>
+
+      <dt><b>Improved PER encode/decode performance</b></dt>
+      <dd>
+        <p>The performance of encoding and decoding messages using PER 
+          (both aligned and unaligend) in C/C++ was improvied substatially
+          in the release.  This was achieved by doing a significant amount 
+          of processing that was being done at run-time to compile time.  
+          Improvement of greater than 100% were observed in some test 
+          cases.</p>
+      </dd>
+
+      <dt><b>Addition of simple static memory option</b></dt>
+      <dd>
+        <p>The option to use a simple static block of memory for decoding
+          was added.  This is a much simpler alternative to our standard
+          nibble-based algorithm.  This option has limited capabilities 
+          (free and realloc are not supported and the user must estimate 
+          what their maximum use will be up front as expansion of the 
+          total memory size is not supported).  But it provides 
+          substantial performance improvement on decode because the 
+          block can be split up very quickly as memory s needed for 
+          decoded items.</p>
+      </dd>
+
+      <dt><b>Use of newer versions of Visual Studio for Windows</b></dt>
+      <dd>
+        <p>Visual Studio 2015 is now default C/C++ compiler used for the 
+          C/C++ run-time libraries on Windows and for the compiler itself
+          (v7.1 used Visual Studion 2013).  Run-time libraries build with 
+          Visual Studio 2017 have also been added.  Also, generation of 
+          VS 2017 project files is now supported.</p>
+      </dd>
+
+      <dt><b>gcc 7.x libraries added to Linux distributions</b></dt>
+      <dd>
+        <p>Libraries built with gcc v7.x are now included in Linux 
+          distributions.  The default libraries continue to use gcc 4.x
+          and optional libraries built with gcc 5, 6, and 7 are included in
+          the packages.</p>
+      </dd>
+
+      <dt><b>Addition of compiler option to generate COER code</b></dt>
+      <dd>
+        <p>A command-line option (-coer) and GUI option have been added 
+          for the generation of Canonical OER code.  Previously, this 
+          option has to be enabled by setting a flag at run-time.
+          Also, an option for generating unaligned PER code (UPER) has
+          been added to the GUI.
+        </p>
+      </dd>
+      
+      <dt><b>Addition of C++ OER code generation</b></dt>
+      <dd>
+        <p>Generation of C++ code for OER is now possible in v7.2.
+          Previously only C code could be generated for OER.
+        </p>
+      </dd>
+
+      <dt><b>Elimination of memory leaks</b></dt>
+      <dd>
+        <p>In the past, memory leaks were not of great concern in the 
+          compiler because it ran as a command-line tool and exited thus 
+          freeing up the memory.  But as the compiler engine began to be 
+          used in GUI's and other longer runing applications, the leaks 
+          became more of an issue.  This release eliminates most, if not
+          all, memory leaks that are present between compilations.
+        </p>
+      </dd>
+
+      <dt><b>Addition of run-time floating license check</b></dt>
+      <dd>
+        <p>We have added support for doing floating license checking using 
+          our 3rd-party license manager to the run-time.  Previously, this 
+          capability only existed for the compiler and temporary licenses 
+          were generated for the run-time.  This makes it possible for 
+          users to build applications for limited use (and thus lower cost) 
+          that can be controlled in an environment that does not have 
+          Internet access as is needed for an Internet floating (ifloat) 
+          license.
+        </p>
+      </dd>
+    </dl>
+  </blockquote>
+
+  <h2><a name="CodeGenChanges" id="CodeGenChanges"></a>Compatibility</h2>
+
+  <blockquote>
+    <ul>
+     <li>In the Windows SDK, the default version of the C/C++ libraries are
+     now built with Visual Studio 2015.  In version 7.1, visual Studio 2013
+     was the default.  Users will need to ensure that they are using Visual
+     Studio 2015 if working with the default version of the libraries, or
+     use the libraries in the c_vs2013 and cpp_vs2013 subdirectories which
+     is where the VS 2013 built libraries now reside.</li>
+          
+    </ul>
+  </blockquote>
+
+  <h2><a name="Documentation" id="Documentation"></a>Documentation</h2>
+
+  <blockquote>
+    Documentation for this release is available online at the following 
+    URL:
+
+    <p><a href=
+    "http://obj-sys.com/support/asn1c-manuals.php">http://www.obj-sys.com/support/asn1c-manuals.php</a></p>
+  </blockquote>
+
+  <h2><a name="UnixInstall" id="UnixInstall"></a>UNIX/Linux Installation</h2>
+
+  <blockquote>
+    <p>The steps to install ASN1C on a UNIX or Linux system are as
+    follows:</p>
+
+    <ol>
+      <li>Download the ASN1C package that is of interest to you. Packages are
+      available online for Linux (x64 and x86), Solaris (x86), and Mac OSX 
+      operating systems. There are different C/C++ versions of these packages 
+      containing run-time libraries built with GNU gcc/g++ or native 
+      compilers. There is also a Java package available for each of these 
+      operating systems.</li>
+
+      <li>ASN1C for UNIX/Linux is packaged in a gzipped .tar file. To
+      install, unzip the file (gunzip) and untar (tar xf) in any directory.
+      Note that in order to run the sample programs, write access to the
+      sample directories is required, so make sure that you have write access
+      to the base directory where the compiler is installed.</li>
+
+      <li>After installation is complete, the license for the product must be
+      installed. This can come in two forms - as a license file or a license
+      key value:
+
+        <dl>
+          <dt>If a license file was provided either on the user's download
+          page or as an E-mail attachment, this file should be copied to the
+          same directory that the ASN1C compiler executable file is located
+          in. This is in the bin subdirectory located under the top-level
+          install directory.</dt>
+
+          <dt>Alternately, a license key value may have been provided for
+          product activation. This can be used either through the GUI
+          interface by following the on-screen instructions, or by running
+          ASN1C from the command-line using the <tt>-lickey</tt> switch.</dt>
+        </dl>
+
+        <p>The compiler should now be operational. The following command can
+        be executed:</p>
+
+        <blockquote>
+          <tt>&lt;rootdir&gt;/bin/asn1c</tt>
+        </blockquote>
+
+        <p>to verify operation.</p>
+      </li>
+    </ol>
+  </blockquote>
+
+  <h2><a name="RelContents" id="RelContents"></a>Contents of the Release</h2>
+
+  <blockquote>
+    The following subdirectories contain the following files (note:
+    <tt>&lt;installdir&gt;</tt> refers to the installation directory that was
+    specified during the installation process):
+
+    <h3>Base Compiler Package</h3>
+
+    <dl>
+      <dt><tt>&lt;installdir&gt;/bin/asn1c</tt></dt>
+      <dd>
+        <p>The command-line compiler executable file. This is invoked on
+        ASN.1 or XSD source files to generate C, C++, C#, or Java
+        encode/decode classes and functions. It is recommended you modify
+        your PATH environment variable to include
+        <tt>&lt;installdir&gt;/bin</tt> to allow the compiler executable to
+        be run from anywhere.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/acgui</tt></dt>
+      <dd>
+        <p>The compiler graphic user interface (GUI) editor executable file.
+        This GUI guides a user through the process of specifying ASN.1 or XSD
+        source files and options. (Note: this binary is currently only
+        available on Linux and Mac OSX systems).</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/asn2xsd</tt></dt>
+      <dd>
+        <p>ASN.1 to XML Schema (XSD) translation tool.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/berfdump<br>
+      &lt;installdir&gt;/bin/ber2def<br>
+      &lt;installdir&gt;/bin/ber2indef</tt></dt>
+      <dd>
+        <p>Utility programs for operating on BER-encoded files. The first
+        program allows a file to be dumped in a human-readable format. The
+        other two utilities convert files from the use of indefinite to
+        definite length encoding and vice-versa.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/dumpasn1</tt></dt>
+      <dd>
+        <p>A public-domain ASN.1 BER/DER encoded data dump tool. Thanks to
+        Peter Gutmann for making this available for public use. The full
+        source code for this program can be found in the utils subdirectory
+        of the installation.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/xsd2asn1</tt></dt>
+      <dd>
+        <p>XSD-to-ASN.1 translation program executable file. This program
+        translates an XSD file to its ASN.1 equivalent as per the ITU-T X.694
+        standard.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/doc</tt></dt>
+      <dd>
+        <p>This directory contains documentation files. Note that the bulk of
+        the documentation items are now available online (see the <a href=
+        "#Documentation">Documentation</a> section above).</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/scripts</tt></dt>
+      <dd>
+        <p>This directory contains Perl script files for doing source code
+        editing and other transformations. The <i>rtport.pl</i> script is
+        included in this release to port existing C/C++ applications that use
+        ASN1C generated code from version 5.8 or lower to be compatible with
+        the latest release of the product.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/specs</tt></dt>
+      <dd>
+        <p>This directory contains ASN.1 specifications from many standards
+        that have been pre-compiled and tested. In some cases, syntax errors
+        that may have existed in the original standards were fixed.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;\templates</tt></dt>
+      <dd>
+        <p>This directory contains template files for applications such as
+          client and server code generation.  It is possible for users to 
+          alter these files to customize code that is generated or to add
+          new template files for use with -gen-from-template command-line
+          option.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/utils</tt></dt>
+      <dd>
+        <p>This directory contains the source code and build makefile for
+        some of the utility programs included in the bin subdirectory.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/xsd/lib/asn1.xsd</tt></dt>
+      <dd>
+        <p>This directory contains the common XML schema definitions (XSD)
+        library. This contains type mappings for built-in ASN.1 types that do
+        not have an equivalent types defined in XSD.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/xsd/sample</tt></dt>
+      <dd>
+        <p>This directory contains sample programs related to the conversion
+        of ASN.1 to XML Schema. It also contains the XSD.asn ASN.1
+        specification which contains the XSD ASN.1 module that is sometimes
+        referenced in ASN.1 files that are the result of an XSD-to-ASN.1
+        translation.</p>
+      </dd>
+    </dl>
+
+    <h3>C/C++ run-time libraries and source files</h3>
+
+    <dl>
+      <dt><tt>&lt;installdir&gt;/c/lib/*.a</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/c/lib/*.so</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/lib/*.a</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/lib/*.so</tt></dt>
+
+      <dd>
+        <p>The ASN1C run-time static libraries and shared object files. These
+        contain the low-level run-time functions for the various encoding
+        rules supported by ASN1C. Note that the evaluation and development
+        libraries are not fully optimized (they contain diagnostic tracing
+        and are not compiled with compiler optimization turned on). The
+        deployment libraries are fully optimized.  Also note that 'lib' 
+        is a soft link to a directory containing libraries built with a 
+        specific compiler version (for example, libgcc4).  To switch
+        libraries, all that needs to be done in to change this soft link
+        and the equivalent soft link to the platform.mk file to point at 
+        a different version.  See the README file within the c or cpp
+        directory for futher details.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/c/lib_opt/*.a</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/c/lib_opt/*.so</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/lib_opt/*.a</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/lib_opt/*.so</tt></dt>
+
+      <dd>
+        <p>The optimized version of the ASN1C run-time libraries. This
+        version has all diagnostic messages, error stack trace and text, and
+        non-essential status checks removed. (Note: these libraries are only
+        available in the licensed deployment version of the product).
+        As was the case for the non-optimized libraries, the 'lib_opt'
+        directories are soft links to directories containing libraries 
+        built with a specific compiler version (for example, lib_optgcc4).</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/c/sample_*</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/sample_*</tt></dt>
+
+      <dd>
+        <p>The sample directories contain sample programs demonstrating the
+        use of the compiler. There are a set of sample programs that
+        correspond to each encoding rule set supported by ASN1C. Most sample
+        programs are broken down into a writer and a reader. The writer
+        encodes a sample data record and writes it to a disk file. The reader
+        reads the encoded message from the file, decodes it, and then prints
+        the results of the decode operation.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/rtsrc/*</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/rtxsrc/*</tt></dt>
+
+      <dd>
+        <p>Run-time source directories containing common type and class
+        definitions used by all encoding rules. The installation run-time
+        source directories contain the header files required to compile the
+        compiler generated code. The C or C++ source files will also be
+        located here if the run-time source code kit option was selected.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/rt*ersrc/*</tt></dt>
+
+      <dd>
+        <p>Run-time source directories for various ASN.1 encoding rules.
+        These contain common code for encoding and decoding using the
+        specific rules. Directories are currently present for BER/DER/CER,
+        PER, MDER, OER, and XER rules.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;\rtjsonsrc\*</tt></dt>
+
+      <dd>
+        <p>JSON specific run-time source directory. These contain common code
+        for encoding/decoding JSON messages.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/rtxmlsrc/*</tt></dt>
+
+      <dd>
+        <p>XML specific run-time source directory. These contain common code
+        for encoding/decoding XML messages.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;\expatsrc\*</tt></dt>
+
+      <dd>
+        <p>The XML parser run-time source directories contain the source
+        files for the Expat C XML parser.  This is only maintained to 
+        provide backward compatibility with SAX-based XML code (-sax
+        option).  The default parser used is now our internally developed
+        XML pull-parser.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;\libxml2src\*</tt></dt>
+
+      <dd>
+        <p>The LibXML2 parser run-time source directories contain the source
+        files for the GNOME libxml2 C XML parser.  This is only maintained to 
+        provide backward compatibility with SAX-based XML code (-sax
+        option).  The default parser used is now our internally developed
+        XML pull-parser.</p>
+      </dd>
+    </dl>
+
+    <h3>Java run-time libraries</h3>
+
+    <dl>
+      <dt><tt>&lt;installdir&gt;/java/asn1rt.jar</tt></dt>
+
+      <dd>
+        <p>ASN.1 Java run-time libraries. These contain the low-level
+        encode/decode classes for the various encoding rules supported by
+        ASN1C. The <i>asn1rt.jar</i> file contains classes compatible with
+        the Java 5 JRE.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/java/sample_*</tt></dt>
+
+      <dd>
+        <p>Sample programs illustrating the use of the Java version of ASN1C.
+        As was the case for C/C++, most have a writer and a reader. Some
+        contain support code used by other samples (for example, SimpleROSE
+        contains the ROSE headers used by CSTA).</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/java/doc/*</tt></dt>
+
+      <dd>
+        <p>The ASN.1 Java run-time libraries documentation files. These are
+        html files generated with the javadoc documentation tool. To view the
+        documentation, open the <i>index.html</i> file with a web browser and
+        follow the hyperlinks.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;\java\xmlpull\*</tt></dt>
+      <dd>
+        <p>The kXML pull-parser implementation. This parser is
+        used in the generated XER and XML decode classes.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;\java\xerces\*</tt></dt>
+      <dd>
+        <p>The Apache Xerces Java XML parser implementation. This parser is
+          used to support legacy SAX parsing in the generated XER and XML 
+          decode classes.  Note that SAX parsing is a deprecated feature
+          at thie time.</p>
+      </dd>
+
+    </dl>
+  </blockquote>
+
+  <h2><a name="GettingStartedCCpp" id="GettingStartedCCpp"></a>Getting
+  Started with C or C++</h2>
+
+  <blockquote>
+    The compiler must be run from a command shell prompt. The sample progams
+    were developed using the bash shell and should be compatible with the sh
+    and ksh shells. Users of the C-shell (csh) will probably need to make
+    some modifications.
+
+    <ol>
+      <li>Open a terminal window.</li>
+    </ol>
+
+    <ul>
+      <li>Change directory (cd) to one of the employee sample directories
+      (for example, <tt>c/sample_ber/employee</tt>).</li>
+    </ul>
+
+    <ul>
+      <li>Execute the <tt>make</tt> utility program:
+
+        <p><tt>make</tt></p>
+
+        <p>This should cause the compiler to be invoked to compile the
+        <tt>employee.asn</tt> sample file. It will then invoke the C or C++
+        compiler to compile the generated C file and the test drivers. The
+        result should be a <tt>writer</tt> and <tt>reader</tt> program file
+        which, when invoked, will encode and decode a sample employee
+        record.</p>
+      </li>
+
+      <li>Invoke writer from the command line:
+
+        <p><tt>writer</tt></p>
+
+        <p>This will generate an encoded record and write it to a disk file.
+        By default, the file generated is <i>message.dat</i> (in the case of
+        XER, it is <i>message.xml</i>). The test program has a number of
+        command line switches that control the encoding. To view the
+        switches, enter <i>writer ?</i> and a usage display will be
+        shown.</p>
+      </li>
+
+      <li>Invoke reader from the command line:
+
+        <p><tt>reader</tt></p>
+
+        <p>This will read the disk file that was just created by the writer
+        program and decode its contents. The resulting decoded data will be
+        written to standard output. The test program has a number of command
+        line switches that control the encoding. To view the switches, enter
+        <i>reader ?</i> and a usage display will be shown.</p>
+      </li>
+    </ul>
+  </blockquote>
+
+  <h2><a name="GettingStartedJava" id="GettingStartedJava"></a>Getting
+  Started with Java</h2>
+
+  <blockquote>
+    To run a simple test from the command line, do the following:
+
+    <ol>
+      <li>Open a terminal window.</li>
+
+      <li>Change directory (cd) to one of the employee sample directories
+      (for example, <tt>java/sample_ber/Employee</tt>).</li>
+
+      <li>Execute the makefile:
+
+        <p><tt>make</tt></p>
+
+        <p>This will cause the ASN1C compiler to be invoked to compile the
+        <tt>employee.asn</tt> sample file. It will then invoke the Java
+        compiler (<tt>javac</tt>) to compile all generated java files and the
+        reader and writer programs (Note: JDK 6 was used to build all the
+        run-time library classes). It will also automatically execute the
+        writer and reader programs. These programs will produce a writer.log
+        and reader.log file respectively.</p>
+      </li>
+
+      <li>View the writer and reader log files. The writer.log file will
+      contain a dump of the encoded message contents. The reader.log file
+      will contain a printout of the decoded data.</li>
+    </ol>
+  </blockquote>
+
+  <h2><a name="ReportingBugs" id="ReportingBugs"></a>Reporting Problems</h2>
+
+  <blockquote>
+    <p>Report problems you encounter by sending E-mail to <a href=
+    "mailto:support@obj-sys.com">support@obj-sys.com</a>. The preferred
+    format of example programs is the same as the sample programs. Please
+    provide a writer and reader and indicate where in the code the problem
+    occurs.</p>
+
+    <p>If you have any further questions or comments on what you would like
+    to see in the product or what is difficult to use or understand, please
+    communicate them to us. Your feedback is important to us. Please let us
+    know how it works out for you - either good or bad.</p>
+  </blockquote>
+</body>
+</html>

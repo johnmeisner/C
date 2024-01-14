@@ -1,0 +1,123 @@
+#!/bin/bash
+# Author: JJG -> I don't have time to create a c app YET;;
+# this will get converted; but for now I want to get to sleep at a
+# decent hour for the remainder of this pre-release
+
+DEVICE=$1
+IP=$2
+NETMASK=$3
+
+# I don't take credit for this; this function came from a quick
+# online search; to whomever i plagarized, good luck finding this!
+function valid_ip()
+{
+  local  ip=$1
+  local  stat=1
+
+  if [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+    OIFS=$IFS
+    IFS='.'
+    ip=($ip)
+    IFS=$OIFS
+    [[ ${ip[0]} -le 255 && ${ip[1]} -le 255 \
+      && ${ip[2]} -le 255 && ${ip[3]} -le 255 ]]
+      stat=$?
+  fi
+  return $stat
+}
+
+# this one i do take credit for; the sleeps are because of some
+# problematic behavior encountered where the network stack seemed
+# to ignore the ip operation immediately; hence a delay was
+# introduced which seemingly allowed the stack to catch up; 1 sec
+# is probably too long, but this is a crude first effort
+# this would be better suited in c code (TODO)
+function set_ip()
+{
+  # currip will have address and scope (mask)
+  # there's probably a better way of doing this but its late and i'm tired
+  CURRIP=`ip -4 addr | sed -e "1,/$1/ d" | head -1 | awk '{print $2}'`
+  MASK=`echo $CURRIP | sed 's/.*\///'`
+  if [[ ! -z "`echo $CURRIP | grep $2`" && "$MASK" == "$3" ]]; then
+    # do not touch IP, already applied
+    #echo "do not touch IP, already applied"
+    exit 0
+  fi
+  ifconfig $1 down
+  sleep 1
+  ip -4 addr delete $CURRIP dev $1
+  sleep 1
+  ip -4 addr add $2/$3 dev $1
+  sleep 1
+  ifconfig $1 up
+  sleep 1
+
+  # double check old is gone
+  if [ ! -z "`ip -4 addr | grep $CURRIP`" ]; then
+    # retry
+    ip -4 addr delete $CURRIP dev $1
+    sleep 1
+  fi
+  # check for secondary -> this happens if the stack has some issue
+  # applying new IP; it will also add the default back
+  SECONDARY=`ip -4 addr | grep $1 | grep secondary`
+  if [ ! -z "$SECONDARY" ]; then
+    RMVIP=`echo $SECONDARY | awk '{print $2}'`
+    ip -4 addr delete $RMVIP dev $1
+  fi
+  # similar to secondary, some cases give us brd rather than secondary
+  SECONDARY2=`ip -4 addr | grep $1 | grep brd`
+  if [ ! -z "$SECONDARY2" ]; then
+    RMVIP=`echo $SECONDARY2 | awk '{print $2}'`
+    ip -4 addr delete $RMVIP dev $1
+  fi
+
+  #apply routing rules (if any customer rules)
+  dnnetcfg
+}
+
+if [[ -z $DEVICE || -z $IP || -z $NETMASK ]]; then
+  echo ERROR...IP $DEVICE $IP $NETMASK
+  # do NOT exit with an error; it may cause a nasty problem
+  exit 0
+fi
+
+# first check if device is valid
+if [ -z "`ip -4 link | grep $DEVICE:`" ]; then
+  echo ERROR...IP invalid device: $DEVICE
+  exit 0
+fi
+
+# check if IP is acceptable; need to prevent errors in apply IP
+if ! valid_ip $IP; then
+  echo ERROR...IP invalid address: $IP
+  exit 0
+fi
+
+# check if netmask in range; we'll allow 1 - 31
+if [ ! -z "`echo $NETMASK | grep [^0-9]`" ]; then
+  # this check ensures netmask is a number; it isn't in this branch
+  echo ERROR...IP invalid netmask: $NETMASK
+  exit 0
+fi
+if [[ $NETMASK -lt 1 || $NETMASK -gt 31 ]]; then
+  echo ERROR...IP invalid netmask: $NETMASK
+  exit 0
+fi
+
+if [ -z "`ip -4 link | grep $DEVICE | grep DOWN`" ]; then
+  # link is not down; proceed to apply IP
+  set_ip $DEVICE $IP $NETMASK 
+else
+  # need to wait for link
+  while [ true ]; do
+    #this may need to be tuned on duration
+    sleep 30
+    if [ -z "`ip -4 link | grep $DEVICE | grep DOWN`" ]; then
+      # link is not down; proceed to apply IP
+      set_ip $DEVICE $IP $NETMASK 
+      exit 0
+    fi
+  done
+fi
+

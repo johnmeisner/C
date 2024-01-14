@@ -1,0 +1,155 @@
+#!/bin/sh
+
+I2VPID=
+MYNAME=$0
+MYNAME=${MYNAME##*\/}
+
+usage() {
+    echo
+    echo "$1 <option>"
+    echo
+    echo "  where allowable options are:"
+    echo "    start     start RSE services"
+    echo "    halt      stop RSE services and enter standby mode"
+    echo "    status    check if RSE services are running"
+    echo "    help      show this help message"
+    echo
+}
+
+rse_check() {
+    if [ ! -z $1 ]; then
+        I2VPID=`pidof i2v`
+    fi
+    pidof i2v >/dev/null
+    return $?
+}
+
+start_rse() {
+    if [ ! -z $1 ] && [ "$1" == "forceRestart" ]; then
+        rse_check pid
+        if [ $? -eq 0 ]; then
+            echo
+            echo "RSE services running - restarting..."
+            echo "this will take a few moments..."
+            echo
+            kill -2 $I2VPID
+            for i in {1..5}; do
+                rse_check
+                if [ $? -ne 0 ]; then
+                    break
+                fi
+                sleep 10
+            done
+            rse_check
+            if [ $? -eq 0 ]; then
+                echo
+                echo "RSE services did not stop properly"
+                echo "aborting restart"
+                echo
+                exit 1
+            fi
+        fi
+    fi
+
+    rse_check
+    if [ $? -eq 0 ]; then
+        echo
+        echo "RSE services already running - "
+        echo "use force option if you want to restart RSE services"
+        echo
+    else
+        if [ "`which i2v 2>/dev/null`" == "" ]; then
+            echo
+            echo "RSE binary not found...unable to start RSE services"
+            echo
+            exit 1
+        else
+            echo
+            echo "Starting RSE services..."
+            echo
+            ##########################
+            # start nohup.sh originated handling
+            # www.kornshell.com/examples/nohup.sh
+            trap '' HUP
+            oldmask=$(umask)
+            umask u=rw,og=
+            exec 0< /dev/null
+            umask "$oldmask"
+            # end nohup.sh handling
+            ##########################
+            exec i2v & >/dev/null 2>&1
+            sleep 10
+            rse_check
+            if [ $? -eq 0 ]; then
+                echo
+                echo "RSE services started"
+                echo
+            else
+                echo "Failure starting RSE services"
+                echo
+            fi
+        fi
+    fi
+}
+
+stop_rse() {
+    rse_check pid
+    if [ $? -eq 0 ]; then
+        echo
+        echo "Stopping RSE services...this will take a few moments"
+        echo
+        kill -2 $I2VPID  >/dev/null 2>&1
+        for i in {1..5}; do
+            sleep 10
+            rse_check
+            if [ $? -ne 0 ]; then
+                echo
+                echo "RSE services stopped"
+                echo
+                exit 0
+            fi
+        done
+        echo
+        echo "RSE services may not have stopped -"
+        echo "check with $0 status"
+        echo
+    else
+        echo
+        echo "System already in standby mode"
+        echo
+    fi
+}
+
+rse_status() {
+    rse_check
+    if [ $? -eq 0 ]; then
+        echo
+        echo "RSE services running"
+        echo
+    else
+        echo
+        echo "System in standby - RSE services not running"
+        echo
+    fi
+}
+
+if [ $# -eq 0 ]; then
+  usage $MYNAME
+  exit 0
+fi
+
+case "$1" in 
+    'start' | 'START')
+        start_rse $2
+        ;;
+    'halt' | 'HALT')
+        stop_rse
+        ;;
+    'status' | 'STATUS') 
+        rse_status
+        ;;
+    *)
+        usage $MYNAME
+        ;;
+esac
+

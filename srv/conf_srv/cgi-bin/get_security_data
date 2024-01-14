@@ -1,0 +1,93 @@
+#!/bin/sh
+#
+# get_security_data
+#
+# NOTE: This was originally two separate scripts, but combining the two http
+#     gets reduces the load on bozohttpd and the RSU.  The two datums
+#     (metrics, cert status) update at different rates, 0.5hz and 0.2hz.
+#
+
+PATH=/proc/boot:/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin:/opt/cohda/bin:/rwflash/bin:/usr/local/bin
+
+# Where security certs are stored
+CERTDIR=/rwflash/aerolink/certificates
+
+# Where we are storing the active cache number for metrics, certs
+MET_CACHENO_STORAGE=/tmp/zcache.secstats.active
+CERT_CACHENO_STORAGE=/tmp/zcache.seccert.active
+
+## SECURITY METRICS
+
+# Read which Metrics cache is active, set datafile name
+MET_CACHENO=`cat $MET_CACHENO_STORAGE`
+MET_DATAFILE=/tmp/zcache_sec$MET_CACHENO.secdata
+
+### Update Security Metrics Data
+if [ `/usr/bin/runagain security_update 2` == True ]; then
+
+    # Flip cacheno so we are updating the inactive set
+    # Also will set it for the first time on no file 
+    if [ "$MET_CACHENO" == 1 ]; then 
+        MET_CACHENO=0
+    else
+        MET_CACHENO=1
+    fi
+    # Update datafile to new filename
+    MET_DATAFILE=/tmp/zcache_sec$MET_CACHENO.secdata
+
+    # Update and save data
+    nice quicksecurity --webgui-format2 > $MET_DATAFILE
+
+    # Flip active MET_CACHENO in storage
+    echo $MET_CACHENO > $MET_CACHENO_STORAGE
+fi
+
+
+## CERTIFICATE STATUS DATA
+
+# Figure out which cert-data cache is active, set datafile name
+CERT_CACHENO=`cat $CERT_CACHENO_STORAGE`
+CERT_DATAFILE=/tmp/zcache_seccert$CERT_CACHENO.data
+
+### Update certificate status data
+if [ `/usr/bin/runagain sec_cert_status 10` == True ]; then
+
+    # Flip cacheno so we are updating the inactive set
+    # Also will set it for the first time on no file 
+    if [ "$CERT_CACHENO" == 1 ]; then 
+        CERT_CACHENO=0
+    else
+        CERT_CACHENO=1
+    fi
+    # Update datafile to new filename
+    CERT_DATAFILE=/tmp/zcache_seccert$CERT_CACHENO.data
+
+    # Look for the request .oer file
+    NUMREQ=`find $CERTDIR -maxdepth 1 -name '*.oer' | egrep '[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9].oer' | wc -l`
+
+    # Look for the signed Response .oer file
+    NUM_SIGNED_EEECR=`find $CERTDIR -maxdepth 1 -name signedEeEnrollmentCertResponse.oer | wc -l`
+
+    # Count total # of .oer files
+    NUMOER=`find $CERTDIR -maxdepth 1 -name \*.oer | wc -l`
+
+    # Count downloaded certs
+    # Won't tell you valid vs expired.
+    #NUM_CERTS=`find $CERTDIR -maxdepth 1 -name \*.acf | wc -l`
+    # RSUDIAG output will.
+    NUM_CERTS=`cat /tmp/rsudiag.validcerts`
+    # Save our counts (remove spaces before numbers)
+    echo $NUMREQ,$NUM_SIGNED_EEECR,$NUMOER,$NUM_CERTS, > $CERT_DATAFILE
+
+    # Flip active CERT_CACHENO in storage
+    echo $CERT_CACHENO > $CERT_CACHENO_STORAGE
+fi
+
+
+## OUTPUT DATA
+
+echo 'Content-type: text/html'
+echo ''
+
+cat $MET_DATAFILE
+cat $CERT_DATAFILE

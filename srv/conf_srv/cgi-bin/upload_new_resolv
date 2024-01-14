@@ -1,0 +1,59 @@
+#!/bin/sh
+
+TMPFILE=/tmp/tmp.resolv_conf
+FILE=/rwflash/customer/resolv.conf
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Create directory, jic
+/bin/mkdir -p /rwflash/customer
+
+# save upload file to tmp file, then copy over
+/bin/rm -f $TMPFILE
+/usr/bin/upload_saver $TMPFILE
+if [[ -f $TMPFILE && ! -z $TMPFILE ]]; then
+    /bin/cp $TMPFILE $FILE
+else
+    if [[ -f $TMPFILE ]]; then
+        echo '<font color=red>Error:' Received empty file '</font><br/><br/>'
+    else
+        echo '<font color=red>Error:' Failed to receive file '</font><br/><br/>'
+    fi
+fi
+# /bin/rm -f $TMPFILE
+
+# Unmount any pre-existing bind-mounted file
+# We are mounting /etc/resolv.conf, but mount -l is reporting the
+#   mount point as /run/systemd/resolve/resolv.conf, so that's 
+#   what we unmount to get rid of a previous resolv.conf mount
+umount /run/systemd/resolve/resolv.conf 2> /dev/null
+# See if it is unmounted
+X=`mount -l | grep resolv.conf`
+if [ x"$X" != x ]; then
+    echo '<font color=red>'ERROR: Unable to unmount previously existing resolv.conf mount '</font><br/><br/>'
+fi
+# Bind-mount the file
+mount -o bind $FILE /etc/resolv.conf
+retval=$?
+if [ $retval -eq 0 ]; then
+    echo '<font color=green>== Successfully updated to new resolv.conf file ==</font><br/><br/>'
+else
+    echo '<font color=red>!! Unable to bind new resolv.conf file - error ' $retval ' !!</font><br/><br/>'
+fi
+
+# Send new file back to client but with <br/> appended to every non-empty line
+if [[ -f $FILE ]]; then
+    awk '{print $0 "<br/>"}' $FILE
+else
+    echo '<font color=red>'Error: $FILE does not 'exist!</font>'
+fi
+

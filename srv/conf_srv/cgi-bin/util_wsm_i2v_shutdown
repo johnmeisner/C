@@ -1,0 +1,85 @@
+#!/bin/sh
+#
+# Request to shutdown the i2v series of apps
+#
+
+# Logging
+DLOG=/tmp/zdbg.stop_i2v_log.txt
+
+echo `date +%H:%M:%S` - i2v_shutdown called >> $DLOG
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify caller is logged in
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Tell reshealth to stop monitoring i2v_app
+/usr/local/bin/rsuhealth -Ii
+
+# Tell the utility page to push the user into the reboot screen if user goes
+#    back to the utility page (by hitting their browser's back button).
+#    This is much kinder than the wsm_util_watchdog rebooting the RSU out
+#    from under the user.
+WSM_UTIL_I2V_SHUTDOWN_MARKER_FILE=/tmp/ztmp.wsm_util_i2v_shutdown_marker_file
+touch $WSM_UTIL_I2V_SHUTDOWN_MARKER_FILE
+
+# Get the PID of i2v_app
+I2VPID=`ps x | grep i2v_app | grep -v grep | awk '{print $1}'`
+`date +%H:%M:%S` - i2v_shutdown detected i2v_app pid = $I2VPID >> $DLOG
+
+# Shut it down! Shut it all down!
+if [ x"$I2VPID" != x ]; then
+    echo `date +%H:%M:%S` - Killing -1 PID $I2VPID >> $DLOG
+    kill -1 $I2VPID
+    sleep 1
+    ps uw --pid $I2VPID >> $DLOG
+    PS_RETURN_CODE=$?
+    if [ $PS_RETURN_CODE == 0 ]; then
+        echo `date +%H:%M:%S` - Again, killing -1 PID $I2VPID >> $DLOG
+        kill -1 $I2VPID
+        sleep 1
+        ps uw --pid $I2VPID >> $DLOG
+        PS_RETURN_CODE=$?
+        if [ $PS_RETURN_CODE == 0 ]; then
+            echo `date +%H:%M:%S` - Again x 2, killing -9 PID $I2VPID >> $DLOG
+            kill -9 $I2VPID
+        fi
+    fi
+fi
+
+# Safety Check
+ps uw --pid $I2VPID > /dev/null
+if [ $? == 0 ]; then
+    echo `date +%H:%M:%S` - i2v_app was not shut down'!' >> $DLOG
+else
+    echo `date +%H:%M:%S` - Successfully shut down i2v_app >> $DLOG
+fi
+
+# Shut down all of i2v's *_app apps
+for SIGNAL in -15 -1 -9 ; do
+    APP_PIDS=`ps x | grep _app | grep -v grep | awk '{print $1}'`
+    if [ x"$APP_PIDS" != x ]; then
+        ps wx | grep _app | grep -v grep >> $DLOG
+        echo `date +%H:%M:%S` - Several rsu apps still up, going to kill $SIGNAL them >> $DLOG
+        kill $SIGNAL $APP_PIDS
+        sleep 1
+    fi
+done
+
+# Start up the reboot watchdog
+nohup /usr/bin/wsm_util_watchdog.sh > /dev/null &
+X=$!
+echo `date +%H:%M:%S` - Started Wsm_util Watchdog, its pid = $X  >> $DLOG
+
+# Send the user back to the wsm util page
+echo '<h1>Services Shutdown Successful</h1>'
+echo ''
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/utility_page_wsm_testing'\"/>"
+
+echo `date +%H:%M:%S` - i2v_shutdown exiting >> $DLOG

@@ -1,0 +1,331 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+print_icon_style()
+{
+echo "<style>" 
+
+echo ".icon {" 
+echo "  font-size: 60px;" 
+echo "  text-align: center;" 
+echo "  margin-top: 20px;" 
+echo "  padding: 10px;" 
+echo "}" 
+
+echo ".intro-container {" 
+echo "  display: -ms-flexbox;" 
+echo "  display: flex;" 
+echo "}" 
+
+echo "</style>" 
+
+}
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+echo "<!DOCTYPE html>"
+echo "<html>" 
+
+echo "<head>" 
+echo "    <meta charset=\"utf-8\">" 
+echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">" 
+echo "    <title>5940-RSU</title>" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/bootstrap/css/bootstrap.min.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/fonts/font-awesome.min.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Boxed.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Clean.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/css/Footer-Basic.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"../assets/css/styles.css\">" 
+print_icon_style
+echo "</head>" 
+}
+
+print_feature_box_beg()
+{
+echo "<body " 
+echo "onload=\"update_rsu_time()\" >" 
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+echo "    <div class=\"features-boxed\">" 
+echo "        <div class=\"container\">" 
+}
+
+print_feature_box_end()
+{
+echo "        </div>" 
+echo "    </div>" 
+}
+
+print_intro_beg()
+{
+echo "            <div class=\"intro\">" 
+echo "            <div class=\"intro-container\">" 
+echo "                <i class=\"fa fa-cogs icon\"></i>" 
+echo "                <h2 class=\"text-center\">Utilities</h2>" 
+echo "            </div>" 
+}
+
+print_intro_end()
+{
+echo "            </div>" 
+}
+
+print_class_row_beg()
+{
+echo "            <div class=\"row justify-content-center features\">" 
+}
+
+print_class_row_end()
+{
+echo "            </div>" 
+}
+
+print_Reboot_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+echo "                    <a href=\"/cgi-bin/reboot_with_countdown\" onclick=\"return confirm('Reboot RSU?')\">" 
+echo "                      <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-power-off icon\"></i>" 
+echo "                        <h3 class=\"name\">SYSTEM REBOOT</h3>" 
+echo "                      </div>" 
+echo "                    </a>" 
+echo "                </div>" 
+}
+
+print_fw_update_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+echo "                  <a href=\"/cgi-bin/fw_update_display_live\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-download icon\"></i>" 
+echo "                        <h3 class=\"name\" style='color: #007bff'>FIRMWARE UPDATE</h3>" 
+echo "                    </div>" 
+echo "                  </a>" 
+echo "                </div>" 
+}
+
+print_factory_reset_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+echo "                  <a href=\"/cgi-bin/factory_reset_display_live\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-truck icon\"></i>" 
+echo "                        <h3 class=\"name\" style='color: #007bff'>REVERT TO FACTORY DEFAULTS</h3>" 
+echo "                    </div>" 
+echo "                  </a>" 
+echo "                </div>" 
+}
+
+print_customer_configs_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/customer_configs_display_live\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-pencil-square-o icon\"></i>"
+echo "                        <h3 class=\"name\" style='color: #007bff'>CUSTOMER DEFINED CONFIGURATION</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_led_test_util_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+echo "                  <a href=\"/cgi-bin/utility_page_led_testing\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-dot-circle-o icon\"></i>" 
+echo "                        <h3 class=\"name\" style='color: #007bff'>LED TEST UTILITY</h3>" 
+echo "                    </div>" 
+echo "                  </a>" 
+echo "                </div>" 
+}
+
+print_wsm_test_util_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+echo "                  <a href=\"/cgi-bin/utility_page_wsm_testing\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-bar-chart icon\"></i>" 
+echo "                        <h3 class=\"name\" style='color: #007bff'>WSM SEND/RECV UTILITY</h3>" 
+echo "                    </div>" 
+echo "                  </a>" 
+echo "                </div>" 
+}
+
+print_deviceid_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+echo "                  <a href=\"/cgi-bin/utility_page_deviceid\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-id-card-o icon\"></i>" 
+echo "                        <h3 class=\"name\" style='color: #007bff'>DEVICE ID UTILITY</h3>" 
+echo "                    </div>" 
+echo "                  </a>" 
+echo "                </div>" 
+}
+
+print_log_util_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+echo "                  <a href=\"/cgi-bin/utility_page_logging\">" 
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-file-text-o icon\"></i>" 
+echo "                        <h3 class=\"name\" style='color: #007bff'>SYSTEM EVENT LOG</h3>" 
+echo "                    </div>" 
+echo "                  </a>" 
+echo "                </div>" 
+}
+
+print_Home_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+echo "                  <a href=\"/cgi-bin/rsu_main\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-home icon\"></i>" 
+echo "                        <h3 class=\"name\">Home</h3>" 
+echo "                    </div>" 
+echo "                  </a>" 
+echo "                </div>" 
+}
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+echo "    <div class=\"footer-basic\">" 
+echo "        <footer>" 
+echo "            <p class=\"copyright\">MobiQ © 2023</p>" 
+echo "        </footer>" 
+echo "    </div>" 
+echo "    <script src=\"../assets/js/jquery.min.js\"></script>" 
+echo "    <script src=\"../assets/bootstrap/js/bootstrap.min.js\"></script>" 
+
+#Script prompting user for reboot confirmation
+echo "    <script>" 
+echo "      function reset_confirm() {" 
+echo "          confirm(\"Reboot RSU?\")" 
+echo "      }" 
+echo "    </script>" 
+
+    #=== Custom scripts ===
+    echo "<script>" 
+        print_update_rsu_time
+        print_rsu_time_refresh
+        print_pageshow_update
+    echo "</script>" 
+
+echo "</body>" 
+echo "</html>" 
+}
+
+print_update_rsu_time()
+{
+    echo "    function update_rsu_time() {" 
+    echo "      var xhttp = new XMLHttpRequest();" 
+    echo "      xhttp.onreadystatechange = function() {" 
+    echo "        if (this.readyState == 4 && this.status == 200) {" 
+
+    echo "          var str = this.responseText;" 
+    echo "          var res = str.replace(\"GMT\", \"UTC\");" 
+    echo "          msec = Date.parse(res);" 
+    # Kicks off refresh timer for updating time per second without pinging server
+    echo "          rsu_time_refresh();" 
+    echo "        }" 
+    echo "      };" 
+    echo "      xhttp.open(\"GET\", \"/cgi-bin/update_time\", true);" 
+    echo "      xhttp.send();" 
+    echo "    }" 
+}
+
+print_rsu_time_refresh()
+{
+    echo "    function rsu_time_refresh() {" 
+    echo "      var n_date = new Date(msec);" 
+    echo "      var utc_date = n_date.toUTCString();" 
+    echo "      var utc_date = utc_date.replace(\"GMT\", \"UTC\");" 
+    echo "      document.getElementById(\"rsu_time\").innerHTML = utc_date;" 
+    echo "      msec = msec + 1000;" 
+    echo "      var t = setTimeout(rsu_time_refresh, 1000);" 
+    echo "    };" 
+}
+
+print_pageshow_update()
+{
+    echo "    window.addEventListener(\"pageshow\", pageshow_update); " 
+
+    # resync with server for proper time - updating msec
+    echo "    function pageshow_update() {" 
+    echo "      var xhttp = new XMLHttpRequest();" 
+    echo "      xhttp.onreadystatechange = function() {" 
+    echo "        if (this.readyState == 4 && this.status == 200) {" 
+
+    echo "          var str = this.responseText;" 
+    echo "          var res = str.replace(\"GMT\", \"UTC\");" 
+    echo "          msec = Date.parse(res);" 
+    echo "        }" 
+    echo "      };" 
+    echo "      xhttp.open(\"GET\", \"/cgi-bin/update_time\", true);" 
+    echo "      xhttp.send();" 
+    echo "    }" 
+}
+
+#
+### Output tmp page - then redirect to rsu-config (check if user is logged in)
+#
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+  exit 0
+fi
+
+# Check if user was using the wsm_send/wsm_recv utilities, and has shut down
+# i2v_app, and then hit the "back" button on their browser.  The watchdog is
+# going to reboot the RSU, but we should push the user into the reboot screen
+# as its a much kinder user experience.
+WSM_UTIL_I2V_SHUTDOWN_MARKER_FILE=/tmp/ztmp.wsm_util_i2v_shutdown_marker_file
+if [ -f $WSM_UTIL_I2V_SHUTDOWN_MARKER_FILE ]; then
+    STATUS_FILE=/tmp/update.status.file     # reboot page will show this output
+    echo 'Rebooting RSU to restart RSU services' > $STATUS_FILE
+    echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/reboot_with_countdown' \" /> "
+    exit 0
+fi
+
+# Show our page
+  print_header                   # print header
+  print_feature_box_beg          # print intro beg
+    print_intro_beg 
+    print_intro_end l
+
+    print_class_row_beg 
+
+    # main body show util boxes
+    print_Reboot_box
+    print_fw_update_box
+    print_factory_reset_box
+    print_customer_configs_box
+    print_led_test_util_box
+    print_wsm_test_util_box
+    print_deviceid_box
+    print_log_util_box
+    # Home
+    print_Home_box
+    
+    print_class_row_end 
+    # Insert RSU date here
+    echo "      <h4 id='rsu_time' class=\"text-center\">" 
+    /bin/date 
+    echo "</h4>"  
+    echo ""  
+  print_feature_box_end 
+
+  # FW version
+  echo "<p class='copyright' style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>VERSION:"
+  cat /etc/version 
+  echo "</p>"
+
+  # End of Page with Footer
+  print_footer_end  
+

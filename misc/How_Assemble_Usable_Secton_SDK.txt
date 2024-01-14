@@ -1,0 +1,128 @@
+
+HOW TO UNTANGLE AND ASSEMBLE A WORKABLE SDK FROM WNC'S SECTON RECIPES
+
+[Last Updated: 20220615]
+
+0. Intro/Why:
+    The Autotalks SDK as distributed from Autotalks itself is unusably complicated;
+        when it's unpacked and installed from within WNC's recipe, a usable
+        SDK can be assembled from there.
+
+1. Start with a clean BSP
+    cd ~/work/rsu5940_h7e_imx8_yocto_v0.2.3.1/build-imx-xwayland-c0/
+    rm -rf tmp cache sstate-cache
+
+2. Build the atlk-cv2x recipe  (this also builds the atlk-secton recipe)
+    bitbake atlk-cv2x
+
+3. Capture the makefile commands of AT's crazy Makefile system
+    cd ~/work/rsu5940_h7e_imx8_yocto_v0.2.3.1/build-imx-xwayland-c0/tmp/work/aarch64-poky-linux/atlk-cv2x/0.1-r0/cv2x-secton-sdk-5.15.0-rel/output.sec/armv8-64
+    make clean
+    make -n all > sh_manual_build_01.sh
+    chmod a+x sh_manual_build_01.sh
+
+4. Test your captured shell file will build cv2x-example
+    make clean
+    ls -l apps/bin
+        ^-- Should say no such file or directory
+    ./sh_manual_build_01.sh
+    ls -l apps/bin
+        ^-- Should list a recently created file
+
+5. Create a writable /opt/autotalks directory
+    sudo mkdir /opt/autotalks
+    sudo chown ivi:ivi /opt/autotalks
+
+6. Copy the cv2x library files to /opt/autotalks/secton-5.15/lib
+    mkdir -p /opt/autotalks/secton-5.15/lib
+    cd ../..
+        (abs path: ~/work/rsu5940_h7e_imx8_yocto_v0.2.3.1/build-imx-xwayland-c0/tmp/work/aarch64-poky-linux/atlk-cv2x/0.1-r0/cv2x-secton-sdk-5.15.0-rel)
+    cp -p lib/armv8-64/* /opt/autotalks/secton-5.15/lib
+
+7. Copy the cv2x include files to /opt/autotalks/secton-5.15/include
+    mkdir -p /opt/autotalks/secton-5.15/include
+    cp -p -r include/* /opt/autotalks/secton-5.15/include
+
+8. Copy the secton SDK library files to /opt/autotalks/secton-5.15/lib
+    cd  ../../../atlk-secton/0.1-r0/secton-sdk-5.15.0-rel_sec_SPI0
+        (abs path: ~/work/rsu5940_h7e_imx8_yocto_v0.2.3.1/build-imx-xwayland-c0/tmp/work/aarch64-poky-linux/atlk-secton/0.1-r0)
+    cp -p output.sec/armv8-64/lib/* /opt/autotalks/secton-5.15/lib
+
+9. Copy the secton SDK include files to /opt/autotalks/secton-5.15/include
+    cp -p -r include/* /opt/autotalks/secton-5.15/include
+    cp -p -r depend/device/include/* /opt/autotalks/secton-5.15/include  # Needed for remote_service/remote_counters.h
+    cp -p -r ref_src/include/* /opt/autotalks/secton-5.15/include  # Needed for extern/time_sync.h
+    cp -p -r src/include/* /opt/autotalks/secton-5.15/include  # Needed for atlk_pcket.h
+    cp -p -r src/core/include/* /opt/autotalks/secton-5.15/include  # Needed for log_core.h
+    cp -p -r ref_src/poti_lib/include/* /opt/autotalks/secton-5.15/include  # Needed for poti_api.h
+10. Copy the cv2x SDK include files to /opt/autotalks/secton-5.15/include
+    cd ../../../atlk-cv2x/0.1-r0/cv2x-secton-sdk-5.15.0-rel
+    cp -p -r ref_src/include/*  /opt/autotalks/secton-5.15/include # Needed for extern/ref_cv2x_sys.h
+
+11. Create a library from the ref_sys object files
+    # Originally, Kenn created this library in a custom Makefile that
+    #   was created by isolating the filenames in the script and
+    #   making a loop building objects from those files.
+    # Now, you can just collect the .o files built by the original
+    #   script.
+    cd output.sec/armv8-64
+        (abs path: ~/work/rsu5940_h7e_imx8_yocto_v0.2.3.1/build-imx-xwayland-c0/tmp/work/aarch64-poky-linux/atlk-cv2x/0.1-r0/cv2x-secton-sdk-5.15.0-rel/output.sec/armv8-64)
+    mkdir ../refobjs
+    find . -name \*.o -exec cp '{}' ../refobjs ';'
+    cd ../refobjs
+    aarch64-poky-linux-ar -cr librefsys.a *.o
+    ls -l librefsys.a
+    cp librefsys.a /opt/autotalks/secton-5.15/lib
+
+12. Create a library from the object files of the generated asn1 source
+    # Go into the directory with the manual build script you made earlier
+    cd ../armv8-64
+        (abs path: ~/work/rsu5940_h7e_imx8_yocto_v0.2.3.1/build-imx-xwayland-c0/tmp/work/aarch64-poky-linux/atlk-cv2x/0.1-r0/cv2x-secton-sdk-5.15.0-rel/output.sec/armv8-64)
+    # From the script file, extract the line that compiles the auto-gen files - the "*.c"
+    egrep '\*\.c' sh_manual_build_01.sh > xcc
+    # Use the gcc flags in this line to compile all the auto-gen *.c files.
+    # To do this, modify this one line in xcc file over and over:
+    vi xcc
+        # Enter these VI commands to do these things:
+        #    Note: <ENTER> means press the enter key, <ESC> press the escape key
+        # A. Remove the output flag '-o' and the word that follows it
+        / -o <ENTER>            <-- Note the space before and after the '-o'
+        ldWdW                   <-- Note its a 'l'(L) not '1', and the 'W's are capital-W. 
+        # B. Remove all words that end in .o   -- including a compile object file
+        :%s/[^ ]*\.o / /g<ENTER>
+        # C. Add a '-c' after the gcc
+        0Ea -c <ESC>            <-- Note it's ZERO Captial-E lower-case-a space -c space <ESC>
+        # D. Save it!
+        ZZ
+    # Make sure there are no .o files in your current directory
+    ls *.o
+    # If there are any, delete them
+    rm *.o
+    # Run your xcc script
+    . ./xcc
+    # See the glorious obj files
+    ls 
+    # Build a library from these objects
+    aarch64-poky-linux-ar -cr libasn1c.a *.o
+    ls -l libasn1c.a
+    cp libasn1c.a /opt/autotalks/secton-5.15/lib
+
+13. Copy the cv2x encoding and config files to /opt/autotalks/secton-5.15/package
+    mkdir /opt/autotalks/secton-5.15/package
+    cd ../../../package/usr/bin
+        (abs path: ~/work/rsu5940_h7e_imx8_yocto_v0.2.3.1/build-imx-xwayland-c0/tmp/work/aarch64-poky-linux/atlk-cv2x/0.1-r0/package/usr/bin)
+    cp -p cv2x_* [d-z]* /opt/autotalks/secton-5.15/package
+
+14. Clean up permissions and set ownership of /opt/autotalks back to root
+    sudo chmod -R g-w /opt/autotalks
+    sudo chown -R root:root /opt/autotalks
+
+15. Create a new autotalks_sdk_for_opt.tar.bz2 for C/misc:
+    cd /opt
+    tar cf /tmp/autotalks_sdk_for_opt.tar autotalks
+    bzip2 -9 /tmp/autotalks_sdk_for_opt.tar
+    cp /tmp/autotalks_sdk_for_opt.tar.bz2 ~/work/trunk/hercules/Software/iMX8/Source/C/misc
+
+16. Test your new /opt/autotalks SDK by building radio/ns
+    cd ~/work/trunk/hercules/Software/iMX8/Source/C/radio/ns
+    make

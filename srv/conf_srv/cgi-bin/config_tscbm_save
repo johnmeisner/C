@@ -1,0 +1,82 @@
+#!/bin/sh
+
+# File: config_tscbm_save
+#        ^-- Ported to Hercules paths and redirect method
+# Desc: Save TSC config settings for I2V
+
+# NOTE: Uncomment ^##.*DEBUGLOG lines for debugging
+
+CFGTMP=/tmp/ztmp.tscbm.conf
+DEBUGLOG=/tmp/zcfgtscbmsave.log
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo 'Content-Type: text/html'
+  echo ''
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Set path
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+
+## echo CTS: Called >> $DEBUGLOG
+
+# Figure out action to take following update
+NAV=`/usr/bin/get_token_val $QUERY_STRING NAV`
+if [ "$NAV" == "BACK" ]; then
+    REFRESH_SCRPT="config_intersection_display_live"
+elif [ "$NAV" == "APPLY" ]; then
+    # do a reboot after the save
+    REFRESH_SCRPT="reboot_with_countdown"
+else
+    REFRESH_SCRPT="config_tscbm_display_live"
+fi
+## echo CTS: REFRESH_SCRPT=$REFRESH_SCRPT  >> $DEBUGLOG
+## echo CTS: QUERY_STRING = "$QUERY_STRING" >> $DEBUGLOG
+
+#=== Process the form data into a new tscbm.conf file
+ROWNUM=1
+KEEP_GOING=TRUE
+while [ $KEEP_GOING == TRUE ]; do
+    PTVAL=`/usr/bin/get_token_val "$QUERY_STRING" phasetype$ROWNUM`
+    PNVAL=`/usr/bin/get_token_val "$QUERY_STRING" phaseno$ROWNUM`
+    SGVAL=`/usr/bin/get_token_val "$QUERY_STRING" siggroup$ROWNUM`
+    MSVAL=`/usr/bin/get_token_val "$QUERY_STRING" greenmeans$ROWNUM`
+
+    ## echo CTS: ROWNUM=$ROWNUM PTVAL=$PTVAL MSVAL=$MSVAL >> $DEBUGLOG
+
+    # See if we're done
+    if [ "$PNVAL" == "" ]; then
+        KEEP_GOING=FALSE
+    # We have a row, lets save it
+    else
+        # If its the first row, create and timestamp the tmp file
+        if [ $ROWNUM == 1 ]; then
+            echo -n '##=== tscbm.conf updated by webgui on ' > $CFGTMP
+            /bin/date >> $CFGTMP
+        fi
+        # Save data
+        echo $PTVAL,$PNVAL,$SGVAL,$MSVAL >> $CFGTMP
+
+        # Increment counter
+        let ROWNUM=$ROWNUM+1
+    fi
+done
+
+## echo CTS: Calling UPDATE >> $DEBUGLOG
+
+#=== Tell conf_agent to update the live config file with our tmp file
+## echo UPDATE=\`/usr/bin/conf_agent WRITE RSU_INFO TSCBM_CONF $CFGTMP\`  >> $DEBUGLOG
+UPDATE=`/usr/bin/conf_agent WRITE RSU_INFO TSCBM_CONF $CFGTMP`
+## echo CTS: \$\? = $? >> $DEBUGLOG
+## echo CTS: UPDATE=$UPDATE >> $DEBUGLOG
+
+#= Refresh Page
+echo 'Content-Type: text/html'
+echo ''
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/$REFRESH_SCRPT' \" /> "
+
+## echo CTS: Done. >> $DEBUGLOG

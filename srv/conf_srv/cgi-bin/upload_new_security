@@ -1,0 +1,272 @@
+#!/bin/sh
+#
+# This script takes an uploaded ISS CMS response zip file and installs it
+
+# Set path -- this lets us simply script "wc" instead of /proc/boot/wc, etc.
+PATH=/proc/boot:/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin:/opt/cohda/bin:/rwflash/bin:/usr/local/bin
+
+export AEROLINK_STATE_DIR=/rwflash/aerolink
+export AEROLINK_CONFIG_DIR=/rwflash/configs/aerolink_conf
+
+SAVETMP=/tmp/savetmp.tmp
+ZIPLIST=/tmp/tmp.ziplist
+CERTDIR=/mnt/rwflash/aerolink/certificates
+PROCESSOUT=/tmp/tmp.processoutput
+
+echo "Content-type: text/html"
+echo ''
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Capture uploaded file and save it to $SAVETMP
+/usr/bin/upload_saver $SAVETMP > /dev/null
+
+# Content of ZIP
+unzip -l $SAVETMP > $ZIPLIST 2>/dev/null
+
+# Test if file can unzip -- verifies it is a zip file
+LISTLINES=`wc -l $ZIPLIST | awk '{print $1}'`
+if [ $LISTLINES -gt 4 ]; then
+    echo Good: Uploaded file is a ZIP file '<br/>'
+    # Get exact file count
+    FILECOUNT=`unzip -l $SAVETMP | tail -1 | awk '{print $2}'`
+    if [ $FILECOUNT -ge 8 ]; then
+        echo Good: Uploaded zip file contains $FILECOUNT files '(want 8+) <br/>'
+    else
+        echo Warning: Uploaded zip file contains only $FILECOUNT files '(want 8+) <br/>'
+    fi
+else
+    echo ERROR: Uploaded file is not a ZIP file '<br/>'
+    exit    # No point in continuing testing
+fi
+
+# Test if zip file contains required files
+#      $ unzip -l ../ISS_CMS_RESPONSE_5561493.zip or file name contains "legacy"
+#      Archive:  ../ISS_CMS_RESPONSE_5561493.zip or file name contains "legacy"
+#        Length      Date    Time    Name
+#      ---------  ---------- -----   ----
+#           4544  2021-03-12 18:32   LCCF.oer
+#           2313  2021-03-12 18:32   LPF.oer
+#            670  2021-03-12 18:32   CRL.oer
+#             38  2021-03-12 18:32   RA_URL.txt
+#             38  2021-03-12 18:32   Cert_DL_URL.txt
+#           7312  2021-03-12 18:32   root.tls
+#            210  2021-03-12 18:32   root.oer
+#              0  2021-03-12 18:32   036b825b6c4d0c24beba6e7f66daab47d2e2f0ef007d904e866cb824568d9632f2/
+#            434  2021-03-12 18:32   036b8...f2/signedEeEnrollmentCertResponse.oer
+#             86  2021-03-12 18:32   036b8...f2/enrollment.oer
+#             32  2021-03-12 18:32   036b8...f2/enrollment.s
+#            216  2021-03-12 18:32   036b8...f2/ECA.oer
+#            216  2021-03-12 18:32   036b8...f2/RA.oer
+#      ---------                     -------
+#          16109                     13 files
+for WANTF in CRL.oer ECA.oer LCCF.oer LPF.oer RA.oer enrollment.oer enrollment.s root.oer ; do
+    if [ "`egrep $WANTF'$' $ZIPLIST`" == "" ]; then
+        echo ERROR: ZIP is missing file $WANTF '<br/>' 
+        LEGACYSTILLVALID=0
+    else
+        LEGACYSTILLVALID=1
+    fi
+done
+
+# Test if zip file contains required files
+#unzip -l enrollment_TEST_5B6XBTGFOMZW.zip
+#Archive:  enrollment_TEST_5B6XBTGFOMZW.zip
+#  Length      Date    Time    Name
+#---------  ---------- -----   ----
+#      583  07-04-2021 17:16   0984F1AF539FF290/crl.oer
+#      208  07-04-2021 17:16   0984F1AF539FF290/eca.cert
+#      113  07-04-2021 17:16   0984F1AF539FF290/enrollment.cert
+#        4  07-04-2021 17:16   0984F1AF539FF290/enrollment.cmsPrivateSeedKey
+#       32  07-04-2021 17:16   0984F1AF539FF290/enrollment.privateReconstructionValue
+#     3348  07-04-2021 17:16   0984F1AF539FF290/local_certificate_chains_0001_0006.oer
+#     1721  07-04-2021 17:16   0984F1AF539FF290/local_policy_0001_0001.oer
+#      192  07-04-2021 17:16   0984F1AF539FF290/ma.cert
+#      208  07-04-2021 17:16   0984F1AF539FF290/ra.cert
+#       23  07-04-2021 17:16   0984F1AF539FF290/rahost.txt
+#      205  07-04-2021 17:16   0984F1AF539FF290/rca.cert
+#     7312  07-04-2021 17:16   0984F1AF539FF290/root.tls
+#---------                     -------
+#    13949                     12 files
+
+#Check only if legacy is not valid 
+if [ $LEGACYSTILLVALID -eq 0 ]; then
+    echo ""
+    echo "File not in Legacy format...Checking for latest format"
+    echo ""
+    for WANTF in crl.oer eca.cert enrollment.cert enrollment.cmsPrivateSeedKey ma.cert ra.cert ; do
+        if [ "`egrep $WANTF'$' $ZIPLIST`" == "" ]; then
+            echo ERROR: ZIP is missing file $WANTF '<br/>' 
+            STILLVALID=0
+        else
+            STILLVALID=1
+        fi
+    done
+fi
+
+# Go no further if any file was missing
+if [ $STILLVALID -eq 0 ]  && [ $LEGACYSTILLVALID -eq 0 ]; then
+    echo Bad: Zip file input was NOT a response file '<br/>'
+    exit
+else
+    if [ $STILLVALID -eq 1 ]; then
+        echo Good: All the required files are in latest format zip file '<br/>'
+    fi
+    if [ $LEGACYSTILLVALID -eq 1 ]; then
+        echo Good: All the required files are in legacy format zip file '<br/>'
+    fi
+fi
+
+if [ $LEGACYSTILLVALID -eq 1 ]; then
+
+    # Unzip the contents of the zip into $CERTDIR
+    # overwrite any existing files (-o)
+    cd $CERTDIR
+    unzip -o $SAVETMP
+    result = $?
+    # Test unzip's success by its return code, which is non-zero if there was an error
+    if [ $result -ne 0 ]; then
+        echo ERROR: unpacking of uploaded file failed with error code $? '<br/>'
+        exit
+    else
+        echo Good: Successfully unpacked zip file '<br/>'
+    fi
+
+    #unzip on Busybox doesn't have flattening out option (-j). So copy files manually 
+    #from the only directory (It's always listed as first).
+    cp $(ls -d */|head -n 1)/* .
+
+    # Verify the processECResponse program is installed 
+    if [ ! -f /usr/bin/processECResponse ]; then
+        echo ERROR: Unable to process uploaded file - processECResponse is not installed '<br/>'
+        exit
+    fi
+
+    # Process the installed ECResponse files
+    cd /usr/bin/
+    /usr/bin/processECResponse --contextName denso.wsc --lcmName rsuLcm --enrollmentResponse $CERTDIR/enrollment.oer --lccf $CERTDIR/LCCF.oer --crl $CERTDIR/CRL.oer --lpf $CERTDIR/LPF.oer --ra $CERTDIR/RA.oer --root $CERTDIR/root.oer --eca $CERTDIR/ECA.oer --enrollmentReconstruction $CERTDIR/enrollment.s > $PROCESSOUT 2>&1
+
+
+    # If we get any form of "Process request failed", exit with error message
+    # Note: If user processed request previously, we'll get this error:
+    #    Process request failed: an enrollment response has already been processed for the specified lcm
+    if [ "`grep Process.request.failed $PROCESSOUT`" != "" ]; then
+        echo ERROR: Process request failed '<br/>'
+        echo -n '<pre>'
+        cat $PROCESSOUT
+        echo '</pre>'
+        exit
+    fi
+
+    # If we got any form of Usage:, exit with error message
+    # Note: If user is missing files, we'll get these errors, followed the "Usage:" line
+    #    Errors encountered during argument validation:
+    #       File /mnt/rwflash/aerolink/certificates/CRL.oer does not exist
+    #       File /mnt/rwflash/aerolink/certificates/ECA.oer does not exist
+    #       File /mnt/rwflash/aerolink/certificates/enrollment.s does not exist
+    #       File /mnt/rwflash/aerolink/certificates/enrollment.oer does not exist
+    #       File /mnt/rwflash/aerolink/certificates/LCCF.oer does not exist
+    #       File /mnt/rwflash/aerolink/certificates/LPF.oer does not exist
+    #       File /mnt/rwflash/aerolink/certificates/RA.oer does not exist
+    #       File /mnt/rwflash/aerolink/certificates/root.oer does not exist
+    # Usage: processECResponse  --contextName <security context name> --lcmName <lcm name> --enrollmentResponse filename --enrollmentReconstruction filename --lccf filename --lpf filename --root filename --eca filename --ra filename --crl filename
+    if [ "`grep Usage:.processECResponse $PROCESSOUT`" != "" ]; then
+        echo ERROR: Process request failed '<br/>'
+        echo -n '<pre>'
+        cat $PROCESSOUT
+        echo '</pre>'
+        exit
+    fi
+
+
+    # Say some happy words
+    echo 'Good: Process EC Response succeeded:<br/>'
+    echo -n '<pre>'
+    cat $PROCESSOUT
+    echo '</pre>'
+
+
+    # Verify ProcessOUT mentions all our input files
+    for WANTF in CRL.oer ECA.oer LCCF.oer LPF.oer RA.oer enrollment.oer enrollment.s root.oer ; do
+        if [ "`grep $WANTF'$' $PROCESSOUT`" == "" ]; then
+            echo WARNING: processECResponse did not update $WANTF '<br/>' 
+        fi
+    done
+
+
+    # Make sure our certs were created and say safeword "Valid" if so
+    if [ ! -f $CERTDIR/enrollment.cert ]; then
+        echo '<br/>ERROR: File enrollment.cert was not generated! <br/>'
+    elif [ -e $CERTDIR/local_policy_*.oer ]; then 
+        echo '<br/>Success: Enrollment certificates successfully created<br/>'
+        # Say the word "Valid" so javascript sees it and marks the upload as successful
+        echo Valid install.
+    else
+        echo '<br/>ERROR: File local_policy_*.oer was not generated! <br/>'
+    fi
+
+fi # LEGACYSTILLVALID
+
+
+if [ $STILLVALID -eq 1 ]; then
+
+    # Unzip the contents of the zip into $CERTDIR
+    # Note we flatten the zip's paths (-j) and overwrite any existing files (-o)
+    cd $CERTDIR
+    unzip -o  $SAVETMP
+    result = $?
+    # Test unzip's success by its return code, which is non-zero if there was an error
+    if [ $result -ne 0 ]; then
+        echo ERROR: unpacking of uploaded file failed with error code $? '<br/>'
+        exit
+    else
+        echo Good: Successfully unpacked zip file '<br/>'
+    fi
+
+    #unzip on Busybox doesn't have flattening out option (-j). So copy files manually 
+    #from the only directory (It's always listed as first).
+    cp $(ls -d */|head -n 1)/* .
+
+    # Verify the  cmsRestApiProcessor program is installed
+    if [ ! -f /usr/bin/cmsRestApiProcessor ]; then
+        echo ERROR: Unable to process uploaded file - cmsRestApiProcessor is not installed '<br/>'
+        exit
+    fi
+
+    # Process the installed cmsRestApiProcessor files
+    cd /usr/bin/
+    /usr/bin/cmsRestApiProcessor > $PROCESSOUT 2>&1
+
+    # If the cmsRestApiProcessor failed, just exit
+    if [ "`grep Failed $PROCESSOUT`" != "" ]; then
+        echo ERROR: Process request failed '<br/>'
+        echo -n '<pre>'
+        cat $PROCESSOUT
+        echo '</pre>'
+        exit
+    fi
+
+    # Say some happy words
+    echo 'CMS REST API Process succeeded:<br/>'
+    echo -n '<pre>'
+    cat $PROCESSOUT
+    echo '</pre>'
+
+    # Make sure our certs were created and say safeword "Valid" if so
+    if [  -e $CERTDIR/eecert.req ]; then
+        echo '<br/>Success: File eecert.req was generated! <br/>'
+    elif [ -e $CERTDIR/enrollment.prikey ]; then 
+        echo '<br/>Success: Enrollment certificates successfully created<br/>'
+        # Say the word "Valid" so javascript sees it and marks the upload as successful
+        echo Valid install.
+    else
+        echo 'ERROR: File local_policy_*.oer was not generated! <br/>'
+    fi
+
+fi #STILLVALID

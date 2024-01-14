@@ -1,0 +1,92 @@
+#!/bin/sh
+
+# Main
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+
+# Env vars needed to run commands to get ethernet data
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+
+TMPDATA=/tmp/ztmp.ethnet.tool.
+
+
+# Grab the data to display
+
+    # Grab ethtool data and use it to figure out which ethX is the active one
+    ethtool eth0 > $TMPDATA.eth0
+    ethtool eth1 > $TMPDATA.eth1
+
+    # Figure out which one is the active one; if none found, set None
+    if [ "`grep 'Link detected: yes' $TMPDATA.eth0`" != "" ]; then
+        ACTIVENIC=eth0
+    elif [ "`grep 'Link detected: yes' $TMPDATA.eth1`" != "" ]; then
+        ACTIVENIC=eth1
+    else
+        ACTIVENIC=None
+    fi
+
+    # Get Link Speed for active nic
+    if [ $ACTIVENIC != None ]; then
+        LINKSPEED=`grep Speed: $TMPDATA.$ACTIVENIC | awk '{print $NF}'`
+        DETECTED=`grep Link.detected $TMPDATA.$ACTIVENIC | awk '{print $NF}'`
+    # Nothing detected
+    else
+        echo '' > $TMPDATA.ifconfig
+        LINKSPEED=Unknown
+        DETECTED=No
+    fi
+
+    # Figure out if we have multiple IP's assigned our $ACTIVENIC
+    if [ $ACTIVENIC != None ]; then
+        ACTIVE_NIC_LIST=`ifconfig | grep $ACTIVENIC | awk '{print $1}'`
+        NUM_ACTIVE=`echo $ACTIVE_NIC_LIST | wc -w`
+    fi
+
+    # Get ifconfig(s) for active nic(s)
+    if [ $ACTIVENIC != None ]; then
+        if [ $NUM_ACTIVE -eq 1 ]; then
+            ifconfig $ACTIVENIC > $TMPDATA.ifconfig
+        else
+            cp /dev/null > $TMPDATA.ifconfig
+            for ETHX in $ACTIVE_NIC_LIST ; do
+                ifconfig $ETHX >> $TMPDATA.ifconfig
+                echo '' >> $TMPDATA.ifconfig
+            done
+        fi
+    fi
+
+    # Get ip -4 output for active nic.  Multiple IP's are handled for us
+    if [ $ACTIVENIC != None ]; then
+        ip -4 addr show dev $ACTIVENIC > $TMPDATA.ipshowdev
+    else
+        echo '' > $TMPDATA.ipshowdev
+    fi
+
+    # Get routing information
+    ip route > $TMPDATA.iproute
+
+
+# Send the data back to the caller .. using $SEP line separator
+SEP='<COMMA>'
+echo $ACTIVENIC $SEP $DETECTED $SEP $LINKSPEED $SEP
+cat  $TMPDATA.ifconfig
+echo $SEP
+cat  $TMPDATA.ipshowdev
+echo $SEP
+cat  $TMPDATA.iproute
+echo $SEP
+echo '<EOD>'
+
+
+# Cleanup
+rm $TMPDATA.*

@@ -1,0 +1,271 @@
+#!/bin/sh
+
+SCRPT_PATH="/usr/local/www/cgi-bin/"
+
+print_text_input_tip()
+{
+    # Input parameters
+    #   NAME=""
+    #   LABEL=""
+    #   ID=""
+    #   PHOLDER=""
+    #   TOOLTIP=""
+
+    echo "              <div class='form-group row' style='margin-bottom: 0px;' " 
+    echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>" 
+    echo "                <label for='$ID' class='col-sm-5 col-form-label'>$LABEL </label>" 
+    echo "                <div class='col-sm-6'>" 
+    echo "                  <input type='text' class='form-control' name='$NAME' id='$ID' placeholder='$PHOLDER' value='$PHOLDER' >" 
+    echo "                </div>" 
+    echo "              </div>" 
+}
+
+print_check_box_tip()
+{
+    # Input Params
+    #   NAME=""
+    #   LABEL=""
+    #   ID=""
+    #   VALUE=""
+    #   TOOLTIP (TBD)
+
+    if [ "$VALUE" == "0" ]; then 
+        RESULT="" 
+    else 
+        RESULT="checked" 
+    fi
+    echo "            <div class=\"form-check\"><input class=\"form-check-input\" type=\"checkbox\" name=\"$NAME\" id=\"$ID\" $RESULT>" 
+    echo "            <label class=\"form-check-label\" for=\"$ID\" " 
+    echo "            data-toggle=\"tooltip\" data-placement=\"top\" title=\"$TOOLTIP\"> " 
+    echo "            $LABEL</label></div>" 
+}
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+    echo "<!DOCTYPE html>"          # New file
+    echo "<html>" 
+
+    echo "<head>" 
+    echo "    <meta charset=\"utf-8\">" 
+    echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">" 
+    echo "    <title>RSU - 5940 I2V Config Settings</title>" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/bootstrap/css/bootstrap.min.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/fonts/font-awesome.min.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Boxed.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Clean.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Footer-Basic.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/styles.css\">" 
+
+    echo "    <style>" 
+    echo "#overlay {" 
+    echo "  position: fixed;" 
+    echo "  display: none;" 
+    echo "  width: 100%;" 
+    echo "  height: 100%;" 
+    echo "  top: 0;" 
+    echo "  left: 0;" 
+    echo "  right: 0;" 
+    echo "  bottom: 0;" 
+    echo "  background-color: rgba(0,0,0,0.3);" 
+    echo "  z-index: 2;" 
+    echo "  cursor: pointer;" 
+    echo "}" 
+    echo "    </style>" 
+
+    echo "</head>" 
+}
+
+print_overlay()
+{
+    echo "<div id='overlay'>" 
+
+    echo "<div class="text-center">" 
+
+#    echo "  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >" 
+    echo "  <div id='spin01' class='spinner-border text-primary' role='status' >" 
+    echo "    <span class='sr-only'>Loading...</span>" 
+    echo "  </div>" 
+    echo "</div>" 
+    echo "</div>" 
+}
+
+
+print_settings()
+{
+    echo "      <div class=\"col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item\">" 
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;mlargin-bottom: 15px;\">"        # box begin
+
+    #=== form action
+    echo "<form name='imm_fwd_form' form action='/cgi-bin/config_imm_fwd_save'>" 
+    echo "        <h3 class=\"text-center\">Please wait 3 seconds for RSU to complete reboot</h3>" 
+
+    # Get IP address
+    RSU_IP=`/usr/bin/conf_agent READ RSU_INFO SC0IPADDRESS`
+    echo "        <h3 class=\"text-center\">https://$RSU_IP</h3>" 
+
+    echo "</form>" 
+
+    #=== End
+    echo "        </div>"          # box end
+    echo "        </div>" 
+}
+
+print_reset()
+{
+    echo "      <div class=\"col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item\">" 
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;mlargin-bottom: 15px;\">"        # box begin
+
+    #=== form action
+    echo "<form name='imm_fwd_form' form action='/cgi-bin/config_imm_fwd_save'>" 
+    echo "        <h6 class=\"text-center\">Please wait for RSU to complete reboot</h6>" 
+
+    echo "        <h6 class=\"text-center\">Relogin at</h6>" 
+    
+    # Get IP address
+    RSU_IP=`/usr/bin/conf_agent READ RSU_INFO SC0IPADDRESS`
+    echo "        <a href=\"https://$RSU_IP\">" 
+    echo "          <h6 class=\"text-center\">https://$RSU_IP</h6>" 
+    echo "        </a>" 
+
+    echo "</form>" 
+
+    #=== End
+    echo "        </div>"          # box end
+    echo "        </div>" 
+}
+
+
+
+print_i2v_conf_row1()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">" 
+
+    print_reset
+
+    echo "    </div>" 
+
+}
+
+print_i2v_conf_row2()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">" 
+
+    # Columm 1 - Radio settings
+    # print_scs_snmp_cmd
+
+    echo "    </div>" 
+
+}
+
+print_feature_box_beg()
+{
+    echo "<body>" 
+    print_overlay
+    echo "    <div class=\"features-boxed\">" 
+    echo "        <div class=\"container\">" 
+}
+
+print_feature_box_end()
+{
+    echo "        </div>" 
+    echo "    </div>" 
+}
+
+print_intro()
+{
+    echo "            <div class=\"intro\">" 
+    echo "                <h2 class=\"text-center\">Resetting RSU ...</h2>" 
+    echo "            </div>" 
+}
+
+print_Home_box()
+{
+    echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+    echo "                  <a href=\"/cgi-bin/rsu_main\">"
+    echo "                        <h3 class=\"name\">Home</h3>" 
+    echo "                    </div>" 
+    echo "                  </a>" 
+    echo "                </div>" 
+}
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+    echo "    <div class=\"footer-basic\">" 
+    echo "        <footer>" 
+    echo "            <p class=\"copyright\">MobiQ © 2023</p>" 
+    echo "        </footer>" 
+    echo "    </div>" 
+    echo "    <script src=\"../assets/js/jquery.min.js\"></script>" 
+    echo "    <script src=\"../assets/bootstrap/js/bootstrap.min.js\"></script>" 
+
+    echo "<script>" 
+
+    # Overlay spinner with timeout
+    echo "    function overlay_on_timeout() {" 
+    echo "        overlay_on()" 
+    echo "        setInterval(overlay_off, 45000);" 
+    echo "    }" 
+
+    echo "    function overlay_on() {"
+    echo "      document.getElementById('overlay').style.display = 'block';" 
+    echo "      document.getElementById('spin01').style.visibility = 'visible';" 
+    echo "    }" 
+
+    echo "    function overlay_off() {" 
+    echo "      document.getElementById('overlay').style.display = 'none';" 
+    echo "    }" 
+
+    echo "</script>" 
+
+
+    echo "</body>" 
+    echo "</html>" 
+}
+
+#
+# Main
+### Generate Page - then redirect to rsu-config (check if user is logged in)
+#
+echo "Content-type: text/html"
+echo ""
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+else  
+  print_header                   # print header
+  
+  echo "  <body onload='overlay_on_timeout()'>"
+  
+  print_feature_box_beg
+    print_intro
+    
+    
+    # Show 1st row - App settings, Network settings
+    print_i2v_conf_row1
+    
+    print_feature_box_end
+    
+  # End of Page with Footer
+  print_footer_end
+
+  # Need to trigger spinner on page startup with timeout 
+
+  # do a delay shutdown
+  $SCRPT_PATH/cgi-bin/rsu_delay_shutdown &
+
+  # Done generating page - redirect using refresh method 
+#  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/$TMP_FILE' \" /> "
+  
+  
+fi

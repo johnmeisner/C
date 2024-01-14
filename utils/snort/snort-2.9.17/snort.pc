@@ -1,0 +1,17 @@
+prefix=/home/ivi/work/svn/trunk/hercules/Software/iMX8/Source/C/utils/snort/snort-2.9.17/../install
+exec_prefix=${prefix}
+bindir=${exec_prefix}/bin
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+datarootdir=${prefix}/share
+datadir=${datarootdir}
+mandir=${datarootdir}/info
+infodir=${datarootdir}/info
+
+Name: Snort
+Description: Snort dynamic plugins/detection/rules
+URL: www.snort.org
+Version: 2.9.17
+Libs: -L${libdir} -lcurl -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -L/home/ivi/work/svn/trunk/hercules/Software/iMX8/Source/C/utils/snort/snort-2.9.17/../install/lib -lpcre -L/home/ivi/work/svn/trunk/hercules/Software/iMX8/Source/C/utils/snort/snort-2.9.17/../install/lib -L/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/lib_1_24/ -lz -ldaq_static -ldnet -lpcre -lpcap -lnsl -luuid -lm -lm  -lcrypto -ldl -L/home/ivi/work/svn/trunk/hercules/Software/iMX8/Source/C/utils/snort/daq-2.0.7/../install/lib -ldaq_static_modules  -lsfbpf -lpcap -lsfbpf -lpcap -lz -llzma -lpthread -lpthread -lpthread
+Cflags: -O2 -pipe -g -feliminate-unused-debug-types -DSF_VISIBILITY -fvisibility=hidden -Wall -I/home/ivi/work/svn/trunk/hercules/Software/iMX8/Source/C/utils/snort/snort-2.9.17/../install/include -I/home/ivi/work/svn/trunk/hercules/Software/iMX8/Source/C/utils/snort/snort-2.9.17/../install/include -I/opt/fsl-imx-xwayland/4.14-sumo/sysroots/aarch64-poky-linux/usr/include/lzma -DLZMA -DGRE -DMPLS -DPPM_MGR -DLINUX_SMP -DNDEBUG -DSOURCEFIRE -DPPM_MGR -DENABLE_REACT -DENABLE_RESPOND -DENABLE_RESPONSE3 -DSF_WCHAR -DTARGET_BASED -DPERF_PROFILING -DPERF_PROFILING -DSNORT_RELOAD -DNO_NON_ETHER_DECODER -DNORMALIZER -DACTIVE_RESPONSE
+

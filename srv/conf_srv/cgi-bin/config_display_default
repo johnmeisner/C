@@ -1,0 +1,428 @@
+#!/bin/sh
+#
+
+#   File: config_display_default
+#       Generate configuration page
+#           - RSU basic configuration (subset of I2V)
+#           - WSA settings (subset if IPB)
+#           - Intersection (scs & spat) - including Intersection ID from MAP
+#           - Immediate Forward - AMH
+#
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+#=== Unnecessary Output file - someday convert to just echo to stdout ===
+OUT_FILE=/tmp/ztmp_config_display_default.$$
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+echo "<!DOCTYPE html>"
+echo "<html>"
+
+echo "<head>"
+echo "    <meta charset=\"utf-8\">"
+echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">"
+echo "    <title>RSU-5940-   Configurations</title>"
+echo "    <link rel=\"stylesheet\" href=\"/assets/bootstrap/css/bootstrap.min.css\">"
+echo "    <link rel=\"stylesheet\" href=\"/assets/fonts/font-awesome.min.css\">"
+echo "    <link rel=\"stylesheet\" href=\"/assets/css/Features-Boxed.css\">"
+echo "    <link rel=\"stylesheet\" href=\"/assets/css/Features-Clean.css\">"
+echo "    <link rel=\"stylesheet\" href=\"/assets/css/Footer-Basic.css\">"
+echo "    <link rel=\"stylesheet\" href=\"/assets/css/styles.css\">"
+
+echo "<style>"
+
+echo ".icon {"
+echo "  font-size: 60px;"
+echo "  text-align: center;"
+echo "  margin-top: 20px;"
+echo "  padding: 10px;"
+echo "}"
+
+echo ".intro-container {"
+echo "  display: -ms-flexbox;"
+echo "  display: flex;"
+echo "}"
+
+echo "</style>"
+
+echo "</head>"
+}
+
+print_feature_box_beg()
+{
+echo "<body "
+echo "onload=\"start_timer()\" >"
+source $SCRIPT_PATH/add_navbar.sh
+source $SCRIPT_PATH/add_page_timeout.sh
+echo "    <div class=\"features-boxed\">"
+echo "        <div class=\"container\">"
+}
+
+print_feature_box_end()
+{
+echo "        </div>"
+echo "    </div>"
+}
+
+print_intro_beg()
+{
+echo "            <div class=\"intro\">"
+echo "            <br/>"
+echo "            <div class=\"intro-container\">"
+echo "                <i class=\"fa fa-list-alt icon\"></i>"
+echo "                </i> <h2 class=\"text-center\">Configuration Settings</h2>"
+echo "            </div>"
+
+}
+
+print_intro_end()
+{
+echo "            </div>"
+}
+
+print_class_row_beg()
+{
+echo "            <div class=\"row justify-content-center features\">"
+}
+
+print_class_row_end()
+{
+echo "            </div>"
+}
+
+print_RSU_Basic_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_rsu_basic_display_live\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-server icon\"></i>"
+echo "                        <h3 class=\"name\">RSU Basic Settings</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_I2V_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_i2v_display_default\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-server icon\"></i>"
+echo "                        <h3 class=\"name\">I2V</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_Intersection_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_intersection_display_live\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-arrows icon\"></i>"
+echo "                        <h3 class=\"name\">Intersection Settings</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_SPAT_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_spat_display_default\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-arrows icon\"></i>"
+echo "                        <h3 class=\"name\">SPAT</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_SRM_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_spat_display\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-arrows icon\"></i>"
+echo "                        <h3 class=\"name\">SRM</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_MAP_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_map_display\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-map-o icon\"></i>"
+echo "                        <h3 class=\"name\">MAP</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+
+print_WSA_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_wsa_display_live\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-share-alt icon\"></i>"
+echo "                        <h3 class=\"name\">WSA Settings</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_IPB_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_ipb_display\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-share-alt icon\"></i>"
+echo "                        <h3 class=\"name\">IPB</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_SCS_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_scs_display_default\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-sitemap icon\"></i>"
+echo "                        <h3 class=\"name\">SCS</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_Immediate_fwd_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_imm_fwd_display_live\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-rss icon\" style=\"margin-bottom: 6px;\" ></i>"
+echo "                        <h3 class=\"name\">Active Message and</h3>"
+echo "                        <h3 class=\"name\">Immediate Forward Settings</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_AMH_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_amh_display_default\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-rss icon\"></i>"
+echo "                        <h3 class=\"name\">AMH</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+print_Security_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_security_display_live\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-handshake-o icon\"></i>"
+echo "                        <h3 class=\"name\">Security Settings</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+
+print_Home_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/rsu_main\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-home icon\"></i>"
+echo "                        <h3 class=\"name\">Home</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+
+print_FwdMsg_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+echo "                  <a href=\"/cgi-bin/config_fwdmsg_display_live\">"
+echo "                    <div class=\"shadow p-3 mb-5 bg-white rounded\"><i class=\"fa fa-mail-forward icon\"></i>"
+echo "                        <h3 class=\"name\">Forward Message</h3>"
+echo "                    </div>"
+echo "                  </a>"
+echo "                </div>"
+}
+
+
+
+print_fw_version()
+{
+  # FW version
+  echo "      <p class=\"copyright\" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>"
+  echo VERSION:
+  cat /etc/version
+  echo "      </p>"
+}  
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+echo "    <div class=\"footer-basic\">"
+echo "        <footer>"
+echo "            <p class=\"copyright\">MobiQ © 2023</p>"
+echo "        </footer>"
+echo "    </div>"
+echo "    <script src=\"/assets/js/jquery.min.js\"></script>"
+echo "    <script src=\"/assets/bootstrap/js/bootstrap.min.js\"></script>"
+
+    #=== Custom scripts ===
+    echo "<script>"
+        print_pageshow_update
+        print_start_timers
+        print_update_rsu_time
+        print_rsu_time_refresh
+    echo "</script>"
+
+echo "</body>"
+echo "</html>"
+}
+
+print_update_rsu_time()
+{
+    echo "    function update_rsu_time() {"
+    echo "      var xhttp = new XMLHttpRequest();"
+    echo "      xhttp.onreadystatechange = function() {"
+    echo "        if (this.readyState == 4 && this.status == 200) {"
+
+    echo "          var str = this.responseText;"
+    echo "          var res = str.replace(\"GMT\", \"UTC\");"
+    echo "          msec = Date.parse(res);"
+    # Kicks off refresh timer for updating time per second without pinging server
+    echo "          rsu_time_refresh();"
+    echo "        }"
+    echo "      };"
+    echo "      xhttp.open(\"GET\", \"/cgi-bin/update_time\", true);"
+    echo "      xhttp.send();"
+    echo "    }"
+}
+
+print_rsu_time_refresh()
+{
+    echo "    function rsu_time_refresh() {"
+    echo "      var n_date = new Date(msec);"
+    echo "      var utc_date = n_date.toUTCString();"
+    echo "      var utc_date = utc_date.replace(\"GMT\", \"UTC\");"
+    echo "      document.getElementById(\"rsu_time\").innerHTML = utc_date;"
+    echo "      msec = msec + 1000;"
+    echo "      var t = setTimeout(rsu_time_refresh, 1000);"
+    echo "    };"
+}
+
+# Kicks off mulitple timers
+print_start_timers()
+{
+    echo "    function start_timer() {"
+    # Get RSU UTC time from RSU as a baseline, then kick off refresh timer to update every one second
+    echo "      update_rsu_time();"
+    # Additional timer if nedded
+
+    echo "    }"
+}
+
+
+print_pageshow_update()
+{
+    echo "    addEventListener(\"pageshow\", pageshow_update); "
+
+    # resync with server for proper time - updating msec
+    echo "    function pageshow_update() {" 
+    echo "      var xhttp = new XMLHttpRequest();" 
+    echo "      xhttp.onreadystatechange = function() {" 
+    echo "        if (this.readyState == 4 && this.status == 200) {" 
+
+    echo "          var str = this.responseText;" 
+    echo "          var res = str.replace(\"GMT\", \"UTC\");" 
+    echo "          msec = Date.parse(res);" 
+    echo "        }" 
+    echo "      };" 
+    echo "      xhttp.open(\"GET\", \"/cgi-bin/update_time\", true);" 
+    echo "      xhttp.send();" 
+    echo "    }" 
+}
+
+timeout_popup()
+{
+echo "<html>"
+echo "<body>"
+  echo "window.onload = alert('Session Timed Out! Please login.');"
+echo "</body>"
+echo "</html>"
+}
+
+
+#
+### Output tmp page - then redirect to rsu-config (check if user is logged in)
+#
+
+echo "Content-type: text/html"
+echo ""
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+
+else
+  print_header                   # print header
+  print_feature_box_beg          # print intro beg
+    print_intro_beg 
+    print_intro_end 
+
+    # Status from previous save, from user who made changes on a config form, hit "BACK", and then OK to save
+    STATUS_FILE=/tmp/update.status.file
+    if [ -f $STATUS_FILE ]; then
+      echo '<center>' 
+      cat $STATUS_FILE 
+      rm -f $STATUS_FILE
+      echo '</center><br/>' 
+    fi
+        
+    # main body show 3 boxes "config", "status", and "utilities"
+    print_class_row_beg 
+    
+      # RSU basic configuration (subset of I2V)
+      print_RSU_Basic_box
+      # Immediate Forward - AMH
+      print_Immediate_fwd_box
+      # Intersection (scs & spat) - including Intersection ID from MAP
+      print_Intersection_box
+      # WSA settings (subset if IPB)
+      print_WSA_box
+
+      print_Security_box
+
+      # print FwdMsg box
+      print_FwdMsg_box
+
+      # print home box
+      print_Home_box
+
+    print_class_row_end 
+    # Insert time and date
+    echo "      <h4 class=\"text-center\" id=\"rsu_time\">" 
+    # /bin/date
+    echo "</h4>" 
+    echo "" 
+  
+  print_feature_box_end 
+
+  print_fw_version
+
+  # End of Page with Footer
+  print_footer_end  
+
+fi

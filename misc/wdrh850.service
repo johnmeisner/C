@@ -1,0 +1,16 @@
+#!/bin/sh
+
+[Unit]
+Description=RH850 Watchdog Service
+After=wnc.service
+Before=systemd-networkd.service
+Requires=wnc.service
+
+[Service]
+Type=simple
+StandardOutput=journal+console
+ExecStart=/usr/local/bin/wdkick
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

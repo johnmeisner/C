@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ASN1C V7.7.x README</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+  <center>
+    <h1>ASN1C V7.7.x README</h1>
+  </center>
+
+  <p>This file contains release notes on the latest release of the ASN1C
+  compiler (version 7.7.x).</p>
+
+  <h2>Contents</h2>
+
+  <ul>
+    <li><a href="#Intro">Introduction</a></li>
+
+    <li><a href="#WhatsNew">Release Notes</a></li>
+
+    <li><a href="#CodeGenChanges">Compatibility</a></li>
+
+    <li><a href="#Documentation">Documentation</a></li>
+
+    <li><a href="#UnixInstall">UNIX Installation</a></li>
+
+    <li><a href="#RelContents">Contents of the Release</a></li>
+
+    <li><a href="#GettingStartedCCpp">Getting Started with C or C++</a></li>
+
+    <li><a href="#GettingStartedJava">Getting Started with Java</a></li>
+
+    <li><a href="#GettingStartedPython">Getting Started with Python</a></li>
+
+    <li><a href="#GettingStartedGo">Getting Started with Go</a></li>
+
+    <li><a href="#ReportingBugs">Reporting Problems</a></li>
+  </ul>
+
+  <h2><a name="Intro" id="Intro"></a>Introduction</h2>
+
+  <blockquote>
+    Thank you for downloading this release of the ASN1C software. ASN1C is an
+    ASN.1 compiler (code generator) capable of parsing and generating C, C++,
+    C#, Java, Python, or Go source code for the most advanced ASN.1 syntax.
+
+    <p>This package contains the ASN1C compiler executables and run-time
+    libraries. Documentation is available online at <a href=
+    "https://obj-sys.com/support/asn1c-manuals.php">
+     https://obj-sys.com/support/asn1c-manuals.php</a></p>
+  </blockquote>
+
+  <h2><a name="WhatsNew" id="WhatsNew"></a>Release Notes</h2>
+
+  <blockquote>
+    This release of ASN1C adds the following new capabilities:
+
+    <dl>
+      <dt><b>Support added for BER/DER encode and decode in Go</b></dt>
+      <dd>
+        <p>Support has been added for generating code in Go to support the
+          Basic and Distinguised Encoding Rules (BER and DER). For BER, this
+          includes support for 3GPP TS 32.297 headers for CDR processing.</p>
+      </dd>
+      <dt><b>New command-line option -go-rt-inc added for Go</b></dt>
+      <dd>
+        <p>The -go-rt-inc (Go run-time include) command-line option has been
+          added to allow a user to force inclusion of a Go run-time module
+          in the compiled module set. Normally Go compilation includes only
+          the dependent modules for a given compilation. The main purpose of
+          this is to allow a user to include a module that they may be
+          interested in using in their main.go file (for example, TS 32.297,
+          TBCD, BCD, or BER dump utility functions).</p>
+      </dd>
+      <dt><b>Updated C# project file generation</b></dt>
+      <dd>
+        <p>C# project file generation (the -vcproj qualifier) has been changed 
+          to make the default version Visual Studio 2019.</p>
+      </dd>
+      
+      <dt><b>Support for .Net v5 and .Net v6</b></dt>
+      <dd>
+        <p>The ASN1C SDK and C# run-time kits now contain asn1rt DLLs that
+          target .Net v5 and .Net v6.  The DLL that targets .Net v4 is still
+          included.</p>
+        <p>New asn1c command line qualifiers named -dotnetv5 and -dotnetv6
+          have been added that will cause a .Net v5 or .Net v6 .csproj file
+          to be generated if used with the -csharp and -vcproj qualifiers.
+          If neither of these new qualifiers is specified, a generated .csproj
+          file will target .Net v4.</p>
+      </dd>
+      
+      <dt><b>PLMNidentity support</b></dt>
+      <dd>
+        <p>ASN1C will now recognize a production named PLMNidentity (e.g., from
+          the RANAP specifications) and will treat it as an OCTET STRING.  A
+          command line option -noPLMN has been added to disable this special
+          recognition and treat the production as it's defined in the ASN.1.
+          An &lt;isPLMNidentity&gt; configuraton file item has also been added
+          at production level to identify any production as a PLMNidentity.
+          This new functionality is supported for all languages.</p>
+        <p>In line with the PLMNidentity changes, the following functions and
+          methods have been added:</p>
+          <ul>
+            <li>C/C++:  rtStringToPLMNidentity(), rtGetMCCFromPLMNidentity(),
+                and rtGetMNCFromPLMNidentity().</li>
+                
+            <li>Java:  Asn1Util.stringToPLMNidentity() and
+                Asn1Util.PLMNidentityToString().</li>
+
+            <li>C#:  Asn1Util.StringToPLMNidentity() and
+                Asn1Util.PLMNidentityToString().</li>
+
+            <li>Python:  plmnidentity_str_to_bin() and
+                plmnidentity_bin_to_str() in util.py.</li>
+
+            <li>Go:  StrToPLMNidentity() and PLMNidentityToStr() in
+                PLMNidentityUtils.go</li>
+          </ul>
+          <br/>
+      </dd>
+      
+      <dt><b>Java XML parser options in the GUI</b></dt>
+      <dd>
+        <p>Java XML parser options (XMLPull and StAX) have been added to the
+          GUI. (A1C-727)</p>
+      </dd>
+      
+      <dt><b>asn1c command in generated code</b></dt>
+      <dd>
+        <p>Generated code will now contain a comment with the asn1c command that
+          was used to do the generation. (A1C-678)</p>
+      </dd>
+      
+      <dt><b>Defined values for tags</b></dt>
+      <dd>
+        <p>Tags can now use defined values for the tag value.  The value must
+          be INTEGER type and non-negative.</p>
+      </dd>
+      
+      <dt><b>Addition of the -dynamic command-line option</b></dt>
+      <dd>
+        <p>The -dynamic command-line option has been added which has the same
+        effect as adding &lt;storage>dynamic&lt;/storage> at the global level in
+        a configuration file. It will cause dynamic memory to be used for all
+        binary and character string types whether the type has a size constraint
+        or not. It will also cause dynamic arrays to be used for repeating
+        types. In addition, this will also now cause a dynamic array to be used
+        for the set of subidentifiers in an OBJECT IDENTIFIER or RELATIVE-OID
+        structure.</p>
+      </dd>
+      
+      <dt><b>Named bit support in print to stream and print to string</b></dt>
+      <dd>
+        <p>Code generated for C or C++ with print to stream or print to string
+        enabled will now print names of bits in BIT STRINGs where applicable.
+        This feature was already present in code generated for regular
+        printing.</p>
+      </dd>
+
+      <dt><b>Modified distribution file names for macOS</b></dt>
+      <dd>
+        <p>Distribution files for macOS now have names that more accurately
+          convey the target platform.  For macOS on x64 the distribution file
+          will have macos_x64 in the name, and for macOS on M1 the distribution
+          file will have macos_m1 in the name.</p>
+      </dd>
+      
+      <dt><b>Modified handling of non-fatal C/C++ decoding errors</b></dt>
+      <dd>
+        <p>In v7.6 C/C++ decoding the only non-fatal decoding errors that would
+          be reported at the end of the decode step would be constraint
+          violations.  In v7.7 any non-fatal decoding errors will be reported,
+          not just constraint violations.</p>
+      </dd>
+
+      <dt><b>TBCD utilities for Go</b></dt>
+      <dd>
+        <p>Utilities to convert a TBCD array to a string and to convert a
+          string to a TBCD array have been added in a new file named
+          TBCDUtils.go.</p>
+      </dd>
+
+      <dt><b>BCD utilities for Python</b></dt>
+      <dd>
+        <p>Utilities to convert a BCD array to a string and to convert a
+          string to a BCD array have been added to the util.py file.</p>
+      </dd>
+      
+      <dt><b>BCD utilities for Go</b></dt>
+      <dd>
+        <p>Utilities to convert a BCD array to a string and to convert a
+          string to a BCD array have been added in a new file named
+          BCDUtils.go.</p>
+      </dd>
+
+      <dt><b>New Java TS32297Encode sample</b></dt>
+      <dd>
+        <p>A new java/sample_ber/TS32297Encode sample has been added that shows
+        how to encode TS 32.297 headers using Java.</p>
+      </dd>
+
+      <dt><b>New C# TS32297Encode sample</b></dt>
+      <dd>
+        <p>A new csharp/sample_ber/TS32297Encode sample has been added that
+          shows how to encode TS 32.297 headers using C#.</p>
+      </dd>
+
+      <dt><b>New Commands added to the ASN1C GUI</b></dt>
+      <dd>
+        <p>The 'File->Open Folder..' and 'Edit->Find in Files/Replace in Files'
+          commands were added to the ASN1C GUI. The former allows opening a
+          folder containing ASN.1 and configuration files all of which
+          will be opened in the editor. The 'Find/Replace in Files' commands
+          allows multiple files to be searched at a time.</p>
+      </dd>
+    </dl>
+  </blockquote>
+
+  <h2><a name="CodeGenChanges" id="CodeGenChanges"></a>Compatibility</h2>
+
+  <blockquote>
+    <p>The C/C++ types generated for the built-in EXTERNAL and EmbeddedPDV
+    types are different due to the -dynamic option described above. That
+    is because these types are configured to use dynamic storage and this
+    caused a different type to be used for the OBJECT IDENTIFIER's contained
+    within (ASN1DynOBJID instead of ASN1OBJID).</p>
+  </blockquote>
+  
+  <blockquote>
+    <p>The C/C++ print to string capability has been enhanced so the string
+    that gets created contains the names of bits for BIT STRINGs that have
+    such identifiers.  Existing code that uses this functionality may need
+    to be revised to allocate a larger buffer.</p>
+  </blockquote>
+  
+  <blockquote>
+    <p>In v7.6 C/C++ decoding the only non-fatal decoding errors that would be
+    reported at the end of the decode step would be constraint violations.  In
+    v7.7 any non-fatal decoding errors will be reported, not just constraint
+    violations.  This change may cause some decode scenarios to terminate with
+    an error that didn't before.</p>
+  </blockquote>
+
+  <h2><a name="Documentation" id="Documentation"></a>Documentation</h2>
+
+  <blockquote>
+    Documentation for this release is available online at the following 
+    URL:
+
+    <p><a href=
+    "https://obj-sys.com/support/asn1c-manuals.php">
+     https://obj-sys.com/support/asn1c-manuals.php</a></p>
+  </blockquote>
+
+  <h2><a name="UnixInstall" id="UnixInstall"></a>UNIX/Linux Installation</h2>
+
+  <blockquote>
+    <p>The steps to install ASN1C on a UNIX or Linux system are as
+    follows:</p>
+
+    <ol>
+      <li>Download the ASN1C package that is of interest to you. Packages are
+      available online for Linux (x64, x86, and ARM), and macOS 
+      operating systems. There are different C/C++ versions of these packages 
+      containing run-time libraries built with GNU gcc/g++ or native 
+      compilers. There is also a Java package available for each of these 
+      operating systems.</li>
+
+      <li>ASN1C for UNIX/Linux is packaged in a zipped .tar.gz file. To
+      install, untar the file (tar xzf) in any directory.
+      Note that in order to run the sample programs, write access to the
+      sample directories is required, so make sure that you have write access
+      to the base directory where the compiler is installed.</li>
+
+      <li>After installation is complete, the license for the product must be
+      installed. This can come in two forms - as a license file or a license
+      key value.  Instructions for installing the license key or file are 
+      available the the following URL:
+
+        <p><a href="https://obj-sys.com/support/acguiLicInstall.php">
+            https://obj-sys.com/support/acguiLicInstall.php</a></p>
+
+        <p>The compiler should now be operational. The following command can
+        be executed:</p>
+
+        <blockquote>
+          <tt>&lt;rootdir&gt;/bin/asn1c</tt>
+        </blockquote>
+
+        <p>to verify operation.</p>
+      </li>
+
+      <li>To use the Python code generation capability, the Python run-time
+        package must first be installed.  This can be done by executing the
+        following command:<br>
+        
+        <blockquote>
+          <tt>pip install --find-links https://www.obj-sys.com/PythonRuntime --no-deps osyspyrt</tt>
+        </blockquote>
+
+      </li>
+    </ol>
+  </blockquote>
+
+  <h2><a name="RelContents" id="RelContents"></a>Contents of the Release</h2>
+
+  <blockquote>
+    The following subdirectories contain the following files (note:
+    <tt>&lt;installdir&gt;</tt> refers to the installation directory that was
+    specified during the installation process):
+
+    <h3>Base Compiler Package</h3>
+
+    <dl>
+      <dt><tt>&lt;installdir&gt;/bin/asn1c</tt></dt>
+      <dd>
+        <p>The command-line compiler executable file. This is invoked on
+        ASN.1 or XSD source files to generate C, C++, C#, Java, or Python
+        encode/decode classes and functions. It is recommended you modify
+        your PATH environment variable to include
+        <tt>&lt;installdir&gt;/bin</tt> to allow the compiler executable to
+        be run from anywhere.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/acgui (not on Macs)</tt></dt>
+      <dt><tt>&lt;installdir&gt;/bin/acgui.sh (not on Macs)</tt></dt>
+      <dd>
+        <p>The compiler graphic user interface (GUI) editor executable file.
+        This GUI guides a user through the process of specifying ASN.1 or XSD
+        source files and options. (Note: this binary is currently only
+        available on Linux x64 systems).  The acgui.sh  shell script will set
+        environment variables required by the GUI so that all required shared
+        object files can be located.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/acgui.app (Macs only)</tt></dt>
+      <dd>
+        <p>The compiler graphic user interface (GUI) editor app hierarchy.
+        This GUI guides a user through the process of specifying ASN.1 or XSD
+        source files and options.  This directory is seen by Finder as an
+        app.  The GUI can be started by double clicking the app in Finder.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/asn2xsd</tt></dt>
+      <dd>
+        <p>ASN.1 to XML Schema (XSD) translation tool.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/berfdump<br>
+      &lt;installdir&gt;/bin/berfdump2<br>
+      &lt;installdir&gt;/bin/ber2def<br>
+      &lt;installdir&gt;/bin/ber2indef</tt></dt>
+      <dd>
+        <p>Utility programs for operating on BER-encoded files. The first
+        program allows a file to be dumped in a human-readable format. The
+        other two utilities convert files from the use of indefinite to
+        definite length encoding and vice-versa.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/dumpasn1</tt></dt>
+      <dd>
+        <p>A public-domain ASN.1 BER/DER encoded data dump tool. Thanks to
+        Peter Gutmann for making this available for public use. The full
+        source code for this program can be found in the utils subdirectory
+        of the installation.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/bin/xsd2asn1</tt></dt>
+      <dd>
+        <p>XSD-to-ASN.1 translation program executable file. This program
+        translates an XSD file to its ASN.1 equivalent as per the ITU-T X.694
+        standard.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/doc</tt></dt>
+      <dd>
+        <p>This directory contains documentation files. Note that the bulk of
+        the documentation items are now available online (see the <a href=
+        "#Documentation">Documentation</a> section above).</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/scripts</tt></dt>
+      <dd>
+        <p>This directory contains Perl script files for doing source code
+        editing and other transformations. The <i>rtport.pl</i> script is
+        included in this release to port existing C/C++ applications that use
+        ASN1C generated code from version 5.8 or lower to be compatible with
+        the latest release of the product.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/specs</tt></dt>
+      <dd>
+        <p>This directory contains ASN.1 specifications from many standards
+        that have been pre-compiled and tested. In some cases, syntax errors
+        that may have existed in the original standards were fixed.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/templates</tt></dt>
+      <dd>
+        <p>This directory contains template files for applications such as
+          client and server code generation.  It is possible for users to 
+          alter these files to customize code that is generated or to add
+          new template files for use with -gen-from-template command-line
+          option.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/utils</tt></dt>
+      <dd>
+        <p>This directory contains the source code and build makefile for
+        some of the utility programs included in the bin subdirectory.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/xsd/lib/asn1.xsd</tt></dt>
+      <dd>
+        <p>This directory contains the common XML schema definitions (XSD)
+        library. This contains type mappings for built-in ASN.1 types that do
+        not have an equivalent types defined in XSD.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/xsd/sample</tt></dt>
+      <dd>
+        <p>This directory contains sample programs related to the conversion
+        of ASN.1 to XML Schema. It also contains the XSD.asn ASN.1
+        specification which contains the XSD ASN.1 module that is sometimes
+        referenced in ASN.1 files that are the result of an XSD-to-ASN.1
+        translation.</p>
+      </dd>
+    </dl>
+
+    <h3>C/C++ run-time libraries and source files</h3>
+
+    <dl>
+      <dt><tt>&lt;installdir&gt;/c/lib/*.a</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/c/lib/*.so</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/lib/*.a</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/lib/*.so</tt></dt>
+
+      <dd>
+        <p>The ASN1C run-time static libraries and shared object files. These
+        contain the low-level run-time functions for the various encoding
+        rules supported by ASN1C. Note that the evaluation and development
+        libraries are not fully optimized (they contain diagnostic tracing
+        and are not compiled with compiler optimization turned on). The
+        deployment libraries are fully optimized.  Also note that 'lib' 
+        is a soft link to a directory containing libraries built with a 
+        specific compiler version (for example, libgcc4).  To switch
+        libraries, all that needs to be done in to change this soft link
+        and the equivalent soft link to the platform.mk file to point at 
+        a different version.  See the README file within the c or cpp
+        directory for futher details.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/c/lib_opt/*.a</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/c/lib_opt/*.so</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/lib_opt/*.a</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/lib_opt/*.so</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/c/lib_compact/*.a</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/c/lib_compact/*.so</tt></dt>
+
+      <dd>
+        <p>The optimized and/or compact version of the ASN1C run-time 
+          libraries. These libraries have all diagnostic messages, error 
+          stack trace and text, and non-essential status checks removed. 
+          The optimized libraries are built with C compiler speed 
+          optimizations options set; the compact libraries use space 
+          optimization options.  (Note: these libraries are only
+          available in the licensed deployment version of the product. If you
+          wish to do performance testing, please <a href=
+          "http://www.obj-sys.com/contact-us.php">contact us</a> and we will
+          make them available to you). As was the case for the non-optimized 
+          libraries, the directories are soft links to directories containing 
+          libraries built with a specific compiler version (for example, 
+          lib_optgcc4).</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/c/sample_*</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/cpp/sample_*</tt></dt>
+
+      <dd>
+        <p>The sample directories contain sample programs demonstrating the
+        use of the compiler. There are a set of sample programs that
+        correspond to each encoding rule set supported by ASN1C. Most sample
+        programs are broken down into a writer and a reader. The writer
+        encodes a sample data record and writes it to a disk file. The reader
+        reads the encoded message from the file, decodes it, and then prints
+        the results of the decode operation.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/rtsrc/*</tt></dt>
+
+      <dt><tt>&lt;installdir&gt;/rtxsrc/*</tt></dt>
+
+      <dd>
+        <p>Run-time source directories containing common type and class
+        definitions used by all encoding rules. The installation run-time
+        source directories contain the header files required to compile the
+        compiler generated code. The C or C++ source files will also be
+        located here if the run-time source code kit option was selected.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/rt*ersrc/*</tt></dt>
+
+      <dd>
+        <p>Run-time source directories for various ASN.1 encoding rules.
+        These contain common code for encoding and decoding using the
+        specific rules. Directories are currently present for BER/DER/CER,
+        PER (aligned and unaligned), MDER, OER, and XER rules.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/rtjsonsrc/*</tt></dt>
+
+      <dd>
+        <p>JSON specific run-time source directory. These contain common code
+        for encoding/decoding JSON messages.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/rtxmlsrc/*</tt></dt>
+
+      <dd>
+        <p>XML specific run-time source directory. These contain common code
+        for encoding/decoding XML messages.</p>
+      </dd>
+
+    </dl>
+
+    <h3>Java run-time libraries</h3>
+
+    <dl>
+      <dt><tt>&lt;installdir&gt;/java/asn1rt.jar</tt></dt>
+
+      <dd>
+        <p>ASN.1 Java run-time libraries. These contain the low-level
+        encode/decode classes for the various encoding rules supported by
+        ASN1C. The <i>asn1rt.jar</i> file contains classes compatible with
+        the Java 5 JRE.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/java/sample_*</tt></dt>
+
+      <dd>
+        <p>Sample programs illustrating the use of the Java version of ASN1C.
+        As was the case for C/C++, most have a writer and a reader. Some
+        contain support code used by other samples (for example, SimpleROSE
+        contains the ROSE headers used by CSTA).</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/java/doc/*</tt></dt>
+
+      <dd>
+        <p>The ASN.1 Java run-time libraries documentation files. These are
+        html files generated with the javadoc documentation tool. To view the
+        documentation, open the <i>index.html</i> file with a web browser and
+        follow the hyperlinks.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/java/xmlpull/*</tt></dt>
+      <dd>
+        <p>The kXML pull-parser implementation. This parser is
+        used in the generated XER and XML decode classes.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;/java/xerces/*</tt></dt>
+      <dd>
+        <p>The Apache Xerces Java XML parser implementation. This parser is
+          used to support legacy SAX parsing in the generated XER and XML 
+          decode classes.  Note that SAX parsing is a deprecated feature
+          at thie time.</p>
+      </dd>
+
+    <h3>Python</h3>
+    <dl>
+      <dt><tt>&lt;installdir&gt;/python/sample_*</tt></dt>
+      <dd>
+        <p>Sample programs demonstrating the use of the ASN1C
+          Python code generation capability.  These contain Python writer
+          and reader script programs to encode and decode data respectively.
+          Code can be generated using the included makefile or ASN1C
+          GUI project file.</p>
+      </dd>
+    </dl>
+
+    <h3>Go</h3>
+    <dl>
+      <dt><tt>&lt;installdir&gt;/golang/asn1rt</tt></dt>
+      <dd>
+        <p>This directory contains the Go ASN.1 run-time source files that
+          are used by the compiler to add the base run-time source code to
+          the generated code to form a complete Go language application.</p>
+      </dd>
+      
+      <dt><tt>&lt;installdir&gt;/golang/sample_*</tt></dt>
+      <dd>
+        <p>Sample programs demonstrating the use of the ASN1C
+          Go code generation capability.  These contain a Go main.go
+          file that contain a writer and reader section to encode and
+          decode data respectively. Code can be generated using the
+          included makefile.</p>
+      </dd>
+    </dl>
+  </blockquote>
+
+  <h2><a name="GettingStartedCCpp" id="GettingStartedCCpp"></a>Getting
+  Started with C or C++</h2>
+
+  <blockquote>
+    The compiler must be run from a command shell prompt. The compiler can 
+    be run using either the GUI or from the command line. To run the GUI
+    on an non-Mac system, execute the acgui.sh shell script from within the
+    bin directory of the installation.  To run the GUI on a Mac system,
+    in Finder double click the acgui app shown in the bin directory of the
+    installation.  To run a simple test from the command line, do the 
+    following:
+
+    <ol>
+      <li>Open a terminal window.</li>
+    </ol>
+
+    <ul>
+      <li>Change directory (cd) to one of the employee sample directories
+      (for example, <tt>c/sample_ber/employee</tt>).</li>
+    </ul>
+
+    <ul>
+      <li>Execute the <tt>make</tt> utility program:
+
+        <p><tt>make</tt></p>
+
+        <p>This should cause the compiler to be invoked to compile the
+        <tt>employee.asn</tt> sample file. It will then invoke the C or C++
+        compiler to compile the generated C file and the test drivers. The
+        result should be a <tt>writer</tt> and <tt>reader</tt> program file
+        which, when invoked, will encode and decode a sample employee
+        record.</p>
+      </li>
+
+      <li>Invoke writer from the command line:
+
+        <p><tt>writer</tt></p>
+
+        <p>This will generate an encoded record and write it to a disk file.
+        By default, the file generated is <i>message.dat</i> (in the case of
+        XER, it is <i>message.xml</i>). The test program has a number of
+        command line switches that control the encoding. To view the
+        switches, enter <i>writer ?</i> and a usage display will be
+        shown.</p>
+      </li>
+
+      <li>Invoke reader from the command line:
+
+        <p><tt>reader</tt></p>
+
+        <p>This will read the disk file that was just created by the writer
+        program and decode its contents. The resulting decoded data will be
+        written to standard output. The test program has a number of command
+        line switches that control the encoding. To view the switches, enter
+        <i>reader ?</i> and a usage display will be shown.</p>
+      </li>
+    </ul>
+  </blockquote>
+
+  <h2><a name="GettingStartedJava" id="GettingStartedJava"></a>Getting
+  Started with Java</h2>
+
+  <blockquote>
+    To run a simple test from the command line, do the following:
+
+    <ol>
+      <li>Open a terminal window.</li>
+
+      <li>Change directory (cd) to one of the employee sample directories
+      (for example, <tt>java/sample_ber/Employee</tt>).</li>
+
+      <li>Execute the makefile:
+
+        <p><tt>make</tt></p>
+
+        <p>This will cause the ASN1C compiler to be invoked to compile the
+        <tt>employee.asn</tt> sample file. It will then invoke the Java
+        compiler (<tt>javac</tt>) to compile all generated java files and the
+        reader and writer programs (Note: JDK 6 was used to build all the
+        run-time library classes). It will also automatically execute the
+        writer and reader programs. These programs will produce a writer.log
+        and reader.log file respectively.</p>
+      </li>
+
+      <li>View the writer and reader log files. The writer.log file will
+      contain a dump of the encoded message contents. The reader.log file
+      will contain a printout of the decoded data.</li>
+    </ol>
+  </blockquote>
+
+  <h2><a name="GettingStartedPython" id="GettingStartedPython"></a>Getting
+  Started with Python</h2>
+
+  <blockquote>
+    <p>Before Python can be used, the Python run-time must be installed using
+      the following command:<br>
+      <tt>pip install --find-links https://www.obj-sys.com/PythonRuntime --no-deps osyspyrt</tt>
+    <p>
+    The compiler can then be run using either the GUI wizard or from the command
+    line. To run the GUI wizard, launch the application and follow the steps.
+    To run a simple test from the command line, do the following:
+    <ol>
+      <li>Open a terminal bash shell window and cd to one of the sample 
+        directories under the python subdirectory. For example,
+        python/sample_ber/employee.</li>
+
+      <li>Execute the <i>make</i> command to run the complete sample
+        program. The makefile will invoke the ASN1C compiler to generate
+        Python code for the ASN.1 definition and then compile and run the
+        writer.py and reader.py scripts.</li>
+
+      <li>Execute <i>python writer.py</i> to encode a binary message and
+        write it to a file.</li>
+
+      <li>Execute <i>python reader.py</i> to read the file containing encoded
+        binary message and decode it.</li>
+    </ol>
+    <p>Note that the evaluation version of the Python code generation
+      capability contains limits on the size of the ASN.1 files that can be
+      compiled. It is inteneded to just demonstrate the basic functionality
+      of this capability. To remove these limits, either a commercial-use
+      license must be purchased, or a special evaluation license agreement
+      signed.</p>
+  </blockquote>
+
+  <h2><a name="GettingStartedGo" id="GettingStartedGo"></a>Getting
+  Started with Go</h2>
+
+  <blockquote>
+    <p>Go sample programs can be run as follows:
+    <ol>
+      <li>Open a terminal bash shell window and cd to one of the sample 
+        directories under the golang subdirectory. For example,
+        golang/sample_per/employee.</li>
+
+      <li>Execute the <i>make</i> command to run the complete sample
+        program. The makefile will invoke the ASN1C compiler to generate
+        Go code for the ASN.1 definition and then compile and run the
+        compiled Go executable file with writer and reader arguments.
+        The Go executable file is named 'go_test'.</li>
+
+      <li>Execute the Go executable with argument writer to encode a
+        binary message and write it to a file. For the employee sample
+        program, the command would be <i>./go_test writer</i></li>
+
+      <li>Execute the Go executable with argument reader to read the file
+        containing encoded binary message and decode it. For the employee
+        sample program, the command would be <i>./go_test reader</i></li>
+    </ol>
+    <p>Go compilation in the evaluation version is a limited to ASN.1
+      files with 800 lines or less. To have this limit removed, please
+      contact us.</p>
+  </blockquote>
+  
+  <h2><a name="ReportingBugs" id="ReportingBugs"></a>Reporting Problems</h2>
+
+  <blockquote>
+    <p>Report problems you encounter by sending E-mail to <a href=
+    "mailto:support@obj-sys.com">support@obj-sys.com</a>. The preferred
+    format of example programs is the same as the sample programs. Please
+    provide a writer and reader and indicate where in the code the problem
+    occurs.</p>
+
+    <p>If you have any further questions or comments on what you would like
+    to see in the product or what is difficult to use or understand, please
+    communicate them to us. Your feedback is important to us. Please let us
+    know how it works out for you - either good or bad.</p>
+  </blockquote>
+</body>
+</html>

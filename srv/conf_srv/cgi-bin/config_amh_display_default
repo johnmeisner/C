@@ -1,0 +1,399 @@
+#!/bin/sh
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+echo "<!DOCTYPE html>"
+echo "<html>" 
+
+echo "<head>" 
+echo "    <meta charset=\"utf-8\">" 
+echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">" 
+echo "    <title>RSU - 5940 I2V Config Settings</title>" 
+echo "    <link rel=\"stylesheet\" href=\"/assets/bootstrap/css/bootstrap.min.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"/assets/fonts/font-awesome.min.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"/assets/css/Features-Boxed.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"/assets/css/Features-Clean.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"/assets/css/Footer-Basic.css\">" 
+echo "    <link rel=\"stylesheet\" href=\"/assets/css/styles.css\">" 
+echo "</head>" 
+}
+
+
+print_amh_default()
+{
+#    {"ImmediateIPFilter", "0", UNINIT},         // 0, 1 - When enabled (1) only messages from ImmediateIP below allowed
+#    {"ImmediateIP", "192.168.2.46", UNINIT},    // Immediate forward sender IP
+
+#=== Get AMH Settings ===
+IM_FWD_FILTER=`/usr/bin/conf_agent READ amh ImmediateIPFilter`
+IM_FWD_IP=`/usr/bin/conf_agent READ amh ImmediateIP`
+
+echo "      <div class=\"col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left item\">" 
+echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;mlargin-bottom: 15px;\">" 
+
+#=== form action
+echo "<form action='/cgi-bin/config_amh_save_default'>" 
+echo "        <h3 class=\"text-center\">Settings</h3>" 
+
+
+# IM_FWD_FILTER
+if [ "$IM_FWD_FILTER" == "0" ]; then 
+    RESULT="" 
+else 
+    RESULT="checked" 
+fi
+echo "            <div class=\"form-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enable IP Filter\">" 
+echo "              <input class=\"form-check-input\" type=\"checkbox\" name=\"IM_FWD_FILTER\" id=\"formCheck-1\" $RESULT>" 
+echo "              <label class=\"form-check-label\" for=\"formCheck-1\">Enable IP Filter</label>" 
+echo "            </div>" 
+
+# IM_FWD_IP - 
+echo "              <div class=\"form-group row\" style=\"margin-bottom: 0px;\">" 
+echo "                <label for=\"LocalSignalControllerIP\" class=\"col-sm-4 col-form-label\">Immediate Fwd IP</label>" 
+echo "                <div class=\"col-sm-6\">" 
+echo "                  <input type=\"text\" class=\"form-control\" name=\"IM_FWD_IP\" id=\"LocalSignalControllerIP\" placeholder=\"$IM_FWD_IP\">" 
+echo "                </div>" 
+echo "              </div>" 
+
+
+# Save button for SRM FWD and end form
+echo "<div><input type=\"submit\" value=\"SAVE\"></div>" 
+echo "</form>" 
+
+
+#=== End
+echo "        </div>" 
+echo "        </div>" 
+
+}
+
+print_amh_settings()
+{
+#   // Settings
+#    {"EnableStoreAndRepeat", "1", UNINIT},      // 0, 1 - 0 = disabled, 1 = enable Store and Repeat
+#    {"SendOverride", "1", UNINIT},              // 0, 1 - when enabled (1) amh will attempt to send active messages for
+#                                                // encoded types where the corresponding I2V app is disabled
+#                                                // This should not normally be enabled as there may be failures sending
+#                                                // -if multiple I2V apps are disabled and it should only be enabled
+#                                                // when active messages are of the same type (MAP, SPAT, or TIM)
+#    {"ForcePSIDMatch","0", UNINIT},             // 0, 1 - when enabled (1) amh will only enable broadcast of active messages
+#    {"ChannelNumber","172", UNINIT},            // 172, 184 - used only if i2v broadcastunified not set
+#    {"MaxStoreMessages", "100", UNINIT},        // 100, 300 - max number of active messages supported
+#    {"AMHBroadcastDir","/rwflash/I2V/amh", UNINIT},  // directory with multiple encoded tim files
+###    {"RadioNum", "0", UNINIT},                  // 0, 1 - used only if i2v broadcastunified not set
+
+#=== Get SRM FWD settings ===
+EN_STOR_RPT=`/usr/bin/conf_agent READ amh EnableStoreAndRepeat`
+SEND_OVR_RIDE=`/usr/bin/conf_agent READ amh SendOverride`
+PSID_MATCH=`/usr/bin/conf_agent READ amh ForcePSIDMatch`
+CH_NUM=`/usr/bin/conf_agent READ amh ChannelNumber`
+MAX_STOR_MSG=`/usr/bin/conf_agent READ amh MaxStoreMessages`
+BR_DIR=`/usr/bin/conf_agent READ amh AMHBroadcastDir`
+
+echo "      <div class=\"col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left item\">" 
+echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;mlargin-bottom: 15px;\">" 
+
+#=== form action
+echo "<form action='/cgi-bin/config_amh_save_settings'>" 
+echo "        <h3 class=\"text-center\">Settings</h3>" 
+
+# EN_STOR_RPT - Enable store and repeat
+if [ "$EN_STOR_RPT" == "0" ]; then 
+    RESULT="" 
+else 
+    RESULT="checked" 
+fi
+echo "            <div class=\"form-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enable Store and Repeat\">" 
+echo "              <input class=\"form-check-input\" type=\"checkbox\" name=\"EN_STOR_RPT\" id=\"formCheck-1\" $RESULT>" 
+echo "              <label class=\"form-check-label\" for=\"formCheck-1\">Enable Store and Repeat</label>" 
+echo "            </div>" 
+
+# SEND_OVR_RIDE - 0, 1 - when enabled amh will attempt to send active messages for encoded types where the corresponding I2V app is disabled
+if [ "$SEND_OVR_RIDE" == "0" ]; then 
+    RESULT="" 
+else 
+    RESULT="checked" 
+fi
+echo "            <div class=\"form-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enable, amh will attempt to send active messages for encoded types\">" 
+echo "              <input class=\"form-check-input\" type=\"checkbox\" name=\"SEND_OVR_RIDE\" id=\"formCheck-1\" $RESULT>" 
+echo "              <label class=\"form-check-label\" for=\"formCheck-1\">Enable Send OverRide</label>" 
+echo "            </div>" 
+
+# PSID_MATCH - 0, 1 - when enabled (1) amh will only enable broadcast of active messages
+if [ "$PSID_MATCH" == "0" ]; then 
+    RESULT="" 
+else 
+    RESULT="checked" 
+fi
+echo "            <div class=\"form-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enable, amh will only enable broadcast of active messages\">" 
+echo "              <input class=\"form-check-input\" type=\"checkbox\" name=\"PSID_MATCH\" id=\"formCheck-1\" $RESULT>" 
+echo "              <label class=\"form-check-label\" for=\"formCheck-1\">Force PSID Match</label>" 
+echo "            </div>" 
+
+# CH_NUM - Channel number
+echo "              <div class=\"form-group row\" style=\"margin-bottom: 0px;\">" 
+echo "                <label for=\"ChannelNumber\" class=\"col-sm-4 col-form-label\">Channel Num</label>" 
+echo "                <div class=\"col-sm-6\">" 
+echo "                  <input type=\"text\" class=\"form-control\" name=\"CH_NUM\" id=\"ChannelNumber\" placeholder=\"$CH_NUM\">" 
+echo "                </div>" 
+echo "              </div>" 
+
+
+# MAX_STOR_MSG - 
+echo "              <div class=\"form-group row\" style=\"margin-bottom: 0px;\">" 
+echo "                <label for=\"MaxStoreMessages\" class=\"col-sm-4 col-form-label\">Max Store Msg</label>" 
+echo "                <div class=\"col-sm-6\">" 
+echo "                  <input type=\"text\" class=\"form-control\" name=\"MAX_STOR_MSG\" id=\"MaxStoreMessages\" placeholder=\"$MAX_STOR_MSG\">" 
+echo "                </div>" 
+echo "              </div>" 
+
+# BR_DIR - 
+echo "              <div class=\"form-group row\" style=\"margin-bottom: 0px;\">" 
+echo "                <label for=\"MaxStoreMessages\" class=\"col-sm-4 col-form-label\">Broadcast Dir</label>" 
+echo "                <div class=\"col-sm-6\">" 
+echo "                  <input type=\"text\" class=\"form-control\" name=\"BR_DIR\" id=\"MaxStoreMessages\" placeholder=\"$BR_DIR\">" 
+echo "                </div>" 
+echo "              </div>" 
+
+# Add a few lines to even out the boxes
+echo "<br>" 
+
+# Save button for SRM FWD and end form
+echo "<div><input type=\"submit\" value=\"SAVE\"></div>" 
+echo "</form>" 
+
+
+#=== End
+echo "        </div>" 
+echo "        </div>" 
+
+}
+
+print_amh_im_fwd()
+{
+#    // Immediate forward
+#    {"ImmediateEnable", "1", UNINIT},           // 0, 1 - Enables (1) immediate forward capability
+#    {"WSMExtension", "0", UNINIT},              // 0, 1 - Enables (1) optional Tx power, data rate, and channel number in WSM header
+#                                                // only if amh sending data
+#    {"EnableValidation","1", UNINIT},           // 0, 1 - When enabled (1) active messages that do not have the correct format are ignored
+#    {"ImmediateIPFilter", "0", UNINIT},         // 0, 1 - When enabled (1) only messages from ImmediateIP below allowed
+#    {"ImmediateIP", "192.168.2.46", UNINIT},    // Immediate forward sender IP
+#    {"ImmediatePort", "1516", UNINIT},          // 0, 65535 - Immediate forward port
+
+#=== Immediate forward
+IM_FWD_EN=`/usr/bin/conf_agent READ amh ImmediateEnable`
+WSM_EXT=`/usr/bin/conf_agent READ amh WSMExtension`
+EN_VALIDATE=`/usr/bin/conf_agent READ amh EnableValidation`
+IM_FWD_FILTER=`/usr/bin/conf_agent READ amh ImmediateIPFilter`
+IM_FWD_IP=`/usr/bin/conf_agent READ amh ImmediateIP`
+IM_FWD_PORT=`/usr/bin/conf_agent READ amh ImmediatePort`
+
+
+
+echo "      <div class=\"col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left item\">" 
+echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;mlargin-bottom: 15px;\">" 
+
+#=== form action
+echo "<form action='/cgi-bin/config_scs_save_controller'>" 
+echo "        <h3 class=\"text-center\">Immediate Forward</h3>" 
+
+# IM_FWD_EN
+if [ "$IM_FWD_EN" == "0" ]; then 
+    RESULT="" 
+else 
+    RESULT="checked" 
+fi
+echo "            <div class=\"form-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enable Immediate Fwd\">" 
+echo "              <input class=\"form-check-input\" type=\"checkbox\" name=\"IM_FWD_EN\" id=\"formCheck-1\" $RESULT>" 
+echo "              <label class=\"form-check-label\" for=\"formCheck-1\">Enable Immediate Fwd</label>" 
+echo "            </div>" 
+
+# WSM_EXT - 0, 1 - Enables (1) optional Tx power, data rate, and channel number in WSM header
+if [ "$WSM_EXT" == "0" ]; then 
+    RESULT="" 
+else 
+    RESULT="checked" 
+fi
+echo "            <div class=\"form-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enables optional Tx power, data rate, and channel number in WSM header\">" 
+echo "              <input class=\"form-check-input\" type=\"checkbox\" name=\"WSM_EXT\" id=\"formCheck-1\" $RESULT>" 
+echo "              <label class=\"form-check-label\" for=\"formCheck-1\">Enable WSM Ext</label>" 
+echo "            </div>" 
+
+# EN_VALIDATE - 0, 1 - When enabled (1) active messages that do not have the correct format are ignored
+if [ "$EN_VALIDATE" == "0" ]; then 
+    RESULT="" 
+else 
+    RESULT="checked" 
+fi
+echo "            <div class=\"form-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"When enabled, active messages that do not have the correct format are ignored\">" 
+echo "              <input class=\"form-check-input\" type=\"checkbox\" name=\"EN_VALIDATE\" id=\"formCheck-1\" $RESULT>" 
+echo "              <label class=\"form-check-label\" for=\"formCheck-1\">Enable Validation</label>" 
+echo "            </div>" 
+
+# IM_FWD_FILTER
+if [ "$IM_FWD_FILTER" == "0" ]; then 
+    RESULT="" 
+else 
+    RESULT="checked" 
+fi
+echo "            <div class=\"form-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enable IP Filter\">" 
+echo "              <input class=\"form-check-input\" type=\"checkbox\" name=\"IM_FWD_FILTER\" id=\"formCheck-1\" $RESULT>" 
+echo "              <label class=\"form-check-label\" for=\"formCheck-1\">Enable IP Filter</label>" 
+echo "            </div>" 
+
+
+# IM_FWD_IP - 
+echo "              <div class=\"form-group row\" style=\"margin-bottom: 0px;\">" 
+echo "                <label for=\"LocalSignalControllerIP\" class=\"col-sm-4 col-form-label\">Immediate Fwd IP</label>" 
+echo "                <div class=\"col-sm-6\">" 
+echo "                  <input type=\"text\" class=\"form-control\" name=\"IM_FWD_IP\" id=\"LocalSignalControllerIP\" placeholder=\"$IM_FWD_IP\">" 
+echo "                </div>" 
+echo "              </div>" 
+
+# IM_FWD_PORT -
+echo "              <div class=\"form-group row\" style=\"margin-bottom: 0px;\">" 
+echo "                <label for=\"LocalSignalControllerPort\" class=\"col-sm-4 col-form-label\">Immediate Fwd Port</label>" 
+echo "                <div class=\"col-sm-6\">" 
+echo "                  <input type=\"text\" class=\"form-control\" name=\"IM_FWD_PORT\" id=\"LocalSignalControllerPort\" placeholder=\"$IM_FWD_PORT\">" 
+echo "                </div>" 
+echo "              </div>" 
+
+# Add a few lines to even out the boxes
+echo "<br>" 
+
+# Save button for SRM FWD and end form
+echo "<div><input type=\"submit\" value=\"SAVE\"></div>" 
+echo "</form>" 
+
+
+#=== End
+echo "        </div>" 
+echo "        </div>" 
+
+}
+
+
+print_i2v_conf_row1()
+{
+#echo "<body>" 
+echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">" 
+
+    # Columm 1 - App setting
+    #print_amh_settings
+    print_amh_default
+
+    # Columm 2 - Network settings
+    #print_amh_im_fwd
+
+    # Columm 3 - Radio settings
+    #print_i2v_radio
+
+#echo "                </div>" 
+#echo "        <div class=\"col\">" 
+#echo "        </div>" 
+echo "    </div>" 
+
+}
+
+print_i2v_conf_row2()
+{
+#echo "<body>" 
+#echo "    <div class=\"row justify-content-center features\">" 
+echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">" 
+
+    # Columm 1 - Radio settings
+    print_scs_snmp_cmd
+
+    #print_scs_snmp_cmd
+
+#echo "                </div>" 
+#echo "        <div class=\"col\">" 
+#echo "        </div>" 
+echo "    </div>" 
+
+}
+
+print_feature_box_beg()
+{
+echo "<body>" 
+echo "    <div class=\"features-boxed\">" 
+echo "        <div class=\"container\">" 
+}
+
+print_feature_box_end()
+{
+echo "        </div>" 
+echo "    </div>" 
+}
+
+print_intro()
+{
+echo "            <div class=\"intro\">" 
+echo "                <h2 class=\"text-center\">AMH Settings</h2>" 
+echo "            </div>" 
+}
+
+print_Home_box()
+{
+echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+echo "                  <a href=\"/cgi-bin/rsu_main\">" 
+echo "                        <h3 class=\"name\">Home</h3>" 
+echo "                    </div>" 
+echo "                  </a>" 
+echo "                </div>" 
+}
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+echo "    <div class=\"footer-basic\">" 
+echo "        <footer>" 
+echo "            <p class=\"copyright\">MobiQ © 2023</p>" 
+echo "        </footer>" 
+echo "    </div>" 
+echo "    <script src=\"/assets/js/jquery.min.js\"></script>" 
+echo "    <script src=\"/assets/bootstrap/js/bootstrap.min.js\"></script>" 
+#echo "  </div>" 
+
+echo "</body>" 
+echo "</html>" 
+}
+
+#
+# Main
+### Generate Page - then redirect to rsu-config (check if user is logged in)
+#
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+  print_header                   # print header
+  print_feature_box_beg $HTML_PATH$TMP_FILE         # feature box beg
+  print_intro
+    
+    
+    # Show 1st row - App settings, Network settings
+    print_i2v_conf_row1
+
+    # Show 2nd row - Radio settings
+    #print_i2v_conf_row2
+
+  print_feature_box_end $HTML_PATH$TMP_FILE         # feature box end
+    
+  # End of Page with Footer
+  print_footer_end  $HTML_PATH$TMP_FILE
+

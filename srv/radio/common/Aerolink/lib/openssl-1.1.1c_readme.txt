@@ -1,0 +1,8 @@
+Be sure you have sourced setup_crosscc_toolchain_C_sample.sh from ~ before
+running this.
+
+To build openssl v1.1, execute the following script from within this directory:
+
+build_openssl.sh
+
+openssl v1.1 is required for creating Aerolink library and compiling tlsTest.

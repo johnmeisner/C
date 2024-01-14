@@ -1,0 +1,582 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+print_icon_style()
+{
+echo "<style>" 
+
+echo ".icon {" 
+echo "  font-size: 60px;" 
+echo "  text-align: center;" 
+echo "  margin-top: 20px;" 
+echo "  padding: 10px;" 
+echo "}" 
+
+echo ".intro-container {" 
+echo "  display: -ms-flexbox;" 
+echo "  display: flex;" 
+echo "}" 
+
+echo "</style>" 
+}
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+    echo "<!DOCTYPE html>"
+    echo "<html>" 
+
+    echo "<head>" 
+    echo "    <meta charset=\"utf-8\">" 
+    echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">" 
+    echo "    <title>RSU-5940 IPB Config Settings</title>" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/bootstrap/css/bootstrap.min.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/fonts/font-awesome.min.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Boxed.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Clean.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Footer-Basic.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/styles.css\">" 
+
+    echo "    <style>" 
+    echo "#overlay {" 
+    echo "  position: fixed;" 
+    echo "  display: none;" 
+    echo "  width: 100%;" 
+    echo "  height: 100%;" 
+    echo "  top: 0;" 
+    echo "  left: 0;" 
+    echo "  right: 0;" 
+    echo "  bottom: 0;" 
+    echo "  background-color: rgba(0,0,0,0.3);" 
+    echo "  z-index: 2;" 
+    echo "  cursor: pointer;" 
+    echo "}" 
+    echo "    </style>" 
+    
+    print_icon_style
+
+    echo "</head>" 
+}
+
+print_overlay()
+{
+    echo "<div id='overlay'>" 
+
+    echo "<div class="text-center">" 
+
+    echo "  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >" 
+    echo "    <span class='sr-only'>Loading...</span>" 
+    echo "  </div>" 
+    echo "</div>" 
+    echo "</div>" 
+}
+
+#==== Helper functions ===
+print_line()
+{
+    echo "<br>" 
+}
+
+print_text_input_tip()
+{
+    # Input parameters
+    #   LABEL=""
+    #   ID=""
+    #   PHOLDER=""
+    #   TOOLTIP=""
+
+    echo "              <div class='form-group row' style='margin-bottom: 0px;' "
+    echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>"
+    echo "                <label for='$ID' class='col-sm-4 col-form-label'>$LABEL </label>"
+    echo "                <div class='col-sm-6'>"
+    echo "                  <input type='text' class='form-control' name='$ID' id='$ID' placeholder='$PHOLDER' value='$PHOLDER' onchange=\"change_notify($ID)\" >"
+    echo "                </div>"
+    echo "              </div>"
+}
+
+print_check_box_tip()
+{
+    # Input Params
+    #   LABEL=""
+    #   ID=""
+    #   VALUE=""
+    #   TOOLTIP (TBD)
+
+    if [ "$VALUE" == "0" ]; then 
+        RESULT="" 
+    else 
+        RESULT="checked" 
+    fi
+    # adding change detect
+    echo "            <div class=\"form-check\"><input class=\"form-check-input\" type=\"checkbox\" name=\"$ID\" id=\"$ID\" $RESULT onchange=\"change_notify($ID)\" >"
+    echo "            <label class=\"form-check-label\" for=\"$ID\" "
+    echo "            data-toggle=\"tooltip\" data-placement=\"top\" title=\"$TOOLTIP\"> "
+    echo "            $LABEL</label></div>"
+}
+
+
+read_settings()
+{
+    WSA_DATA_RATE=`/usr/bin/conf_agent READ ipb WSATxRate`      # WSA Transmission Rate
+
+    DATA_RATE=`/usr/bin/conf_agent READ ipb DataRate`           # DSRC IPv6 Data Rate
+
+    CH_NUM=`/usr/bin/conf_agent READ ipb ChannelNumber`         # IPv6 DSRC Service Channel
+
+    IPB_PSID=`/usr/bin/conf_agent READ ipb IPBPSID`             # WSA Advertised PSID
+
+    IPB_ADV_ID=`/usr/bin/conf_agent READ ipb IPBAdvertiseID`    # WSA Advertised Description ID
+
+    OVR_PWR=`/usr/bin/conf_agent READ ipb OverridePower`        # Enable Override IPv6 and WSA Power
+
+    TX_PWR=`/usr/bin/conf_agent READ ipb TransmitPower`         # 0, 23 - IPv6 Override Transmit Power
+
+    WSA_PWR=`/usr/bin/conf_agent READ ipb WSAPower`             # WSA Override Transmit Power - increments of 0.5 dBm
+
+    OVR_CH=`/usr/bin/conf_agent READ ipb OverrideCCH`           # Enable Override WSA Broadcast Channel
+
+    CCH_CH=`/usr/bin/conf_agent READ ipb CCHChannel`            # Override WSA Broadcast Channel
+
+    ENABLE_EDCA=`/usr/bin/conf_agent READ ipb IPBEnableEDCA`      # Enable or disable EDCA in WSA
+
+    IPB_IPV6_PRE=`/usr/bin/conf_agent READ ipb IPBIPv6Prefix`   # DSRC RSU IPv6 Address
+
+    IPB_IPV6_IDEN=`/usr/bin/conf_agent READ ipb IPBIPv6Identifier`  # IPv6 identifier (second part of address)
+
+    IPB_IPV6_PORT=`/usr/bin/conf_agent READ ipb IPBIPv6Port`    # DSRC RSU IPv6 Port
+
+    IPB_IPV6_SRV_PRE=`/usr/bin/conf_agent READ ipb IPv6ServerPrefix`  # DSRC Advertised IPv6 Address
+
+    IPB_IPV6_SRV_ID=`/usr/bin/conf_agent READ ipb IPv6ServerID`       # DSRC Advertised IPv6 Address (defined in same field)
+
+    IPB_SERVICE_MAC=`/usr/bin/conf_agent READ ipb IPBServiceMac`      # DSRC Advertised MAC Address
+
+    IPB_PROV_CTXT=`/usr/bin/conf_agent READ ipb IPBProviderCtxt`      # DSRC Advertised Context
+
+    IPB_BRDG_IPV4=`/usr/bin/conf_agent READ ipb IPBIPv4Bridge`        # Enable IPv4 Forwarding
+
+    IPB_BRDG_IPV4_SRV_IP=`/usr/bin/conf_agent READ ipb IPv4ServerIP`  # IPv4 Forwarding Target IP Address
+
+    IPB_BRDG_IPV4_SRV_PORT=`/usr/bin/conf_agent READ ipb IPv4ServerPort`      # IPv4 Forwarding Target Port
+
+    IPB_BRDG_IPV4_SRV_URL=`/usr/bin/conf_agent READ ipb IPBServerURL`
+
+    IPB_LATITUDE=`/usr/bin/conf_agent READ ipb Latitude`  # Hard Coded Latitude of RSU location
+
+    IPB_LONGITUDE=`/usr/bin/conf_agent READ ipb Longitude`      # Hard Coded Longitude of RSU location
+
+    IPB_ELEVATION=`/usr/bin/conf_agent READ ipb Elevation`
+}
+
+
+
+print_transmit_settings()
+{
+    #=== Columm header
+    echo "      <div class=\"col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left item\">" 
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;margin-bottom: 15px;\">"        # box begin
+    echo "        <h3 class=\"text-center\">Transmit Settings</h3>" 
+
+    # WSA_DATA_RATE
+    NAME="WSA_DATA_RATE";  LABEL="WSA Data Rate";  ID="WSATxRate";  PHOLDER="$WSA_DATA_RATE"; TOOLTIP="WSA Transmission Rate (Range 0-50: 5XHz Value). Default: 50"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_text_input_tip
+
+    # DATA_RATE
+    NAME="DATA_RATE";  LABEL="IPv6 Data Rate";  ID="DataRate";  PHOLDER="$DATA_RATE"; TOOLTIP="DSRC IPv6 Data Rate (3,6,9,12,18,24,36,48,54). Default: 18"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_text_input_tip
+
+    # CH_NUM
+    NAME="CH_NUM";  LABEL="IPv6 DSRC Service Channel";  ID="ChannelNumber";  PHOLDER="$CH_NUM"; TOOLTIP="IPv6 DSRC Service Channel (172,174,176,178,180,182,184). Default: 176"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_text_input_tip
+
+    # IPB_PSID
+    NAME="IPB_PSID";  LABEL="WSA&nbsp;Advertised&nbsp;PSID";  ID="IPBPSID";  PHOLDER="$IPB_PSID"; TOOLTIP="WSA Advertised PSID (Range 0x0-0xFFFFFFFF). Default: 0x23"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_text_input_tip
+
+    # IPB_ADV_ID
+    NAME="IPB_ADV_ID";  LABEL="Description ID";  ID="IPBAdvertiseID";  PHOLDER="$IPB_ADV_ID"; TOOLTIP="WSA Advertised Description ID (e.g. USDOT). Default: MobiQRSU"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_text_input_tip
+
+    # OVR_PWR
+    NAME="OVR_PWR";  LABEL="Enable Power Override";  ID="OverridePower";  VALUE="$OVR_PWR"; TOOLTIP="Enable Override IPv6 and WSA Power. Default: Disabled"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_check_box_tip
+
+    # TX_PWR
+    NAME="TX_PWR";  LABEL="IPv6 Power";  ID="TransmitPower";  PHOLDER="$TX_PWR"; TOOLTIP="IPv6 Override Transmit Power- increments of 0.5dBm (Range 0-23). Default: 23"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_text_input_tip
+
+    # WSAPower             = 22; 0, 23  # transmit power (increments of 0.5 dBm); uses I2VTransmitPower [i2v.conf] if enabled
+    NAME="WSA_PWR";  LABEL="WSA Power";  ID="WSAPower";  PHOLDER="$WSA_PWR"; TOOLTIP="WSA Override Transmit Power - increments of 0.5 dBm (Range 0-23). Default: 23"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_text_input_tip
+
+    # OVR_CH
+    NAME="OVR_CH";  LABEL="Enable Override WSA Channel";  ID="OverrideCCH";  VALUE="$OVR_CH"; TOOLTIP="Enable Override WSA Broadcast Channel. Default: Disabled"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_check_box_tip
+
+    # CCH_CH
+    NAME="CCH_CH";  LABEL="WSA Channel";  ID="CCHChannel";  PHOLDER="$CCH_CH"; TOOLTIP="Override WSA Broadcast Channel (172,174,176,178,180,182,184). Default: 172"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_text_input_tip
+
+    # ENABLE_EDCA
+    NAME="ENABLE_EDCA";  LABEL="Enable EDCA";  ID="IPBEnableEDCA";  VALUE="$ENABLE_EDCA"; TOOLTIP="Enable EDCA in WSA Broadcast. Default: Disabled"; SAVE_BTTN="TRANSMIT_SAVE_BTNN"; APPLY_BTTN="APPLY_TRNS_BTTN"
+    print_check_box_tip
+
+    #=== end
+    echo "        </div>"          # box end
+    echo "        </div>" 
+}
+
+print_IPV6_Settings()
+{
+    #=== Columm header
+    echo "      <div class=\"col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left item\">" 
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;margin-bottom: 15px;\">"        # box begin
+    echo "        <h3 class=\"text-center\">DSRC IPv6 Network</h3>" 
+
+    # Some line padding
+    print_line; print_line
+
+    # IPB_IPV6_PRE
+    NAME="IPB_IPV6_PRE";  LABEL="IPv6 Address";  ID="IPBIPv6Prefix";  PHOLDER="$IPB_IPV6_PRE"; TOOLTIP="DSRC RSU IPv6 Address (e.g. 2000:0:0:0). Default: 2000:0:0:0"; SAVE_BTTN="IPV6_SAVE_BTNN"; APPLY_BTTN="APPLY_IPV6_BTTN"
+    print_text_input_tip
+
+    # IPB_IPV6_IDEN
+    NAME="IPB_IPV6_IDEN";  LABEL="IPv6 Identifier";  ID="IPBIPv6Identifier";  PHOLDER="$IPB_IPV6_IDEN"; TOOLTIP="DSRC RSU IPv6 Address (e.g. 0:0:0:1). Default: 0:0:0:1"; SAVE_BTTN="IPV6_SAVE_BTNN"; APPLY_BTTN="APPLY_IPV6_BTTN"
+    print_text_input_tip
+
+    # IPB_IPV6_PORT
+    NAME="IPB_IPV6_PORT";  LABEL="IPv6 Port";  ID="IPBIPv6Port";  PHOLDER="$IPB_IPV6_PORT"; TOOLTIP="DSRC RSU IPv6 Port (Range 0-65535). Default: 22"; SAVE_BTTN="IPV6_SAVE_BTNN"; APPLY_BTTN="APPLY_IPV6_BTTN"
+    print_text_input_tip
+
+    # IPB_IPV6_SRV_PRE
+    NAME="IPB_IPV6_SRV_PRE";  LABEL="IPv6 Server Prefix";  ID="IPv6ServerPrefix";  PHOLDER="$IPB_IPV6_SRV_PRE"; TOOLTIP="DSRC Advertised IPv6 Address (e.g. 2003:0:0:0). Default: 2003:0:0:0"; SAVE_BTTN="IPV6_SAVE_BTNN"; APPLY_BTTN="APPLY_IPV6_BTTN"
+    print_text_input_tip
+
+    # IPB_IPV6_SRV_ID
+    NAME="IPB_IPV6_SRV_ID";  LABEL="IPv6 Server ID";  ID="IPv6ServerID";  PHOLDER="$IPB_IPV6_SRV_ID"; TOOLTIP="DSRC Advertised IPv6 Address (defined in same field: e.g. 0:0:0:10). Default: 0:0:0:10"; SAVE_BTTN="IPV6_SAVE_BTNN"; APPLY_BTTN="APPLY_IPV6_BTTN"
+    print_text_input_tip
+
+    # IPB_SERVICE_MAC
+    NAME="IPB_SERVICE_MAC";  LABEL="Advertised MAC Address";  ID="IPBServiceMac";  PHOLDER="$IPB_SERVICE_MAC"; TOOLTIP="DSRC Advertised MAC Address (e.g. AA:BB:CC:DD:EE:FF). Default: 00:50:B6:0D:99:C4"; SAVE_BTTN="IPV6_SAVE_BTNN"; APPLY_BTTN="APPLY_IPV6_BTTN"
+    print_text_input_tip
+
+    # IPB_PROV_CTXT
+    NAME="IPB_PROV_CTXT";  LABEL="DSRC Advertised Context";  ID="IPBProviderCtxt";  PHOLDER="$IPB_PROV_CTXT"; TOOLTIP="DSRC Advertised Context (e.g. SCMS). Default: SCMS"; SAVE_BTTN="IPV6_SAVE_BTNN"; APPLY_BTTN="APPLY_IPV6_BTTN"
+    print_text_input_tip
+
+    #=== end
+    echo "        </div>"          # box end
+    echo "        </div>" 
+}
+
+
+print_server_settings()
+{
+    #=== Columm header
+    echo "      <div class=\"col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left item\">" 
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;margin-bottom: 15px;\">"        # box begin
+    echo "        <h3 class=\"text-center\">Server Settings</h3>" 
+
+    # IPB_BRDG_IPV4
+    NAME="IPB_BRDG_IPV4";  LABEL="Enable IPv4 Forwarding";  ID="IPBIPv4Bridge";  VALUE="$IPB_BRDG_IPV4"; TOOLTIP="Enable IPv4 Forwarding. Default: Enabled"; SAVE_BTTN="SERVER_SAVE_BTNN"; APPLY_BTTN="APPLY_SRV_BTTN"
+    print_check_box_tip
+
+    # IPB_BRDG_IPV4_SRV_IP
+    NAME="IPB_BRDG_IPV4_SRV_IP";  LABEL="IPv4 Server IP";  ID="IPv4ServerIP";  PHOLDER="$IPB_BRDG_IPV4_SRV_IP"; TOOLTIP="IPv4 Forwarding Target IP Address (e.g. 192.168.1.100). Default: 192.168.2.230"; SAVE_BTTN="SERVER_SAVE_BTNN"; APPLY_BTTN="APPLY_SRV_BTTN"
+    print_text_input_tip
+
+    # IPB_BRDG_IPV4_SRV_PORT
+    NAME="IPB_BRDG_IPV4_SRV_PORT";  LABEL="IPv4 Server Port";  ID="IPv4ServerPort";  PHOLDER="$IPB_BRDG_IPV4_SRV_PORT"; TOOLTIP="IPv4 Forwarding Target Port (Range 0-65535). Default: 2222"; SAVE_BTTN="SERVER_SAVE_BTNN"; APPLY_BTTN="APPLY_SRV_BTTN"
+    print_text_input_tip
+
+    # IPB_BRDG_IPV4_SRV_URL
+    NAME="IPB_BRDG_IPV4_SRV_URL";  LABEL="Server URL (optional)";  ID="IPBServerURL";  PHOLDER="$IPB_BRDG_IPV4_SRV_URL"; TOOLTIP="Forwarding URL (for IPv4 or IPv6)"; SAVE_BTTN="SERVER_SAVE_BTNN"; APPLY_BTTN="APPLY_SRV_BTTN"
+    print_text_input_tip
+
+    #=== end
+    echo "        </div>"          # box end
+    echo "        </div>" 
+}
+
+
+print_location_settings()
+{
+    #=== Columm header
+    echo "      <div class=\"col-sm-6 col-md-6 col-lg-6 col-xl-6 text-left item\">" 
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;margin-bottom: 15px;\">"        # box begin
+    echo "        <h3 class=\"text-center\">Location Settings</h3>" 
+
+    # IPB_LATITUDE
+    NAME="IPB_LATITUDE";  LABEL="Latitude";  ID="Latitude";  PHOLDER="$IPB_LATITUDE"; TOOLTIP="Hard Coded Latitude of RSU location (Range -90 to 90 Deg). Default: 33.13351"; SAVE_BTTN="LOACATION_SAVE_BTNN"; APPLY_BTTN="APPLY_LOC_BTTN"
+    print_text_input_tip
+
+    # IPB_LONGITUDE
+    NAME="IPB_LONGITUDE";  LABEL="Longitude";  ID="Longitude";  PHOLDER="$IPB_LONGITUDE"; TOOLTIP="Hard Coded Longitude of RSU location (Range -180 to 180 Deg). Default: -117.2274352"; SAVE_BTTN="LOACATION_SAVE_BTNN"; APPLY_BTTN="APPLY_LOC_BTTN"
+    print_text_input_tip
+
+    # IPB_ELEVATION      # Hard Coded Elevation of RSU location
+    NAME="IPB_ELEVATION";  LABEL="Elevation (m)";  ID="Elevation";  PHOLDER="$IPB_ELEVATION"; TOOLTIP="Hard Coded Elevation of RSU location (Range 100 to 1500 Meters). Default: 665"; SAVE_BTTN="LOACATION_SAVE_BTNN"; APPLY_BTTN="APPLY_LOC_BTTN"
+    print_text_input_tip
+
+    #=== end
+    echo "        </div>"          # box end
+    echo "        </div>" 
+}
+
+
+print_i2v_conf_row1()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">" 
+
+    # Columm 1 - IPB Setting
+    print_transmit_settings
+    
+    # Columm 2
+    print_IPV6_Settings
+
+    echo "    </div>" 
+}
+
+print_i2v_conf_row2()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">" 
+
+    # Columm 1
+    print_server_settings
+
+    # Columm 2
+    print_location_settings
+
+    echo "    </div>" 
+}
+
+print_feature_box_beg()
+{
+    echo "<body>" 
+    source $SCRIPT_PATH/add_navbar.sh 
+    source $SCRIPT_PATH/add_page_timeout.sh
+    print_overlay
+    echo "    <div class=\"features-boxed\">" 
+    echo "        <div class=\"container\">" 
+}
+
+print_feature_box_end()
+{
+    echo "        </div>" 
+    echo "    </div>" 
+}
+
+print_intro()
+{
+    echo "            <div class=\"intro\">" 
+    echo "            <div class=\"intro-container\">"
+    echo "                <i class=\"fa fa-share-alt icon\"></i>"
+    echo "                <h2 class=\"text-center\">WSA Settings</h2>" 
+    echo "            </div>" 
+    echo "            </div>" 
+}
+
+print_Home_box()
+{
+    echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+    echo "                  <a href=\"/cgi-bin/rsu_main\">"
+    echo "                        <h3 class=\"name\">Home</h3>" 
+    echo "                    </div>" 
+    echo "                  </a>" 
+    echo "                </div>" 
+}
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+    echo "    <div class=\"footer-basic\">" 
+    echo "        <footer>" 
+    echo "            <p class=\"copyright\">MobiQ © 2023</p>" 
+    echo "        </footer>" 
+    echo "    </div>" 
+    echo "    <script src=\"/assets/js/jquery.min.js\"></script>" 
+    echo "    <script src=\"/assets/bootstrap/js/bootstrap.min.js\"></script>" 
+    
+    echo "<script>" 
+        print_submit_overlay_on
+        print_submit_overlay_off
+        print_change_notify
+        print_submit_changes
+        print_submit_changes_reset
+        print_check_changes_back
+    echo "</script>" 
+
+    echo "</body>" 
+    echo "</html>" 
+}
+
+
+
+print_submit_overlay_on()
+{
+    echo "    function overlay_on() {" 
+    echo "      document.getElementById('overlay').style.display = 'block';" 
+    echo "      document.getElementById('spin01').style.visibility = 'visible';" 
+    echo "    }" 
+}
+
+print_submit_overlay_off()
+{
+    echo "    function overlay_off() {" 
+    echo "      document.getElementById('overlay').style.display = 'none';" 
+    echo "    }" 
+}
+
+# Function to validate onchange events
+print_change_notify()
+{
+    echo "var pg_change = 0;"
+    echo "function change_notify(change_id) {"
+    echo "  pg_change = 1;"
+    # set color to purple - #800080
+    echo "  change_id.style.color = \"#800080\"; "
+    # enable SAVE button
+    echo "  document.getElementById('SAVE_BTTN').disabled = false;"
+    # enable SAVE & APPLY button
+    echo "  document.getElementById('APPLY_BTTN').disabled = false;"
+    # Tell the navbar to tell the user to save first
+    echo "  navbar_set_page_has_unsaved_changes(true);"
+
+    echo "}"
+}
+
+print_submit_changes()
+{
+    # Submit rsu_basic
+    echo "function submit_changes() {"
+            echo "overlay_on();"
+            echo "    var x = document.getElementsByName('wsu_form');"
+            echo "    x[0].submit();"
+    echo "}"
+}
+
+print_submit_changes_reset()
+{
+    # Submit rsu_basic_reset
+    echo "function submit_changes_reset() {"
+        # Make sure user want to SAVE and REBOOT
+        echo "var r = confirm('SAVE & APPLY will reboot the RSU!');"
+        echo "if (r == true) {"
+                echo "NAV.value='APPLY';"
+                echo "overlay_on();"
+                echo "var x = document.getElementsByName('wsu_form');"
+                echo "x[0].submit();"
+                # Note: NAV is set to 'APPLY' allowing save script to know to reboot after saving
+                # The post-save reboot_with_countdown screen will show save results while rebooting
+        echo "}"
+    
+    echo "}"
+}
+
+
+print_check_changes_back()
+{
+    # check changes
+    echo "function check_changes_back() {"
+    echo "if (pg_change == 0) {"    #   check for changes
+            # No changes - go back one level up
+    echo "  window.location.href = '/cgi-bin/config_display_default';"
+    echo "} else {"
+            # Else prompt user to save changes
+    echo "    var ret = confirm(\"Save changes?\");"
+    echo "    if (ret == true) {"
+                # Save changes and go back
+    echo "      NAV.value='BACK';"
+    echo "      submit_changes();"
+    echo "    } "
+    echo "    else {"
+    echo "      window.location.href = '/cgi-bin/config_display_default';"
+    echo "    }"
+    echo "}"
+    echo "}"
+}
+
+
+
+#
+# Main
+### Generate Page - then redirect to rsu-config (check if user is logged in)
+#
+echo "Content-type: text/html"
+echo ""
+
+# Get current logged in IP
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+else
+  print_header                   # print header
+  print_feature_box_beg          # feature box beg
+    print_intro
+
+  # Status from previous save
+  STATUS_FILE=/tmp/update.status.file
+  if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+  fi
+    
+    # read 
+    read_settings
+
+    # Form start
+    echo "<form name='wsu_form' action='/cgi-bin/config_wsa_save'>" 
+    
+    # Show 1st row - App settings, Network settings
+    print_i2v_conf_row1
+
+    # Show 2nd row
+    print_i2v_conf_row2
+    
+    # place holder for various flags
+    echo "    <input type='text' name='NAV' id='NAV' value='NONE' style='visibility: hidden;' > "
+
+    #=== 3 buttons on same line (float 1st two
+
+    # Save button - disabled by default, enable when there are changes
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"left\"> <input type=\"button\" id='SAVE_BTTN' value=\"SAVE\" onclick=\"submit_changes()\" disabled> </p>"
+    echo "   </div>"
+
+    # Apply button
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"center\"> <input type=\"button\" id='APPLY_BTTN' value=\"SAVE & APPLY\" onclick=\"submit_changes_reset()\" disabled> </p>"
+    echo "   </div>"
+
+    # Back button one level up - prompt user if changes made
+    echo "   <div style='float: right;'>"
+    echo "     <p align='right'> <input type='button' value='BACK' onclick=\"check_changes_back()\"> </p>"
+    echo "   </div>"
+
+    # Form end
+    echo "</form>"
+
+
+  print_feature_box_end          # feature box end
+
+  # FW version
+  echo "<p class='copyright' style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>VERSION:"
+  cat /etc/version 
+  echo "</p>"
+
+  # End of Page with Footer
+  print_footer_end  
+  
+fi

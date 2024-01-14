@@ -1,0 +1,503 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+print_icon_style()
+{
+echo "<style>" 
+
+echo ".icon {" 
+echo "  font-size: 60px;" 
+echo "  text-align: center;" 
+echo "  margin-top: 20px;" 
+echo "  padding: 10px;" 
+echo "}" 
+
+echo ".intro-container {" 
+echo "  display: -ms-flexbox;" 
+echo "  display: flex;" 
+echo "}" 
+
+echo "</style>" 
+}
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+    echo "<!DOCTYPE html>"
+    echo "<html>" 
+
+    echo "<head>" 
+    echo "    <meta charset=\"utf-8\">" 
+    echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">" 
+    echo "    <title>RSU - 5940 I2V Config Settings</title>" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/bootstrap/css/bootstrap.min.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/fonts/font-awesome.min.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Boxed.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Clean.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Footer-Basic.css\">" 
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/styles.css\">" 
+
+    echo "    <style>" 
+    echo "#overlay {" 
+    echo "  position: fixed;" 
+    echo "  display: none;" 
+    echo "  width: 100%;" 
+    echo "  height: 100%;" 
+    echo "  top: 0;" 
+    echo "  left: 0;" 
+    echo "  right: 0;" 
+    echo "  bottom: 0;" 
+    echo "  background-color: rgba(0,0,0,0.3);" 
+    echo "  z-index: 2;" 
+    echo "  cursor: pointer;" 
+    echo "}" 
+    echo "    </style>" 
+
+    print_icon_style
+
+    echo "</head>" 
+}
+
+print_overlay()
+{
+    echo "<div id='overlay'>" 
+ 
+    echo "<div class="text-center">" 
+
+    echo "  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >" 
+    echo "    <span class='sr-only'>Loading...</span>" 
+    echo "  </div>" 
+    echo "</div>" 
+    echo "</div>" 
+}
+
+#==== Helper functions ===
+print_line()
+{
+    echo "<br>" 
+}
+
+print_text_input_tip()
+{
+    # Input parameters
+    #   ZZUNUSED---NAME=""
+    #   LABEL=""
+    #   ID=""
+    #   PHOLDER=""
+    #   TOOLTIP=""
+
+    echo "              <div class='form-group row' style='margin-bottom: 0px;' "
+    echo "                data-toggle='tooltip' data-placement='top' title='$TOOLTIP'>"
+    echo "                <label for='$ID' class='col-sm-5 col-form-label'>$LABEL </label>"
+    echo "                <div class='col-sm-6'>"
+    echo "                  <input type='text' class='form-control' name='$ID' id='$ID' placeholder='$PHOLDER' value='$PHOLDER' onchange=\"change_notify($ID)\" >"
+    echo "                </div>"
+    echo "              </div>"
+}
+
+print_check_box_tip()
+{
+    # Input Params
+    #   ZZUNUSED---NAME=""
+    #   LABEL=""
+    #   ID=""
+    #   VALUE=""
+    #   TOOLTIP (TBD)
+
+    if [ "$VALUE" == "0" ]; then 
+        RESULT="" 
+    else 
+        RESULT="checked" 
+    fi
+    # adding change detect
+    echo "            <div class=\"form-check\"><input class=\"form-check-input\" type=\"checkbox\" name=\"$ID\" id=\"$ID\" $RESULT onchange=\"change_notify($ID)\" >"
+    echo "            <label class=\"form-check-label\" for=\"$ID\" "
+    echo "            data-toggle=\"tooltip\" data-placement=\"top\" title=\"$TOOLTIP\"> "
+    echo "            $LABEL</label></div>"
+}
+
+
+
+
+print_intersection_settings()
+{
+    #=== Get Settings
+
+    #=== Columm headerl
+    echo "      <div class=\"col-sm-9 col-md-9 col-lg-9 col-xl-9 text-left item\">" 
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;margin-bottom: 15px;\">"        # box begin
+    #=== form action
+    echo "<form name='intersection_form' form action='/cgi-bin/config_intersection_save'>" 
+    echo "        <h3 class=\"text-center\">Settings</h3>" 
+
+    #==========================================
+    # INTERSECTION_ID
+    LABEL="Intersection ID";  ID="IntersectionID";  PHOLDER="$INTERSECTION_ID"; TOOLTIP="Intersection ID (Range 1-2147483648). Default: 21020"
+    print_text_input_tip
+
+    # SRM_INTERFACE
+    LABEL="SRM Destination Type";  ID="SRMFwdInterface";  PHOLDER="$SRM_INTERFACE"; TOOLTIP="SRM Forward Destination Type (Range 1 (CSV) - 2 (McCain)). Default: 1 (CSV)"
+    print_text_input_tip
+
+    # SCS_IPV4_ENABLE - check box
+    print_line
+    LABEL="Enable SPaT Listening Service";  ID="LocalSignalControllerEnable";  VALUE="$SCS_IPV4_ENABLE"; TOOLTIP="Enable SPaT Listening Service. Default: Enabled"
+    print_check_box_tip
+
+    # SCS_IPV4_IP
+    LABEL="Controller IP Address";  ID="LocalSignalControllerIP";  PHOLDER="$SCS_IPV4_IP"; TOOLTIP="SPaT Traffic Signal Controller IPv4 Address (e.g. 192.168.1.100). Default: 192.168.2.32"
+    print_text_input_tip
+
+    # SCS_NTCIP_PORT
+    LABEL="Controller NTCIP Port";  ID="LocalSignalSNMPPort";  PHOLDER="$SCS_NTCIP_PORT"; TOOLTIP="Controller NTCIP Port (Range 0-65535). Default: 501"
+    print_text_input_tip
+
+    # SCS_IPV4_PORT
+    LABEL="RSU Listening Port";  ID="LocalSignalControllerPort";  PHOLDER="$SCS_IPV4_PORT"; TOOLTIP="RSU SPaT Listening Port (Range 6053-6054). Default:6053"
+    print_text_input_tip
+
+    # SCS_HW_TYPE
+    LABEL="Controller Type";  ID="LocalSignalControllerHW";  PHOLDER="$SCS_HW_TYPE"; TOOLTIP="SPaT Traffic Signal Controller Hardware Type (Range 0-255). Default: 0"
+    print_text_input_tip
+
+    # SPAT_INTEROP_MODE
+    LABEL="SPaT Interoperability Mode";  ID="SPATInteroperabilityMode";  PHOLDER="$SPAT_INTEROP_MODE"; 
+    TOOLTIP="V2X SPaT Broadcast Format &#13 0x1 (00000001b) = Simplified SPAT message (1 approach, 1 movement event) &#13 0x2 (00000010b) = Max time included with min time in SPAT &#13 0x4 (00000100b) = Use UTC time instead of typical countdown for SPAT timing &#13 0x8 (00001000b) = Support for pedestrian/bicycle detect bit (Trafficware only). Default: 7"
+    print_text_input_tip
+
+    # Signal Group Mappings Editor Button
+    echo "<br>"
+    echo "   <div style='float: center;'>"
+    echo "     <p align=\"center\"> <input type=\"button\" value=\"Signal Group Mappings\" onclick='go_signalgroupmap()' > </p>"
+    echo "   </div>"
+
+    # BYPASS_ENABLE - check box
+    print_line
+    LABEL="Enable Manual Supplementary Data";  ID="BypassSignalControllerNTCIP";  VALUE="$BYPASS_ENABLE"; TOOLTIP="Enable Manual Supplementary Data. Default: Enabled"
+    print_check_box_tip
+
+    # BYPASS_YELLOW_DUR
+    LABEL="Yellow Duration";  ID="BypassYellowDuration";  PHOLDER="$BYPASS_YELLOW_DUR"; 
+    TOOLTIP="Manually Defined Yellow Duration&#13  Seconds: 1 to 255. Default: 3"
+    print_text_input_tip
+
+    print_line
+    #===========================================
+
+    # Save button for IPB Settings and end form
+    echo "<br>" 
+
+    # place holder for various flags
+    echo "    <input type='text' name='NAV' id='NAV' value='NONE' style='visibility: hidden;' > "
+
+    #=== 3 buttons on same line (float 1st two
+
+    # Save button - disabled by default, enable when there are changes
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"left\"> <input type=\"button\" id='SAVE_BTTN' value=\"SAVE\" onclick=\"submit_changes()\" disabled> </p>"
+    echo "   </div>"
+
+    # Apply button
+    echo "   <div style='float: left;'>"
+    echo "     <p align=\"center\"> <input type=\"button\" id='APPLY_BTTN' value=\"SAVE & APPLY\" onclick=\"submit_changes_reset()\" disabled> </p>"
+    echo "   </div>"
+
+    # Back button one level up - prompt user if changes made
+    echo "     <p align='right'> <input type='button' value='BACK' onclick=\"check_changes_back()\"> </p>"
+#===============
+
+    echo "</form>" 
+
+    #=== end
+    echo "        </div>"          # box end
+    echo "        </div>" 
+}
+
+read_intersection_settings()
+{
+    # INTERSECTION_ID
+    #INTERSECTION_ID=`/usr/bin/conf_agent READ map16 IntersectionID`     # text input
+    INTERSECTION_ID=`/usr/bin/conf_agent READ spat16 IntersectionID`     # text input
+
+    # SRM_FWD_IP
+    SRM_FWD_IP=`/usr/bin/conf_agent READ scs SRMFwdIP`                  # text input
+
+    # SRM_FWD_PORT
+    SRM_FWD_PORT=`/usr/bin/conf_agent READ scs SRMFwdPort`              # text input
+
+    # SRM_INTERFACE
+    SRM_INTERFACE=`/usr/bin/conf_agent READ scs SRMFwdInterface`        # text input
+
+    # SCS_IPV4_ENABLE - check box
+    print_line
+    SCS_IPV4_ENABLE=`/usr/bin/conf_agent READ scs LocalSignalControllerEnable`      # check box
+
+    # SCS_IPV4_IP
+    SCS_IPV4_IP=`/usr/bin/conf_agent READ scs LocalSignalControllerIP`              # text input
+
+    # SCS_NTCIP_PORT
+    SCS_NTCIP_PORT=`/usr/bin/conf_agent READ scs LocalSignalSNMPPort`              # text input
+
+    # SCS_IPV4_PORT
+    SCS_IPV4_PORT=`/usr/bin/conf_agent READ scs LocalSignalControllerPort`          # text input
+
+    # SCS_HW_TYPE
+    SCS_HW_TYPE=`/usr/bin/conf_agent READ scs LocalSignalControllerHW`              # text input
+
+    # SPAT_INTEROP_MODE
+    SPAT_INTEROP_MODE=`/usr/bin/conf_agent READ spat16 SPATInteroperabilityMode`    # text input
+
+    # BYPASS_ENABLE - check box
+    BYPASS_ENABLE=`/usr/bin/conf_agent READ scs BypassSignalControllerNTCIP`        # check box
+
+    # BYPASS_YELLOW_DUR
+    BYPASS_YELLOW_DUR=`/usr/bin/conf_agent READ scs BypassYellowDuration`           # text input
+
+    # BSM_FWD_ENABLE - check box
+    BSM_FWD_ENABLE=`/usr/bin/conf_agent READ spat16 BSMRxForward`       # check box
+
+    # BSM_FWD_IP
+    BSM_FWD_IP=`/usr/bin/conf_agent READ spat16 BSMForwardIP`           # text input
+
+    # BSM_FWD_PORT
+    BSM_FWD_PORT=`/usr/bin/conf_agent READ spat16 BSMForwardPort`       # text input
+
+    # SPAT_FWD_ENABLE - check box
+    SPAT_FWD_ENABLE=`/usr/bin/conf_agent READ spat16 SPATForwarding`       # check box
+
+    # BSM_PSM_FWD_ENABLE - check box
+    BSM_PSM_FWD_ENABLE=`/usr/bin/conf_agent READ spat16 BSMPSMForward`      # check box
+}
+
+print_i2v_conf_row1()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">" 
+
+    # Columm 1 - App setting
+    print_intersection_settings
+
+    echo "    </div>" 
+
+}
+
+print_i2v_conf_row2()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">" 
+
+    # Columm 1 - Radio settings
+    #print_scs_snmp_cmd
+
+    echo "    </div>" 
+}
+
+print_feature_box_beg()
+{
+    echo "<body>" 
+    source $SCRIPT_PATH/add_navbar.sh 
+    source $SCRIPT_PATH/add_page_timeout.sh
+    print_overlay
+    echo "    <div class=\"features-boxed\">" 
+    echo "        <div class=\"container\">" 
+}
+
+print_feature_box_end()
+{
+    echo "        </div>" 
+    echo "    </div>" 
+}
+
+print_intro()
+{
+    echo "            <div class=\"intro\">" 
+    echo "            <div class=\"intro-container\">"
+    echo "                <i class=\"fa fa-arrows icon\"></i>"
+    echo "                <h2 class=\"text-center\">Intersection Settings</h2>" 
+    echo "            </div>" 
+    echo "            </div>" 
+}
+
+print_Home_box()
+{
+    echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">" 
+    echo "                  <a href=\"/cgi-bin/rsu_main\">"
+    echo "                        <h3 class=\"name\">Home</h3>" 
+    echo "                    </div>" 
+    echo "                  </a>" 
+    echo "                </div>" 
+}
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+    echo "    <div class=\"footer-basic\">" 
+    echo "        <footer>" 
+    echo "            <p class=\"copyright\">MobiQ © 2023</p>" 
+    echo "        </footer>" 
+    echo "    </div>" 
+    echo "    <script src=\"../assets/js/jquery.min.js\"></script>" 
+    echo "    <script src=\"../assets/bootstrap/js/bootstrap.min.js\"></script>" 
+
+    echo "<script>" 
+        print_submit_changes
+        print_submit_changes_reset
+        print_check_changes_back
+        print_change_notify
+        print_overlay_functions
+        print_go_signalgroupmap
+    echo "</script>" 
+
+    echo "</body>" 
+    echo "</html>" 
+}
+
+print_submit_changes()
+{
+    # Submit intersection
+    echo "function submit_changes() {" 
+    echo "    overlay_on();" 
+    echo "    var x = document.getElementsByName('intersection_form');" 
+    echo "    x[0].submit();" 
+    echo "}" 
+}
+
+print_submit_changes_reset()
+{
+    # Submit intersection
+    echo "function submit_changes_reset() {" 
+        # Make sure user want to SAVE and REBOOT
+        echo "var r = confirm('SAVE & APPLY will reboot the RSU!');"
+        echo "if (r == true) {"
+            echo "overlay_on();" 
+            echo "NAV.value='APPLY';"   # set 'NAV' value to apply
+            echo "var x = document.getElementsByName('intersection_form');" 
+            echo "x[0].submit();" 
+        echo "}"
+    echo "}"
+
+}
+
+
+# test function to validate onchange events
+print_change_notify()
+{
+    echo "var pg_change = 0;"
+    echo "function change_notify(change_id) {"
+    echo "  pg_change = 1;"
+    # set color to purple - #800080
+    echo "  change_id.style.color = \"#800080\"; "
+    # enable SAVE button
+    echo "  document.getElementById('SAVE_BTTN').disabled = false;"
+    # enable SAVE button
+    echo "  document.getElementById('APPLY_BTTN').disabled = false;"
+    # Tell the navbar to tell the user to save first
+    echo "  navbar_set_page_has_unsaved_changes(true);"
+
+    echo "}"
+}
+
+print_check_changes_back()
+{
+    # check changes
+    echo "function check_changes_back() {"
+    echo "if (pg_change == 0) {"    #   check for changes
+            # No changes - go back one level up
+    echo "  window.location.href = '/cgi-bin/config_display_default';"
+    echo "} else {"
+            # Else prompt user to save changes
+    echo "    var ret = confirm(\"Save changes?\");"
+    echo "    if (ret == true) {"
+                # Save changes and go back
+    echo "      NAV.value='BACK';"
+    echo "      submit_changes();"
+    echo "    } "
+    echo "    else {"
+    echo "      window.location.href = '/cgi-bin/config_display_default';"
+    echo "    }"
+    echo "}"
+    echo "}"
+}
+
+print_go_signalgroupmap()
+{
+    echo "function go_signalgroupmap()"
+    echo "{"
+    echo "    // If no changes, go right away"
+    echo "    if (pg_change == 0) {"
+    echo "        window.location.href = '/cgi-bin/config_tscbm_display_live';"
+    echo "    // Changes --ask user if save first"
+    echo "    } else {"
+    echo "        var ret = confirm('Save changes first?');"
+    echo "        if (ret == true) {"
+    echo "            // Save changes and go back"
+    echo "            NAV.value='TSCBM';"
+    echo "            submit_intersection();"
+    echo "        } else {"
+    echo "            window.location.href = '/cgi-bin/config_tscbm_display_live';"
+    echo "        }"
+    echo "    }"
+    echo "}"
+}
+
+print_overlay_functions()
+{
+    echo "    function overlay_on() {" 
+    echo "      document.getElementById('overlay').style.display = 'block';" 
+    echo "      document.getElementById('spin01').style.visibility = 'visible';" 
+    echo "    }" 
+
+    echo "    function overlay_off() {" 
+    echo "      document.getElementById('overlay').style.display = 'none';" 
+    echo "    }" 
+}
+
+
+#
+# Main
+### Generate Page - then redirect to rsu-config (check if user is logged in)
+#
+echo "Content-type: text/html"
+echo ""
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+else  
+  print_header                   # print header
+  print_feature_box_beg          # feature box beg
+  print_intro
+
+  # Status from previous save
+  STATUS_FILE=/tmp/update.status.file
+  if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+  fi
+
+  # read settings
+  read_intersection_settings
+
+  # Show 1st row - App settings, Network settings
+  print_i2v_conf_row1
+
+  print_feature_box_end          # feature box end
+
+  # FW version
+  echo "<p class='copyright' style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>VERSION:"
+  cat /etc/version 
+  echo "</p>"
+
+  # End of Page with Footer
+  print_footer_end  
+
+fi

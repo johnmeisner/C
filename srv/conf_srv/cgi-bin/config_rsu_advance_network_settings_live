@@ -1,0 +1,483 @@
+#!/bin/sh
+
+# Set path
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/opt/bin:/opt/cohda/bin:/rwflash/bin:/usr/local/bin
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+#============================================================================
+
+#
+# Embedded scripts
+#
+
+print_icon_style()
+{
+echo "<style>" 
+
+echo ".icon {" 
+echo "  font-size: 60px;" 
+echo "  text-align: center;" 
+echo "  margin-top: 20px;" 
+echo "  padding: 10px;" 
+echo "}" 
+
+echo ".intro-container {" 
+echo "  display: -ms-flexbox;" 
+echo "  display: flex;" 
+echo "}" 
+
+echo "</style>" 
+}
+
+#
+# print_header()
+# desc: print page header with all the css and js needed to format page
+#
+print_header()
+{
+    echo "<!DOCTYPE html>"
+    echo "<html>"
+
+    echo "<head>"
+    echo "    <meta charset=\"utf-8\">"
+    echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">"
+    echo "    <title>RSU - 5940 I2V Config Settings</title>"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/bootstrap/css/bootstrap.min.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/fonts/font-awesome.min.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Boxed.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Features-Clean.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/Footer-Basic.css\">"
+    echo "    <link rel=\"stylesheet\" href=\"../assets/css/styles.css\">"
+
+    echo "    <style>"
+    echo "      #overlay {"
+    echo "          position: fixed;"
+    echo "          display: none;"
+    echo "          width: 100%;"
+    echo "          height: 100%;"
+    echo "          top: 0;"
+    echo "          left: 0;"
+    echo "          right: 0;"
+    echo "          bottom: 0;"
+    echo "          background-color: rgba(0,0,0,0.3);"
+    echo "          z-index: 2;"
+    echo "          cursor: pointer;"
+    echo "      }"
+    echo "    </style>"
+
+    echo "<style>"
+    echo ".center {"
+    echo "  margin: auto;"
+    echo "  width: 90%;"
+    echo "  height: 200px;"
+    echo "  overflow: auto;"
+    echo "  border: 3px solid #adb5bd;"
+    echo "  background-color: #eee;"
+    echo "  padding: 10px;"
+    echo "</style>"
+
+    echo "<style>"
+    echo ".btn_round {"
+    echo "  border: 2px solid gray;"
+    echo "  background-color: white;"
+    echo "  padding-top: 6px;"
+    echo "  padding-bottom: 6px;"
+    echo "  color: black;"
+    echo "  border-radius: 8px;"
+    echo "  font-size: 16px;"
+    echo "}"
+    echo "</style>"
+
+    
+    
+    
+    #=== Customize upload button
+    echo "<style>"
+    echo ".upload-btn-wrapper {"
+    echo "  position: relative;"
+    echo "  overflow: hidden;"
+    echo "  display: inline-block;"
+    echo "}"
+
+    echo ".btn {"
+    echo "  border: 2px solid gray;"
+    #echo "  color: gray;"
+    echo "  background-color: white;"
+    echo "  color: black;"
+    #echo "  padding: 6px 14px;"
+    echo "  border-radius: 8px;"
+    echo "  font-size: 16px;"
+    #echo "  font-weight: bold;"
+    echo "}"
+
+    echo ".upload-btn-wrapper input[type=file] {"
+    echo "  font-size: 16px;"
+    echo "  position: absolute;"
+    echo "  left: 0;"
+    echo "  top: 0;"
+    echo "  opacity: 0;"
+    echo "}"
+    echo "</style>"
+    #===================
+    
+    
+    print_icon_style
+    
+    echo "</head>"
+}
+
+print_overlay()
+{
+    echo "<div id='overlay'>"
+
+    echo "<div class="text-center">"
+
+    echo "  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >"
+    echo "    <span class='sr-only'>Loading...</span>"
+    echo "  </div>"
+    echo "</div>"
+    echo "</div>"
+}
+
+print_advance_network_settings()
+{
+    echo "                <div class=\"col-sm-9 col-md-9 col-lg-9 col-xl-9 text-left item\" style=\"padding-left: 5px;padding-right: 5px;\">"
+    # adding box
+    echo "        <div class=\"text-left box shadow p-3 mb-5 bg-white rounded\" style=\"padding-top: 5px;margin-bottom: 15px;\">"       # box begin
+
+    #=== form action
+    echo "<form name='rsu_basic_form' >"
+
+    echo "        <h4 class=\"text-center\">Networking Rules</h4>"
+    
+    echo "        <div class=\"center\" id='new_rule_frame'>"
+        # Display /rwflash/customer/routing.rules. If no file exist display nothing
+        FILE=/rwflash/customer/routing.rules
+        if [ -f "$FILE" ]; then
+            awk '{print $0 "<br/>"}' $FILE
+        fi
+        
+    echo "        </div>"
+    echo "        <h6 class=\"text-center\"  style='color:gray'><b>Note: </b>A Blank Frame Means No Rules Exist</h6>"
+    
+    echo "      <br>"
+    #=== 2 buttons on same line
+    #echo "   <div style='float: left;'>"
+    #echo "     <p align=\"left\"> <input type=\"button\" id='SAVE_BTTN' value=\"Upload New Rules File\" onclick=\"upload_network_rules()\" style='margin-left: 50px;'> </p>"
+    #echo "   </div>"
+
+    echo "   <div style='float: left;'>"
+    echo "     <div class='upload-btn-wrapper'>"
+    echo "       <button class='btn' style='margin-left: 50px;' >Upload New Rules File</button>"
+    echo "       <input type='file' name='rule_file' accept='.rules' id='new_rule_input' onchange='upload_new_rules()'/>"
+    echo "     </div>"
+    echo "   </div>"    # style float left
+    
+    #echo "     <p align='right'> <input type='button' value='Delete Existing Rules' onclick=\"delete_network_rules()\" style='margin-right: 50px;'> </p>"
+    echo "     <p align='right'> <button class='btn_round' style='margin-right: 50px;' input type='button' onclick=\"delete_network_rules()\">Delete Existing Rules</button> </p>"
+
+    echo "      <br> <br>"
+
+    echo "        <h4 class=\"text-center\">Name Resolution (resolv.conf)</h4>"
+    echo "        <div class=\"center\" id='new_resolv_frame'>"
+
+    # Add file content to frame
+    FILE=/rwflash/customer/resolv.conf
+    if [ -f $FILE ]; then
+        awk '{print $0 "<br/>"}' $FILE
+    fi
+
+    echo "        </div>"
+    echo "        <h6 class=\"text-center\" style='color:gray'><b>Note: </b>A Blank Frame Means No Name Server Is Configured</h6>"
+
+    echo "<br>"     # line break
+    #=== 2 buttons on same line
+    echo "   <div style='float: left;'>"
+    echo "     <div class='upload-btn-wrapper'>"
+    echo "       <button class='btn' style='margin-left: 50px;' >Upload New resolv.conf</button>"
+    echo "       <input type='file' name='myfile' accept='.conf' id='new_resolv_input' onchange='upload_new_resolv()'/>"
+    echo "     </div>"
+    echo "   </div>"    # style float left
+
+    echo "     <p align='right'> <button class='btn_round' style='margin-right: 50px;' input type='button' onclick=\"delete_resolv()\"> Delete Existing resolv.conf </button> </p>"
+
+    echo "        <br>" # line
+    
+    #=== 2 buttons on same line
+    echo "   <div style='float: left;'>"
+    #echo "     <p align=\"left\"> <input type=\"button\" id='SAVE_BTTN' value=\"Back to Basic Settings\" onclick=\"go_back()\" style='background-color: #e7e7e7;'> </p>"
+    echo "     <p align=\"left\"> <input type=\"button\" id='SAVE_BTTN' value=\"Back to Basic Settings\" onclick=\"go_back()\" > </p>"
+    echo "   </div>"
+
+    #echo "     <p align='right'> <input type='button' value='Go to Home Page' onclick=\"go_home()\" style='background-color: #e7e7e7;'> </p>"
+    echo "     <p align='right'> <input type='button' value='Go to Home Page' onclick=\"go_home()\"> </p>"
+
+    # form end
+    echo "</form>"
+
+    # End
+    echo "        </div>"         # box end
+
+    echo "        </div>"
+}
+
+print_i2v_conf_row1()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">"
+    # Columm 1 
+    print_advance_network_settings
+
+    echo "    </div>"
+}
+
+print_i2v_conf_row2()
+{
+    echo "    <div class=\"row justify-content-center features\" style=\"padding-top: 0px;padding-bottom: 0px;\">"
+
+    # Columm 1 - Radio settings
+
+    echo "    </div>"
+}
+
+print_feature_box_beg()
+{
+    echo "<body>"
+    source $SCRIPT_PATH/add_navbar.sh 
+    source $SCRIPT_PATH/add_page_timeout.sh
+    print_overlay
+    echo "    <div class=\"features-boxed\">"
+    echo "        <div class=\"container\">"
+}
+
+print_feature_box_end()
+{
+    echo "        </div>"
+    echo "    </div>"
+}
+
+print_intro()
+{
+    echo "            <div class=\"intro\">"
+    echo "            <div class=\"intro-container\">"
+    echo "                <i class=\"fa fa-server icon\"></i>"
+    echo "                <h2 class=\"text-center\">RSU Advance Network Settings"
+    echo "                </h2>"
+    echo "            </div>"
+    echo "            </div>"
+}
+
+print_Home_box()
+{
+    echo "                <div class=\"col-sm-6 col-md-5 col-lg-4 item\">"
+    echo "                  <a href=\"/cgi-bin/rsu_main\">"
+    echo "                        <h3 class=\"name\">Home</h3>"
+    echo "                    </div>"
+    echo "                  </a>"
+    echo "                </div>"
+}
+
+print_fw_version()
+{
+  # FW version
+  echo "      <p class=\"copyright\" style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>"
+  echo VERSION:
+  cat /etc/version 
+  echo "      </p>"
+}  
+
+#
+# print_footer_end()
+# desc: footer and end of page
+#
+print_footer_end()
+{
+    echo "    <div class=\"footer-basic\">"
+    echo "        <footer>"
+    echo "            <p class=\"copyright\">MobiQ © 2023</p>"
+    echo "            <br>"
+    echo "        </footer>"
+    echo "    </div>"
+    echo "    <script src=\"../assets/js/jquery.min.js\"></script>"
+    echo "    <script src=\"../assets/bootstrap/js/bootstrap.min.js\"></script>"
+
+    #=== Custom scripts ===
+    echo "<script>"
+        print_overlay_on
+        print_overlay_off
+        print_go_back
+        print_go_home
+        print_upload_new_rules
+        print_delete_network_rules
+        print_upload_new_resolv
+        print_delete_resolv
+    echo "</script>"
+
+    echo "</body>"
+    echo "</html>"
+}
+
+print_overlay_on()
+{
+    echo "    function overlay_on() {"
+    echo "      document.getElementById('overlay').style.display = 'block';"
+    echo "      document.getElementById('spin01').style.visibility = 'visible';"
+    echo "    }"
+}
+
+print_overlay_off()
+{
+    echo "    function overlay_off() {"
+    echo "      document.getElementById('overlay').style.display = 'none';"
+    echo "    }"
+}
+
+print_go_back()
+{
+    echo "function go_back() {"
+    echo "  window.location.href = '/cgi-bin/config_rsu_basic_display_live';"
+    echo "}"
+}
+
+print_go_home()
+{
+    echo "function go_home() {"
+    echo "  window.location.href = '/cgi-bin/rsu_main';"
+    echo "}"
+}
+
+print_upload_new_rules()
+{
+    echo "    function upload_new_rules() {" 
+    echo "       var file = document.getElementById('new_rule_input').files[0];"  # Get file
+
+    # resetting so onchange trigger next time
+    echo "       document.getElementById('new_rule_input').value = null;"
+    
+    # If routing.rules then upload file else prompt and ignore
+    echo "       if (file.name == 'routing.rules') {"
+    # upload routing.rules
+    echo "         var xhttp = new XMLHttpRequest();" 
+    # Handle response
+    echo "      xhttp.onreadystatechange = function() {" 
+        echo "        if (this.readyState == 4 && this.status == 200) {" 
+        echo "          var str = this.responseText;" 
+        echo "          document.getElementById('new_rule_frame').innerHTML = this.responseText;" 
+        echo "        } else {"
+        echo "          document.getElementById('new_rule_frame').innerHTML = 'REJECT<br/>';" 
+        echo "        }" 
+    echo "      };" 
+    
+    echo "         xhttp.open('post', '/cgi-bin/upload_new_rules', true);" 
+    echo "         xhttp.send(file);" 
+    echo "       } else {"
+    echo "          alert(file.name + ' is not a valid file!');"
+    echo "       }"
+    echo "    }" 
+}
+
+print_delete_network_rules()
+{
+    echo "    function delete_network_rules() {" 
+
+    # upload routing.rules
+    echo "         var xhttp = new XMLHttpRequest();" 
+    # Handle response
+    echo "      xhttp.onreadystatechange = function() {" 
+        echo "        if (this.readyState == 4 && this.status == 200) {" 
+        echo "          var str = this.responseText;" 
+        echo "          document.getElementById('new_rule_frame').innerHTML = this.responseText;" 
+        echo "        }" 
+    echo "      };" 
+    
+    echo "         xhttp.open('post', '/cgi-bin/delete_routing_rules', true);" 
+    echo "         xhttp.send();" 
+    echo "    }" 
+}
+
+
+# Received file is captured by calling cgi-bin upload_new_resolv, which
+#   returns, when ok, status=200 and response text of the content of the new file.
+print_upload_new_resolv()
+{
+    echo "    function upload_new_resolv() {" 
+    echo "       var file = document.getElementById('new_resolv_input').files[0];"  # Get file
+
+    # resetting so onchange trigger next time
+    echo "       document.getElementById('new_resolv_input').value = null;"
+    
+    # If resolv.conf then upload file else prompt and ignore
+    echo "       if (file.name == 'resolv.conf') {"
+    # upload new file
+    echo "         var xhttp = new XMLHttpRequest();" 
+    # Handle response
+    echo "         xhttp.onreadystatechange = function() {" 
+    echo "            if (this.readyState == 4 && this.status == 200) {" 
+    echo "              var str = this.responseText;" 
+    echo "              document.getElementById('new_resolv_frame').innerHTML = this.responseText;" 
+    echo "            } else {"
+    echo "              document.getElementById('new_resolv_frame').innerHTML = 'REJECT<br/>';" 
+    echo "            }" 
+    echo "         };" 
+    
+    echo "         xhttp.open('post', '/cgi-bin/upload_new_resolv', true);" 
+    echo "         xhttp.send(file);" 
+    echo "       } else {"
+    echo "          alert(file.name + ' is not a valid file!');"
+    echo "       }"
+    echo "    }" 
+}
+
+
+print_delete_resolv()
+{
+    echo "    function delete_resolv() {" 
+
+    echo "         var xhttp = new XMLHttpRequest();" 
+    # Handle delete response
+    echo "      xhttp.onreadystatechange = function() {" 
+        echo "        if (this.readyState == 4 && this.status == 200) {" 
+        echo "          var str = this.responseText;" 
+        echo "          document.getElementById('new_resolv_frame').innerHTML = this.responseText;" 
+        echo "        }" 
+    echo "      };" 
+    
+    echo "         xhttp.open('post', '/cgi-bin/delete_resolv', true);" 
+    echo "         xhttp.send();" 
+    echo "    }" 
+}
+
+
+
+#
+# Main
+#
+echo "Content-type: text/html"
+echo ""
+
+# Get current logged in IP
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv=\"refresh\" content=\"0; URL='/rsu-timeout.html' \" /> "
+else
+
+  print_header                   # print header
+  print_feature_box_beg          # feature box beg
+  print_intro
+
+  # Show 1st row - App settings, Network settings
+  print_i2v_conf_row1
+  # Show 2nd row - Radio settings
+  #print_i2v_conf_row2
+
+  print_feature_box_end          # feature box end
+
+  print_fw_version
+
+  # End of Page with Footer
+  print_footer_end  
+  
+fi

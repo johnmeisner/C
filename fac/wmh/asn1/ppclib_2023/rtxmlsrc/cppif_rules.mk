@@ -1,0 +1,86 @@
+$(DESTDIR)$(PS)rtXmlExpatIF$(XMLIFOBJ): \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxStreamBuffered.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxStream.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParserIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExpatIF.cpp \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h
+	$(CCC) $(CFLAGSIF) -c $(EXPATCFLAGSIF) -I$(EXPATINC) $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlExpatIF.cpp
+
+$(DESTDIR)$(PS)rtXmlLibxml2IF$(XMLIFOBJ): \
+    $(OSROOTDIR)/rtxsrc/rtxBitString.h \
+    $(OSROOTDIR)/rtxsrc/rtxDiag.h \
+    $(OSROOTDIR)/rtxsrc/rtxDynPtrArray.h \
+    $(OSROOTDIR)/rtxsrc/rtxEnum.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommon.h \
+    $(OSROOTDIR)/rtxsrc/osSysTypes.h \
+    $(OSROOTDIR)/rtxsrc/rtxDList.h \
+    $(OSROOTDIR)/rtxmlsrc/osrtxml.h \
+    $(OSROOTDIR)/rtxsrc/rtxBuffer.h \
+    $(OSROOTDIR)/rtxsrc/OSRTContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxXmlQName.h \
+    $(OSROOTDIR)/rtxsrc/rtxUTF8.h \
+    $(OSROOTDIR)/rtxsrc/rtxError.h \
+    $(OSROOTDIR)/rtxsrc/rtxSList.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlErrCodes.h \
+    $(OSROOTDIR)/rtxsrc/rtxErrCodes.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCommonDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxFile.h \
+    $(OSROOTDIR)/rtxsrc/OSRTInputStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/osMacros.h \
+    $(OSROOTDIR)/rtxsrc/OSRTStreamIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemory.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlLibxml2IF.cpp \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxDefs.h \
+    $(OSROOTDIR)/rtxmlsrc/rtXmlNamespace.h \
+    $(OSROOTDIR)/rtxsrc/rtxReal.h \
+    $(OSROOTDIR)/rtxsrc/rtxStack.h \
+    $(OSROOTDIR)/rtxsrc/rtxCtype.h \
+    $(OSROOTDIR)/rtxsrc/OSRTCtxtHolderIF.h \
+    $(OSROOTDIR)/rtxsrc/rtxPattern.h \
+    $(OSROOTDIR)/rtxsrc/rtxContext.h \
+    $(OSROOTDIR)/rtxsrc/rtxDateTime.h \
+    $(OSROOTDIR)/rtxsrc/rtxUtil.h \
+    $(OSROOTDIR)/rtxsrc/rtxMemBuf.h \
+    $(OSROOTDIR)/rtxsrc/rtxExternDefs.h \
+    $(OSROOTDIR)/rtxsrc/rtxCharStr.h \
+    $(OSROOTDIR)/rtxsrc/rtxBigInt.h \
+    $(OSROOTDIR)/rtxmlsrc/rtSaxCppParserIF.h
+	$(CCC) $(CFLAGSIF) -c -I$(LIBXML2INC) $(IPATHS) $(OSROOTDIR)/rtxmlsrc/rtXmlLibxml2IF.cpp
+

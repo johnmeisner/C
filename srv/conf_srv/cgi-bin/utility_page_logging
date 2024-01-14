@@ -1,0 +1,508 @@
+#!/bin/sh
+
+SCRIPT_PATH="/usr/local/www/cgi-bin"
+
+# Set path
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/src/wnc:/usr/src/wnc/scripts:/usr/src/wnc/diagnostic:/usr/src/wnc/dvt:/usr/local/sbin:/usr/sbin:/sbin
+
+LOGDIR=/rwflash/I2V/syslog
+
+echo "Content-type: text/html"
+echo ''
+
+# Check login status - logged out if 0.0.0.0, else returns ip of current client
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html ' /> "
+  exit 0
+fi
+
+# read_current_value
+PV_I2VGlobalDebugFlag=`/usr/bin/conf_agent READ i2v I2VGlobalDebugFlag`
+
+# See if we were passed a sort order in our params
+SORTORDER=`/usr/bin/get_token_val "$QUERY_STRING" sortorder`
+
+
+# Output
+cat << '##EOFEOFEOF1'
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, shrink-to-fit=no'>
+    <title>System Event Log</title>
+    <link rel='stylesheet' href='/assets/bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/assets/fonts/font-awesome.min.css'>
+    <link rel='stylesheet' href='/assets/css/Features-Boxed.css'>
+    <link rel='stylesheet' href='/assets/css/Features-Clean.css'>
+    <link rel='stylesheet' href='/assets/css/Footer-Basic.css'>
+    <link rel='stylesheet' href='/assets/css/styles.css'>
+    <style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 2;
+  cursor: pointer;
+}
+</style>
+<style>
+.center {
+  margin: auto;
+  width: 90%;
+  height: 200px;
+  overflow: auto;
+  border: 3px solid #adb5bd;
+  background-color: #eee;
+  padding: 10px;
+</style>
+<style>
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.btn {
+  border: 2px solid gray;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.upload-btn-wrapper input[type=file] {
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+</style>
+<style>
+.btn_round {
+  border: 2px solid gray;
+  background-color: white;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  color: black;
+  border-radius: 8px;
+  font-size: 16px;
+}
+</style>
+<style>
+.icon {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+.intro-container {
+  display: -ms-flexbox;
+  display: flex;
+}
+</style>
+</head>
+<body>
+
+##EOFEOFEOF1
+
+source $SCRIPT_PATH/add_navbar.sh 
+source $SCRIPT_PATH/add_page_timeout.sh
+
+cat << '##EOFEOFEOF2'
+
+
+<div id='overlay'>
+<div class=text-center>
+  <div id='spin01' class='spinner-border text-primary' role='status'  style='visibility: hidden;'   >
+    <span class='sr-only'>Loading...</span>
+  </div>
+</div>
+</div>
+
+<div class='features-boxed'>
+  <div class='container'>
+
+            <div class='intro'>
+            <div class="intro-container">
+                <i class="fa fa-file-text-o icon"></i>
+                <h2 class='text-center'>System Event Log</h2>
+            </div>
+            </div>
+##EOFEOFEOF2
+
+# If any status from previous save, display it
+STATUS_FILE=/tmp/update.status.file
+if [ -f $STATUS_FILE ]; then
+    echo '<center>'
+    cat $STATUS_FILE
+    rm -f $STATUS_FILE
+    echo '</center><br/>'
+fi
+
+cat << '##EOFEOFEOF3'
+
+    <!-- BEGIN row 1 -->
+    <div class='row justify-content-center features' style='padding-top: 0px;padding-bottom: 0px;'>
+
+<!-- BEGIN Global Logging checkbox ----------------- --->
+      <div class='col-sm-4 col-md-4 col-lg-4 col-xl-4 text-left item'> <!-- Start Bob -->
+        <div class='text-left box shadow p-3 mb-5 bg-white rounded' style='padding-top: 5px; margin-bottom: 15px;'> <!-- Start Charles -->
+<form id='config_form' action='/cgi-bin/util_log_save_configs'>
+        <h3 class='text-center'>Settings</h3>
+        <div class="form-check">
+            <input type="checkbox" name="I2VGlobalDebugFlag" id="I2VGlobalDebugFlag" onchange="change_notify(I2VGlobalDebugFlag)" class="form-check-input"
+
+##EOFEOFEOF3
+    # Print "Checked" if checked
+    if [ "$PV_I2VGlobalDebugFlag" == "1" ]; then
+        echo checked
+    fi
+cat << '##EOFEOFEOF4'
+            >
+            <label class="form-check-label" for="I2VGlobalDebugFlag"
+            data-toggle="tooltip" data-placement="top" title="Enable Enhanced Logging. Default: Disabled">
+            Enable Enhanced Logging</label></div>
+    <input type='text' name='NAV' id='NAV' value='REFRESH' style='visibility: hidden;' >
+        <br>
+   <div style='float: left;'>
+     <p align="left"> <input type="button" id='SAVE_BTTN' value="SAVE" onclick="submit_config_save()" disabled> </p>
+   </div>
+   <div style='float: left;'>
+     <p align="center"> <input type="button" id='APPLY_BTTN' value="SAVE & APPLY" onclick="submit_save_and_apply()" disabled> </p>
+   </div>
+     <p align='right'> <input type='button' value='BACK' onclick="check_changes_back()"> </p>
+</form>
+        </div>  <!-- End Charles -->
+        </div>  <!-- End Bob -->
+<!-- END Global Logging Checkbox ----------------- --->
+
+
+      <!-- BEGIN Stored Logfiles Block -->
+      <div class='col-sm-8 col-md-8 col-lg-8 col-xl-8 text-left item'>
+        <div class='text-left box shadow p-3 mb-5 bg-white rounded' style='padding-top: 5px; margin-bottom: 15px;'>
+<form method='post' id='download_form' action_done_in_javascript='/cgi-bin/util_log_compress_logs'>
+        <h3 class='text-center'>Stored Logfiles</h3>
+        <div class="center" id='active_file_frame'>
+        <div class='container'>
+          <table class='table table-bordered' id='file_list_table'>
+            <thead>
+              <tr>
+                <th>
+                <i class='fa fa-cloud-download icon' style='font-size: 14px; margin-top: 0px; margin-bottom: 0px; padding: 0px; color: black;'></i>
+                </th>
+                <th>Click on a file name to view the file contents in a popup window</th>
+              </tr>
+            </thead>
+            <tbody>
+##EOFEOFEOF4
+
+    # Handle if we're sorting logs ascending or descending
+    if [ x"$SORTORDER" == xdesc ]; then
+        LOGSLSPARAM='-r'
+    fi
+    # populate logfile table and build javascript array of those filenames
+    LOGFILES=""
+    for file in `ls $LOGSLSPARAM $LOGDIR` ; do
+        if [ -f "$LOGDIR/$file" ]; then
+            echo "<tr id='tr_$file'><td>"
+            echo "<input type='checkbox' id='$file' style='text-align:center; vertical-align: middle;'>"
+            echo "</td><td onclick='show_file_content(\"$file\",\"$LOGDIR/$file\")'>$file</td>"
+            echo "</tr>"
+            LOGFILES="$LOGFILES, \"$file\""
+        fi
+    done
+    # Output javascript to build the array
+    echo '<script>'
+    echo 'const logfile_array = ['
+    echo "$LOGFILES" | sed -e 's/,/  /' -e 's/, /,%  /'g | tr % \\012
+    echo '];'
+    echo '</script>'
+
+cat << '##EOFEOFEOF5'
+            </tbody>
+          </table>
+        </div>
+        </div>
+</form>  <!-- End the form encompassing the file list -->
+       <br/>
+       <p align="left">
+       <!-- BEGIN Download Button -->
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id='download_button' value="Download selected logfiles" onclick="start_download()">
+       <!-- END Download Button -->
+       <!-- BEGIN Delete Button -->
+         &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id='delete_button' value="Delete selected logfiles" onclick="start_delete()">
+       <!-- END Delete Button -->
+       <!-- BEGIN SORT SELECT -->
+         &nbsp;&nbsp;&nbsp;&nbsp;<select name="SortOptions" id="SortOptions" onchange="sort_changed()">
+##EOFEOFEOF5
+
+# Select element of the sort order dropdown based if we were passed sortorder=desc param
+if [ x"$SORTORDER" == "xdesc" ]; then
+    echo '<option value="asc">Sort Ascending</option>'
+    echo '<option value="desc" selected>Sort Descending</option>'
+else
+    echo '<option value="asc" selected>Sort Ascending</option>'
+    echo '<option value="desc">Sort Descending</option>'
+fi
+
+cat << '##EOFEOFEOF6'
+        </select>
+       <!-- END SORT SELECT -->
+       </p> <!-- End the <p> just before the first download button -->
+        </div>
+        </div>
+        <!-- END Stored Logfiles Block -->
+
+    </div>
+    <!-- END row 1 -->
+
+
+    <!-- BEGIN row 2 -->
+    <div class='row justify-content-center features' style='padding-top: 0px;padding-bottom: 0px;'> <!-- Alan -->
+      <div class='col-sm-12 col-md-12 col-lg-12 col-xl-12 text-left item'> <!-- Start Bob -->
+        <div class='text-left box shadow p-3 mb-5 bg-white rounded'>  <!-- Start Charlie -->
+        <h3 class='text-center' id='content_title'>Logfile Content</h3>
+        <div class="center" id='active_file_frame' style='min-height: 800px;'>
+        <div class='container'>
+          <table class='table table-bordered' id='file_list_table'>
+            <tbody><tr><td><pre id='log_content_text'>
+            </pre>
+            </td></tr></tbody>
+          </table>
+        </div>
+        </div>
+
+        </div> <!-- End Charlie -->
+
+        </div>  <!-- End Bob -->
+    </div> <!-- End Alan -->
+    <!-- END row 2 -->
+
+
+    </div>
+        </div>
+    </div>
+<p class='copyright' style='color:#aaa;text-align:center;font-size:13px;margin-bottom: 0px;'>VERSION:
+##EOFEOFEOF6
+cat /etc/version
+cat << '##EOFEOFEOF7'
+</p>
+    <div class='footer-basic'>
+        <footer>
+            <p class='copyright'>MobiQ © 2023</p>
+        </footer>
+    </div>
+<script src='/assets/js/jquery.min.js'></script>
+<script src='/assets/bootstrap/js/bootstrap.min.js'></script>
+<script>
+function submit_config_save() {
+    overlay_on();
+    var x = document.getElementById('config_form');
+    x.submit();
+}
+function submit_save_and_apply() {
+    var r = confirm('SAVE & APPLY will reboot the RSU!');
+    if (r == true) {
+        NAV.value='APPLY';
+        overlay_on();
+        var x = document.getElementById('config_form');
+        x.submit();
+    }
+}
+function overlay_on() {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('spin01').style.visibility = 'visible';
+}
+function overlay_off() {
+      document.getElementById('overlay').style.display = 'none';
+}
+var pg_change = 0;
+function change_notify(change_id) {
+  pg_change = 1;
+  change_id.style.color = "#800080";
+  document.getElementById('SAVE_BTTN').disabled = false;
+  document.getElementById('APPLY_BTTN').disabled = false;
+  navbar_set_page_has_unsaved_changes(true);
+}
+function check_changes_back() {
+    if (pg_change == 0) {
+      window.location.href = '/cgi-bin/util_display_live';
+    } else {
+        var ret = confirm("Save changes?");
+        if (ret == true) {
+          NAV.value='BACK';
+          submit_config_save();
+        }
+        else {
+          window.location.href = '/cgi-bin/util_display_live';
+        }
+    }
+}
+function show_file_content(just_filename, file_name) {
+      var tr_id = 'tr_' + just_filename;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('log_content_text').innerHTML = this.responseText;
+        }
+      };
+      xhttp.open('GET', '/cgi-bin/show_file_contents?filename='+file_name, true);
+      xhttp.send();
+      // Turn off other rows and turn on row for this file file_name
+      var grid = document.getElementById('file_list_table');
+      var tr_list = grid.getElementsByTagName('TR');
+      for (var i = tr_list.length -1; i >= 0; i--) {
+        if (tr_list[i].id == tr_id) {
+            tr_list[i].style.backgroundColor = "#FFFFDD";
+        } else {
+            tr_list[i].style.backgroundColor = "#FFFFFF";
+        }
+      }
+      // Change Logfile Content header
+      document.getElementById('content_title').innerHTML = 'Logfile Content - ' + just_filename;
+}
+function start_download() {
+    overlay_on();
+    // Build a list of files with checkboxes
+    var request_list = '';
+    for (i=0; i<logfile_array.length; i++) {
+        var x = document.getElementById(logfile_array[i]);
+        if (x.checked) {
+            request_list = request_list + logfile_array[i] + "\n";
+        }
+    }
+    // Build our compression request, which will return the archive's filename
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            overlay_off();
+            // Send the browser to the file which will download it
+            request_url = '/cgi-bin/util_log_deliver_compressed_logs?file=' + this.responseText;
+            window.location.href = request_url;
+        }
+    };
+    // Send our logfile request to the server
+    xhttp.open('post', '/cgi-bin/util_log_compress_logs', true);
+    xhttp.send(request_list);
+}
+function start_delete() {
+    overlay_on();
+    // Build a list of files with checkboxes
+    var request_list = '';
+    var file_count = 0;
+    for (i=0; i<logfile_array.length; i++) {
+        var x = document.getElementById(logfile_array[i]);
+        if (x.checked) {
+            request_list = request_list + logfile_array[i] + "\n";
+            file_count = file_count + 1;
+        }
+    }
+    var r = false;  // default=false also takes care of the case of 0 files selected 
+    if (file_count == 1)
+        r = confirm("Delete file " + request_list + "?");
+    if (file_count > 1)
+        r = confirm("Delete " + file_count + " files?");
+    if (r == true) {
+        // Build our delete request
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                overlay_off();
+                // Refresh the file list by reloading this page
+                //  (Call sort_changed so we preserve sort order)
+                sort_changed();
+            }
+        };
+        // Send our logfile request to the server
+        xhttp.open('post', '/cgi-bin/util_log_delete_logs', true);
+        xhttp.send(request_list);
+    } else {
+        overlay_off();
+    }
+}
+function sort_changed() {
+    // Detect current sort 
+    var x = document.getElementById('SortOptions');
+    sort_wanted = x.options[x.selectedIndex].value;
+    // Refresh with new sort
+    window.location.href = '/cgi-bin/utility_page_logging?sortorder=' + sort_wanted;
+}
+function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+}
+function zrm_delete_file(file_name) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var status_ctr = document.getElementById('status_center');
+            status_ctr.innerHTML = status_ctr.innerHTML + this.responseText + ' ';
+          }
+        };
+      xhttp.open('post', '/cgi-bin/delete_file', true);
+      xhttp.send(file_name + String.fromCharCode(10));
+}
+async function zrm_delete_selected() {
+        var grid = document.getElementById('file_list_table');
+        var checkBoxes = grid.getElementsByTagName('INPUT');
+        var delete_file_name = '';
+        overlay_on();
+        var status_ctr = document.getElementById('status_center');
+        status_ctr.innerHTML = '';
+        for (var i = checkBoxes.length -1; i >= 0; i--) {
+            if (checkBoxes[i].checked) {
+                var row = checkBoxes[i].parentNode.parentNode;
+                delete_file_name = row.cells[1].innerHTML;
+                delete_file(delete_file_name);
+                await sleep(500);
+                grid.deleteRow(i+1);
+            }
+        }
+        overlay_off();
+}
+function zrm_add_new_active_message() {
+
+        // Function to upload file
+        function send_file_content_to_server(file_object)
+        {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Now refresh content by making browser reload this page
+                    window.location.href = '/cgi-bin/config_imm_fwd_display_live';
+                }
+            }
+            xhttp.open('post', '/cgi-bin/upload_new_active_message', true);
+            xhttp.send(file_object);
+        };
+
+        overlay_on();
+
+        // Send the file's name, then the file's content
+        var file_object = document.getElementById('new_message_input').files[0];
+        var file_name = file_object.name;
+
+        var xhttp = new XMLHttpRequest();
+        // When we get a status=200 response, send the file
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                send_file_content_to_server(file_object);
+            }
+        };
+        xhttp.open('post', '/cgi-bin/upload_name_for_next_uploaded_file', true);
+        xhttp.send(file_name + String.fromCharCode(10));
+}
+</script>
+</body>
+</html>
+
+##EOFEOFEOF7

@@ -1,0 +1,3 @@
+#!/bin/sh
+#ps -ef | awk '{ if (index($8, prog) != 0) { print $2 } }' prog="$1"
+prog="$1"; pidin | grep $prog | awk '{ print $1 }'

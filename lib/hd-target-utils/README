@@ -1,0 +1,21 @@
+======== access_cfg ========
+
+== PURPOSE ==
+The access_cfg utility provides access to the locked /rwflash/configs/ parameters on RSUs using CfgMgr APIs.
+The utility is intended for internal use only and is not built into the firmware image or released to customers.
+The automated test suite uses the utility as a server.
+With access_cfg, a user can set and get any parameter in .conf files found in the previously mentioned directory,
+ along with other functions.
+ 
+== CREATION == 
+To create a new version of access_cfg, run 'make' in hdsvnrepo/trunk/RSU/iMX6/Source/C/srv/hdmgr and it will be
+ generated in the /.bin directory. 
+
+== USAGE ==
+access_cfg can be used as a server or as a command-line utility. 
+To use as a command-line utility, store access_cfg in (example) /mnt/cflash/ and run with -h (help) flag for usage details:
+ /mnt/cflash/access_cfg -h
+To use as a server, load access_cfg onto an RSU and start it without any arguments:
+ /mnt/cflash/access_cfg
+The server will listen for a comma-separated line of input from a client (see testSuite/framework/Client.py for details).
+

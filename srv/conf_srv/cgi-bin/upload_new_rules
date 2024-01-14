@@ -1,0 +1,43 @@
+#!/bin/sh
+
+TMPFILE=/tmp/tmp.routing.rules
+FILE=/rwflash/customer/routing.rules
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Directory check
+if [ ! -d "/rwflash/customer" ]
+then
+    /bin/mkdir /rwflash/customer
+fi
+
+# save upload file to tmp file, then copy over
+/bin/rm -f $TMPFILE
+/usr/bin/upload_saver $TMPFILE
+if [[ -f $TMPFILE && ! -z $TMPFILE ]]; then
+    /bin/cp $TMPFILE $FILE
+    echo '<font color=green>== Successfully updated to new routing.rules file ==</font><br/><br/>'
+else
+    if [[ -f $TMPFILE ]]; then
+        echo '<font color=red>'Error: Received empty file '</font>'
+    else
+        echo '<font color=red>'Error: Failed to receive file '</font>'
+    fi
+fi
+/bin/rm -f $TMPFILE
+
+# Send update back to client
+if [[ -f $FILE ]]; then
+    awk '{print $0 "<br/>"}' $FILE
+else
+    echo '<font color=red>'Error: $FILE does not 'exist!</font>'
+fi

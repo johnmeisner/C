@@ -1,0 +1,256 @@
+#!/bin/sh
+
+# File: config_fwdmsg_save
+# Desc: Save forward message settings for I2V
+#
+
+echo 'Content-type: text/html'
+echo ''
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+echo '<pre>'
+
+# Save POST query-string for get_token_val to use later
+SAVED_POST_FILE=/tmp/ztmp.saved_post_data
+/usr/bin/upload_saver $SAVED_POST_FILE > /dev/null
+
+#=== Figure out follow-up page to show user
+NAV=`/usr/bin/get_token_val -f $SAVED_POST_FILE NAV`
+if [ "$NAV" == "BACK" ]; then
+    REFRESH_SCRPT="config_display_default"
+elif [ "$NAV" == "APPLY" ]; then
+    # do a reboot after the save
+    REFRESH_SCRPT="reboot_with_countdown"
+else
+    # go back to the security page after the save
+    REFRESH_SCRPT="config_fwdmsg_display_live"
+fi
+
+# Status file to send back to user
+STATUS_FILE=/tmp/update.status.file
+rm -f $STATUS_FILE
+SUCCESS='<font color=green>Successful</font><br/>'
+FAILED='<font color=red>FAILED</font><br/>'
+
+
+# LOOPDATA - list of config items to process for updates
+# Since we are using BASH and not perl or python, we don't have arrays
+# so have to pack our data to get a semi-intelligent multi-column data loop.
+# Luckily, the <FORM> field names and the config setting names are the same, so
+# our packed loop data is two items: config-file-w/o-.conf <colon> settingname.
+LOOPDATA="fwdmsg:ForwardMessageEnable1 fwdmsg:ForwardMessageIP1 fwdmsg:ForwardMessagePort1 fwdmsg:ForwardMessageMask1 fwdmsg:ForwardMessageEnable2 fwdmsg:ForwardMessageIP2 fwdmsg:ForwardMessagePort2 fwdmsg:ForwardMessageMask2 fwdmsg:ForwardMessageEnable3 fwdmsg:ForwardMessageIP3 fwdmsg:ForwardMessagePort3 fwdmsg:ForwardMessageMask3 fwdmsg:ForwardMessageEnable4 fwdmsg:ForwardMessageIP4 fwdmsg:ForwardMessagePort4 fwdmsg:ForwardMessageMask4 fwdmsg:ForwardMessageEnable5 fwdmsg:ForwardMessageIP5 fwdmsg:ForwardMessagePort5 fwdmsg:ForwardMessageMask5"
+
+for XPACKED in $LOOPDATA ; do
+    CONFIG_FILE=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $1}'`
+    SETTING_NAME=`echo $XPACKED | awk 'BEGIN{FS=":"}{print $2}'`
+
+    # Get setting's current value in config file
+    OLD_VALUE=`/usr/bin/conf_agent READ $CONFIG_FILE $SETTING_NAME`
+
+    # For Mask values, bits are used in config files
+    # Convert individual on bits to mask
+    TEMP_SETTING_NAME="${SETTING_NAME::-1}"
+    if [ $TEMP_SETTING_NAME == ForwardMessageMask ] ; then
+        COUNT="${SETTING_NAME: -1}"
+
+        NEW_VALUE=0
+        # For Mask 1
+        if [ $COUNT == 1 ]; then
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageBSMEnable1`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x01))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessagePSMEnable1`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x04))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSPATEnable1`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x08))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageAMHEnable1`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x10))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSRMEnable1`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x20))
+            fi
+
+            #Convert the value into Hex string
+            NEW_VALUE=$(echo "obase=16;$NEW_VALUE" | bc)
+            NEW_VALUE="0x"$NEW_VALUE
+        fi
+        # For Mask 2
+        if [ $COUNT == 2 ]; then
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageBSMEnable2`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x01))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessagePSMEnable2`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x04))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSPATEnable2`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x08))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageAMHEnable2`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x10))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSRMEnable2`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x20))
+            fi
+
+            #Convert the value into Hex string
+            NEW_VALUE=$(echo "obase=16;$NEW_VALUE" | bc)
+            NEW_VALUE="0x"$NEW_VALUE
+        fi
+        # For Mask 3
+        if [ $COUNT == 3 ]; then
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageBSMEnable3`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x01))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessagePSMEnable3`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x04))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSPATEnable3`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x08))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageAMHEnable3`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x10))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSRMEnable3`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x20))
+            fi
+
+            #Convert the value into Hex string
+            NEW_VALUE=$(echo "obase=16;$NEW_VALUE" | bc)
+            NEW_VALUE="0x"$NEW_VALUE
+        fi
+        # For Mask 4
+        if [ $COUNT == 4 ]; then
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageBSMEnable4`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x01))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessagePSMEnable4`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x04))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSPATEnable4`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x08))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageAMHEnable4`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x10))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSRMEnable4`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x20))
+            fi
+
+            #Convert the value into Hex string
+            NEW_VALUE=$(echo "obase=16;$NEW_VALUE" | bc)
+            NEW_VALUE="0x"$NEW_VALUE
+        fi
+        # For Mask 5
+        if [ $COUNT == 5 ]; then
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageBSMEnable5`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x01))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessagePSMEnable5`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x04))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSPATEnable5`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x08))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageAMHEnable5`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x10))
+            fi
+
+            TEMP_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE ForwardMessageSRMEnable5`
+            if [ "$TEMP_VALUE" == "on" ]; then
+                NEW_VALUE=$(($NEW_VALUE | 0x20))
+            fi
+
+            #Convert the value into Hex string
+            NEW_VALUE=$(echo "obase=16;$NEW_VALUE" | bc)
+            NEW_VALUE="0x"$NEW_VALUE
+        fi
+    else
+        # Get setting passed to us through form
+        NEW_VALUE=`/usr/bin/get_token_val -f $SAVED_POST_FILE $SETTING_NAME`
+    fi
+
+    # Massage the checkbox values: on=1 off=0
+    # ForwardMessageEnable
+    #TEMP_SETTING_NAME="${SETTING_NAME::-1}"
+    if [ $TEMP_SETTING_NAME == ForwardMessageEnable ] ; then
+        if [ "$NEW_VALUE" == "on" ]; then
+            NEW_VALUE=1
+        else
+            NEW_VALUE=0
+        fi
+    fi
+
+    # If it's changed, update
+    if [ "$OLD_VALUE" != "$NEW_VALUE" ]; then
+        SAVEOUTPUT=`/usr/bin/conf_agent WRITE $CONFIG_FILE $SETTING_NAME $NEW_VALUE`
+        CONFIRM_VALUE=`/usr/bin/get_conf_val.sh $CONFIG_FILE $SETTING_NAME`
+        if [ "$CONFIRM_VALUE" == "$NEW_VALUE" ]; then
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $SUCCESS >> $STATUS_FILE
+        else
+            echo Change $SETTING_NAME $OLD_VALUE '=&gt;' $NEW_VALUE $FAILED >> $STATUS_FILE
+        fi
+    fi
+
+done
+
+echo "</pre>"
+
+# Cleanup
+rm -f $SAVED_POST_FILE
+
+# Send user to their destination page
+echo "<meta http-equiv=\"refresh\" content=\"0; URL='/cgi-bin/$REFRESH_SCRPT' \" /> "

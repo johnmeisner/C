@@ -1,0 +1,11 @@
+lcms = [
+    {
+        lcm_type                        pseudonym
+        lcm_name                        ccsaLcm
+        lcm_directory                   certificates
+        acf_prefix                      ccsa
+        use_scms                        false
+
+    }
+]
+

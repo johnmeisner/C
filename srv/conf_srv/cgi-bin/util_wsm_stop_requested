@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# Request to stop the currently running WSM_X util command
+#
+
+WEBGUI_WSM_COMMAND_PID_FILE=/tmp/ztmp.webgui.wsm_cmd_pid_file
+
+DLOG=/tmp/zdbg.stop_util_wsm_log.txt
+
+echo `date +%H:%M:%S` - uw_stop called >> $DLOG
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify caller is logged in
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Goto timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+if [ -f $WEBGUI_WSM_COMMAND_PID_FILE ]; then
+    # Stop the command
+    CMD_PID=`cat $WEBGUI_WSM_COMMAND_PID_FILE`
+    echo `date +%H:%M:%S` - PID FILE exists with value $CMD_PID >> $DLOG
+    ps uw --pid $CMD_PID >> $DLOG
+    echo `date +%H:%M:%S` - Killing -15 PID $CMD_PID >> $DLOG
+    kill -15 $CMD_PID
+    ps uw --pid $CMD_PID >> $DLOG
+    PS_RETURN_CODE=$?
+    if [ $PS_RETURN_CODE == 0 ]; then
+        echo `date +%H:%M:%S` - Killing -13 PID $CMD_PID >> $DLOG
+        kill -13 $CMD_PID
+        ps uw --pid $CMD_PID >> $DLOG
+        PS_RETURN_CODE=$?
+        if [ $PS_RETURN_CODE == 0 ]; then
+            echo `date +%H:%M:%S` - Killing -9 PID $CMD_PID >> $DLOG
+            kill -9 $CMD_PID
+        fi
+    fi
+else
+    echo `date +%H:%M:%S` - WARNING - nothing to stop as no PID file >> $DLOG
+fi
+
+echo `date +%H:%M:%S` - uw_stop exiting >> $DLOG

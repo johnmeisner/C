@@ -1,0 +1,21 @@
+#!/bin/sh
+
+echo "Content-type: text/html"
+echo ""
+
+# Verify user is actually logged in - conf_agent returns client ip for authorized clients, 0.0.0.0 if not
+LOGGED_IP=`/usr/bin/conf_agent SESSION_CHK $REMOTE_ADDR`
+if [ "$LOGGED_IP" != "$REMOTE_ADDR" ]; then 
+  # Unauthorized users go to the timeout page
+  echo "<meta http-equiv='refresh' content='0; URL=/rsu-timeout.html'/>"
+  exit 0
+fi
+
+# Check if file exist before delete
+FILE=/rwflash/customer/routing.rules
+if test -f "$FILE"; then
+    /bin/rm -f $FILE
+    echo "<font color=green>*** $FILE Deleted! ***</font>"
+else
+    echo "*** $FILE does not exist! ***"
+fi

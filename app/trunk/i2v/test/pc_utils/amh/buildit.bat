@@ -1,0 +1,1 @@
+gcc -o imfsend.exe imfsend.c
