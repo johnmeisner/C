@@ -6,7 +6,10 @@
         "pwd.h": "c",
         "syslog.h": "c",
         "errno.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "i2v_util.h": "c",
+        "msg.h": "c",
+        "stddef.h": "c"
     },
     "cmake.configureOnOpen": false
 }
