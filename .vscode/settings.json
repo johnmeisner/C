@@ -9,7 +9,8 @@
         "types.h": "c",
         "i2v_util.h": "c",
         "msg.h": "c",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "net-snmp-config.h": "c"
     },
     "cmake.configureOnOpen": false
 }
